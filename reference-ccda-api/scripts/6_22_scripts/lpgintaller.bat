@@ -1,0 +1,1 @@
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=D:\MDHT\6_22\lpg.runtime.java-2.0.17.v201004271640.jar -DgroupId=org.mdht.dependencies -DartifactId=lpg.runtime.java -Dversion=2.0.17.v201004271640

@@ -1,0 +1,1 @@
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=D:\MDHT\6_22\org.eclipse.emf.ecore.xmi-2.9.1.v20131212-0545.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.emf.ecore.xmi -Dversion=2.9.1.v20131212-0545

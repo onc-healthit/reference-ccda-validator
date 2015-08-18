@@ -1,0 +1,1 @@
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=D:\MDHT\6_22\org.eclipse.uml2.types-1.1.0.v20140202-2055.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.uml2.types -Dversion=1.1.0.v20140202-2055
