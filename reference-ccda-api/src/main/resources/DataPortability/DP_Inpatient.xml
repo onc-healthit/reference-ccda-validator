@@ -4,16 +4,7 @@
 	Title: US_Realm_Header_Template
 
 	Revision History:
-	 01/31/2011 bam created
-    07/29/2011 RWM modified
-    11/26/2011 RWM modified
-    08/12/2012 RWM modified
-    09/12/2012 BNR(Dragon) modified
-	5/3/2013  NIST (v5)en
-    12/10/2013 NIST (multiple)
-    01/07/2014 NIST (multiple)
-    01/09/2014 NIST Update (vital signs mismatch)
-    03/06/2014 NIST Update (multiple - documentation available)
+	 8/1/2015 - Nagesh Bashyam (Dragon) 0 Created.
  -->
 <ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3"
 	xmlns:gsd="http://aurora.regenstrief.org/GenericXMLSchema"
@@ -33,7 +24,7 @@
 	<typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
 	<!-- US General Header Template -->
 	<!-- CONF 5252 -->
-	<templateId root="2.16.840.1.113883.10.20.22.1.1"/>
+	<templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01"/>
 	<!-- *** Note:  The next templateId, code and title will differ depending on what type of document is being sent. *** -->
 	<!-- conforms to the document specific requirements  -->
 	<templateId root="2.16.840.1.113883.10.20.22.1.2"/>
@@ -45,7 +36,7 @@
 	<!-- CONF 5254 -->
 	<title>Community Health and Hospitals: Health Summary</title>
 	<!-- CONF 5256 -->
-	<effectiveTime value="20120912000000-0000"/>
+	<effectiveTime value="20150624000000-0000"/>
 	<!-- 5259 -->
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
 	<!-- 5372 -->
@@ -77,13 +68,13 @@
 				<!-- CONF 5284 -->
 				<name use="L">
 					<!-- L is "Legal" from HL7 EntityNameUse 2.16.840.1.113883.5.45 -->
-					<given>Myra</given>
+					<given>Isabella</given>
 					<!-- CL is "Call me" from HL7 EntityNamePartQualifier 2.16.840.1.113883.5.43 -->
 					<family>Jones</family>
 				</name>
 				<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"
 					displayName="Female"/>
-				<birthTime value="19470501"/>
+				<birthTime value="19700501"/>
 				<maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2"
 					codeSystemName="MaritalStatusCode"/>
 				<religiousAffiliationCode code="1013"
@@ -117,7 +108,7 @@
 			<providerOrganization>
 				<id root="1.1.1.1.1.1.1.1.4"/>
 				<name>Community Health and Hospitals</name>
-				<telecom use="WP" value="tel: 555-555-5000"/>
+				<telecom use="WP" value="tel: 555-555-1002"/>
 				<addr>
 					<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
 					<city>Portland</city>
@@ -319,11 +310,11 @@
 	</participant>
 	<documentationOf typeCode="DOC">
 		<serviceEvent classCode="PCPR">
-			<code code="233604007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"
-				displayName="Pnuemonia"/>
+			<code code="164139008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"
+				displayName="Anemia"/>
 			<effectiveTime>
-				<low value="20120806"/>
-				<high value="20120813"/>
+				<low value="20150622"/>
+				<high value="20150624"/>
 			</effectiveTime>
 			<performer typeCode="PRF">
 				<functionCode code="PP" displayName="Primary Care Provider"
@@ -331,8 +322,8 @@
 					<originalText>Primary Care Provider</originalText>
 				</functionCode>
 				<time>
-					<low value="20120806"/>
-					<high value="20120813"/>
+					<low value="20150622"/>
+					<high value="20150624"/>
 				</time>
 				<assignedEntity>
 					<id extension="PseudoMD-1" root="2.16.840.1.113883.4.6"/>
@@ -372,11 +363,11 @@
 	<componentOf>
 		<encompassingEncounter>
 			<id extension="1" root="2.16.840.1.113883.4.6"/>
-			<code code="233604007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"
-				displayName="Pnuemonia"/>
+			<code code="164139008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"
+				displayName="Anemia"/>
 			<effectiveTime>
-				<low value="20120806"/>
-				<high value="20120813"/>
+				<low value="20150622"/>
+				<high value="20150624"/>
 			</effectiveTime>
 			<responsibleParty>
 				<assignedEntity>
@@ -411,7 +402,7 @@ Allergies, Adverse Reactions, Alerts
 -->
 			<component>
 				<section>
-					<templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
 					<!-- Alerts section template -->
 					<code code="48765-2" codeSystem="2.16.840.1.113883.6.1"/>
 					<title>ALLERGIES, ADVERSE REACTIONS, ALERTS</title>
