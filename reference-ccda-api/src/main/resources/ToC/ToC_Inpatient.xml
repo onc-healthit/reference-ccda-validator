@@ -427,29 +427,17 @@ Allergies, Adverse Reactions, Alerts
 									<td>
 										<content ID="severity1">Moderate to severe</content>
 									</td>
-									<td>Inactive</td>
+									<td>InActive</td>
 								</tr>
 								<tr>
 									<td>
-										<content ID="product2">Codeine</content>
+										<content ID="product2">Ampicillin Sodium</content>
 									</td>
 									<td>
-										<content ID="reaction2">Shortness of Breath</content>
+										<content ID="reaction2">Hives</content>
 									</td>
 									<td>
 										<content ID="severity2">Moderate</content>
-									</td>
-									<td>Active</td>
-								</tr>
-								<tr>
-									<td>
-										<content ID="product3">Aspirin</content>
-									</td>
-									<td>
-										<content ID="reaction3">Hives</content>
-									</td>
-									<td>
-										<content ID="severity3">Mild to moderate</content>
 									</td>
 									<td>Active</td>
 								</tr>
@@ -458,7 +446,7 @@ Allergies, Adverse Reactions, Alerts
 					</text>
 					<entry typeCode="DRIV">
 						<act classCode="ACT" moodCode="EVN">
-							<templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.30" extension="2015-08-01"/>
 							<!-- ** Allergy problem act ** -->
 							<id root="36e3e930-7b14-11db-9fe1-0800200c9a66" extension="1000"/>
 							<code code="48765-2" codeSystem="2.16.840.1.113883.6.1"
@@ -466,19 +454,19 @@ Allergies, Adverse Reactions, Alerts
 								displayName="Allergies, adverse reactions, alerts"/>
 							<statusCode code="completed"/>
 							<effectiveTime>
-								<low value="20070501"/>
-								<high value="20120806"/>
+								<low value="20120501"/>
+								<high value="20150622"/>
 							</effectiveTime>
 							<entryRelationship typeCode="SUBJ">
 								<observation classCode="OBS" moodCode="EVN">
 									<!-- allergy observation template -->
-									<templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
 									<id root="4adc1020-7b14-11db-9fe1-0800200c9a66" extension="1001"/>
 									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
 									<statusCode code="completed"/>
 									<effectiveTime>
 										<low nullFlavor="UNK"/>
-										<high value="20120806"/>
+										<high value="20150622"/>
 									</effectiveTime>
 									<value xsi:type="CD" code="419511003"
 										displayName="Propensity to adverse reaction to drug"
@@ -502,21 +490,9 @@ Allergies, Adverse Reactions, Alerts
 											</playingEntity>
 										</participantRole>
 									</participant>
-									<entryRelationship typeCode="SUBJ" inversionInd="true">
-										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.28"/>
-											<!-- Allergy status observation template -->
-											<code code="33999-4" codeSystem="2.16.840.1.113883.6.1"
-												codeSystemName="LOINC" displayName="Status"/>
-											<statusCode code="completed"/>
-											<value xsi:type="CE" code="73425007"
-												codeSystem="2.16.840.1.113883.6.96"
-												displayName="Inactive"/>
-										</observation>
-									</entryRelationship>
 									<entryRelationship typeCode="MFST" inversionInd="true">
 										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
 											<!-- Reaction observation template -->
 											<id root="4adc1020-7b14-11db-9fe1-0800200c9a64"
 												extension="1002"/>
@@ -535,7 +511,7 @@ Allergies, Adverse Reactions, Alerts
 									</entryRelationship>
 									<entryRelationship typeCode="SUBJ" inversionInd="true">
 										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
 											<!-- ** Severity observation template ** -->
 											<code xsi:type="CE" code="SEV"
 												displayName="Severity Observation"
@@ -557,7 +533,7 @@ Allergies, Adverse Reactions, Alerts
 					</entry>
 					<entry typeCode="DRIV">
 						<act classCode="ACT" moodCode="EVN">
-							<templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.30" extension="2015-08-01"/>
 							<!-- ** Allergy problem act ** -->
 							<id root="36e3e930-7b14-11db-9fe1-0800200c9a66" extension="1003"/>
 							<code code="48765-2" codeSystem="2.16.840.1.113883.6.1"
@@ -565,17 +541,17 @@ Allergies, Adverse Reactions, Alerts
 								displayName="Allergies, adverse reactions, alerts"/>
 							<statusCode code="active"/>
 							<effectiveTime>
-								<low value="20060501"/>
+								<low value="20120501"/>
 							</effectiveTime>
 							<entryRelationship typeCode="SUBJ">
 								<observation classCode="OBS" moodCode="EVN">
 									<!-- allergy observation template -->
-									<templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.7" extension="2014-06-09"/>
 									<id root="4adc1020-7b14-11db-9fe1-0800200c9a66" extension="1004"/>
 									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
 									<statusCode code="completed"/>
 									<effectiveTime>
-										<low value="20060501"/>
+										<low value="20120501"/>
 									</effectiveTime>
 									<value xsi:type="CD" code="419511003"
 										displayName="Propensity to adverse reaction to drug"
@@ -588,7 +564,7 @@ Allergies, Adverse Reactions, Alerts
 									<participant typeCode="CSM">
 										<participantRole classCode="MANU">
 											<playingEntity classCode="MMAT">
-												<code code="2670" displayName="Codeine"
+												<code code="81953" displayName="Ampicillin Sodium"
 												codeSystem="2.16.840.1.113883.6.88"
 												codeSystemName="RxNorm">
 												<originalText>
@@ -598,21 +574,9 @@ Allergies, Adverse Reactions, Alerts
 											</playingEntity>
 										</participantRole>
 									</participant>
-									<entryRelationship typeCode="SUBJ" inversionInd="true">
-										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.28"/>
-											<!-- Allergy status observation template -->
-											<code code="33999-4" codeSystem="2.16.840.1.113883.6.1"
-												codeSystemName="LOINC" displayName="Status"/>
-											<statusCode code="completed"/>
-											<value xsi:type="CE" code="55561003"
-												codeSystem="2.16.840.1.113883.6.96"
-												displayName="Active"/>
-										</observation>
-									</entryRelationship>
 									<entryRelationship typeCode="MFST" inversionInd="true">
 										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.9" extension="2014-06-09"/>
 											<!-- Reaction observation template -->
 											<id root="4adc1020-7b14-11db-9fe1-0800200c9a64"
 												extension="1005"/>
@@ -624,14 +588,14 @@ Allergies, Adverse Reactions, Alerts
 											<effectiveTime>
 												<low value="20060501"/>
 											</effectiveTime>
-											<value xsi:type="CD" code="267036007"
+											<value xsi:type="CD" code="247472004"
 												codeSystem="2.16.840.1.113883.6.96"
-												displayName="Shortness of Breath"/>
+												displayName="Hives"/>
 										</observation>
 									</entryRelationship>
 									<entryRelationship typeCode="SUBJ" inversionInd="true">
 										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.8" extension="2014-06-09"/>
 											<!-- ** Severity observation template ** -->
 											<code xsi:type="CE" code="SEV"
 												displayName="Severity Observation"
@@ -651,102 +615,6 @@ Allergies, Adverse Reactions, Alerts
 							</entryRelationship>
 						</act>
 					</entry>
-					<entry typeCode="DRIV">
-						<act classCode="ACT" moodCode="EVN">
-							<templateId root="2.16.840.1.113883.10.20.22.4.30"/>
-							<!-- ** Allergy problem act ** -->
-							<id root="36e3e930-7b14-11db-9fe1-0800200c9a66" extension="1006"/>
-							<code code="48765-2" codeSystem="2.16.840.1.113883.6.1"
-								codeSystemName="LOINC"
-								displayName="Allergies, adverse reactions, alerts"/>
-							<statusCode code="active"/>
-							<effectiveTime>
-								<low value="20080501"/>								
-							</effectiveTime>
-							<entryRelationship typeCode="SUBJ">
-								<observation classCode="OBS" moodCode="EVN">
-									<!-- allergy observation template -->
-									<templateId root="2.16.840.1.113883.10.20.22.4.7"/>
-									<id root="4adc1020-7b14-11db-9fe1-0800200c9a66" extension="1007"/>
-									<code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
-									<statusCode code="completed"/>
-									<effectiveTime>
-										<low value="20080501"/>
-									</effectiveTime>
-									<value xsi:type="CD" code="419511003"
-										displayName="Propensity to adverse reaction to drug"
-										codeSystem="2.16.840.1.113883.6.96"
-										codeSystemName="SNOMED CT">
-										<originalText>
-											<reference value="#reaction3"/>
-										</originalText>
-									</value>
-									<participant typeCode="CSM">
-										<participantRole classCode="MANU">
-											<playingEntity classCode="MMAT">
-												<code code="1191" displayName="Aspirin"
-												codeSystem="2.16.840.1.113883.6.88"
-												codeSystemName="RxNorm">
-												<originalText>
-												<reference value="#product3"/>
-												</originalText>
-												</code>
-											</playingEntity>
-										</participantRole>
-									</participant>
-									<entryRelationship typeCode="SUBJ" inversionInd="true">
-										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.28"/>
-											<!-- Allergy status observation template -->
-											<code code="33999-4" codeSystem="2.16.840.1.113883.6.1"
-												codeSystemName="LOINC" displayName="Status"/>
-											<statusCode code="completed"/>
-											<value xsi:type="CE" code="55561003"
-												codeSystem="2.16.840.1.113883.6.96"
-												displayName="Active"/>
-										</observation>
-									</entryRelationship>
-									<entryRelationship typeCode="MFST" inversionInd="true">
-										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.9"/>
-											<!-- Reaction observation template -->
-											<id root="4adc1020-7b14-11db-9fe1-0800200c9a64"
-												extension="1008"/>
-											<code nullFlavor="NA"/>
-											<text>
-												<reference value="#reaction3"/>
-											</text>
-											<statusCode code="completed"/>
-											<effectiveTime>
-												<low value="20080501"/>
-											</effectiveTime>
-											<value xsi:type="CD" code="247472004"
-												codeSystem="2.16.840.1.113883.6.96"
-												displayName="Hives"/>
-										</observation>
-									</entryRelationship>
-									<entryRelationship typeCode="SUBJ" inversionInd="true">
-										<observation classCode="OBS" moodCode="EVN">
-											<templateId root="2.16.840.1.113883.10.20.22.4.8"/>
-											<!-- ** Severity observation template ** -->
-											<code xsi:type="CE" code="SEV"
-												displayName="Severity Observation"
-												codeSystem="2.16.840.1.113883.5.4"
-												codeSystemName="ActCode"/>
-											<text>
-												<reference value="#severity3"/>
-											</text>
-											<statusCode code="completed"/>
-											<value xsi:type="CD" code="371923003"
-												displayName="Mild to moderate"
-												codeSystem="2.16.840.1.113883.6.96"
-												codeSystemName="SNOMED CT"/>
-										</observation>
-									</entryRelationship>
-								</observation>
-							</entryRelationship>
-						</act>
-					</entry>
 				</section>
 			</component>
 			<!--
@@ -756,7 +624,7 @@ ENCOUNTERS
 -->
 			<component>
 				<section>
-					<templateId root="2.16.840.1.113883.10.20.22.2.22.1"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01"/>
 					<!-- Encounters Section - required entries -->
 					<code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
 						displayName="History of encounters"/>
@@ -774,27 +642,27 @@ ENCOUNTERS
 							<tbody>
 								<tr>
 									<td>
-										<content ID="Encounter1"/> Pnuemonia</td>
+										<content ID="Encounter1"/>Anemia in Chronic Kidney Disease</td>
 									<td>Dr Henry Seven</td>
 									<td>Community Health and Hospitals</td>
-									<td>20120806</td>
+									<td>20150622</td>
 								</tr>
 							</tbody>
 						</table>
 					</text>
 					<entry typeCode="DRIV">
 						<encounter classCode="ENC" moodCode="EVN">
-							<templateId root="2.16.840.1.113883.10.20.22.4.49"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01"/>
 							<!-- Encounter Activities -->
 							<!--  ********  Encounter activity template   ******** -->
 							<id root="2a620155-9d11-439e-92b3-5d9815ff4de8" extension="2000"/>
-							<code code="99222" displayName="InPatient Admission"
-								codeSystemName="CPT" codeSystem="2.16.840.1.113883.6.12"
+							<code code="D63.1" displayName="Anemia in CKD"
+								codeSystemName="ICD-10" codeSystem="2.16.840.1.113883.6.12"
 								codeSystemVersion="4">
-								<originalText>Mild Fever<reference value="#Encounter1"/>
+								<originalText>Anemia<reference value="#Encounter1"/>
 								</originalText>
 							</code>
-							<effectiveTime value="20120806"/>
+							<effectiveTime value="20150622"/>
 							<performer>
 								<assignedEntity>
 									<id root="2a620155-9d11-439e-92a3-5d9815ff4de8" extension="2001"/>
@@ -824,7 +692,7 @@ ENCOUNTERS
 							</participant>
 							<entryRelationship typeCode="RSON">
 								<observation classCode="OBS" moodCode="EVN">
-									<templateId root="2.16.840.1.113883.10.20.22.4.19"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.19" extension="2014-06-09"/>
 									<id root="db734647-fc99-424c-a864-7e3cda82e703"
 										extension="45665"/>
 									<code code="404684003" displayName="Finding"
@@ -832,28 +700,28 @@ ENCOUNTERS
 										codeSystemName="SNOMED CT"/>
 									<statusCode code="completed"/>
 									<effectiveTime>
-										<low value="20120806"/>
+										<low value="20150622"/>
 									</effectiveTime>
-									<value xsi:type="CD" code="233604007" displayName="Pneumonia"
+									<value xsi:type="CD" code="164139008" displayName="Anemia"
 										codeSystem="2.16.840.1.113883.6.96"/>
 								</observation>
 							</entryRelationship>
 							<entryRelationship typeCode="SUBJ" inversionInd="false">
 								<act classCode="ACT" moodCode="EVN">
 									<!--Encounter diagnosis act -->
-									<templateId root="2.16.840.1.113883.10.20.22.4.80"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.80" extension="2015-08-01"/>
 									<id root="5a784260-6856-4f38-9638-80c751aff2fb" extension="2002"/>
 									<code xsi:type="CE" code="29308-4"
 										codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
 										displayName="ENCOUNTER DIAGNOSIS"/>
 									<statusCode code="active"/>
 									<effectiveTime>
-										<low value="20120806"/>
+										<low value="20150622"/>
 									</effectiveTime>
 									<entryRelationship typeCode="SUBJ" inversionInd="false">
 										<observation classCode="OBS" moodCode="EVN"
 											negationInd="false">
-											<templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+											<templateId root="2.16.840.1.113883.10.20.22.4.4" extension="2015-08-01"/>
 											<!-- Problem Observation -->
 											<id root="ab1791b0-5c71-11db-b0de-0800200c9a66"
 												extension="2003"/>
@@ -864,9 +732,9 @@ ENCOUNTERS
 											<effectiveTime>
 												<low value="20120806"/>
 											</effectiveTime>
-											<value xsi:type="CD" code="233604007"
+											<value xsi:type="CD" code="164139008"
 												codeSystem="2.16.840.1.113883.6.96"
-												displayName="Pneumonia"/>
+												displayName="Anemia"/>
 										</observation>
 									</entryRelationship>
 								</act>
@@ -882,7 +750,7 @@ IMMUNIZATIONS
 -->
 			<component>
 				<section>
-					<templateId root="2.16.840.1.113883.10.20.22.2.2.1"/>
+					<templateId root="2.16.840.1.113883.10.20.22.2.2.1" extension="2015-08-01"/>
 					<!-- Entries Required -->
 					<!--  ********  Immunizations section template   ******** -->
 					<code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
@@ -901,21 +769,15 @@ IMMUNIZATIONS
 							<tbody>
 								<tr>
 									<td>
-										<content ID="immun1"/>Pneumococcal (Pneumovax) Vaccine</td>
-									<td>August 2012</td>
-									<td>Completed</td>
-								</tr>
-								<tr>
-									<td>
 										<content ID="immun2"/>Influenza virus vaccine, IM</td>
-									<td>May 2012</td>
+									<td>May 2014</td>
 									<td>Completed</td>
 								</tr>
 								<tr>
 									<td>
 										<content ID="immun4"/>Tetanus and diphtheria toxoids,
 										IM</td>
-									<td>Apr 2012</td>
+									<td>January 2012</td>
 									<td>Completed</td>
 								</tr>
 							</tbody>
@@ -924,67 +786,18 @@ IMMUNIZATIONS
 					<entry typeCode="DRIV">
 						<substanceAdministration classCode="SBADM" moodCode="EVN"
 							negationInd="false">
-							<templateId root="2.16.840.1.113883.10.20.22.4.52"/>
-							<!--  ********   Immunization activity template    ******** -->
-							<id root="e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92" extension="3000"/>
-							<text>
-								<reference value="#immun1"/>
-							</text>
-							<statusCode code="completed"/>
-							<effectiveTime xsi:type="IVL_TS" value="20120810"/>
-							<doseQuantity value="0.5" unit="ml"/>
-							<consumable>
-								<manufacturedProduct classCode="MANU">
-									<templateId root="2.16.840.1.113883.10.20.22.4.54"/>
-									<!--  ********   Immunization Medication Information    ******** -->
-									<manufacturedMaterial>
-										<code code="33" codeSystem="2.16.840.1.113883.12.292"
-											displayName="pneumococcal polysaccharide vaccine, 23 valent"
-											codeSystemName="CVX">
-											<originalText>Pnuemococcal polysaccharide vaccine, 23
-												valent (Pnuemovax)</originalText>
-										</code>
-									</manufacturedMaterial>
-									<manufacturerOrganization>
-										<name>Merck Research Laboratories</name>
-									</manufacturerOrganization>
-								</manufacturedProduct>
-							</consumable>
-							<entryRelationship typeCode="SUBJ" inversionInd="true">
-								<act classCode="ACT" moodCode="INT">
-									<templateId root="2.16.840.1.113883.10.20.22.4.20"/>
-									<!-- ** Instructions Template ** -->
-									<code xsi:type="CE" code="171044003"
-										codeSystem="2.16.840.1.113883.6.96"
-										displayName="immunization education"/>
-									<text>
-										<reference value="#immunSect"/>Injection site reactions
-										(e.g., pain, redness, swelling, hard lump), muscle/joint
-										aches, or fever may occur. Ask your doctor whether you
-										should take a fever/pain reducer (e.g., acetaminophen) to
-										help treat these symptoms. Nausea and vomiting may also
-										occur. If any of these effects persist or worsen, tell your
-										doctor or pharmacist promptly.</text>
-									<statusCode code="completed"/>
-								</act>
-							</entryRelationship>
-						</substanceAdministration>
-					</entry>
-					<entry typeCode="DRIV">
-						<substanceAdministration classCode="SBADM" moodCode="EVN"
-							negationInd="false">
-							<templateId root="2.16.840.1.113883.10.20.22.4.52"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
 							<!--  ********   Immunization activity template    ******** -->
 							<id root="e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92" extension="3001"/>
 							<text>
 								<reference value="#immun2"/>
 							</text>
 							<statusCode code="completed"/>
-							<effectiveTime xsi:type="IVL_TS" value="20120510"/>
+							<effectiveTime xsi:type="IVL_TS" value="20140510"/>
 							<doseQuantity value="50" unit="mcg"/>
 							<consumable>
 								<manufacturedProduct classCode="MANU">
-									<templateId root="2.16.840.1.113883.10.20.22.4.54"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.54" extension="2014-06-09"/>
 									<!--  ********   Immunization Medication Information    ******** -->
 									<manufacturedMaterial>
 										<code code="88" codeSystem="2.16.840.1.113883.12.292"
@@ -1000,7 +813,7 @@ IMMUNIZATIONS
 							</consumable>
 							<entryRelationship typeCode="SUBJ" inversionInd="true">
 								<act classCode="ACT" moodCode="INT">
-									<templateId root="2.16.840.1.113883.10.20.22.4.20"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.20" extension="2014-06-09"/>
 									<!-- ** Instructions Template ** -->
 									<code xsi:type="CE" code="171044003"
 										codeSystem="2.16.840.1.113883.6.96"
@@ -1016,7 +829,7 @@ IMMUNIZATIONS
 					<entry typeCode="DRIV">
 						<substanceAdministration classCode="SBADM" moodCode="EVN"
 							negationInd="false">
-							<templateId root="2.16.840.1.113883.10.20.22.4.52"/>
+							<templateId root="2.16.840.1.113883.10.20.22.4.52" extension="2015-08-01"/>
 							<!--  ********   Immunization activity template    ******** -->
 							<id root="e6f1ba43-c0ed-4b9b-9f12-f435d8ad8f92" extension="3002"/>
 							<text>
@@ -1027,7 +840,7 @@ IMMUNIZATIONS
 							<doseQuantity value="50" unit="mcg"/>
 							<consumable>
 								<manufacturedProduct classCode="MANU">
-									<templateId root="2.16.840.1.113883.10.20.22.4.54"/>
+									<templateId root="2.16.840.1.113883.10.20.22.4.54" extension="2014-06-09"/>
 									<!--  ********   Immunization Medication Information    ******** -->
 									<manufacturedMaterial>
 										<code code="103" codeSystem="2.16.840.1.113883.12.292"
