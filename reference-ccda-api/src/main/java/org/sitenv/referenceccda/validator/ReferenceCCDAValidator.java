@@ -23,6 +23,7 @@ public class ReferenceCCDAValidator {
 	{
 		// create a validation result object to collect diagnostics produced during validation
 		ValidationResult result = new ValidationResult();
+		ConsolPackage.eINSTANCE.eClass();
 		
 		try {
 			
