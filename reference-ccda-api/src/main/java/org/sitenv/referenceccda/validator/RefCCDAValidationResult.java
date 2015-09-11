@@ -1,13 +1,14 @@
 package org.sitenv.referenceccda.validator;
 
-import org.sitenv.referenceccda.validator.enums.ErrorType;
+import org.sitenv.referenceccda.validator.enums.ValidationResultType;
 
 public class RefCCDAValidationResult {
 
 	// Common Error information
-	private String errorDescription;
-	private ErrorType errorType;
+	private String description;
+	private ValidationResultType type;
 	private String xPath;
+	private String documentLineNumber;
 
 	// Only valid for Vocabulary testing
 	private String expectedCodeSystem;
@@ -18,26 +19,33 @@ public class RefCCDAValidationResult {
 	private String actualDisplayName;
 	private String expectedValueSet;
 
-	public RefCCDAValidationResult(String errorDesc, String xpath, ErrorType ccdaIgConformanceError) {
-		errorDescription = errorDesc;
+	public RefCCDAValidationResult(String desc, String xpath, ValidationResultType ccdaIgConformanceError) {
+		description = desc;
 		xPath = xpath;
-		errorType = ccdaIgConformanceError;
+		type = ccdaIgConformanceError;
 	}
 
-	public String getErrorDescription() {
-		return errorDescription;
+	public RefCCDAValidationResult(String desc, String xpath, ValidationResultType ccdaIgConformanceError, String lineNumber) {
+		description = desc;
+		xPath = xpath;
+		type = ccdaIgConformanceError;
+		documentLineNumber = lineNumber;
 	}
 
-	public void setErrorDescription(String errorDescription) {
-		this.errorDescription = errorDescription;
+	public String getDescription() {
+		return description;
 	}
 
-	public ErrorType getErrorType() {
-		return errorType;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public void setErrorType(ErrorType errorType) {
-		this.errorType = errorType;
+	public ValidationResultType getType() {
+		return type;
+	}
+
+	public void setType(ValidationResultType type) {
+		this.type = type;
 	}
 
 	public String getxPath() {
@@ -102,6 +110,14 @@ public class RefCCDAValidationResult {
 
 	public void setExpectedValueSet(String expectedValueSet) {
 		this.expectedValueSet = expectedValueSet;
+	}
+
+	public String getDocumentLineNumber() {
+		return documentLineNumber;
+	}
+
+	public void setDocumentLineNumber(String documentLineNumber) {
+		this.documentLineNumber = documentLineNumber;
 	}
 
 }
