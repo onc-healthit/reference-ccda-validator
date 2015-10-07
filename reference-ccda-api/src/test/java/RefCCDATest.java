@@ -1,15 +1,11 @@
-import static org.junit.Assert.*;
+import org.junit.Test;
+import org.sitenv.referenceccda.validator.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validator.ReferenceCCDAValidator;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
-
-import org.junit.Test;
-
-import org.sitenv.referenceccda.*;
-import org.sitenv.referenceccda.validator.RefCCDAValidationResult;
-import org.sitenv.referenceccda.validator.ReferenceCCDAValidator;
 
 public class RefCCDATest {
 
