@@ -1,0 +1,21 @@
+<!--
+This file stubs the necessary configuration to run the Reference CCDA application in a tomcat instance.
+
+MUST DO
+1. Update the value attributes with the correct values for your deployment.
+2. This file MUST be placed in $CATALINA_BASE/conf/[enginename]/[hostname]/ . For example, tomcatlocation\conf\Catalina\localhost
+
+OPTIONAL
+Save a backup of this completed configuration file
+-->
+
+<Context reloadable="true">
+    <Parameter name="vocabulary.orientDbConfigFile" value="path/to/your/referenceccda-orientdb-server-config.xml" override="true"/>
+    <Parameter name="vocabulary.localCodeRepositoryDir" value="path/to/your/code_repository" override="true"/>
+	<Parameter name="vocabulary.localValueSetRepositoryDir" value="path/to/your/valueset_repository" override="true"/>
+	<Parameter name="vocabulary.primaryDbName" value="primary" override="true"/>
+	<Parameter name="vocabulary.secondaryDbName" value="secondary" override="true"/>
+	<Parameter name="vocabulary.loadVocabulariesAtStartup" value="true" override="true"/>
+	<Parameter name="vocabulary.ignoreValueSetSources" value="PHVS" override="true"/>
+	<Parameter name="referenceccda.configFile" value="path/to/your/sampleConfig.xml" override="true"/>
+</Context>
