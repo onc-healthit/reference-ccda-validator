@@ -1,238 +1,238 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	
-	<parent>
-		<groupId>org.sitenv</groupId>
-		<artifactId>referenceccdavalidator</artifactId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-	
-	<artifactId>reference-ccda-api</artifactId>
-    <packaging>war</packaging>
-	<name>Reference CCDA API</name>
-	
-	<properties>
-		<!-- Generic properties -->
-		<java.version>1.7</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	</properties>
-	
-	<repositories>
-		<repository>
-			<id>mdht-vocab-repo</id>
-			<url>file://${project.basedir}/mdht-vocab-repo</url>
-		</repository>
-	</repositories>
-	
-	<dependencies>
-	    <!-- START  MDHT Dependencies -->
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-			<version>2.5.5.2015100715</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.openhealthtools.mdht.uml.cda</artifactId>
-			<version>2.5.11.201510071830</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.openhealthtools.mdht.emf.runtime</artifactId>
-			<version>2.5.11.201510071830</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.openhealthtools.mdht.uml.hl7.rim</artifactId>
-			<version>2.5.11.201510071830</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.openhealthtools.mdht.uml.hl7.datatypes</artifactId>
-			<version>2.5.11.201510071830</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.openhealthtools.mdht.uml.hl7.vocab</artifactId>
-			<version>2.5.11.201510071830</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.emf.common</artifactId>
-			<version>2.9.2.v20131212-0545</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.emf.ecore</artifactId>
-			<version>2.9.2.v20131212-0545</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-			<version>2.9.1.v20131212-0545</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.ocl</artifactId>
-			<version>3.3.0.v20140120-1508</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.ocl.common</artifactId>
-			<version>1.1.0.v20130531-0544</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.ocl.ecore</artifactId>
-			<version>3.3.0.v20130520-1222</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.uml2.common</artifactId>
-			<version>1.8.2.v20140202-2055</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>org.eclipse.uml2.types</artifactId>
-			<version>1.1.0.v20140202-2055</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.mdht.dependencies</groupId>
-			<artifactId>lpg.runtime.java</artifactId>
-			<version>2.0.17.v201004271640</version>
-		</dependency>
-		
-		<!-- END  MDHT Dependencies -->
-		<!-- START VOCAB DEPENDENCIES -->
-		<dependency>
-			<groupId>org.sitenv.vocabulary</groupId>
-			<artifactId>codevalidator-api</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.sitenv.xml</groupId>
-			<artifactId>xpathvalidator</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.sitenv.xml.validators</groupId>
-			<artifactId>ccdaxpathvalidators</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<!-- END VOCAB DEPENDENCIES -->
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-		<!-- Core utilities used by other modules. Define this if you use Spring
+    <parent>
+        <groupId>org.sitenv</groupId>
+        <artifactId>referenceccdavalidator</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>reference-ccda-api</artifactId>
+    <packaging>war</packaging>
+    <name>Reference CCDA API</name>
+
+    <properties>
+        <!-- Generic properties -->
+        <java.version>1.7</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>mdht-vocab-repo</id>
+            <url>file://${project.basedir}/mdht-vocab-repo</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- START  MDHT Dependencies -->
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
+            <version>2.5.5.2015100715</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.cda</artifactId>
+            <version>2.5.11.201510071830</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.openhealthtools.mdht.emf.runtime</artifactId>
+            <version>2.5.11.201510071830</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.hl7.rim</artifactId>
+            <version>2.5.11.201510071830</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.hl7.datatypes</artifactId>
+            <version>2.5.11.201510071830</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.hl7.vocab</artifactId>
+            <version>2.5.11.201510071830</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.emf.common</artifactId>
+            <version>2.9.2.v20131212-0545</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.emf.ecore</artifactId>
+            <version>2.9.2.v20131212-0545</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+            <version>2.9.1.v20131212-0545</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.ocl</artifactId>
+            <version>3.3.0.v20140120-1508</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.ocl.common</artifactId>
+            <version>1.1.0.v20130531-0544</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.ocl.ecore</artifactId>
+            <version>3.3.0.v20130520-1222</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.uml2.common</artifactId>
+            <version>1.8.2.v20140202-2055</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>org.eclipse.uml2.types</artifactId>
+            <version>1.1.0.v20140202-2055</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mdht.dependencies</groupId>
+            <artifactId>lpg.runtime.java</artifactId>
+            <version>2.0.17.v201004271640</version>
+        </dependency>
+
+        <!-- END  MDHT Dependencies -->
+        <!-- START VOCAB DEPENDENCIES -->
+        <dependency>
+            <groupId>org.sitenv.vocabulary</groupId>
+            <artifactId>codevalidator-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sitenv.xml</groupId>
+            <artifactId>xpathvalidator</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sitenv.xml.validators</groupId>
+            <artifactId>ccdaxpathvalidators</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- END VOCAB DEPENDENCIES -->
+
+        <!-- Core utilities used by other modules. Define this if you use Spring
             Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans,
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans,
             spring-context, spring-web) Define this if you use Spring MVC with a Servlet
             Container such as Apache Tomcat (org.springframework.web.servlet.*) -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.5.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.5.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.0</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.0</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.0</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.14</version>
-			<scope>runtime</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.7.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -240,59 +240,156 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-framework-bom</artifactId>
-				<version>4.1.7.RELEASE</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>4.1.7.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
-    <finalName>referenceccdaservice</finalName>
-    <plugins>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-eclipse-plugin</artifactId>
-        <version>2.8</version>
-        <configuration>
-            <wtpversion>2.0</wtpversion>
-            <downloadSources>true</downloadSources>
-            <downloadJavadocs>true</downloadJavadocs>
-        </configuration>
-    </plugin>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
-        </configuration>
-    </plugin>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-            <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-    </plugin>
-    <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.2.2.v20140723</version>
-        <configuration>
-            <scanIntervalSeconds>3</scanIntervalSeconds>
-            <jvmArgs>-Xmx2024m -Xms2024m -XX:PermSize=256m -XX:MaxPermSize=512m</jvmArgs>
-            <webApp>
-                <contextPath>/referenceccdaservice</contextPath>
-            </webApp>
-        </configuration>
-    </plugin>
-    </plugins>
+        <finalName>referenceccdaservice</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <wtpversion>2.0</wtpversion>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.2.v20140723</version>
+                <configuration>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <jvmArgs>-Xmx2024m -Xms2024m -XX:PermSize=256m -XX:MaxPermSize=512m</jvmArgs>
+                    <webApp>
+                        <contextPath>/referenceccdaservice</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>scp-to-env</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <taskdef resource="net/sf/antcontrib/antlib.xml"
+                                         classpathref="maven.plugin.classpath" />
+                                <if>
+                                    <equals arg1="${environment.name}" arg2="test" />
+                                    <then>
+                                        <echo
+                                                message="Copying file (${project.build.directory}/referenceccdaservice.war) to location: ${liferay.auto.deploy.dir}" />
+                                        <exec executable="cp">
+                                            <arg
+                                                    value="${project.build.directory}/referenceccdaservice.war" />
+                                            <arg
+                                                    value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                        </exec>
+                                        <echo message="Uploading file to location: ${deploy.location}" />
+                                        <exec executable="scp">
+                                            <arg
+                                                    value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                            <arg value="${deploy.location}" />
+                                        </exec>
+                                        <echo message="...Uploaded." />
+                                        <echo message="Deploying to tomcat7..." />
+                                        <exec executable="ssh">
+                                            <arg value="site-dev-ccda" />
+                                            <arg
+                                                    value="echo ${deploy.password} | sudo -S mv ~/referenceccdaservice.war /opt/tomcat7/webapps" />
+                                        </exec>
+                                        <echo message="...Deployed." />
+                                    </then>
+                                    <elseif>
+                                        <equals arg1="${environment.name}" arg2="production" />
+                                        <then>
+                                            <echo
+                                                    message="Copying file (${project.build.directory}/referenceccdaservice.war) to location: ${liferay.auto.deploy.dir}" />
+                                            <exec executable="cp">
+                                                <arg
+                                                        value="${project.build.directory}/referenceccdaservice.war" />
+                                                <arg
+                                                        value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                            </exec>
+                                            <echo message="Uploading file to location: ${deploy.location}" />
+                                            <exec executable="scp">
+                                                <arg
+                                                        value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                                <arg value="${deploy.location}" />
+                                            </exec>
+                                            <echo message="...Uploaded." />
+                                            <echo message="Deploying to tomcat7..." />
+                                            <exec executable="ssh">
+                                                <arg value="site-prod-ccda" />
+                                                <arg
+                                                        value="echo ${deploy.password} | sudo -S mv ~/referenceccdaservice.war /opt/tomcat7/webapps" />
+                                            </exec>
+                                            <echo message="...Deployed." />
+                                        </then>
+                                    </elseif>
+                                    <else>
+                                        <echo message="Uploading file to location: ${deploy.location}" />
+                                        <copy file="target/referenceccdaservice.war"
+                                              todir="${deploy.location}" />
+                                        <echo message="...Uploaded." />
+
+                                    </else>
+                                </if>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>1.0b3</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>ant</groupId>
+                                <artifactId>ant</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-nodeps</artifactId>
+                        <version>1.8.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
     </build>
 </project>
