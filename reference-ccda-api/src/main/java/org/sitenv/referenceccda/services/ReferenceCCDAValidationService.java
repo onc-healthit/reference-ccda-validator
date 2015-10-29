@@ -4,6 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class ReferenceCCDAValidationService {
             fileIs = ccdaFile.getInputStream();
             ccdaFileContents = IOUtils.toString(ccdaFile.getInputStream());
             validatorResults.addAll(doSchemaValidation(validationObjective, referenceFileName, ccdaFileContents));
-            if (!referenceCCDAValidator.isSchemaErrorInValidationResults()) {
+            if (shouldRunVocabularyValidation(validatorResults)) {
                 validatorResults.addAll(DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents));
             }
         } catch (IOException e) {
@@ -56,6 +57,19 @@ public class ReferenceCCDAValidationService {
             closeFileInputStream(fileIs);
         }
         return validatorResults;
+    }
+
+    private boolean shouldRunVocabularyValidation(List<RefCCDAValidationResult> validatorResults) {
+        if(validatorResults.isEmpty()){
+            return true;
+        }else if(isTheFirstResultASchemaWarning(validatorResults)){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isTheFirstResultASchemaWarning(List<RefCCDAValidationResult> validatorResults) {
+        return validatorResults.get(0).getType().getTypePrettyName().equals(ValidationResultType.CCDA_IG_CONFORMANCE_WARN.getTypePrettyName());
     }
 
     private ArrayList<RefCCDAValidationResult> DoVocabularyValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws IOException {

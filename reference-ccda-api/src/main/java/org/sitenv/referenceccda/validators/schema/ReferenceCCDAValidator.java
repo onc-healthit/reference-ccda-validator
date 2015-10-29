@@ -24,7 +24,6 @@ import java.util.List;
 
 @Component
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
-	private boolean schemaErrorInValidationResults;
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
 			String referenceFileName, String ccdaFile) {
@@ -59,10 +58,6 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private ArrayList<RefCCDAValidationResult> processValidationResults(final XPathIndexer xpathIndexer,
 			ValidationResult result) {
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
-
-        if(!result.getErrorDiagnostics().isEmpty()){
-			schemaErrorInValidationResults = true;
-        }
 		for (Diagnostic diagnostic : result.getErrorDiagnostics()) {
 			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_IG_CONFORMANCE_ERROR));
 		}
@@ -115,9 +110,5 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private RefCCDAValidationResult createNewValidationResult(CDADiagnostic cdaDiag, ValidationResultType resultType,
 			String resultLineNumber) {
 		return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(cdaDiag.getMessage(), cdaDiag.getPath(), resultType, resultLineNumber).build();
-	}
-
-	public boolean isSchemaErrorInValidationResults() {
-		return schemaErrorInValidationResults;
 	}
 }
