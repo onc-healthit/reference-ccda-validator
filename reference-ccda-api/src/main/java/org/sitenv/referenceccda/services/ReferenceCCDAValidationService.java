@@ -41,7 +41,7 @@ public class ReferenceCCDAValidationService {
 
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
                                                         MultipartFile ccdaFile) {
-        List<RefCCDAValidationResult> validatorResults = new ArrayList<RefCCDAValidationResult>();
+        List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         String ccdaFileContents;
         InputStream fileIs = null;
         try {
@@ -60,12 +60,7 @@ public class ReferenceCCDAValidationService {
     }
 
     private boolean shouldRunVocabularyValidation(List<RefCCDAValidationResult> validatorResults) {
-        if(validatorResults.isEmpty()){
-            return true;
-        }else if(isTheFirstResultASchemaWarning(validatorResults)){
-            return true;
-        }
-        return false;
+        return validatorResults.isEmpty() || isTheFirstResultASchemaWarning(validatorResults);
     }
 
     private boolean isTheFirstResultASchemaWarning(List<RefCCDAValidationResult> validatorResults) {
