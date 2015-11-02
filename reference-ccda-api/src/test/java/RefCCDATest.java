@@ -1,6 +1,6 @@
 import org.junit.Test;
-import org.sitenv.referenceccda.validator.RefCCDAValidationResult;
-import org.sitenv.referenceccda.validator.ReferenceCCDAValidator;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -30,9 +30,9 @@ public class RefCCDATest {
 	    }
 
 	    System.out.println(sb.toString());
-		
-	    ArrayList<RefCCDAValidationResult> results = 
-	    		ReferenceCCDAValidator.validateCCDAWithReferenceFileName("Test", "Test", sb.toString());
+		ReferenceCCDAValidator referenceCCDAValidator = new ReferenceCCDAValidator();
+	    ArrayList<RefCCDAValidationResult> results =
+				referenceCCDAValidator.validateFile("Test", "Test", sb.toString());
 	    
 	    System.out.println("No of Entries = " + results.size());
 	    
