@@ -10,6 +10,7 @@ import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,17 +31,23 @@ public class ReferenceCCDAValidationService {
 
     public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName, MultipartFile ccdaFile) {
         ValidationResultsDto resultsDto = new ValidationResultsDto();
-
-        List<RefCCDAValidationResult> validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile);
-        ValidationResultsMetaData resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
-
+        ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
+        List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
+        try {
+            validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile);
+            resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
+        } catch (SAXException e) {
+            resultsMetaData.setServiceError(true);
+            resultsMetaData.setServiceErrorMessage(e.getMessage());
+            resultsMetaData.setCcdaDocumentType(validationObjective);
+        }
         resultsDto.setResultsMetaData(resultsMetaData);
         resultsDto.setCcdaValidationResults(validatorResults);
         return resultsDto;
     }
 
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
-                                                        MultipartFile ccdaFile) {
+                                                        MultipartFile ccdaFile) throws SAXException {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         String ccdaFileContents;
         InputStream fileIs = null;
@@ -67,11 +74,11 @@ public class ReferenceCCDAValidationService {
         return validatorResults.get(0).getType().getTypePrettyName().equals(ValidationResultType.CCDA_IG_CONFORMANCE_WARN.getTypePrettyName());
     }
 
-    private ArrayList<RefCCDAValidationResult> DoVocabularyValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws IOException {
+    private ArrayList<RefCCDAValidationResult> DoVocabularyValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
         return vocabularyCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 
-    private List<RefCCDAValidationResult> doSchemaValidation(String validationObjective, String referenceFileName, String ccdaFileContents) {
+    private List<RefCCDAValidationResult> doSchemaValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
         return referenceCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 

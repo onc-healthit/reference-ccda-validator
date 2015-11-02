@@ -1,6 +1,7 @@
 import org.junit.Test;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
+import org.xml.sax.SAXException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,10 +32,15 @@ public class RefCCDATest {
 
 	    System.out.println(sb.toString());
 		ReferenceCCDAValidator referenceCCDAValidator = new ReferenceCCDAValidator();
-	    ArrayList<RefCCDAValidationResult> results =
-				referenceCCDAValidator.validateFile("Test", "Test", sb.toString());
-	    
-	    System.out.println("No of Entries = " + results.size());
+		ArrayList<RefCCDAValidationResult> results =
+				null;
+		try {
+			results = referenceCCDAValidator.validateFile("Test", "Test", sb.toString());
+		} catch (SAXException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("No of Entries = " + results.size());
 	    
 	    
 		System.out.println("*****************Success******************");

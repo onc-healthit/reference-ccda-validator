@@ -24,7 +24,7 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
     @Value("${referenceccda.configFile}")
     private String vocabularyXpathExpressionConfiguration;
 
-    public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName, String ccdaFile) {
+    public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName, String ccdaFile) throws SAXException {
         ArrayList<RefCCDAValidationResult> results = null;
         if (ccdaFile != null) {
             final XPathIndexer xpathIndexer = new XPathIndexer();
@@ -32,7 +32,7 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
             trackXPathsInXML(xpathIndexer, ccdaFile);
             try {
                 results = doValidation(ccdaFile, xpathIndexer);
-            } catch (IOException | SAXException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
