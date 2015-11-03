@@ -282,16 +282,21 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.2.2.v20140723</version>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.3</version>
                 <configuration>
-                    <scanIntervalSeconds>3</scanIntervalSeconds>
-                    <jvmArgs>-Xmx2024m -Xms2024m -XX:PermSize=256m -XX:MaxPermSize=512m</jvmArgs>
-                    <webApp>
-                        <contextPath>/referenceccdaservice</contextPath>
-                    </webApp>
+                    <descriptors>
+                        <descriptor>src/main/java/org/sitenv/referenceccda/assembly/referenceccdaapi.xml</descriptor>
+                    </descriptors>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -364,7 +369,6 @@
                                         <copy file="target/referenceccdaservice.war"
                                               todir="${deploy.location}" />
                                         <echo message="...Uploaded." />
-
                                     </else>
                                 </if>
                             </tasks>
@@ -389,6 +393,18 @@
                         <version>1.8.1</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.2.v20140723</version>
+                <configuration>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <jvmArgs>-Xmx2024m -Xms2024m -XX:PermSize=256m -XX:MaxPermSize=512m</jvmArgs>
+                    <webApp>
+                        <contextPath>/referenceccdaservice</contextPath>
+                    </webApp>
+                </configuration>
             </plugin>
         </plugins>
     </build>

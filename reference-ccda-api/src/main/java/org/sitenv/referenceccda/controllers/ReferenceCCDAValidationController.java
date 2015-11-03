@@ -3,11 +3,12 @@ package org.sitenv.referenceccda.controllers;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
 @RestController
 public class ReferenceCCDAValidationController {
@@ -23,4 +24,17 @@ public class ReferenceCCDAValidationController {
 		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile);
 	}
 
+    @RequestMapping(value = "/downloadreferenceccdaartifact/{artifactType}", method = RequestMethod.GET)
+	public void downloadReferenceCCDAArtifact(HttpServletResponse httpServletResponse, @PathVariable("artifactType") String artifactType) throws IOException{
+        File fileToDownload = new File("referenceccdaservice-bundle." + artifactType);
+        String mimeType = "application/octet-stream";
+
+        httpServletResponse.setContentType(mimeType);
+        httpServletResponse.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", fileToDownload.getName()));
+        httpServletResponse.setContentLength((int)fileToDownload.length());
+
+        InputStream inputStream = new BufferedInputStream(new FileInputStream(fileToDownload));
+
+        FileCopyUtils.copy(inputStream, httpServletResponse.getOutputStream());
+    }
 }

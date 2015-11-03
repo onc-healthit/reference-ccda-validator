@@ -1,0 +1,47 @@
+<assembly
+        xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>bundle</id>
+    <formats>
+        <format>tar.gz</format>
+        <format>zip</format>
+        <format>tar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>configuration</directory>
+            <includes>
+                <include>Instructions.txt</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>configuration</directory>
+            <includes>
+                <include>sampleConfig.xml</include>
+                <include>referenceccda-orientdb-server-config.xml</include>
+            </includes>
+            <outputDirectory>VocabularyConfiguration</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary</directory>
+            <outputDirectory>VocabularyConfiguration\Vocabulary</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>configuration</directory>
+            <includes>
+                <include>referenceccdaservice.xml</include>
+            </includes>
+            <outputDirectory>tomcat7/conf/Catalina/localhost</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>target</directory>
+            <includes>
+                <include>*.war</include>
+            </includes>
+            <outputDirectory>/</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>
