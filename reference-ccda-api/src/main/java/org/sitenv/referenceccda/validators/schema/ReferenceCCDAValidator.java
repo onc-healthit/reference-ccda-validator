@@ -15,8 +15,8 @@ import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.springframework.stereotype.Component;
+import org.xml.sax.SAXException;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import java.util.List;
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
-			String referenceFileName, String ccdaFile) {
+			String referenceFileName, String ccdaFile) throws SAXException {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
 		ValidationResult result = new ValidationResult();
 		InputStream in = null;
@@ -35,9 +35,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 			in = IOUtils.toInputStream(ccdaFile, "UTF-8");
 			CDAUtil.load(in, result);
 			trackXPathsInXML(xpathIndexer, ccdaFile);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (in != null) {
