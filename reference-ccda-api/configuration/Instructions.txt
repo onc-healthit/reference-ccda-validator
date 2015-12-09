@@ -19,7 +19,7 @@ This document is meant to outline the steps to successfully configure and deploy
         1. Create a directory that will hold the vocabulary artifacts. For example, E:\Development\Environment\VocabularyConfiguration
             a. this folder will contain the needed vocabulary configuration files
 
-        2. Place the sampleConfig.xml in this folder. For example, E:\Development\Environment\VocabularyConfiguration\sampleConfig.xml
+        2. Place the ccdaReferenceValidatorConfig.xml in this folder. For example, E:\Development\Environment\VocabularyConfiguration\ccdaReferenceValidatorConfig.xml
 
         3. Place the referenceccda-orient-server-config.xml in this folder. For example, E:\Development\Environment\VocabularyConfiguration\referenceccda-orient-server-config.xml
 
@@ -50,7 +50,7 @@ This document is meant to outline the steps to successfully configure and deploy
             	<Parameter name="vocabulary.secondaryDbName" value="secondary" override="true"/>
             	<Parameter name="vocabulary.loadVocabulariesAtStartup" value="true" override="true"/>
             	<Parameter name="vocabulary.ignoreValueSetSources" value="PHVS" override="true"/>
-            	<Parameter name="referenceccda.configFile" value="E:/Development/Environment/VocabularyConfiguration/sampleConfig.xml" override="true"/>
+            	<Parameter name="referenceccda.configFile" value="E:/Development/Environment/VocabularyConfiguration/ccdaReferenceValidatorConfig.xml" override="true"/>
             </Context>
 
 3. Run the application instructions

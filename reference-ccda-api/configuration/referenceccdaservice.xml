@@ -17,5 +17,5 @@ Save a backup of this completed configuration file
 	<Parameter name="vocabulary.secondaryDbName" value="secondary" override="true"/>
 	<Parameter name="vocabulary.loadVocabulariesAtStartup" value="true" override="true"/>
 	<Parameter name="vocabulary.ignoreValueSetSources" value="PHVS" override="true"/>
-	<Parameter name="referenceccda.configFile" value="path/to/your/sampleConfig.xml" override="true"/>
+	<Parameter name="referenceccda.configFile" value="path/to/your/ccdaReferenceValidatorConfig.xml" override="true"/>
 </Context>
