@@ -245,6 +245,12 @@
 			<param key="valueSet" value="2.16.840.1.113883.11.20.9.39"/>
 		</validator>
 	</expression>
+
+	<expression xpathExpression="//observation/templateId[@root='2.16.840.1.113883.10.20.22.4.46']/ancestor::observation[1]/value[@type='CD']">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.113883.3.88.12.3221.7.4"/>
+		</validator>
+	</expression>
 	<!-- 
 		********************************************************************************* VALUE SET END 
 		-->
