@@ -251,6 +251,12 @@
 			<param key="valueSet" value="2.16.840.1.113883.3.88.12.3221.7.4"/>
 		</validator>
 	</expression>
+
+	<expression xpathExpression="//participantRole/templateId[@root='2.16.840.1.113883.10.20.22.4.32']/ancestor::participantRole[1]/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.113883.1.11.20275"/>
+		</validator>
+	</expression>
 	<!-- 
 		********************************************************************************* VALUE SET END 
 		-->
