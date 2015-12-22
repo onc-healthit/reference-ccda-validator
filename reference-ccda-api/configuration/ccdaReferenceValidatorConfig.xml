@@ -650,7 +650,7 @@
 
 	<expression xpathExpression="//organizer/templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2014-06-09']/ancestor::organizer[1]/code[not(@nullFlavor) and ancestor::section[not(@nullFlavor)]]">
 		<validator className="org.sitenv.xml.validators.ccda.structuredbody.coderequirements.MustBeValidator">
-			<param key="codeSystem" value="2.16.840.1.113883.6.1"/>
+			<param key="codeSystem" value="2.16.840.1.113883.6.1|2.16.840.1.113883.6.96"/>
 		</validator>
 	</expression>
 
@@ -684,7 +684,7 @@
 
 	<expression xpathExpression="//observation/templateId[@root='2.16.840.1.113883.10.20.22.4.78' and @extension='2014-06-09']/ancestor::observation[1]/code[not(@nullFlavor) and ancestor::section[not(@nullFlavor)]]">
 		<validator className="org.sitenv.xml.validators.ccda.structuredbody.coderequirements.MustBeValidator">
-			<param key="codeSystem" value="2.16.840.1.113883.5.4"/>
+			<param key="codeSystem" value="2.16.840.1.113883.6.1"/>
 		</validator>
 	</expression>
 
@@ -729,7 +729,7 @@
 		<validator className="org.sitenv.xml.validators.ccda.structuredbody.VitalSignsValidator" />
 	</expression>
 
-	<!-- 
+	<!--
 		********************************************************************************* VITAL SIGNS END
 		-->
 
