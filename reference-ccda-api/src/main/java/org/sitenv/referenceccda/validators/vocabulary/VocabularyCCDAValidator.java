@@ -63,20 +63,17 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
             convertedResult.getRequestedCodeSystemName();
             convertedResult.getRequestedDisplayName();
             convertedResult.getExpectedValues();
-            String resultMessage;
             ValidationResultType type;
-            if(result.hasError()){
-                resultMessage = result.getErrorMessage();
-                type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_ERROR;
-            }else if(result.hasWarning()){
-                resultMessage = result.getWarningMessage();
-                type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_WARN;
-            }else{
-                resultMessage = result.getInfoMessage();
-                type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_INFO;
+            switch(result.getXpathValidationResultType()){
+                case ERRORS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_ERROR;
+                    break;
+                case WARNINGS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_WARN;
+                    break;
+                default: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_INFO;
+                    break;
             }
             String lineNumber = getLineNumberInXMLUsingXpath(xpathIndexer, result.getBaseXpathExpression());
-            return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(resultMessage, result.getXpathExpression(), type, lineNumber).actualCode(convertedResult.getRequestedCode()).actualCodeSystem(convertedResult.getRequestedCodeSystem()).actualDisplayName(convertedResult.getRequestedDisplayName()).expectedValueSet(Arrays.toString(convertedResult.getExpectedValues().toArray())).build();
+            return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getXpathValidationResultMessage(), result.getXpathExpression(), type, lineNumber).actualCode(convertedResult.getRequestedCode()).actualCodeSystem(convertedResult.getRequestedCodeSystem()).actualDisplayName(convertedResult.getRequestedDisplayName()).expectedValueSet(Arrays.toString(convertedResult.getExpectedValues().toArray())).build();
         }
         return null;
     }
