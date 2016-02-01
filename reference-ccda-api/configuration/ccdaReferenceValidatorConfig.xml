@@ -68,6 +68,48 @@
 			<param key="valueSet" value="2.16.840.1.113883.1.11.14914"/>
 		</validator>
 	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/author/assignedAuthor/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/dataEnterer/assignedEntity/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/informant/assignedEntity/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/legalAuthenticator/assignedEntity/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/performer/assignedEntity/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/authenticator/assignedEntity/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/documentationOf/serviceEvent/performer/assignedEntity/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
 	<!-- HEADER END -->
 
 	<!-- ADVANCE DIRECTIVE OBSERVATION START -->
@@ -121,6 +163,14 @@
 		</validator>
 	</expression>
 	<!-- ALLERGY STATUS OBSERVATION (DEPRICATED) END -->
+
+	<!-- CARE PLAN START -->
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/informationRecipient/intendedRecipient/receivedOrganization/standardIndustryClassCode[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+	<!-- CARE PLAN END -->
 
 	<!-- ENCOUNTER ACTIVITY START -->
 	<expression xpathExpression="//encounter/templateId[@root='2.16.840.1.113883.10.20.22.4.49' and @extension='2015-08-01']/ancestor::encounter[1]/code[not(@nullFlavor) and ancestor::section[not(@nullFlavor)]]">
@@ -215,7 +265,7 @@
 	<!-- PROBLEM OBSERVATION END -->
 
 	<!-- NUMBER OF PRESSURE ULCERS OBSERVATION START -->
-	<expression xpathExpression="//observation/templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::observation[1]/entryRelationship/observation/value[not(@nullFlavor) and ancestor::section[not(@nullFlavor)]]">
+	<expression xpathExpression="//observation/templateId[@root='2.16.840.1.113883.10.20.22.4.76' and @extension='2015-08-01']/ancestor::observation[1]/entryRelationship/observation/value[not(@nullFlavor) and ancestor::section[not(@nullFlavor)]]">
 		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
 			<param key="valueSet" value="2.16.840.1.113883.11.20.9.35"/>
 		</validator>
@@ -600,6 +650,12 @@
 			<param key="valueSet" value="2.16.840.1.113883.11.20.6.1"/>
 		</validator>
 	</expression>
+
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.6' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/documentationOf/serviceEvent/performer/assignedEntity/code[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
 	<!-- PROCEDURE NOTE END -->
 
 	<!-- PROGRESS NOTE START -->
@@ -650,6 +706,14 @@
 	</expression>
 	<!-- HEALTH CONCERN ACT END -->
 
+	<!-- TRANSFER SUMMARY START -->
+	<expression xpathExpression="/ClinicalDocument/templateId[@root='2.16.840.1.113883.10.20.22.1.13' and @extension='2015-08-01']/ancestor::ClinicalDocument[1]/documentationOf/serviceEvent/performer/functionCode[not(@nullFlavor)]">
+		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
+			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
+		</validator>
+	</expression>
+	<!-- TRANSFER SUMMARY END -->
+
 	<!-- IMMUNIZATION MEDICATION INFORMATION START -->
 	<expression xpathExpression="//manufacturedProduct/templateId[@root='2.16.840.1.113883.10.20.22.4.54' and @extension='2014-06-09']/ancestor::manufacturedProduct[1]/manufacturedMaterial[1]/code[not(@nullFlavor) and ancestor::section[not(@nullFlavor)]]">
 		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
@@ -675,7 +739,7 @@
 	<!-- REACTION OBSERVATION END -->
 
 	<!-- AUTHOR PARTICIPATION START -->
-	<expression xpathExpression="//author/templateId[@root='2.16.840.1.113883.10.20.22.4.119']/ancestor::observation[1]/assignedAuthor/code[not(@nullFlavor)]">
+	<expression xpathExpression="//author/templateId[@root='2.16.840.1.113883.10.20.22.4.119']/ancestor::author[1]/assignedAuthor/code[not(@nullFlavor)]">
 		<validator className="org.sitenv.xml.validators.ccda.CcdaValueSetCodeValidator">
 			<param key="valueSet" value="2.16.840.1.114222.4.11.1066"/>
 		</validator>
