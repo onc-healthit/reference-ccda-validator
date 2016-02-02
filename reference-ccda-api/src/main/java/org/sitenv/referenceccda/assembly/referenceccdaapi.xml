@@ -20,7 +20,7 @@
         <fileSet>
             <directory>configuration</directory>
             <includes>
-                <include>sampleConfig.xml</include>
+                <include>ccdaReferenceValidatorConfig.xml</include>
                 <include>referenceccda-orientdb-server-config.xml</include>
             </includes>
             <outputDirectory>VocabularyConfiguration</outputDirectory>
