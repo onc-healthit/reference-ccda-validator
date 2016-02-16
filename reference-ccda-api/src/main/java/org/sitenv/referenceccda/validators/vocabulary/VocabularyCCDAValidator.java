@@ -6,29 +6,32 @@ import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
-import org.sitenv.xml.validators.ccda.CcdaValidatorResult;
-import org.sitenv.xml.xpathvalidator.engine.XPathValidationEngine;
-import org.sitenv.xml.xpathvalidator.engine.data.XPathValidatorResult;
+import org.sitenv.vocabularies.validation.dto.VocabularyValidationResult;
+import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
-    private XPathValidationEngine engine = null;
     @Value("${referenceccda.configFile}")
     private String vocabularyXpathExpressionConfiguration;
+    private VocabularyValidationService vocabularyValidationService;
+
+    @Autowired
+    public VocabularyCCDAValidator(VocabularyValidationService vocabularyValidationService) {
+        this.vocabularyValidationService = vocabularyValidationService;
+    }
 
     public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName, String ccdaFile) throws SAXException {
         ArrayList<RefCCDAValidationResult> results = null;
         if (ccdaFile != null) {
             final XPathIndexer xpathIndexer = new XPathIndexer();
-            initializeVocabularyValidationEngine();
             trackXPathsInXML(xpathIndexer, ccdaFile);
             try {
                 results = doValidation(ccdaFile, xpathIndexer);
@@ -40,42 +43,26 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
     }
 
     private ArrayList<RefCCDAValidationResult> doValidation(String ccdaFile, XPathIndexer xpathIndexer) throws IOException, SAXException {
-        List<XPathValidatorResult> validationResults = engine.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"));
+        List<VocabularyValidationResult> validationResults = vocabularyValidationService.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"));
         ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
-        for (XPathValidatorResult result : validationResults) {
-           results.add(createValidationResult(result, xpathIndexer));
+        for (VocabularyValidationResult result : validationResults) {
+            results.add(createValidationResult(result, xpathIndexer));
         }
         return results;
     }
 
-    private void initializeVocabularyValidationEngine() {
-        if (engine == null) {
-            engine = new XPathValidationEngine();
-            engine.initialize(vocabularyXpathExpressionConfiguration);
+    private RefCCDAValidationResult createValidationResult(VocabularyValidationResult result, XPathIndexer xpathIndexer) {
+        ValidationResultType type;
+        switch(result.getVocabularyValidationResultLevel()){
+            case ERRORS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_ERROR;
+                break;
+            case WARNINGS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_WARN;
+                break;
+            default: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_INFO;
+                break;
         }
-    }
-
-    private RefCCDAValidationResult createValidationResult(XPathValidatorResult result, XPathIndexer xpathIndexer) {
-        if (result instanceof CcdaValidatorResult){
-            CcdaValidatorResult convertedResult = (CcdaValidatorResult)result;
-            convertedResult.getRequestedCode();
-            convertedResult.getRequestedCodeSystem();
-            convertedResult.getRequestedCodeSystemName();
-            convertedResult.getRequestedDisplayName();
-            convertedResult.getExpectedValues();
-            ValidationResultType type;
-            switch(result.getXpathValidationResultType()){
-                case ERRORS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_ERROR;
-                    break;
-                case WARNINGS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_WARN;
-                    break;
-                default: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_INFO;
-                    break;
-            }
-            String lineNumber = getLineNumberInXMLUsingXpath(xpathIndexer, result.getBaseXpathExpression());
-            return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getXpathValidationResultMessage(), result.getXpathExpression(), type, lineNumber).actualCode(convertedResult.getRequestedCode()).actualCodeSystem(convertedResult.getRequestedCodeSystem()).actualDisplayName(convertedResult.getRequestedDisplayName()).expectedValueSet(Arrays.toString(convertedResult.getExpectedValues().toArray())).build();
-        }
-        return null;
+        String lineNumber = getLineNumberInXMLUsingXpath(xpathIndexer, result.getNodeValidationResult().getValidatedDocumentXpathExpression());
+        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), result.getNodeValidationResult().getValidatedDocumentXpathExpression(), result.getNodeValidationResult().getConfiguredXpathExpression(), type, lineNumber).actualCode(result.getNodeValidationResult().getRequestedCode()).actualCodeSystem(result.getNodeValidationResult().getRequestedCodeSystem()).actualDisplayName(result.getNodeValidationResult().getRequestedDisplayName()).expectedValueSet(result.getNodeValidationResult().getConfiguredAllowableValuesetOidsForNode()).build();
     }
 
     private String getLineNumberInXMLUsingXpath(final XPathIndexer xpathIndexer, String xpath) {

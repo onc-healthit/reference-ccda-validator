@@ -18,9 +18,17 @@
             <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}:%L] %m%n" />
         </layout>
     </appender>
+
+    <logger name="org.springframework.orm.jpa">
+        <level value="info" />
+    </logger>
+
+    <logger name="org.springframework.transaction">
+        <level value="info" />
+    </logger>
  
     <root>
-        <priority value="DEBUG" />
+        <priority value="INFO" />
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </root>

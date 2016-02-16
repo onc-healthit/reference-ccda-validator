@@ -8,6 +8,7 @@ public class RefCCDAValidationResult {
 	private final String description;
 	private final ValidationResultType type;
 	private final String xPath;
+    private final String validatorConfiguredXpath;
 	private final String documentLineNumber;
 
 	// Only valid for Vocabulary testing
@@ -22,6 +23,7 @@ public class RefCCDAValidationResult {
 	private RefCCDAValidationResult(RefCCDAValidationResultBuilder builder){
         this.description = builder.description;
         this.xPath = builder.xPath;
+        this.validatorConfiguredXpath = builder.validatorConfiguredXpath;
         this.type = builder.type;
         this.documentLineNumber = builder.documentLineNumber;
         this.actualCode = builder.actualCode;
@@ -43,6 +45,10 @@ public class RefCCDAValidationResult {
 
     public String getxPath() {
         return xPath;
+    }
+
+    public String getValidatorConfiguredXpath() {
+        return validatorConfiguredXpath;
     }
 
     public String getDocumentLineNumber() {
@@ -83,6 +89,7 @@ public class RefCCDAValidationResult {
         private final String description;
         private final ValidationResultType type;
         private final String xPath;
+        private final String validatorConfiguredXpath;
         private final String documentLineNumber;
 
         // Only valid for Vocabulary testing
@@ -94,8 +101,9 @@ public class RefCCDAValidationResult {
         private String actualDisplayName;
         private String expectedValueSet;
 
-        public RefCCDAValidationResultBuilder(String description, String xPath, ValidationResultType type, String documentLineNumber){
+        public RefCCDAValidationResultBuilder(String description, String xPath, String validatorConfiguredXpath, ValidationResultType type, String documentLineNumber){
             this.description = description;
+            this.validatorConfiguredXpath = validatorConfiguredXpath;
             this.type = type;
             this.xPath = xPath;
             this.documentLineNumber = documentLineNumber;

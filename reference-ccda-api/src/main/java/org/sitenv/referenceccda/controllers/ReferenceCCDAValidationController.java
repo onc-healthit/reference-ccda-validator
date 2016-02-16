@@ -2,6 +2,7 @@ package org.sitenv.referenceccda.controllers;
 
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
+import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ public class ReferenceCCDAValidationController {
 
 	@Autowired
 	ReferenceCCDAValidationService referenceCcdaValidationService;
+	@Autowired
+	VocabularyValidationService validationManager;
 
 	@RequestMapping(value = "/", headers = "content-type=multipart/*", method = RequestMethod.POST)
 	public ValidationResultsDto doValidation(
