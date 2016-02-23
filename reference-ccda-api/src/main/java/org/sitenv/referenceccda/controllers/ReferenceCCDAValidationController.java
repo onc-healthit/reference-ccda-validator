@@ -2,6 +2,7 @@ package org.sitenv.referenceccda.controllers;
 
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
+import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
@@ -10,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 
 @RestController
 public class ReferenceCCDAValidationController {
@@ -25,6 +28,11 @@ public class ReferenceCCDAValidationController {
 			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
 			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile) {
 		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile);
+	}
+
+	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)
+	public List<VsacValueSet> getValuesetsByOids(@RequestParam(value = "oids", required = true) String[] valuesetOids){
+		return referenceCcdaValidationService.getValuesetsByOids(Arrays.asList(valuesetOids));
 	}
 
     @RequestMapping(value = "/downloadreferenceccdaartifact/{artifactType}", method = RequestMethod.GET)

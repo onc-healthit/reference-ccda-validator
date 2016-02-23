@@ -7,6 +7,7 @@ import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.vocabularies.validation.dto.VocabularyValidationResult;
+import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +16,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Component
@@ -62,12 +64,22 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
                 break;
         }
         String lineNumber = getLineNumberInXMLUsingXpath(xpathIndexer, result.getNodeValidationResult().getValidatedDocumentXpathExpression());
-        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), result.getNodeValidationResult().getValidatedDocumentXpathExpression(), result.getNodeValidationResult().getConfiguredXpathExpression(), type, lineNumber).actualCode(result.getNodeValidationResult().getRequestedCode()).actualCodeSystem(result.getNodeValidationResult().getRequestedCodeSystem()).actualDisplayName(result.getNodeValidationResult().getRequestedDisplayName()).expectedValueSet(result.getNodeValidationResult().getConfiguredAllowableValuesetOidsForNode()).build();
+
+        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), result.getNodeValidationResult().getValidatedDocumentXpathExpression(), result.getNodeValidationResult().getConfiguredXpathExpression(), type, lineNumber)
+                .actualCode(result.getNodeValidationResult().getRequestedCode())
+                .actualCodeSystem(result.getNodeValidationResult().getRequestedCodeSystem())
+                .actualCodeSystemName(result.getNodeValidationResult().getRequestedCodeSystemName())
+                .actualDisplayName(result.getNodeValidationResult().getRequestedDisplayName())
+                .build();
     }
 
     private String getLineNumberInXMLUsingXpath(final XPathIndexer xpathIndexer, String xpath) {
         XPathIndexer.ElementLocationData eld = xpathIndexer.getElementLocationByPath(xpath.toUpperCase());
         String lineNumber = eld != null ? Integer.toString(eld.line) : "Line number not available";
         return lineNumber;
+    }
+
+    public List<VsacValueSet> getValuesetsByOids(List<String> valuesetOids){
+        return vocabularyValidationService.getValuesetsByOids(new HashSet<>(valuesetOids));
     }
 }
