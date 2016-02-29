@@ -7,7 +7,6 @@ import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
-import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -100,9 +99,5 @@ public class ReferenceCCDAValidationService {
                 throw new RuntimeException("Error closing CCDA file input stream", e);
             }
         }
-    }
-
-    public List<VsacValueSet> getValuesetsByOids(List<String> valuesetOids) {
-        return vocabularyCCDAValidator.getValuesetsByOids(valuesetOids);
     }
 }

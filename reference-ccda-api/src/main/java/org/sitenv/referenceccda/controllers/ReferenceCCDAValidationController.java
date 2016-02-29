@@ -2,6 +2,7 @@ package org.sitenv.referenceccda.controllers;
 
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
+import org.sitenv.referenceccda.services.VocabularyService;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class ReferenceCCDAValidationController {
 	@Autowired
 	ReferenceCCDAValidationService referenceCcdaValidationService;
 	@Autowired
+	VocabularyService vocabularyService;
+	@Autowired
 	VocabularyValidationService validationManager;
 
 	@RequestMapping(value = "/", headers = "content-type=multipart/*", method = RequestMethod.POST)
@@ -32,7 +35,7 @@ public class ReferenceCCDAValidationController {
 
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)
 	public List<VsacValueSet> getValuesetsByOids(@RequestParam(value = "oids", required = true) String[] valuesetOids){
-		return referenceCcdaValidationService.getValuesetsByOids(Arrays.asList(valuesetOids));
+		return vocabularyService.getValuesetsByOids(Arrays.asList(valuesetOids));
 	}
 
     @RequestMapping(value = "/downloadreferenceccdaartifact/{artifactType}", method = RequestMethod.GET)
