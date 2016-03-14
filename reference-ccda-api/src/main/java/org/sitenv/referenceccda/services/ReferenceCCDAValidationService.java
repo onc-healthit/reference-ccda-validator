@@ -52,7 +52,6 @@ public class ReferenceCCDAValidationService {
         String ccdaFileContents;
         try {
             ccdaFileContents = IOUtils.toString(ccdaFile.getInputStream());
-            ccdaFileContents = removeByteOrderMarkFromCCDAString(ccdaFileContents);
             validatorResults.addAll(doSchemaValidation(validationObjective, referenceFileName, ccdaFileContents));
             if (shouldRunVocabularyValidation(validatorResults)) {
                 validatorResults.addAll(DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents));
@@ -61,10 +60,6 @@ public class ReferenceCCDAValidationService {
             throw new RuntimeException("Error getting CCDA contents from provided file", e);
         }
         return validatorResults;
-    }
-
-    private String removeByteOrderMarkFromCCDAString(String ccdaFileContents) {
-        return ccdaFileContents.replace("ï»¿", "");
     }
 
     private boolean shouldRunVocabularyValidation(List<RefCCDAValidationResult> validatorResults) {
