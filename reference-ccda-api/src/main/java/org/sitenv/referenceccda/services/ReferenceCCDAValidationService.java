@@ -50,9 +50,7 @@ public class ReferenceCCDAValidationService {
                                                         MultipartFile ccdaFile) throws SAXException {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         String ccdaFileContents;
-        InputStream fileIs = null;
         try {
-            fileIs = ccdaFile.getInputStream();
             ccdaFileContents = IOUtils.toString(ccdaFile.getInputStream());
             validatorResults.addAll(doSchemaValidation(validationObjective, referenceFileName, ccdaFileContents));
             if (shouldRunVocabularyValidation(validatorResults)) {
@@ -60,8 +58,6 @@ public class ReferenceCCDAValidationService {
             }
         } catch (IOException e) {
             throw new RuntimeException("Error getting CCDA contents from provided file", e);
-        } finally {
-            closeFileInputStream(fileIs);
         }
         return validatorResults;
     }
