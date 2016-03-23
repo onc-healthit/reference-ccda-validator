@@ -10,6 +10,7 @@ public class RefCCDAValidationResult {
 	private final String xPath;
     private final String validatorConfiguredXpath;
 	private final String documentLineNumber;
+	private final boolean isSchemaError, isDataTypeSchemaError;
 
 	// Only valid for Vocabulary testing
 	private String actualCode;
@@ -27,6 +28,8 @@ public class RefCCDAValidationResult {
         this.actualCodeSystem = builder.actualCodeSystem;
         this.actualCodeSystemName = builder.actualCodeSystemName;
         this.actualDisplayName = builder.actualDisplayName;
+        this.isSchemaError = builder.isSchemaError;
+        this.isDataTypeSchemaError = builder.isDataTypeSchemaError;
     }
 
     public String getDescription() {
@@ -47,6 +50,14 @@ public class RefCCDAValidationResult {
 
     public String getDocumentLineNumber() {
         return documentLineNumber;
+    }
+    
+    public boolean isSchemaError() {
+    	return isSchemaError;
+    }
+    
+    public boolean isDataTypeSchemaError() {
+    	return isDataTypeSchemaError;
     }
 
     public String getActualCodeSystem() {
@@ -73,6 +84,7 @@ public class RefCCDAValidationResult {
         private final String xPath;
         private final String validatorConfiguredXpath;
         private final String documentLineNumber;
+        private final boolean isSchemaError, isDataTypeSchemaError;         
 
         // Only valid for Vocabulary testing
         private String actualCodeSystem;
@@ -80,13 +92,18 @@ public class RefCCDAValidationResult {
         private String actualDisplayName;
         private String actualCodeSystemName;
 
-        public RefCCDAValidationResultBuilder(String description, String xPath, String validatorConfiguredXpath, ValidationResultType type, String documentLineNumber){
-            this.description = description;
-            this.validatorConfiguredXpath = validatorConfiguredXpath;
-            this.type = type;
-            this.xPath = xPath;
-            this.documentLineNumber = documentLineNumber;
-        }
+		public RefCCDAValidationResultBuilder(String description, String xPath,
+				String validatorConfiguredXpath, ValidationResultType type,
+				String documentLineNumber, boolean isSchemaError,
+				boolean isDataTypeSchemaError) {
+			this.description = description;
+			this.validatorConfiguredXpath = validatorConfiguredXpath;
+			this.type = type;
+			this.xPath = xPath;
+			this.documentLineNumber = documentLineNumber;
+			this.isSchemaError = isSchemaError;
+			this.isDataTypeSchemaError = isDataTypeSchemaError;
+		}
 
         public RefCCDAValidationResultBuilder actualCodeSystem(String actualCodeSystem) {
             this.actualCodeSystem = actualCodeSystem;
