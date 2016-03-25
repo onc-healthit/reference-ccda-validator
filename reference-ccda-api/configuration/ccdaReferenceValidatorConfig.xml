@@ -65,11 +65,21 @@
 
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>CcdaLanguageCodeNodeLanguageCodeValuesetValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.1.11.11526</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.63</allowedValuesetOids>
 		</validator>
 	</expression>
 
