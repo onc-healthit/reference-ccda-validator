@@ -1,11 +1,7 @@
 package org.sitenv.referenceccda.services;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.BOMInputStream;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
@@ -16,6 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ReferenceCCDAValidationService {
@@ -51,7 +52,7 @@ public class ReferenceCCDAValidationService {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         String ccdaFileContents;
         try {
-            ccdaFileContents = IOUtils.toString(ccdaFile.getInputStream());
+            ccdaFileContents = IOUtils.toString(new BOMInputStream(ccdaFile.getInputStream()));
             validatorResults.addAll(doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents));
             if (shouldRunVocabularyValidation()) {
                 validatorResults.addAll(DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents));
