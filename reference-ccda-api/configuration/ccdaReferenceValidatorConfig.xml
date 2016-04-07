@@ -227,7 +227,7 @@
 	<!-- ADVANCE DIRECTIVE OBSERVATION END -->
 
 	<!-- AGE OBSERVATION START -->
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.31']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.31']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -239,7 +239,7 @@
 	<!-- AGE OBSERVATION END -->
 
 	<!-- ALLERGY CONCERN ACT START -->
-	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.30' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.30' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -470,7 +470,7 @@
 	<!-- NUMBER OF PRESSURE ULCERS OBSERVATION END -->
 
 	<!-- MEDICATION DISPENSE START -->
-	<expression xpathExpression="//v3:supply/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.18' and @extension='2014-06-09']/ancestor::v3:supply[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:supply/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.18' and @extension='2014-06-09']/ancestor::v3:supply[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -502,7 +502,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -512,7 +512,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -566,7 +566,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -576,7 +576,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -586,7 +586,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -618,7 +618,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -628,7 +628,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -680,7 +680,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -690,7 +690,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -762,7 +762,7 @@
 	<!-- SMOKING STATUS END -->
 
 	<!-- MEDICAL EQUIPMENT ORGANIZER START -->
-	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.135']/ancestor::v3:organizer[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.135']/ancestor::v3:organizer[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -774,7 +774,7 @@
 	<!-- MEDICAL EQUIPMENT ORGANIZER END -->
 
 	<!-- RESULT OBSERVATION START -->
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -796,7 +796,7 @@
 	<!-- RESULT OBSERVATION END -->
 
 	<!-- RESULT ORGANIZER START -->
-	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -818,7 +818,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.27' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.27' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
@@ -862,7 +862,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.12' and @extension='2014-06-09']/ancestor::v3:act[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.12' and @extension='2014-06-09']/ancestor::v3:act[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -884,7 +884,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -938,7 +938,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.13' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.13' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -1128,7 +1128,7 @@
 	<!-- INSTRUCTION END -->
 
 	<!-- PROBLEM CONCERN ACT START -->
-	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.3' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.3' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -1140,7 +1140,7 @@
 	<!-- PROBLEM CONCERN ACT END -->
 
 	<!-- RISK CONCERN ACT START -->
-	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.136' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.136' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -1152,7 +1152,7 @@
 	<!-- RISK CONCERN ACT END -->
 
 	<!-- HEALTH CONCERN ACT BEGIN -->
-	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.132' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.132' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>

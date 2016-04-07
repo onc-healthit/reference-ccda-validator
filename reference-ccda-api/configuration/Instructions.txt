@@ -8,6 +8,10 @@ This document is meant to outline the steps to successfully configure and deploy
 
     c. With Tomcat installed and the referenceccdaservice.war in your hands, you are ready to begin configuration and deployment.
 
+NOTE - IF THIS IS A FIRST TIME INSTALL, CONTINUE TO NUMBER 2, ELSE REMOVE THE FOLLOWING ARTIFACTS TO ENSURE YOU ARE RUNNING THE APPLICATION WITH THE LATEST CONFIGURATION
+    *** ENSURE THE TOMCAT INSTANCE HAS BEEN SHUTDOWN***
+    - IN THE TOMCAT/WEBAPPS DIRECTORY, DELETE REFERENCECCDASERVICE.WAR AND THE REFERENCECCDASERVICE DIRECTORY
+    - IN THE VOCABULARY CONFIGURATION DIRECTORY, DELETE CCDAREFERENCEVALIDATORCONFIG.XML
 
 2. Configuration Instructions
     There are 3 main components to this application:
@@ -21,7 +25,7 @@ This document is meant to outline the steps to successfully configure and deploy
 
         2. Place the ccdaReferenceValidatorConfig.xml in this folder. For example, E:\Development\Environment\VocabularyConfiguration\ccdaReferenceValidatorConfig.xml
 
-        3.Download the code repository and valueset repository and place them in this directory. For example,
+        3.Download the code repository and valueset repository and place them (OR OVER-WRITE IF THEY ALREADY EXIST) in this directory. For example,
             a. E:\Development\Environment\VocabularyConfiguration\Vocabulary\code_repository
             b. E:\Development\Environment\VocabularyConfiguration\Vocabulary\valueset_repository\VSAC
 
