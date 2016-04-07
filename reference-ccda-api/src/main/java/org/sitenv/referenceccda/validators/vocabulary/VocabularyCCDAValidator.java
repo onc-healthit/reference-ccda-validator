@@ -54,16 +54,16 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
     private RefCCDAValidationResult createValidationResult(VocabularyValidationResult result, XPathIndexer xpathIndexer) {
         ValidationResultType type;
         switch(result.getVocabularyValidationResultLevel()){
-            case ERRORS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_ERROR;
+            case SHALL: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_ERROR;
                 break;
-            case WARNINGS: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_WARN;
+            case SHOULD: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_WARN;
                 break;
             default: type = ValidationResultType.CCDA_VOCAB_CONFORMANCE_INFO;
                 break;
         }
         String lineNumber = getLineNumberInXMLUsingXpath(xpathIndexer, result.getNodeValidationResult().getValidatedDocumentXpathExpression());
 
-        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), result.getNodeValidationResult().getValidatedDocumentXpathExpression(), result.getNodeValidationResult().getConfiguredXpathExpression(), type, lineNumber)
+        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), result.getNodeValidationResult().getValidatedDocumentXpathExpression(), result.getNodeValidationResult().getConfiguredXpathExpression(), type, lineNumber, false, false)
                 .actualCode(result.getNodeValidationResult().getRequestedCode())
                 .actualCodeSystem(result.getNodeValidationResult().getRequestedCodeSystem())
                 .actualCodeSystemName(result.getNodeValidationResult().getRequestedCodeSystemName())

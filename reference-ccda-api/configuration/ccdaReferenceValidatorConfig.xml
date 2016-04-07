@@ -1,16 +1,25 @@
 <configurations>
 
 	<!-- VALUE SET START -->
-	<!-- allowed severity levels are: ERRORS, WARNINGS, INFO. -->
 
 	<!-- HEADER START -->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:languageCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>CcdaLanguageCodeNodeLanguageCodeValuesetValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.11526</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.11526</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:languageCode[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.63</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -18,9 +27,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12199</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12199</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -28,9 +37,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -38,9 +47,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.837</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.837</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -48,19 +57,29 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.877</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.877</allowedValuesetOids>
 		</validator>
 	</expression>
 
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>CcdaLanguageCodeNodeLanguageCodeValuesetValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.11526</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.11526</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.63</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -68,9 +87,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12249</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12249</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -78,9 +97,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12212</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12212</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -88,9 +107,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.19185</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.19185</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -98,19 +117,19 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.2074.1.1.3</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.2074.1.1.3</allowedValuesetOids>
 		</validator>
 	</expression>
 
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/sdtc:raceCode">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/sdtc:raceCode[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.14914</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.14914</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -118,9 +137,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -128,19 +147,19 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:informant/v3:assignedEntity/v3:code[not(@nullFlavor)]">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:MAYrmant/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -148,9 +167,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -158,9 +177,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -168,9 +187,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -178,9 +197,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- HEADER END -->
@@ -190,9 +209,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.20.2</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.20.2</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -200,9 +219,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- ADVANCE DIRECTIVE OBSERVATION END -->
@@ -212,9 +231,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.21</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.21</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- AGE OBSERVATION END -->
@@ -224,9 +243,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.19</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.19</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- ALLERGY CONCERN ACT END -->
@@ -236,9 +255,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.6.2</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.6.2</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -246,9 +265,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113762.1.4.1010.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- ALLERGY - INTOLERANCE OBSERVATION END -->
@@ -258,21 +277,21 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.68</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.68</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- ALLERGY STATUS OBSERVATION (DEPRICATED) END -->
 
 	<!-- CARE PLAN START -->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:informationRecipient/v3:intendedRecipient/v3:receivedOrganization/v3:standardIndustryClassCode[not(@nullFlavor)]">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:MAYrmationRecipient/v3:intendedRecipient/v3:receivedOrganization/v3:standardIndustryClassCode[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- CARE PLAN END -->
@@ -282,9 +301,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.32</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.32</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -292,9 +311,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- ENCOUNTER ACTIVITY END -->
@@ -304,9 +323,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -314,9 +333,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.19579</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.19579</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- FAMILY HISTORY ORGANIZER END -->
@@ -326,9 +345,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.2_SNOMED,2.16.840.1.113883.3.88.12.3221.7.2_LOINC</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.2_SNOMED,2.16.840.1.113883.3.88.12.3221.7.2_LOINC</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -336,9 +355,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- FAMILY HISTORY OBSERVATION END -->
@@ -348,9 +367,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- HANDOFF COMMUNICATION PARTICIPANTS END -->
@@ -360,9 +379,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.20275</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.20275</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- SERVICE DELIVERY LOCATION END -->
@@ -372,9 +391,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>MAY</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.2_SNOMED,2.16.840.1.113883.3.88.12.3221.7.2_LOINC</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.2_SNOMED,2.16.840.1.113883.3.88.12.3221.7.2_LOINC</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -382,9 +401,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- INDICATION END -->
@@ -394,9 +413,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.2_SNOMED</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.2_SNOMED</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -404,19 +423,36 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.2_LOINC</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.2_LOINC</allowedValuesetOids>
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and not(ancestor::v3:encounter) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:encounter and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
+		</validator>
+		<validator>
+			<name>CcdaCodeSystemCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedCodesystemNames>ICD10CM</allowedCodesystemNames>
 		</validator>
 	</expression>
 	<!-- PROBLEM OBSERVATION END -->
@@ -426,9 +462,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.35</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.35</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- NUMBER OF PRESSURE ULCERS OBSERVATION END -->
@@ -438,9 +474,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.64</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.64</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- MEDICATION DISPENSE END -->
@@ -450,9 +486,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -460,9 +496,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -470,9 +506,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -480,9 +516,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -490,21 +526,21 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- MEDICATION ACTIVITY END -->
 
-	<!-- MEDICATION INFORMATION START -->
-	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.23' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial/v3:code">
+	<!-- MEDICATION MAYRMATION START -->
+	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.23' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial/v3:code[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113762.1.4.1010.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.4</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- MEDICATION INDICATION END -->
@@ -514,9 +550,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -524,9 +560,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -534,9 +570,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -544,9 +580,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -554,9 +590,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- IMMUNIZATION ACTIVITY END -->
@@ -566,9 +602,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -576,9 +612,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -586,9 +622,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -596,31 +632,51 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode">
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PLANNED IMMUNIZATION ACTIVITY END -->
 
 	<!-- PLANNED MEDICATION ACTIVITY START -->
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
+		</validator>
+	</expression>
+
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -628,9 +684,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -638,9 +694,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PLANNED MEDICATION ACTIVITY END -->
@@ -650,9 +706,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PLANNED OBSERVATION END -->
@@ -662,9 +718,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PLANNED PROCEDURE END -->
@@ -674,9 +730,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PRECONDITION FOR SUBSTANCE ADMINISTRATION END -->
@@ -686,9 +742,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.41</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.41</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- TABACCO USE END -->
@@ -698,9 +754,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.38</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.38</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- SMOKING STATUS END -->
@@ -710,9 +766,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.39</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.39</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- MEDICAL EQUIPMENT ORGANIZER END -->
@@ -722,9 +778,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.39</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.39</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -732,9 +788,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.78</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.78</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- RESULT OBSERVATION END -->
@@ -744,9 +800,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- RESULT ORGANIZER END -->
@@ -756,9 +812,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>WARNINGS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.62</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.62</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -766,9 +822,9 @@
 		<validator>
 			<name>CcdaUnitValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.12839</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -776,9 +832,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.78</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.78</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- VITAL SIGN OBSERVATION END -->
@@ -788,9 +844,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- LONGITUDE CARE WOUND OBSERVATION END -->
@@ -800,9 +856,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.16866</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.16866</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -810,9 +866,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.22</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.22</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PROCEDURE ACTIVITY ACT END -->
@@ -822,9 +878,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -832,9 +888,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.22</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.22</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -842,9 +898,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.16866</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.16866</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PROCEDURE ACTIVITY PROCEDURE END -->
@@ -854,9 +910,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- v3:patient REFERRAL ACT END -->
@@ -866,9 +922,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.16866</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.16866</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -876,9 +932,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.9</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -886,9 +942,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.22</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.22</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PROCEDURE ACTIVITY OBSERVATION END -->
@@ -898,9 +954,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.19717</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.19717</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- IMMUNIZATION REFUSAL REASON END -->
@@ -910,9 +966,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.6.2</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.6.2</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- SUBSTANCE OR DEVICE ALLERGY - INTOLERANCE OBSERVATION END -->
@@ -922,9 +978,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.31</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.31</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- CONSULTATION NOTE START -->
@@ -934,9 +990,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.18877</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.18877</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- POLICY ACTIVITY END -->
@@ -946,9 +1002,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.29</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.29</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- QUANTITY MEASUREMENT OBSERVATION END -->
@@ -958,9 +1014,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.4.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.4.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- DISCHARGE SUMMARY END -->
@@ -970,9 +1026,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.20.12</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.20.12</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- HEALTH STATUS OBSERVATION END -->
@@ -982,9 +1038,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.68</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.68</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PROBLEM STATUS (DEPRICATED) END -->
@@ -994,9 +1050,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.1.11.20.22</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.20.22</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- HISTORY AND PHYSICAL END -->
@@ -1006,9 +1062,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.6.8</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.6.8</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- SEVERITY OBSERVATION END -->
@@ -1018,9 +1074,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1028,9 +1084,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PROCEDURE NOTE END -->
@@ -1040,9 +1096,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.8.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.8.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PROGRESS NOTE END -->
@@ -1052,9 +1108,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.1.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.1.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- OPERATIVE NOTE END -->
@@ -1064,9 +1120,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.34</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.34</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- INSTRUCTION END -->
@@ -1076,9 +1132,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.19</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.19</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PROBLEM CONCERN ACT END -->
@@ -1088,9 +1144,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.19</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.19</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- RISK CONCERN ACT END -->
@@ -1100,9 +1156,9 @@
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.19</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.19</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- HEALTH CONCERN ACT END -->
@@ -1112,33 +1168,33 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- TRANSFER SUMMARY END -->
 
-	<!-- IMMUNIZATION MEDICATION INFORMATION START -->
+	<!-- IMMUNIZATION MEDICATION MAYRMATION START -->
 	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.54' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113762.1.4.1010.6</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.6</allowedValuesetOids>
 		</validator>
 	</expression>
-	<!-- IMMUNIZATION MEDICATION INFORMATION END -->
+	<!-- IMMUNIZATION MEDICATION MAYRMATION END -->
 
 	<!-- PLANNED ENCOUNTER START -->
 	<expression xpathExpression="//v3:encounter/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.40' and @extension='2014-06-09']/ancestor::v3:encounter[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.11.20.9.52</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.52</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PLANNED ENCOUNTER END -->
@@ -1148,9 +1204,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- REACTION OBSERVATION END -->
@@ -1160,9 +1216,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.114222.4.11.1066</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- AUTHOR PARTICIPATION END -->
@@ -1173,19 +1229,20 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.63</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.63</allowedValuesetOids>
 		</validator>
 	</expression>
 
+	<!-- IG does not specify if this is a shall or should -->
 	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:state[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1193,9 +1250,9 @@
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>ERRORS</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodeSystemOids>2.16.840.1.113883.3.88.12.80.2</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.2</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- US REALM ADDRESS (AD.US.FIELDED) END -->
@@ -1240,7 +1297,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- ENCOUNTERS END -->
@@ -1251,7 +1308,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  ADV DIRECTIVES END -->
@@ -1263,7 +1320,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1271,7 +1328,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.5.6</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.5.6</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1279,7 +1336,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.5.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.5.4</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1287,7 +1344,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.5.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.5.4</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1295,7 +1352,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1303,7 +1360,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.5.4</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.5.4</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1313,7 +1370,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  REASON FOR VISIT END -->
@@ -1324,7 +1381,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  FAMILY HISTORY END -->
@@ -1335,7 +1392,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  IMMUNIZATIONS END -->
@@ -1346,7 +1403,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- INSTRUCTIONS END -->
@@ -1357,7 +1414,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  MEDICATIONS END -->
@@ -1369,7 +1426,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- PLAN OF CARE END -->
@@ -1380,7 +1437,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1388,7 +1445,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.5.6</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.5.6</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1396,7 +1453,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.96</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.96</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  PROBLEM LIST END -->
@@ -1407,7 +1464,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1415,7 +1472,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96,2.16.840.1.113883.6.12,2.16.840.1.113883.6.4,2.16.840.1.113883.6.13</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96,2.16.840.1.113883.6.12,2.16.840.1.113883.6.4,2.16.840.1.113883.6.13</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  PROCEDURES END -->
@@ -1426,7 +1483,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  REASON FOR REFERRAL END -->
@@ -1437,7 +1494,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1445,7 +1502,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1453,7 +1510,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  RESULTS END -->
@@ -1464,7 +1521,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  SOCIAL HISTORY END -->
@@ -1475,7 +1532,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.1</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1484,7 +1541,7 @@
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
-			<allowedCodeSystemOids>2.16.840.1.113883.6.96</allowedCodeSystemOids>
+			<allowedValuesetOids>2.16.840.1.113883.6.96</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!--  VITAL SIGNS END-->
