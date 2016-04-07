@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @EnableWebMvc
 @Configuration
-@ComponentScan("org.sitenv.referenceccda")
+@ComponentScan("org.sitenv")
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Override

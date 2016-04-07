@@ -1,5 +1,17 @@
 package org.sitenv.referenceccda.validators.schema;
 
+import static org.sitenv.referenceccda.validators.schema.CCDAIssueStates.getCurrentDataTypeSchemaErrorState;
+import static org.sitenv.referenceccda.validators.schema.CCDAIssueStates.getCurrentSchemaErrorState;
+import static org.sitenv.referenceccda.validators.schema.CCDAIssueStates.resetUniqueResultValues;
+import static org.sitenv.referenceccda.validators.schema.CCDAIssueStates.setIsDataTypeSchemaError;
+import static org.sitenv.referenceccda.validators.schema.CCDAIssueStates.setIsIGIssue;
+import static org.sitenv.referenceccda.validators.schema.CCDAIssueStates.setIsSchemaError;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.io.IOUtils;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
@@ -16,11 +28,6 @@ import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
@@ -56,16 +63,17 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private ArrayList<RefCCDAValidationResult> processValidationResults(final XPathIndexer xpathIndexer,
 			ValidationResult result) {
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
+		CCDAIssueStates.resetHasSchemaError();
 		for (Diagnostic diagnostic : result.getErrorDiagnostics()) {
-			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_IG_CONFORMANCE_ERROR));
+			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR));
 		}
 
 		for (Diagnostic diagnostic : result.getWarningDiagnostics()) {
-			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_IG_CONFORMANCE_WARN));
+			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN));
 		}
 
 		for (Diagnostic diagnostic : result.getInfoDiagnostics()) {
-			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_IG_CONFORMANCE_INFO));
+			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO));
 		}
 		return results;
 	}
@@ -74,7 +82,26 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 			ValidationResultType resultType) {
 		CDADiagnostic diag = new CDADiagnostic(diagnostic);
 		String lineNumber = getLineNumberInXMLUsingXpath(xPathIndexer, diagnostic);
+		if(resultType == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR) {
+			setIssueType(diag);
+		}
 		return createNewValidationResult(diag, resultType, lineNumber);
+	}
+	
+	private void setIssueType(CDADiagnostic cDiag) {
+		resetUniqueResultValues();
+		if (cDiag.getSource() != null) {
+			if (cDiag.getSource().contains("a.consol")) {
+				setIsIGIssue(true);
+			} else {
+				// javax.xml.validation.Validator, org.eclipse.emf.ecore, etc.
+				setIsSchemaError(true);
+				if (cDiag.getPath() != null && cDiag.getCode() > 0) {
+					// org.eclipse.emf.ecore, etc.
+					setIsDataTypeSchemaError(true);
+				}
+			}
+		}
 	}
 
 	private String getLineNumberInXMLUsingXpath(final XPathIndexer xpathIndexer, Diagnostic diagnostic) {
@@ -107,6 +134,9 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 
 	private RefCCDAValidationResult createNewValidationResult(CDADiagnostic cdaDiag, ValidationResultType resultType,
 			String resultLineNumber) {
-		return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(cdaDiag.getMessage(), cdaDiag.getPath(), resultType, resultLineNumber).build();
+		return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(
+				cdaDiag.getMessage(), cdaDiag.getPath(), null, resultType,
+				resultLineNumber, getCurrentSchemaErrorState(),
+				getCurrentDataTypeSchemaErrorState()).build();
 	}
 }

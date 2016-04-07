@@ -1,6 +1,6 @@
 package org.sitenv.referenceccda.configuration;
 
-import org.sitenv.vocabularies.servlet.listener.VocabularyValidationListener;
+import org.sitenv.vocabularies.configuration.CodeValidatorApiConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.ServletContext;
@@ -9,7 +9,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { MvcConfiguration.class };
+		return new Class<?>[] { MvcConfiguration.class, CodeValidatorApiConfiguration.class };
 	}
 
 	@Override
@@ -25,9 +25,6 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
     @Override
     protected void registerDispatcherServlet(ServletContext servletContext) {
         super.registerDispatcherServlet(servletContext);
-
-        servletContext.addListener(new VocabularyValidationListener());
-
     }
 
 }

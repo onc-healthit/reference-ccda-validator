@@ -8,29 +8,28 @@ public class RefCCDAValidationResult {
 	private final String description;
 	private final ValidationResultType type;
 	private final String xPath;
+    private final String validatorConfiguredXpath;
 	private final String documentLineNumber;
+	private final boolean isSchemaError, isDataTypeSchemaError;
 
 	// Only valid for Vocabulary testing
-	private String expectedCodeSystem;
-	private String actualCodeSystem;
-	private String expectedCode;
 	private String actualCode;
-	private String expectedDisplayName;
-	private String actualDisplayName;
-	private String expectedValueSet;
+    private String actualCodeSystem;
+    private String actualCodeSystemName;
+    private String actualDisplayName;
 
 	private RefCCDAValidationResult(RefCCDAValidationResultBuilder builder){
         this.description = builder.description;
         this.xPath = builder.xPath;
+        this.validatorConfiguredXpath = builder.validatorConfiguredXpath;
         this.type = builder.type;
         this.documentLineNumber = builder.documentLineNumber;
         this.actualCode = builder.actualCode;
         this.actualCodeSystem = builder.actualCodeSystem;
-        this.actualDisplayName = builder.expectedDisplayName;
-        this.expectedCode = builder.expectedCode;
-        this.expectedCodeSystem = builder.expectedCodeSystem;
-        this.expectedDisplayName = builder.expectedDisplayName;
-        this.expectedValueSet = builder.expectedValueSet;
+        this.actualCodeSystemName = builder.actualCodeSystemName;
+        this.actualDisplayName = builder.actualDisplayName;
+        this.isSchemaError = builder.isSchemaError;
+        this.isDataTypeSchemaError = builder.isDataTypeSchemaError;
     }
 
     public String getDescription() {
@@ -45,36 +44,36 @@ public class RefCCDAValidationResult {
         return xPath;
     }
 
+    public String getValidatorConfiguredXpath() {
+        return validatorConfiguredXpath;
+    }
+
     public String getDocumentLineNumber() {
         return documentLineNumber;
     }
-
-    public String getExpectedCodeSystem() {
-        return expectedCodeSystem;
+    
+    public boolean isSchemaError() {
+    	return isSchemaError;
+    }
+    
+    public boolean isDataTypeSchemaError() {
+    	return isDataTypeSchemaError;
     }
 
     public String getActualCodeSystem() {
         return actualCodeSystem;
     }
 
-    public String getExpectedCode() {
-        return expectedCode;
-    }
-
     public String getActualCode() {
         return actualCode;
-    }
-
-    public String getExpectedDisplayName() {
-        return expectedDisplayName;
     }
 
     public String getActualDisplayName() {
         return actualDisplayName;
     }
 
-    public String getExpectedValueSet() {
-        return expectedValueSet;
+    public String getActualCodeSystemName() {
+        return actualCodeSystemName;
     }
 
     //builder pattern
@@ -83,36 +82,31 @@ public class RefCCDAValidationResult {
         private final String description;
         private final ValidationResultType type;
         private final String xPath;
+        private final String validatorConfiguredXpath;
         private final String documentLineNumber;
+        private final boolean isSchemaError, isDataTypeSchemaError;         
 
         // Only valid for Vocabulary testing
-        private String expectedCodeSystem;
         private String actualCodeSystem;
-        private String expectedCode;
         private String actualCode;
-        private String expectedDisplayName;
         private String actualDisplayName;
-        private String expectedValueSet;
+        private String actualCodeSystemName;
 
-        public RefCCDAValidationResultBuilder(String description, String xPath, ValidationResultType type, String documentLineNumber){
-            this.description = description;
-            this.type = type;
-            this.xPath = xPath;
-            this.documentLineNumber = documentLineNumber;
-        }
-
-        public RefCCDAValidationResultBuilder expectedCodeSystem(String expectedCodeSystem) {
-            this.expectedCodeSystem = expectedCodeSystem;
-            return this;
-        }
+		public RefCCDAValidationResultBuilder(String description, String xPath,
+				String validatorConfiguredXpath, ValidationResultType type,
+				String documentLineNumber, boolean isSchemaError,
+				boolean isDataTypeSchemaError) {
+			this.description = description;
+			this.validatorConfiguredXpath = validatorConfiguredXpath;
+			this.type = type;
+			this.xPath = xPath;
+			this.documentLineNumber = documentLineNumber;
+			this.isSchemaError = isSchemaError;
+			this.isDataTypeSchemaError = isDataTypeSchemaError;
+		}
 
         public RefCCDAValidationResultBuilder actualCodeSystem(String actualCodeSystem) {
             this.actualCodeSystem = actualCodeSystem;
-            return this;
-        }
-
-        public RefCCDAValidationResultBuilder expectedCode(String expectedCode) {
-            this.expectedCode = expectedCode;
             return this;
         }
 
@@ -121,18 +115,13 @@ public class RefCCDAValidationResult {
             return this;
         }
 
-        public RefCCDAValidationResultBuilder expectedDisplayName(String expectedDisplayName) {
-            this.expectedDisplayName = expectedDisplayName;
-            return this;
-        }
-
         public RefCCDAValidationResultBuilder actualDisplayName(String actualDisplayName) {
             this.actualDisplayName = actualDisplayName;
             return this;
         }
 
-        public RefCCDAValidationResultBuilder expectedValueSet(String expectedValueSet) {
-            this.expectedValueSet = expectedValueSet;
+        public RefCCDAValidationResultBuilder actualCodeSystemName(String actualCodeSystemName) {
+            this.actualCodeSystemName = actualCodeSystemName;
             return this;
         }
 

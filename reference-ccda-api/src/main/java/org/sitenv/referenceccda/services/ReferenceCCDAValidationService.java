@@ -1,10 +1,11 @@
 package org.sitenv.referenceccda.services;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.BOMInputStream;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
-import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.referenceccda.validators.schema.CCDAIssueStates;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,35 +51,27 @@ public class ReferenceCCDAValidationService {
                                                         MultipartFile ccdaFile) throws SAXException {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         String ccdaFileContents;
-        InputStream fileIs = null;
         try {
-            fileIs = ccdaFile.getInputStream();
-            ccdaFileContents = IOUtils.toString(ccdaFile.getInputStream());
-            validatorResults.addAll(doSchemaValidation(validationObjective, referenceFileName, ccdaFileContents));
-            if (shouldRunVocabularyValidation(validatorResults)) {
+            ccdaFileContents = IOUtils.toString(new BOMInputStream(ccdaFile.getInputStream()));
+            validatorResults.addAll(doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents));
+            if (shouldRunVocabularyValidation()) {
                 validatorResults.addAll(DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents));
             }
         } catch (IOException e) {
             throw new RuntimeException("Error getting CCDA contents from provided file", e);
-        } finally {
-            closeFileInputStream(fileIs);
         }
         return validatorResults;
     }
 
-    private boolean shouldRunVocabularyValidation(List<RefCCDAValidationResult> validatorResults) {
-        return validatorResults.isEmpty() || isTheFirstResultASchemaWarning(validatorResults);
-    }
-
-    private boolean isTheFirstResultASchemaWarning(List<RefCCDAValidationResult> validatorResults) {
-        return validatorResults.get(0).getType().getTypePrettyName().equals(ValidationResultType.CCDA_IG_CONFORMANCE_WARN.getTypePrettyName());
-    }
+	private boolean shouldRunVocabularyValidation() {
+		return !CCDAIssueStates.hasSchemaError();
+	}
 
     private ArrayList<RefCCDAValidationResult> DoVocabularyValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
         return vocabularyCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 
-    private List<RefCCDAValidationResult> doSchemaValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
+    private List<RefCCDAValidationResult> doMDHTValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
         return referenceCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 
