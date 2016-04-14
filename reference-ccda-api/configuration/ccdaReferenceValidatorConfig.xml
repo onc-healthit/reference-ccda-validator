@@ -536,11 +536,11 @@
 	<!-- MEDICATION MAYRMATION START -->
 	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.23' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaCodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.4</allowedValuesetOids>
+			<allowedCodesystemNames>RXNORM</allowedCodesystemNames>
 		</validator>
 	</expression>
 	<!-- MEDICATION INDICATION END -->
@@ -1449,13 +1449,6 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
-		<validator>
-			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
-			<nodeType>codeSystem</nodeType>
-			<allowedValuesetOids>2.16.840.1.113883.6.96</allowedValuesetOids>
-		</validator>
-	</expression>
 	<!--  PROBLEM LIST END -->
 
 	<!--  PROCEDURES START -->
