@@ -429,7 +429,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and not(ancestor::v3:encounter) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and not((ancestor::v3:encounter) or (ancestor::v3:act)) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -439,7 +439,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:encounter and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and (ancestor::v3:encounter or ancestor::v3:act) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -536,11 +536,11 @@
 	<!-- MEDICATION MAYRMATION START -->
 	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.23' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaCodeSystemCodeValidator</name>
+			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>RXNORM</allowedCodesystemNames>
+			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.4</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- MEDICATION INDICATION END -->
@@ -774,6 +774,16 @@
 	<!-- MEDICAL EQUIPMENT ORGANIZER END -->
 
 	<!-- RESULT OBSERVATION START -->
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaCodeSystemCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedCodesystemNames>LOINC</allowedCodesystemNames>
+		</validator>
+	</expression>
+
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
@@ -796,13 +806,23 @@
 	<!-- RESULT OBSERVATION END -->
 
 	<!-- RESULT ORGANIZER START -->
+	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaCodeSystemCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedCodesystemNames>LOINC,SNOMED-CT</allowedCodesystemNames>
+		</validator>
+	</expression>
+
 	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96</allowedValuesetOids>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.39</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- RESULT ORGANIZER END -->
@@ -874,6 +894,16 @@
 	<!-- PROCEDURE ACTIVITY ACT END -->
 
 	<!-- PROCEDURE ACTIVITY PROCEDURE START -->
+	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaCodeSystemCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedCodesystemNames>LOINC,SNOMED-CT</allowedCodesystemNames>
+		</validator>
+	</expression>
+
 	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:targetSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
