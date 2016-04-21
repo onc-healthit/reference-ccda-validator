@@ -38,6 +38,11 @@ public class ReferenceCCDAValidationController {
 		return vocabularyService.getValuesetsByOids(Arrays.asList(valuesetOids));
 	}
 
+	@RequestMapping(value = "/iscodeandisplaynameincodesystem", method = RequestMethod.GET)
+	public boolean isCodeAndDisplayNameFoundInCodeSystems(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "displayName", required = true)String displayName, @RequestParam(value = "codeSystems", required = true) String[] codeSystems){
+		return vocabularyService.isCodeAndDisplayNameFoundInCodeSystems(code, displayName, Arrays.asList(codeSystems));
+	}
+
     @RequestMapping(value = "/downloadreferenceccdaartifact/{artifactType}", method = RequestMethod.GET)
 	public void downloadReferenceCCDAArtifact(HttpServletResponse httpServletResponse, @PathVariable("artifactType") String artifactType) throws IOException{
         File fileToDownload = new File("referenceccdaservice-bundle." + artifactType);

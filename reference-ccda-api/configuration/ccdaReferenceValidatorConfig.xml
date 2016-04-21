@@ -263,11 +263,11 @@
 
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.7' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:participant/v3:participantRole/v3:playingEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaCodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.1</allowedValuesetOids>
+			<allowedCodesystemNames>RXNORM</allowedCodesystemNames>
 		</validator>
 	</expression>
 	<!-- ALLERGY - INTOLERANCE OBSERVATION END -->
@@ -774,11 +774,12 @@
 	<!-- MEDICAL EQUIPMENT ORGANIZER END -->
 
 	<!-- RESULT OBSERVATION START -->
+	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaCodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedCodesystemNames>LOINC</allowedCodesystemNames>
 		</validator>
@@ -806,13 +807,14 @@
 	<!-- RESULT OBSERVATION END -->
 
 	<!-- RESULT ORGANIZER START -->
+	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaCodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>LOINC,SNOMED-CT</allowedCodesystemNames>
+			<allowedCodesystemNames>LOINC</allowedCodesystemNames>
 		</validator>
 	</expression>
 
@@ -894,13 +896,14 @@
 	<!-- PROCEDURE ACTIVITY ACT END -->
 
 	<!-- PROCEDURE ACTIVITY PROCEDURE START -->
+	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaCodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>LOINC,SNOMED-CT</allowedCodesystemNames>
+			<allowedCodesystemNames>CDT,SNOMED-CT</allowedCodesystemNames><!-- need to add CPT-4 and HCPS -->
 		</validator>
 	</expression>
 
