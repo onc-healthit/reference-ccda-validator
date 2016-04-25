@@ -820,7 +820,7 @@
 
 	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
