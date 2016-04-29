@@ -30,4 +30,12 @@ public class VocabularyService {
     public boolean isCodeAndDisplayNameFoundInCodeSystems(String code, String displayName, List<String> codeSystems){
         return vocabularyCodeService.isFoundByCodeAndDisplayNameInCodeSystems(code, displayName, new HashSet<>(codeSystems));
     }
+
+    public boolean isCodeFoundInCodesystems(String code, List<String> codeSystems){
+        return vocabularyCodeService.isFoundByCodeInCodeSystems(code, new HashSet<>(codeSystems));
+    }
+
+    public boolean isCodeFoundInValuesetOids(String code, List<String> valuesetOids){
+        return vocabularyValuesetService.isFoundByCodeInValuesetOids(code, new HashSet<>(valuesetOids));
+    }
 }

@@ -13,6 +13,26 @@
 		</validator>
 	</expression>
 
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:confidentialityCode[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.16926</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:informant/v3:assignedEntity/v3:code[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
+		</validator>
+	</expression>
+
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:languageCode[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
@@ -153,16 +173,6 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:MAYrmant/v3:assignedEntity/v3:code[not(@nullFlavor)]">
-		<validator>
-			<name>CcdaValueSetCodeValidator</name>
-			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHOULD</codeSeverityLevel>
-			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
-		</validator>
-	</expression>
-
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:legalAuthenticator/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
@@ -202,7 +212,29 @@
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:documentationOf/v3:serviceEvent/v3:performer/v3:functionCode[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.10267</allowedValuesetOids>
+		</validator>
+	</expression>
 	<!-- HEADER END -->
+
+	<!-- REFERRAL NOTE START -->
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.14' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant/v3:associatedEntity[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaClassCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.33</allowedValuesetOids>
+		</validator>
+	</expression>
+	<!-- REFERRAL NOTE END -->
 
 	<!-- ADVANCE DIRECTIVE OBSERVATION START -->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.48' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
@@ -285,13 +317,23 @@
 	<!-- ALLERGY STATUS OBSERVATION (DEPRICATED) END -->
 
 	<!-- CARE PLAN START -->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:MAYrmationRecipient/v3:intendedRecipient/v3:receivedOrganization/v3:standardIndustryClassCode[not(@nullFlavor)]">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:informationRecipient/v3:intendedRecipient/v3:receivedOrganization/v3:standardIndustryClassCode[not(@nullFlavor)]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant[@typeCode='IND']/v3:associatedEntity[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaClassCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.33</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- CARE PLAN END -->
@@ -938,6 +980,18 @@
 	</expression>
 	<!-- PROCEDURE ACTIVITY PROCEDURE END -->
 
+	<!-- PURPOSE OF REFERENCE OBSERVATION START -->
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.6.2.9']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.28</allowedValuesetOids>
+		</validator>
+	</expression>
+	<!-- PURPOSE OF OBSERVATION END -->
+
 	<!-- v3:patient REFERRAL ACT START -->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.140']/ancestor::v3:act[1]/v3:participant/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
@@ -946,6 +1000,16 @@
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.140']/ancestor::v3:act[1]/v3:entryRelationship/v3:observation/v3:priorityCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.16866</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- v3:patient REFERRAL ACT END -->
@@ -1019,13 +1083,23 @@
 	<!-- CONSULTATION NOTE START -->
 
 	<!-- POLICY ACTIVITY START -->
-	<expression xpathExpression="//v3:entry/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']/ancestor::v3:entry[1]/v3:act/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:act/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.1.11.18877</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:assignedEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.10416</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- POLICY ACTIVITY END -->
@@ -1206,9 +1280,43 @@
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.13' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant[@typeCode='IND']/v3:associatedEntity[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaClassCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.11.20.9.33</allowedValuesetOids>
+		</validator>
+	</expression>
 	<!-- TRANSFER SUMMARY END -->
 
-	<!-- IMMUNIZATION MEDICATION MAYRMATION START -->
+	<!-- IMMUNIZATION ACTIVITY (V3) START -->
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.159331</allowedValuesetOids>
+		</validator>
+	</expression>
+	<!-- IMMUNIZATION ACTIVITY (V3) END -->
+
+	<!-- NON-MEDICINAL SUPPLY ACTIVITY (V2) START -->
+	<expression xpathExpression="//v3:supply/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.50' and @extension='2014-06-09']/ancestor::v3:supply[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.159331</allowedValuesetOids>
+		</validator>
+	</expression>
+	<!-- NON-MEDICINAL SUPPLY ACTIVITY (V2) END -->
+
+	<!-- IMMUNIZATION MEDICATION INFORMATION START -->
 	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.54' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CcdaValueSetCodeValidator</name>
@@ -1218,7 +1326,7 @@
 			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.6</allowedValuesetOids>
 		</validator>
 	</expression>
-	<!-- IMMUNIZATION MEDICATION MAYRMATION END -->
+	<!-- IMMUNIZATION MEDICATION INFORMATION END -->
 
 	<!-- PLANNED ENCOUNTER START -->
 	<expression xpathExpression="//v3:encounter/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.40' and @extension='2014-06-09']/ancestor::v3:encounter[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
@@ -1255,6 +1363,18 @@
 		</validator>
 	</expression>
 	<!-- AUTHOR PARTICIPATION END -->
+
+	<!-- NUTRITION RECOMMENDATION START -->
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.130']/ancestor::v3:act[1]/v3:code[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaValueSetCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.20.2.9</allowedValuesetOids>
+		</validator>
+	</expression>
+	<!-- NUTRITION RECOMMENDATION END -->
 
 	<!-- US REALM ADDRESS (AD.US.FIELDED) START -->
 	<!-- @use 2.16.840.1.113883.1.11.10637 (PostalAddressUse) needs a validator -->
