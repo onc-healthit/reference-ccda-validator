@@ -129,9 +129,9 @@
 	<!--NOT CONFIGURED - NEED @USE VALIDATOR-->
 
 	<!--1. This addr SHOULD contain zero or one [0..1] country, which SHALL be selected from ValueSet Country urn:oid:2.16.840.1.113883.3.88.12.80.63 DYNAMIC (CONF:1198-5404).-->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:country[not(@nullFlavor)]">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:country">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaTextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -140,9 +140,9 @@
 	</expression>
 
 	<!--2. This addr MAY contain zero or one [0..1] postalCode, which SHALL be selected from ValueSet PostalCode urn:oid:2.16.840.1.113883.3.88.12.80.2 DYNAMIC (CONF:1198-5403).-->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:postalCode[not(@nullFlavor)]">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:postalCode">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaTextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -151,9 +151,9 @@
 	</expression>
 
 	<!--3. If country is US, this addr SHALL contain exactly one [1..1] state, which SHALL be selected from ValueSet StateValueSet 2.16.840.1.113883.3.88.12.80.1 DYNAMIC (CONF:1198-5402).-->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr[country='US']/v3:state[not(@nullFlavor)]">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:state">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaTextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1752,9 +1752,9 @@
 
 	<!-- US REALM ADDRESS (AD.US.FIELDED) START -->
 	<!--2. SHOULD contain zero or one [0..1] country, which SHALL be selected from ValueSet Country urn:oid:2.16.840.1.113883.3.88.12.80.63 DYNAMIC (CONF:81-7295).-->
-	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:country[not(@nullFlavor)]">
+	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:country">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaTextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1764,9 +1764,9 @@
 
 	<!--3. SHOULD contain zero or one [0..1] state (ValueSet: StateValueSet urn:oid:2.16.840.1.113883.3.88.12.80.1 DYNAMIC) (CONF:81-7293).-->
 	<!-- IG does not specify if this is a shall or should -->
-	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:state[not(@nullFlavor)]">
+	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:state">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaTextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1775,9 +1775,9 @@
 	</expression>
 
 	<!--5. SHOULD contain zero or one [0..1] postalCode, which SHOULD be selected from ValueSet PostalCode urn:oid:2.16.840.1.113883.3.88.12.80.2 DYNAMIC (CONF:81-7294).-->
-	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:postalCode[not(@nullFlavor)]">
+	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:postalCode">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>CcdaTextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
