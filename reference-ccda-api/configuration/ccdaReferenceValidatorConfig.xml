@@ -24,6 +24,16 @@
 		</validator>
 	</expression>
 
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:languageCode[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.63</allowedValuesetOids>
+		</validator>
+	</expression>
+
 	<!--iii. This patientRole SHALL contain at least one [1..*] telecom (CONF:1198-5280). 1. Such telecoms SHOULD contain zero or one [0..1] @use, which SHALL be selected from ValueSet Telecom Use (US Realm Header) urn:oid:2.16.840.1.113883.11.20.9.20 DYNAMIC (CONF:1198-5375).-->
 	<!--NOT CONFIGURED - NEED @USE VALIDATOR-->
 
@@ -159,6 +169,16 @@
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.1.11.11526</allowedValuesetOids>
+		</validator>
+	</expression>
+
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
+		<validator>
+			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.63</allowedValuesetOids>
 		</validator>
 	</expression>
 
