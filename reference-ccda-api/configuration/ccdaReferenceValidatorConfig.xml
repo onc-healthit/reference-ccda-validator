@@ -1875,7 +1875,7 @@
 
 	<!--  FAMILY HISTORY START -->
 	<!-- REQUIRED CODE SYSTEMS FOR TEMPLATES -->
-	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.15' and @extension='2014-06-09']/ancestor::v3:section[1]/v3:code">
+	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.15' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
@@ -1886,7 +1886,7 @@
 
 	<!--  IMMUNIZATIONS START -->
 	<!-- REQUIRED CODE SYSTEMS FOR TEMPLATES -->
-	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.2.1' and @extension='2014-06-09']/ancestor::v3:section[1]/v3:code">
+	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.2.1' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
@@ -1931,7 +1931,7 @@
 
 	<!--  PROBLEM LIST START -->
 	<!-- REQUIRED CODE SYSTEMS FOR TEMPLATES -->
-	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.5.1' and @extension='2014-06-09']/ancestor::v3:section[1]/v3:code">
+	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.5.1' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
@@ -1939,7 +1939,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.3' and @extension='2014-06-09']/ancestor::v3:act[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.3' and @extension='2015-08-01]/ancestor::v3:act[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
@@ -1958,19 +1958,11 @@
 			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
 		</validator>
 	</expression>
-
-	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
-		<validator>
-			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
-			<nodeType>codeSystem</nodeType>
-			<allowedValuesetOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96,2.16.840.1.113883.6.12,2.16.840.1.113883.6.4,2.16.840.1.113883.6.13</allowedValuesetOids>
-		</validator>
-	</expression>
 	<!--  PROCEDURES END -->
 
 	<!--  REASON FOR REFERRAL START -->
 	<!-- REQUIRED CODE SYSTEMS FOR TEMPLATES -->
-	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='1.3.6.1.4.1.19376.1.5.3.1.3.1' and @extension='2014-06-09']/ancestor::v3:section[1]/v3:code">
+	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='1.3.6.1.4.1.19376.1.5.3.1.3.18']/ancestor::v3:section[1]/v3:code">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
@@ -1981,23 +1973,7 @@
 
 	<!--  RESULTS START -->
 	<!-- REQUIRED CODE SYSTEMS FOR TEMPLATES -->
-	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.3.1' and @extension='2014-06-09']/ancestor::v3:section[1]/v3:code">
-		<validator>
-			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
-			<nodeType>codeSystem</nodeType>
-			<allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
-		</validator>
-	</expression>
-
-	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2014-06-09']/ancestor::v3:organizer[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
-		<validator>
-			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
-			<nodeType>codeSystem</nodeType>
-			<allowedValuesetOids>2.16.840.1.113883.6.1,2.16.840.1.113883.6.96</allowedValuesetOids>
-		</validator>
-	</expression>
-
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.3.1' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
@@ -2008,7 +1984,7 @@
 
 	<!--  SOCIAL HISTORY START -->
 	<!-- REQUIRED CODE SYSTEMS FOR TEMPLATES -->
-	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.17' and @extension='2014-06-09']/ancestor::v3:section[1]/v3:code">
+	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.17' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
@@ -2028,7 +2004,7 @@
 	</expression>
 
 
-	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.26' and @extension='2014-06-09']/ancestor::v3:organizer[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.26' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
