@@ -1939,7 +1939,7 @@
 		</validator>
 	</expression>
 
-	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.3' and @extension='2015-08-01]/ancestor::v3:act[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.3' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
