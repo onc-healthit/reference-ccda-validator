@@ -1,5 +1,6 @@
 package org.sitenv.referenceccda.services;
 
+import org.sitenv.vocabularies.validation.entities.Code;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyCodeService;
 import org.sitenv.vocabularies.validation.services.VocabularyValuesetService;
@@ -37,5 +38,9 @@ public class VocabularyService {
 
     public boolean isCodeFoundInValuesetOids(String code, List<String> valuesetOids){
         return vocabularyValuesetService.isFoundByCodeInValuesetOids(code, new HashSet<>(valuesetOids));
+    }
+
+    public List<Code> getByCodeInCodesystems(String code, List<String> codeSystems){
+        return vocabularyCodeService.getByCodeInCodeSystems(code, codeSystems);
     }
 }

@@ -3,6 +3,7 @@ package org.sitenv.referenceccda.controllers;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.services.VocabularyService;
+import org.sitenv.vocabularies.validation.entities.Code;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class ReferenceCCDAValidationController {
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)
 	public List<VsacValueSet> getValuesetsByOids(@RequestParam(value = "oids", required = true) String[] valuesetOids){
 		return vocabularyService.getValuesetsByOids(Arrays.asList(valuesetOids));
+	}
+
+	@RequestMapping(value = "/getbycodeincodesystem", method = RequestMethod.GET)
+	public List<Code> getByCodeInCodeSystems(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "codeSystems", required = true) String[] codeSystems){
+		return vocabularyService.getByCodeInCodesystems(code, Arrays.asList(codeSystems));
 	}
 
 	@RequestMapping(value = "/iscodeandisplaynameincodesystem", method = RequestMethod.GET)
