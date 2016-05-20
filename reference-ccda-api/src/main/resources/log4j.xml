@@ -26,6 +26,10 @@
     <logger name="org.springframework.transaction">
         <level value="info" />
     </logger>
+
+    <logger name="org.hsqldb">
+        <level value="DEBUG" />
+    </logger>
  
     <root>
         <priority value="INFO" />
