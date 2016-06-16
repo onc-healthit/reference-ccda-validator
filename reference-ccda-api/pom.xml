@@ -398,6 +398,17 @@
                     </webApp>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-repository</id>
+            <url>${local.maven.repository}</url>
+        </repository>
+    </distributionManagement>
 </project>
