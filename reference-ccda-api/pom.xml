@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.sitenv</groupId>
         <artifactId>referenceccdavalidator</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>reference-ccda-api</artifactId>
