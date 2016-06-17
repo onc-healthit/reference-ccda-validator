@@ -5,7 +5,7 @@
 	<!--8. SHALL contain exactly one [1..1] confidentialityCode, which SHOULD be selected from ValueSet HL7 BasicConfidentialityKind urn:oid:2.16.840.1.113883.1.11.16926 STATIC (CONF:1198-5259).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:confidentialityCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -16,7 +16,7 @@
 	<!--9. SHALL contain exactly one [1..1] languageCode, which SHALL be selected from ValueSet Language urn:oid:2.16.840.1.113883.1.11.11526 DYNAMIC (CONF:1198-5372).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:languageCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaLanguageCodeNodeLanguageCodeValuesetValidator</name>
+			<name>LanguageCodeNodeLanguageCodeValuesetValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -26,7 +26,7 @@
 
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:languageCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
+			<name>LanguageCodeNodeCountryCodeValuesetValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -40,7 +40,7 @@
 	<!--2. This patient SHALL contain exactly one [1..1] administrativeGenderCode, which SHALL be selected from ValueSet Administrative Gender (HL7 V3) urn:oid:2.16.840.1.113883.1.11.1 DYNAMIC (CONF:1198-6394).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:administrativeGenderCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -51,7 +51,7 @@
 	<!--4. This patient SHOULD contain zero or one [0..1] maritalStatusCode, which SHALL be selected from ValueSet Marital Status urn:oid:2.16.840.1.113883.1.11.12212 DYNAMIC (CONF:1198-5303).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:maritalStatusCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -62,7 +62,7 @@
 	<!--5. This patient MAY contain zero or one [0..1] religiousAffiliationCode, which SHALL be selected from ValueSet Religious Affiliation urn:oid:2.16.840.1.113883.1.11.19185 DYNAMIC (CONF:1198-5317).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:religiousAffiliationCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -73,7 +73,7 @@
 	<!--6. This patient SHALL contain exactly one [1..1] raceCode, which SHALL be selected from ValueSet Race Category Excluding Nulls urn:oid:2.16.840.1.113883.3.2074.1.1.3 DYNAMIC (CONF:1198-5322).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:raceCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -84,7 +84,7 @@
 	<!--7. This patient MAY contain zero or more [0..*] sdtc:raceCode, which SHALL be selected from ValueSet Race urn:oid:2.16.840.1.113883.1.11.14914 DYNAMIC (CONF:1198-7263).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/sdtc:raceCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -95,7 +95,7 @@
 	<!--8. This patient SHALL contain exactly one [1..1] ethnicGroupCode, which SHALL be selected from ValueSet Ethnicity urn:oid:2.16.840.1.114222.4.11.837 DYNAMIC (CONF:1198-5323).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:ethnicGroupCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -106,7 +106,7 @@
 	<!--9. This patient MAY contain zero or more [0..*] sdtc:ethnicGroupCode, which SHALL be selected from ValueSet Detailed Ethnicity urn:oid:2.16.840.1.114222.4.11.877 DYNAMIC (CONF:1198-32901).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/sdtc:ethnicGroupCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -117,7 +117,7 @@
 	<!--a. The guardian, if present, SHOULD contain zero or one [0..1] code, which SHALL be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-5326).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:guardian/V3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -131,7 +131,7 @@
 	<!--1. This addr SHOULD contain zero or one [0..1] country, which SHALL be selected from ValueSet Country urn:oid:2.16.840.1.113883.3.88.12.80.63 DYNAMIC (CONF:1198-5404).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:country">
 		<validator>
-			<name>CcdaTextNodeValidator</name>
+			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -142,7 +142,7 @@
 	<!--2. This addr MAY contain zero or one [0..1] postalCode, which SHALL be selected from ValueSet PostalCode urn:oid:2.16.840.1.113883.3.88.12.80.2 DYNAMIC (CONF:1198-5403).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:postalCode">
 		<validator>
-			<name>CcdaTextNodeValidator</name>
+			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -153,7 +153,7 @@
 	<!--3. If country is US, this addr SHALL contain exactly one [1..1] state, which SHALL be selected from ValueSet StateValueSet 2.16.840.1.113883.3.88.12.80.1 DYNAMIC (CONF:1198-5402).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:state">
 		<validator>
-			<name>CcdaTextNodeValidator</name>
+			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -164,7 +164,7 @@
 	<!--a. The languageCommunication, if present, SHALL contain exactly one [1..1] languageCode, which SHALL be selected from ValueSet Language urn:oid:2.16.840.1.113883.1.11.11526 DYNAMIC (CONF:1198-5407).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaLanguageCodeNodeLanguageCodeValuesetValidator</name>
+			<name>LanguageCodeNodeLanguageCodeValuesetValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -174,7 +174,7 @@
 
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaLanguageCodeNodeCountryCodeValuesetValidator</name>
+			<name>LanguageCodeNodeCountryCodeValuesetValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -185,7 +185,7 @@
 	<!--b. The languageCommunication, if present, MAY contain zero or one [0..1] modeCode, which SHALL be selected from ValueSet LanguageAbilityMode urn:oid:2.16.840.1.113883.1.11.12249 DYNAMIC (CONF:1198-5409).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:modeCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -196,7 +196,7 @@
 	<!--c. The languageCommunication, if present, SHOULD contain zero or one [0..1] proficiencyLevelCode, which SHALL be selected from ValueSet LanguageAbilityProficiency urn:oid:2.16.840.1.113883.1.11.12199 DYNAMIC (CONF:1198-9965).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:proficiencyLevelCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -210,7 +210,7 @@
 	<!--1. The code, if present, SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-16788).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:author/v3:assignedAuthor/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -224,7 +224,7 @@
 	<!--ii. This assignedEntity MAY contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-32173).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:dataEnterer/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -238,7 +238,7 @@
 	<!--ii. This assignedEntity MAY contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-32174).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:informant/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -252,7 +252,7 @@
 	<!--ii. This assignedEntity MAY contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-17000).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:legalAuthenticator/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -266,7 +266,7 @@
 	<!--1. The code, if present, MAY contain zero or one [0..1] @code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 STATIC (CONF:1198-16826).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:authenticator/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -280,7 +280,7 @@
 	<!--b. This assignedEntity SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-14842).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:performer/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -293,7 +293,7 @@
 	<!--3. The receivedOrganization, if present, SHOULD contain zero or one [0..1] standardIndustryClassCode, which SHALL be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-32003).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:informationRecipient/v3:intendedRecipient/v3:receivedOrganization/v3:standardIndustryClassCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -306,7 +306,7 @@
 	<!--3. SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet ConsultDocumentType urn:oid:2.16.840.1.113883.11.20.9.31 DYNAMIC (CONF:1198-17176).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.4' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -319,7 +319,7 @@
 	<!--a. This code SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet LOINC Imaging Document Codes urn:oid:1.3.6.1.4.1.12009.10.2.5 DYNAMIC (CONF:1198-14834).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.5' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -330,7 +330,7 @@
 	<!--i. This code SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet DIRSectionTypeCodes urn:oid:2.16.840.1.113883.11.20.9.59 DYNAMIC (CONF:1198-31207).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.5' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:component/v3:structuredBody/component/code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -343,7 +343,7 @@
 	<!--a. This code SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet DischargeSummaryDocumentTypeCode urn:oid:2.16.840.1.113883.11.20.4.1 DYNAMIC (CONF:1198-17179).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.8' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -354,7 +354,7 @@
 	<!--ii. This encompassingEncounter SHALL contain exactly one [1..1] dischargeDispositionCode, which SHOULD be selected from ValueSet NUBC UB-04 FL17 Patient Status urn:oid:2.16.840.1.113883.3.88.12.80.33 DYNAMIC (CONF:1198-8476).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.8' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:componentOf/v3:encompassingEncounter/v3:dischargeDispositionCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -367,7 +367,7 @@
 	<!--a. This code SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet HPDocumentType urn:oid:2.16.840.1.113883.1.11.20.22 DYNAMIC (CONF:1198-17186).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.3' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -380,7 +380,7 @@
 	<!--a. This code SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet SurgicalOperationNoteDocumentTypeCode urn:oid:2.16.840.1.113883.11.20.1.1 DYNAMIC (CONF:1198-17188).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.7' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -391,7 +391,7 @@
 	<!--a. This assignedEntity SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet Provider Role urn:oid:2.16.840.1.113883.3.88.12.3221.4.2 DYNAMIC (CONF:1198-8490).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.7' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:documentationOf/v3:serviceEvent/v3:performer/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -404,7 +404,7 @@
 	<!--a. This code SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ProcedureNoteDocumentTypeCodes urn:oid:2.16.840.1.113883.11.20.6.1 DYNAMIC (CONF:1198-17183).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.6' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -415,7 +415,7 @@
 	<!--a. This assignedEntity SHOULD contain zero or one [0..1] code, which SHALL be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-14912).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.6' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:documentationOf/v3:serviceEvent/v3:performer/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -428,7 +428,7 @@
 	<!--a. This code SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ProgressNoteDocumentTypeCode urn:oid:2.16.840.1.113883.11.20.8.1 DYNAMIC (CONF:1198-17190).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.9' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -441,7 +441,7 @@
 	<!--3. SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet ReferralDocumentType urn:oid:2.16.840.1.113883.1.11.20.2.3 DYNAMIC (CONF:1198-28949).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.14' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -452,7 +452,7 @@
 	<!--i. This associatedEntity SHALL contain exactly one [1..1] @classCode, which SHALL be selected from ValueSet INDRoleclassCodes urn:oid:2.16.840.1.113883.11.20.9.33 DYNAMIC (CONF:1198-31925).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.14' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant[@typeCode='IND']/v3:associatedEntity[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaClassCodeValidator</name>
+			<name>ClassCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -465,7 +465,7 @@
 	<!--3. SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet TransferDocumentType urn:oid:2.16.840.1.113883.1.11.20.2.4 DYNAMIC (CONF:1198-28243).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.13' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -476,7 +476,7 @@
 	<!--i. This associatedEntity SHALL contain exactly one [1..1] @classCode (ValueSet: INDRoleclassCodes urn:oid:2.16.840.1.113883.11.20.9.33 DYNAMIC) (CONF:1198-31873).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.13' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant[@typeCode='IND']/v3:associatedEntity[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaClassCodeValidator</name>
+			<name>ClassCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -487,7 +487,7 @@
 	<!--2. MAY contain zero or one [0..1] functionCode, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-32651).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.13' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:documentationOf/v3:serviceEvent/v3:performer/v3:functionCode[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -500,7 +500,7 @@
 	<!--b. The guardian, if present, SHOULD contain zero or one [0..1] code, which SHALL be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28473).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:guardian/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -511,7 +511,7 @@
 	<!--1. The code, if present, SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28676).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:author/v3:assignedAuthor/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -522,7 +522,7 @@
 	<!--i. This assignedEntity MAY contain zero or one [0..1] code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28680).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:dataEnterer/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -533,7 +533,7 @@
 	<!--1. The code, if present, SHOULD contain zero or one [0..1] @code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28684).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:informant/v3:relatedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -544,7 +544,7 @@
 	<!--1. The code, if present, MAY contain zero or one [0..1] @code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28698).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:legalAuthenticator/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -555,7 +555,7 @@
 	<!--ii. This assignedEntity SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28702).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:authenticator/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -566,7 +566,7 @@
 	<!--i. This associatedEntity SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28706).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant/v3:associatedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -577,7 +577,7 @@
 	<!--b. This assignedEntity MAY contain zero or one [0..1] code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28718).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.29.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:documentationOf/v3:serviceEvent/v3:performer/v3:assignedEntity/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -590,7 +590,7 @@
 	<!--i. This participantRole SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-28446).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.48' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:participant[@typeCode='VRF']/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -601,7 +601,7 @@
 	<!--1. The playingEntity, if present, SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Agent Qualifier urn:oid:2.16.840.1.113883.11.20.9.51 DYNAMIC (CONF:1198-28429).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.48' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:participant[@typeCode='VRF']/v3:participantRole/v3:playingEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -612,7 +612,7 @@
 	<!--ii. This participantRole SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-28440).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.48' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:participant[@typeCode='CST']/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -623,7 +623,7 @@
 	<!--1. This playingEntity SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Agent Qualifier urn:oid:2.16.840.1.113883.11.20.9.51 DYNAMIC (CONF:1198-28444).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.48' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:participant[@typeCode='CST']/v3:participantRole/v3:playingEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -636,7 +636,7 @@
 	<!--a. This value SHALL contain exactly one [1..1] @unit, which SHALL be selected from ValueSet AgePQ_UCUM urn:oid:2.16.840.1.113883.11.20.9.21 DYNAMIC (CONF:81-7618).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.31']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -649,7 +649,7 @@
 	<!--6. SHALL contain exactly one [1..1] value with @xsi:type="CE", where the code SHALL be selected from ValueSet Problem Status urn:oid:2.16.840.1.113883.3.88.12.80.68 DYNAMIC (CONF:1098-7322).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.28' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -662,7 +662,7 @@
 	<!--7. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Residence and Accommodation Type urn:oid:2.16.840.1.113883.11.20.9.49 DYNAMIC (CONF:1098-28823).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.109']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -675,7 +675,7 @@
 	<!--10. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1098-14349).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.73' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -688,7 +688,7 @@
 	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32358).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.123']/ancestor::v3:act[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -701,7 +701,7 @@
 	<!--5. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet EncounterTypeCode urn:oid:2.16.840.1.113883.3.88.12.80.32 DYNAMIC (CONF:1198-8714).-->
 	<expression xpathExpression="//v3:encounter/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.49' and @extension='2015-08-01']/ancestor::v3:encounter[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -712,7 +712,7 @@
 	<!--a. This sdtc:dischargeDispositionCode SHOULD contain exactly [1..1] @code, which SHOULD be selected from ValueSet 2.16.840.1.113883.3.88.12.80.33 NUBC UB-04 FL17-Patient Status (code system 2.16.840.1.113883.6.301.5) DYNAMIC or, if access to NUBC is unavailable, from CodeSystem 2.16.840.1.113883.12.112 HL7 Discharge Disposition (CONF:1198-32177).-->
 	<expression xpathExpression="//v3:encounter/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.49' and @extension='2015-08-01']/ancestor::v3:encounter[1]/sdtc:dischargeDispositionCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -723,7 +723,7 @@
 	<!--i. This assignedEntity MAY contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1198-8727).-->
 	<expression xpathExpression="//v3:encounter/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.49' and @extension='2015-08-01']/ancestor::v3:encounter[1]/v3:performer/v3:assignedEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -736,7 +736,7 @@
 	<!--5. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Problem Type urn:oid:2.16.840.1.113883.3.88.12.3221.7.2 STATIC 2012-06-01 (CONF:1198-32427).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.46' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -747,7 +747,7 @@
 	<!--8. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1198-8591).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.46' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -760,7 +760,7 @@
 	<!--1. This code SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet Family Member Value Set urn:oid:2.16.840.1.113883.1.11.19579 DYNAMIC (CONF:1198-15247).-->
 	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.45' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:subject/v3:relatedSubject/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -771,7 +771,7 @@
 	<!--a. This administrativeGenderCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet Administrative Gender (HL7 V3) urn:oid:2.16.840.1.113883.1.11.1 DYNAMIC (CONF:1198-15975).-->
 	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.45' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:subject/v3:relatedSubject/v3:subject/v3:administrativeGenderCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -784,7 +784,7 @@
 	<!--10. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1098-14291).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.68' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -797,7 +797,7 @@
 	<!--ii. This participantRole SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1098-31676).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.141']/ancestor::v3:act[1]/v3:participant/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -810,7 +810,7 @@
 	<!--7. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet HealthStatus urn:oid:2.16.840.1.113883.1.11.20.12 DYNAMIC (CONF:1098-9075).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.5' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -823,7 +823,7 @@
 	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1198-32359).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -834,7 +834,7 @@
 	<!--10. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1198-8839).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -845,7 +845,7 @@
 	<!--11. MAY contain zero or one [0..1] approachSiteCode, where the code SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1198-8840).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -856,7 +856,7 @@
 	<!--a. The doseQuantity, if present, SHOULD contain zero or one [0..1] @unit, which SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive urn:oid:2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1198-8842).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -867,7 +867,7 @@
 	<!--13. MAY contain zero or one [0..1] administrationUnitCode, which SHALL be selected from ValueSet Medication Product Form Value Set urn:oid:2.16.840.1.113883.3.88.12.3221.8.11 DYNAMIC (CONF:1198-8846).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -880,7 +880,7 @@
 	<!--a. This manufacturedMaterial SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet CVX Vaccines Administered - Vaccine Set urn:oid:2.16.840.1.113762.1.4.1010.6 DYNAMIC (CONF:1098-9007).-->
 	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.54' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -893,7 +893,7 @@
 	<!--5. SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet No Immunization Reason Value Set urn:oid:2.16.840.1.113883.1.11.19717 DYNAMIC (CONF:81-8995).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.53']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -906,7 +906,7 @@
 	<!--5. SHALL contain exactly one [1..1] code, which MAY be selected from ValueSet Problem Type urn:oid:2.16.840.1.113883.3.88.12.3221.7.2 STATIC 2014-09-02 (CONF:1098-31229).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.19' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>MAY</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -917,7 +917,7 @@
 	<!--8. MAY contain zero or one [0..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1098-7489).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.19' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -930,7 +930,7 @@
 	<!--4. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Patient Education urn:oid:2.16.840.1.113883.11.20.9.34 DYNAMIC (CONF:1098-16884).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.20' and @extension='2014-06-09']/ancestor::v3:act[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -943,7 +943,7 @@
 	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32360).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -954,7 +954,7 @@
 	<!--10. SHOULD contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-7514).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -965,7 +965,7 @@
 	<!--11. MAY contain zero or one [0..1] approachSiteCode, where the code SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-7515).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -976,7 +976,7 @@
 	<!--a. This doseQuantity SHOULD contain zero or one [0..1] @unit, which SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive urn:oid:2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1098-7526).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -987,7 +987,7 @@
 	<!--a. The rateQuantity, if present, SHALL contain exactly one [1..1] @unit, which SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive urn:oid:2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1098-7525).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -998,7 +998,7 @@
 	<!--15. MAY contain zero or one [0..1] administrationUnitCode, which SHALL be selected from ValueSet Medication Product Form Value Set urn:oid:2.16.840.1.113883.3.88.12.3221.8.11 DYNAMIC (CONF:1098-7519).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1011,7 +1011,7 @@
 	<!--a. This manufacturedMaterial SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet Medication Clinical Drug urn:oid:2.16.840.1.113762.1.4.1010.4 DYNAMIC (CONF:1098-7412).-->
 	<expression xpathExpression="//v3:manufacturedProduct/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.23' and @extension='2014-06-09']/ancestor::v3:manufacturedProduct[1]/v3:manufacturedMaterial/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1024,7 +1024,7 @@
 	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32362).-->
 	<expression xpathExpression="//v3:supply/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.17' and @extension='2014-06-09']/ancestor::v3:supply[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1037,7 +1037,7 @@
 	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32363).-->
 	<expression xpathExpression="//v3:supply/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.50' and @extension='2014-06-09']/ancestor::v3:supply[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1051,7 +1051,7 @@
 	<!--4. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Nutrition Recommendations urn:oid:2.16.840.1.113883.1.11.20.2.9 DYNAMIC (CONF:1098-30342).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.130']/ancestor::v3:act[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1064,7 +1064,7 @@
 	<!--8. SHALL contain exactly one [1..1] value, which SHOULD be selected from ValueSet Nutritional Status urn:oid:2.16.840.1.113883.1.11.20.2.7 DYNAMIC (CONF:1098-29854).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.124']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1077,7 +1077,7 @@
 	<!--5. SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet Referral Types urn:oid:2.16.840.1.113883.11.20.9.56 DYNAMIC (CONF:1098-30889).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.140']/ancestor::v3:act[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1088,7 +1088,7 @@
 	<!--i. This participantRole MAY contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1098-32637).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.140']/ancestor::v3:act[1]/v3:participant/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1099,7 +1099,7 @@
 	<!--v. This observation SHOULD contain zero or one [0..1] priorityCode (ValueSet: Act Priority urn:oid:2.16.840.1.113883.1.11.16866 DYNAMIC) (CONF:1098-32443).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.140']/ancestor::v3:act[1]/v3:entryRelationship/v3:observation/v3:priorityCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1112,7 +1112,7 @@
 	<!--iv. This act SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet Payer urn:oid:2.16.840.1.114222.4.11.3591 DYNAMIC (CONF:1098-31973).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='22.16.840.1.113883.10.20.22.4.129']/ancestor::v3:act[1]/v3:entryRelationship/v3:act/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1125,7 +1125,7 @@
 	<!--5. SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Encounter Planned urn:oid:2.16.840.1.113883.11.20.9.52 DYNAMIC (CONF:1098-31032).-->
 	<expression xpathExpression="//v3:encounter/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.40' and @extension='2014-06-09']/ancestor::v3:encounter[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1138,7 +1138,7 @@
 	<!--8. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32127).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1149,7 +1149,7 @@
 	<!--9. MAY contain zero or more [0..*] approachSiteCode, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-32128).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1160,7 +1160,7 @@
 	<!--a. The doseQuantity, if present, SHOULD contain zero or one [0..1] @unit, which SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive urn:oid:2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1098-32130).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1173,7 +1173,7 @@
 	<!--8. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32067).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1184,7 +1184,7 @@
 	<!--9. MAY contain zero or more [0..*] approachSiteCode, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-32078).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1195,7 +1195,7 @@
 	<!--a. The doseQuantity, if present, SHOULD contain zero or one [0..1] @unit, which SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive urn:oid:2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1098-32133).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:doseQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1206,7 +1206,7 @@
 	<!--a. The rateQuantity, if present, SHOULD contain zero or one [0..1] @unit, which SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive urn:oid:2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1098-32134).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:rateQuantity[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1217,7 +1217,7 @@
 	<!--13. MAY contain zero or one [0..1] administrationUnitCode, which SHALL be selected from ValueSet Medication Product Form Value Set urn:oid:2.16.840.1.113883.3.88.12.3221.8.11 DYNAMIC (CONF:1098-32081).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1230,7 +1230,7 @@
 	<!--10. SHOULD contain zero or more [0..*] targetSiteCode, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-32044).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.44' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:targetSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1243,7 +1243,7 @@
 	<!--9. MAY contain zero or more [0..*] targetSiteCode, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-31981).-->
 	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.41' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:targetSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1256,7 +1256,7 @@
 	<!--5. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Health Insurance Type urn:oid:2.16.840.1.113883.3.88.12.3221.5.2 DYNAMIC (CONF:1198-8903).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1267,7 +1267,7 @@
 	<!--1. The code, if present, SHALL contain exactly one [1..1] @code, which SHOULD be selected from ValueSet HL7FinanciallyResponsiblePartyType urn:oid:2.16.840.1.113883.1.11.10416 DYNAMIC (CONF:1198-15992).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:performer/v3:assignedEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1278,7 +1278,7 @@
 	<!--1. This code SHOULD contain zero or one [0..1] @code, which SHOULD be selected from ValueSet Coverage Role Type urn:oid:2.16.840.1.113883.1.11.18877 DYNAMIC (CONF:1198-16078).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']/ancestor::v3:act[1]/v3:participant/v3:participantRole/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1291,7 +1291,7 @@
 	<!--3. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1098-7369).-->
 	<expression xpathExpression="//v3:criterion/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.25' and @extension='2014-06-09']/ancestor::v3:criterion[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1304,7 +1304,7 @@
 	<!--6. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Problem Type urn:oid:2.16.840.1.113883.3.88.12.3221.7.2 STATIC 2012-06-01 (CONF:1198-9045).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1315,7 +1315,7 @@
 	<!--a. This code SHALL contain at least one [1..*] translation, which SHOULD be selected from ValueSet Problem Type urn:oid:2.16.840.1.113883.3.88.12.3221.7.2 2014-09-02 (CONF:1198-32848).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1326,7 +1326,7 @@
 	<!--9. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1198-9058).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and not((ancestor::v3:encounter) or (ancestor::v3:act)) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation -->
 			</validationResultSeverityLevels>
@@ -1337,14 +1337,14 @@
 	<!--9. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1198-9058).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and (ancestor::v3:encounter or ancestor::v3:act) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation -->
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
 		<validator>
-			<name>CcdaCodeSystemCodeValidator</name>
+			<name>CodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1357,7 +1357,7 @@
 	<!--6. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Wound Type urn:oid:2.16.840.1.113883.1.11.20.2.6 DYNAMIC (CONF:1198-29485).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.114' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1368,7 +1368,7 @@
 	<!--7. SHOULD contain zero or one [0..1] targetSiteCode, which SHOULD be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1198-29488) -->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.114' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:targetSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1381,7 +1381,7 @@
 	<!--6. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Problem Status urn:oid:2.16.840.1.113883.3.88.12.80.68 DYNAMIC (CONF:1098-7365).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.6' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1394,7 +1394,7 @@
 	<!--8. MAY contain zero or one [0..1] priorityCode, which SHALL be selected from ValueSet Act Priority urn:oid:2.16.840.1.113883.1.11.16866 DYNAMIC (CONF:1098-8300).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.12' and @extension='2014-06-09']/ancestor::v3:act[1]/v3:priorityCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1407,7 +1407,7 @@
 	<!--8. MAY contain zero or one [0..1] priorityCode, which SHALL be selected from ValueSet Act Priority urn:oid:2.16.840.1.113883.1.11.16866 DYNAMIC (CONF:1098-8247).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.13' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:priorityCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1418,7 +1418,7 @@
 	<!--11. SHOULD contain zero or more [0..*] targetSiteCode, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-8250).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.13' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:targetSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1432,7 +1432,7 @@
 	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaCodeSystemCodeValidator</name>
+			<name>CodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1443,7 +1443,7 @@
 	<!--8. MAY contain zero or one [0..1] priorityCode, which SHALL be selected from ValueSet Act Priority urn:oid:2.16.840.1.113883.1.11.16866 DYNAMIC (CONF:1098-7668).-->
 	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:priorityCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1454,7 +1454,7 @@
 	<!--a. The targetSiteCode, if present, SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-16082).-->
 	<expression xpathExpression="//v3:procedure/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.14' and @extension='2014-06-09']/ancestor::v3:procedure[1]/v3:targetSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1466,7 +1466,7 @@
 	<!-- PROGRESS TOWARD GOAL OBSERVATION START -->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='22.16.840.1.113883.10.20.22.4.110']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1479,7 +1479,7 @@
 	<!--5. SHOULD contain zero or one [0..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet DICOMPurposeOfReference urn:oid:2.16.840.1.113883.11.20.9.28 DYNAMIC (CONF:81-9273).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.6.2.9']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1492,7 +1492,7 @@
 	<!--a. This code SHOULD contain zero or one [0..1] @code, which SHOULD be selected from ValueSet DIRQuantityMeasurementTypeCodes urn:oid:2.16.840.1.113883.11.20.9.29 DYNAMIC (CONF:81-19210).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.6.2.14']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1505,7 +1505,7 @@
 	<!--8. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1098-7335).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.9' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1519,7 +1519,7 @@
 	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaCodeSystemCodeValidator</name>
+			<name>CodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1530,7 +1530,7 @@
 	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet Result Status urn:oid:2.16.840.1.113883.11.20.9.39 STATIC (CONF:1198-14849).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetNodeWithOnlyCodeValidator</name>
+			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1541,7 +1541,7 @@
 	<!--a. If Observation/value is a physical quantity (xsi:type="PQ"), the unit of measure SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive 2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1198-31484).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1555,7 +1555,7 @@
 	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaCodeSystemCodeValidator</name>
+			<name>CodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1568,7 +1568,7 @@
 	<!--4. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet ADL Result Type urn:oid:2.16.840.1.113883.11.20.9.47 DYNAMIC (CONF:1098-28153).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.128']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1581,7 +1581,7 @@
 	<!--4. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Sensory Status Problem Type urn:oid:2.16.840.1.113883.11.20.9.50 DYNAMIC (CONF:1098-27962).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.127']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1592,7 +1592,7 @@
 	<!--7. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Mental and Functional Status Response urn:oid:2.16.840.1.113883.11.20.9.44 DYNAMIC (CONF:1098-27974).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.127']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1605,7 +1605,7 @@
 	<!--6. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Problem Severity urn:oid:2.16.840.1.113883.3.88.12.3221.6.8 DYNAMIC (CONF:1098-7356).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.8' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1617,7 +1617,7 @@
 	<!-- SOCIAL HISTORY OBSERVATION (V3) START -->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.38']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1630,7 +1630,7 @@
 	<!--a. This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet Allergy and Intolerance Type urn:oid:2.16.840.1.113883.3.88.12.3221.6.2 DYNAMIC (CONF:1098-16317).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.24.3.90' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1641,7 +1641,7 @@
 	<!--2. This playingEntity SHALL contain exactly one [1..1] code, which MAY be selected from ValueSet Substance-Reactant for Intolerance urn:oid:2.16.840.1.113762.1.4.1010.1 DYNAMIC (CONF:1098-16324).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.24.3.90' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:participant/v3:participantRole/v3:playingEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>MAY</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1654,7 +1654,7 @@
 	<!--10. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Allergy and Intolerance Type urn:oid:2.16.840.1.113883.3.88.12.3221.6.2 DYNAMIC (CONF:1098-7390).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.7' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1665,7 +1665,7 @@
 	<!--2. This playingEntity SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet Substance-Reactant for Intolerance urn:oid:2.16.840.1.113762.1.4.1010.1 DYNAMIC (CONF:1098-7419).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.7' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:participant/v3:participantRole/v3:playingEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaCodeSystemCodeValidator</name>
+			<name>CodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1678,7 +1678,7 @@
 	<!--a. This value SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet Tobacco Use urn:oid:2.16.840.1.113883.11.20.9.41 DYNAMIC (CONF:1098-16563).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.85' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1691,7 +1691,7 @@
 	<!--5. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Vital Sign Result urn:oid:2.16.840.1.113883.3.88.12.80.62 DYNAMIC (CONF:1098-7301).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.27' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1702,7 +1702,7 @@
 	<!--a. This value SHALL contain exactly one [1..1] @unit, which SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive urn:oid:2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1098-31579).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.27' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaUnitValidator</name>
+			<name>UnitValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1715,7 +1715,7 @@
 	<!--8. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Wound Characteristic urn:oid:2.16.840.1.113883.11.20.9.58 DYNAMIC (CONF:1098-29947).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.134' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1728,7 +1728,7 @@
 	<!--5. SHALL contain exactly one [1..1] code (ValueSet: Wound Measurements urn:oid:2.16.840.1.113883.1.11.20.2.5 DYNAMIC) (CONF:1098-29931).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.133']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1741,7 +1741,7 @@
 	<!--b. This assignedAuthor SHOULD contain zero or one [0..1] code, which SHOULD be selected from ValueSet Healthcare Provider Taxonomy (HIPAA) urn:oid:2.16.840.1.114222.4.11.1066 DYNAMIC (CONF:1098-31671).-->
 	<expression xpathExpression="//v3:author/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.119']/ancestor::v3:author[1]/v3:assignedAuthor/v3:code[not(@nullFlavor)]">
 		<validator>
-			<name>CcdaValueSetCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1754,7 +1754,7 @@
 	<!--2. SHOULD contain zero or one [0..1] country, which SHALL be selected from ValueSet Country urn:oid:2.16.840.1.113883.3.88.12.80.63 DYNAMIC (CONF:81-7295).-->
 	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:country">
 		<validator>
-			<name>CcdaTextNodeValidator</name>
+			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1766,7 +1766,7 @@
 	<!-- IG does not specify if this is a shall or should -->
 	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:state">
 		<validator>
-			<name>CcdaTextNodeValidator</name>
+			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
@@ -1777,7 +1777,7 @@
 	<!--5. SHOULD contain zero or one [0..1] postalCode, which SHOULD be selected from ValueSet PostalCode urn:oid:2.16.840.1.113883.3.88.12.80.2 DYNAMIC (CONF:81-7294).-->
 	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:postalCode">
 		<validator>
-			<name>CcdaTextNodeValidator</name>
+			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>

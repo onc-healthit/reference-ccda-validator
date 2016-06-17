@@ -4,7 +4,7 @@
 
 	<groupId>org.sitenv</groupId>
 	<artifactId>referenceccdavalidator</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>pom</packaging>
 
 	<name>SITE Reference CCDA validator</name>
@@ -13,6 +13,10 @@
 	<properties>
 	</properties>
 
+	<modules>
+		<module>reference-ccda-api</module>
+	</modules>
+
 	<distributionManagement>
 		<repository>
 			<id>maven-repository</id>
@@ -20,4 +24,34 @@
 		</repository>
 	</distributionManagement>
 
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>external.atlassian.jgitflow</groupId>
+					<artifactId>jgitflow-maven-plugin</artifactId>
+					<version>1.0-m5.1</version>
+					<configuration>
+						<noDeploy>false</noDeploy>
+						<allowUntracked>true</allowUntracked>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<allowSnapshots>true</allowSnapshots>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<version>2.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>2.8.2</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>
