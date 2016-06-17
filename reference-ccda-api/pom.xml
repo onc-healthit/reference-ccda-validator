@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.sitenv</groupId>
         <artifactId>referenceccdavalidator</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>reference-ccda-api</artifactId>
@@ -301,65 +300,53 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <taskdef resource="net/sf/antcontrib/antlib.xml"
-                                         classpathref="maven.plugin.classpath" />
+                                <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="maven.plugin.classpath" />
                                 <if>
                                     <equals arg1="${environment.name}" arg2="test" />
                                     <then>
-                                        <echo
-                                                message="Copying file (${project.build.directory}/referenceccdaservice.war) to location: ${liferay.auto.deploy.dir}" />
+                                        <echo message="Copying file (${project.build.directory}/referenceccdaservice.war) to location: ${liferay.auto.deploy.dir}" />
                                         <exec executable="cp">
-                                            <arg
-                                                    value="${project.build.directory}/referenceccdaservice.war" />
-                                            <arg
-                                                    value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                            <arg value="${project.build.directory}/referenceccdaservice.war" />
+                                            <arg value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
                                         </exec>
                                         <echo message="Uploading file to location: ${deploy.location}" />
                                         <exec executable="scp">
-                                            <arg
-                                                    value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                            <arg value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
                                             <arg value="${deploy.location}" />
                                         </exec>
                                         <echo message="...Uploaded." />
                                         <echo message="Deploying to tomcat7..." />
                                         <exec executable="ssh">
                                             <arg value="site-dev-ccda" />
-                                            <arg
-                                                    value="echo ${deploy.password} | sudo -S mv ~/referenceccdaservice.war /opt/tomcat7/webapps" />
+                                            <arg value="echo ${deploy.password} | sudo -S mv ~/referenceccdaservice.war /opt/tomcat7/webapps" />
                                         </exec>
                                         <echo message="...Deployed." />
                                     </then>
                                     <elseif>
                                         <equals arg1="${environment.name}" arg2="production" />
                                         <then>
-                                            <echo
-                                                    message="Copying file (${project.build.directory}/referenceccdaservice.war) to location: ${liferay.auto.deploy.dir}" />
+                                            <echo message="Copying file (${project.build.directory}/referenceccdaservice.war) to location: ${liferay.auto.deploy.dir}" />
                                             <exec executable="cp">
-                                                <arg
-                                                        value="${project.build.directory}/referenceccdaservice.war" />
-                                                <arg
-                                                        value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                                <arg value="${project.build.directory}/referenceccdaservice.war" />
+                                                <arg value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
                                             </exec>
                                             <echo message="Uploading file to location: ${deploy.location}" />
                                             <exec executable="scp">
-                                                <arg
-                                                        value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
+                                                <arg value="${liferay.auto.deploy.dir}/referenceccdaservice.war" />
                                                 <arg value="${deploy.location}" />
                                             </exec>
                                             <echo message="...Uploaded." />
                                             <echo message="Deploying to tomcat7..." />
                                             <exec executable="ssh">
                                                 <arg value="site-prod-ccda" />
-                                                <arg
-                                                        value="echo ${deploy.password} | sudo -S mv ~/referenceccdaservice.war /opt/tomcat7/webapps" />
+                                                <arg value="echo ${deploy.password} | sudo -S mv ~/referenceccdaservice.war /opt/tomcat7/webapps" />
                                             </exec>
                                             <echo message="...Deployed." />
                                         </then>
                                     </elseif>
                                     <else>
                                         <echo message="Uploading file to location: ${deploy.location}" />
-                                        <copy file="target/referenceccdaservice.war"
-                                              todir="${deploy.location}" />
+                                        <copy file="target/referenceccdaservice.war" todir="${deploy.location}" />
                                         <echo message="...Uploaded." />
                                     </else>
                                 </if>
