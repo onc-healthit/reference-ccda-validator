@@ -1,0 +1,1 @@
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=D:\MDHT\6_22\org.eclipse.ocl-3.3.0.v20140120-1508.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.ocl -Dversion=3.3.0.v20140120-1508
