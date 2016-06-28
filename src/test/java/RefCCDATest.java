@@ -8,7 +8,8 @@ import org.xml.sax.SAXException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertFalse;
@@ -22,10 +23,18 @@ public class RefCCDATest {
 
 	// it is fine to add documents to the end of this if desired but do not
 	// alter indexes 0, 1, or 2
-	private static final URL[] CCDA_FILES = {
-			RefCCDATest.class.getResource("/Sample.xml"),
-			RefCCDATest.class.getResource("/Sample_addSchemaErrors.xml"),
-			RefCCDATest.class.getResource("/Sample.xml") };
+	private static URI[] CCDA_FILES = new URI[0];
+
+	static {
+		try {
+			CCDA_FILES = new URI[]{
+                    RefCCDATest.class.getResource("/Sample.xml").toURI(),
+                    RefCCDATest.class.getResource("/Sample_addSchemaErrors.xml").toURI(),
+                    RefCCDATest.class.getResource("/Sample.xml").toURI()};
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Test
 	public void stringConversionAndResultsSizeTest() {
@@ -122,7 +131,7 @@ public class RefCCDATest {
 		}
 	}
 
-	private static String convertCCDAFileToString(URL ccdaFileURL) {
+	private static String convertCCDAFileToString(URI ccdaFileURL) {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = null;
 		try {
