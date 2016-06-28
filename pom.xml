@@ -349,7 +349,7 @@
             </activation>
             <properties>
                 <tomcat-server>test</tomcat-server>
-                <tomcat-url>https://54.200.51.225:8443/manager/text</tomcat-url>
+                <tomcat-url>https://devccda.sitenv.org/manager/text</tomcat-url>
                 <vocabulary.localCodeRepositoryDir>/var/opt/sitenv/code_repository/</vocabulary.localCodeRepositoryDir>
                 <vocabulary.localValueSetRepositoryDir>/var/opt/sitenv/valueset_repository/</vocabulary.localValueSetRepositoryDir>
                 <referenceccda.configFile>/var/opt/sitenv/config/ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
