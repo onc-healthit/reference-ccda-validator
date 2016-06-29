@@ -33,13 +33,13 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		ValidationResult result = new ValidationResult();
 		InputStream in = null;
 		createValidationResultObjectToCollectDiagnosticsProducedDuringValidation();
+		trackXPathsInXML(xpathIndexer, ccdaFile);
 		try {
 			in = IOUtils.toInputStream(ccdaFile, "UTF-8");
 			CDAUtil.load(in, result);
-			trackXPathsInXML(xpathIndexer, ccdaFile);
 		}  catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}finally{
 			if (in != null) {
 				try {
 					in.close();
