@@ -1,1 +1,1 @@
-mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=D:\MDHT\7_7\org.eclipse.ocl.ecore-3.3.0.v20130520-1222.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.ocl.ecore -Dversion=3.3.0.v20130520-1222
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=D:\MDHT\06_29_2016\org.eclipse.ocl.ecore-3.5.0.v20150525-1635.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.ocl.ecore -Dversion=3.5.0.v20150525-1635

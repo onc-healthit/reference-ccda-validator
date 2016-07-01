@@ -2,8 +2,12 @@ package org.sitenv.referenceccda.model;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 public class CCDAAllergyObs {
 
+	private static Logger log = Logger.getLogger(CCDAAllergyObs.class.getName());
+	
 	private ArrayList<CCDAII>    			templateId;
 	private CCDACode             			allergyIntoleranceType;
 	private CCDACode             			allergySubstance;
@@ -12,14 +16,42 @@ public class CCDAAllergyObs {
 	private CCDAAllergySeverity				severity;
 	private Boolean							negationInd;
 	
+	public void log() {
+		
+		log.info("***Allergy Obs***");
+		
+		if(allergyIntoleranceType != null)
+			log.info("Allergy Intolerance Type Code = " + allergyIntoleranceType.getCode());
+		
+		if(allergySubstance != null)
+			log.info("Allergy Substance Code = " + allergySubstance.getCode());
+	
+		for(int j = 0; j < templateId.size(); j++) {
+			log.info(" Tempalte Id [" + j + "] = " + templateId.get(j).getRootValue());
+			log.info(" Tempalte Id Ext [" + j + "] = " + templateId.get(j).getExtValue());
+		}
+		
+		if(effTime != null) 
+			effTime.log();
+		
+		if(severity != null) 
+			severity.log();
+		
+		for(int k = 0; k < reactions.size(); k++) {
+			reactions.get(k).log();
+		}
+		
+	}
 	
 	public ArrayList<CCDAII> getTemplateId() {
 		return templateId;
 	}
 
 
-	public void setTemplateId(ArrayList<CCDAII> templateId) {
-		this.templateId = templateId;
+	public void setTemplateId(ArrayList<CCDAII> ids) {
+		
+		if(ids != null)
+			this.templateId = ids;
 	}
 
 
@@ -58,8 +90,10 @@ public class CCDAAllergyObs {
 	}
 
 
-	public void setReactions(ArrayList<CCDAAllergyReaction> reactions) {
-		this.reactions = reactions;
+	public void setReactions(ArrayList<CCDAAllergyReaction> rs) {
+		
+		if(rs != null)
+			this.reactions = rs;
 	}
 
 
@@ -75,7 +109,8 @@ public class CCDAAllergyObs {
 
 	public CCDAAllergyObs()
 	{
-		
+		templateId = new ArrayList<CCDAII>();
+		reactions = new ArrayList<CCDAAllergyReaction>();
 	}
 	
 }

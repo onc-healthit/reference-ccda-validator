@@ -1,12 +1,27 @@
 package org.sitenv.referenceccda.model;
 
+import org.apache.log4j.Logger;
+import org.sitenv.referenceccda.validators.content.CareTeamMemberParser;
+
 public class CCDAParticipant {
+	
+	private static Logger log = Logger.getLogger(CCDAParticipant.class.getName());
 	
 	private CCDADataElement firstName;
 	private CCDADataElement lastName;
 	private CCDADataElement middleName;
 	private CCDAAddress     address;
 	private CCDADataElement telecom;
+	
+	public void log()
+	{
+		log.info(" Fist Name = " + ((firstName==null)?"No Data":firstName.getValue()));
+		log.info(" Last Name = " + ((lastName==null)?"No Data":lastName.getValue()));
+		log.info(" Fist Name = " + ((middleName==null)?"No Data":middleName.getValue()));
+		address.log();
+		log.info(" Telecom = " + ((telecom==null)?"No Data":telecom.getValue()));
+		
+	}
 	
 	public CCDAParticipant()
 	{
@@ -51,5 +66,15 @@ public class CCDAParticipant {
 
 	public void setTelecom(CCDADataElement telecom) {
 		this.telecom = telecom;
+	}
+
+	public void setPreviousName(CCDADataElement readTextContext) {
+		// No need for the data element.
+		
+	}
+
+	public void setSuffix(CCDADataElement readTextContext) {
+		//No need for the data element.
+		
 	}
 }

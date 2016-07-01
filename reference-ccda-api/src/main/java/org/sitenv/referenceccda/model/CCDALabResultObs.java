@@ -2,8 +2,12 @@ package org.sitenv.referenceccda.model;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 public class CCDALabResultObs {
 
+	private static Logger log = Logger.getLogger(CCDALabResultObs.class.getName());
+	
 	private ArrayList<CCDAII>   			templateIds;
 	private CCDACode						labCode;
 	private CCDACode						statusCode;
@@ -11,19 +15,52 @@ public class CCDALabResultObs {
 	private CCDAPQ							results;
 	private CCDACode						resultCode;
 	private CCDACode						interpretationCode;
-	private CCDAPQ							referenceValue;
+	private ArrayList<CCDAPQ>				referenceValue;
 	
 	public CCDALabResultObs()
 	{
+		templateIds = new ArrayList<CCDAII>();
+		referenceValue = new ArrayList<CCDAPQ>();
+	}
+	
+	public void log() {
 		
+		if(labCode != null)
+			log.info(" Lab Result  Code = " + labCode.getCode());
+		
+		if(statusCode != null)
+			log.info(" Lab Result Status  Code = " + statusCode.getCode());
+		
+		if(measurementTime != null)
+			measurementTime.log();
+		
+		if(results != null)
+			results.log();
+		
+		if(resultCode != null)
+			log.info(" Observation Result Code = " + resultCode.getCode());
+		
+		if(interpretationCode != null)
+			log.info(" Interpretation Code = " + interpretationCode.getCode());
+		
+		for(int j = 0; j < templateIds.size(); j++) {
+			log.info(" Tempalte Id [" + j + "] = " + templateIds.get(j).getRootValue());
+			log.info(" Tempalte Id Ext [" + j + "] = " + templateIds.get(j).getExtValue());
+		}
+		
+		for(int k = 0; k < referenceValue.size(); k++) {
+			referenceValue.get(k).log();
+		}
 	}
 
 	public ArrayList<CCDAII> getTemplateIds() {
 		return templateIds;
 	}
 
-	public void setTemplateIds(ArrayList<CCDAII> templateIds) {
-		this.templateIds = templateIds;
+	public void setTemplateIds(ArrayList<CCDAII> ids) {
+		
+		if(ids != null)
+			this.templateIds = ids;
 	}
 
 	public CCDACode getLabCode() {
@@ -74,12 +111,14 @@ public class CCDALabResultObs {
 		this.interpretationCode = interpretationCode;
 	}
 
-	public CCDAPQ getReferenceValue() {
+	public ArrayList<CCDAPQ> getReferenceValue() {
 		return referenceValue;
 	}
 
-	public void setReferenceValue(CCDAPQ referenceValue) {
-		this.referenceValue = referenceValue;
+	public void setReferenceRange(ArrayList<CCDAPQ> rvl) {
+		
+		if(rvl != null)
+			this.referenceValue = rvl;
 	}
 }
 

@@ -2,12 +2,15 @@ package org.sitenv.referenceccda.services;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.BOMInputStream;
+import org.apache.log4j.Logger;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.schema.CCDAIssueStates;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
+import org.sitenv.referenceccda.validators.content.CCDAParser;
+import org.sitenv.referenceccda.validators.content.ReferenceContentValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,14 +23,19 @@ import java.util.List;
 
 @Service
 public class ReferenceCCDAValidationService {
+	
+	private static Logger log = Logger.getLogger(CCDAParser.class.getName());
 
     private ReferenceCCDAValidator referenceCCDAValidator;
     private VocabularyCCDAValidator vocabularyCCDAValidator;
+    private ReferenceContentValidator goldMatchingValidator;
 
     @Autowired
-    public ReferenceCCDAValidationService(ReferenceCCDAValidator referenceCCDAValidator, VocabularyCCDAValidator vocabularyCCDAValidator) {
+    public ReferenceCCDAValidationService(ReferenceCCDAValidator referenceCCDAValidator, VocabularyCCDAValidator vocabularyCCDAValidator, 
+    		ReferenceContentValidator goldValidator) {
         this.referenceCCDAValidator = referenceCCDAValidator;
         this.vocabularyCCDAValidator = vocabularyCCDAValidator;
+        this.goldMatchingValidator = goldValidator;
     }
 
     public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName, MultipartFile ccdaFile) {
@@ -50,12 +58,37 @@ public class ReferenceCCDAValidationService {
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
                                                         MultipartFile ccdaFile) throws SAXException {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
+        List<RefCCDAValidationResult> mdhtResults = new ArrayList<>();
+        List<RefCCDAValidationResult> vocabResults = new ArrayList<>();
+        List<RefCCDAValidationResult> contentResults = new ArrayList<>();
+        
         String ccdaFileContents;
         try {
             ccdaFileContents = IOUtils.toString(new BOMInputStream(ccdaFile.getInputStream()));
-            validatorResults.addAll(doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents));
+            
+            mdhtResults = doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents);
+            if(mdhtResults != null && !mdhtResults.isEmpty())
+            	validatorResults.addAll(mdhtResults);
+            
             if (shouldRunVocabularyValidation()) {
-                validatorResults.addAll(DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents));
+            	
+            	vocabResults = DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents);
+            	
+            	if(vocabResults != null && !vocabResults.isEmpty())
+                	validatorResults.addAll(vocabResults);
+                
+            }
+            
+            if(shouldRunContentValidation()) {
+            	
+            	log.info("Running Content validation");
+            	contentResults = doContentValidation(validationObjective, referenceFileName, ccdaFileContents);
+            	
+            	if(contentResults != null && !contentResults.isEmpty()) {
+            		
+            		log.info("Content Results = " + contentResults.size());
+                	validatorResults.addAll(contentResults);
+            	}
             }
         } catch (IOException e) {
             throw new RuntimeException("Error getting CCDA contents from provided file", e);
@@ -66,6 +99,10 @@ public class ReferenceCCDAValidationService {
 	private boolean shouldRunVocabularyValidation() {
 		return !CCDAIssueStates.hasSchemaError();
 	}
+	
+	private boolean shouldRunContentValidation() {
+		return !CCDAIssueStates.hasSchemaError();
+	}
 
     private ArrayList<RefCCDAValidationResult> DoVocabularyValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
         return vocabularyCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
@@ -73,6 +110,10 @@ public class ReferenceCCDAValidationService {
 
     private List<RefCCDAValidationResult> doMDHTValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
         return referenceCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
+    }
+    
+    private List<RefCCDAValidationResult> doContentValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
+    	return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 
     private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults, String ccdaDocType) {
