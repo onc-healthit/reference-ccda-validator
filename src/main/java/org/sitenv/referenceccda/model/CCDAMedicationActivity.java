@@ -1,12 +1,16 @@
 package org.sitenv.referenceccda.model;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 
 public class CCDAMedicationActivity {
 
+	private static Logger log = Logger.getLogger(CCDAMedicationActivity.class.getName());
+	
 	private ArrayList<CCDAII>     				templateIds;
 	private CCDAEffTime							duration;
-	private CCDAEffTime							frequency;
+	private CCDAFrequency						frequency;
 	private CCDACode							routeCode;
 	private CCDACode							approachSiteCode;
 	private CCDAPQ								doseQuantity;
@@ -14,12 +18,52 @@ public class CCDAMedicationActivity {
 	private CCDACode							adminUnitCode;
 	private CCDAConsumable						consumable;
 	
+	public void log() {
+		
+			
+		for(int j = 0; j < templateIds.size(); j++) {
+			log.info(" Tempalte Id [" + j + "] = " + templateIds.get(j).getRootValue());
+			log.info(" Tempalte Id Ext [" + j + "] = " + templateIds.get(j).getExtValue());
+		}
+		
+		if(routeCode != null)
+			log.info("Medication Activity Route Code = " + routeCode.getCode());
+		
+		if(approachSiteCode != null)
+			log.info("Medication Activity Approach Site Code = " + approachSiteCode.getCode());
+		
+		if(adminUnitCode != null)
+			log.info("Medication Activity Admin Unit Code = " + adminUnitCode.getCode());
+		
+		if(duration != null) {
+			duration.log();
+		}
+		
+		if(frequency != null) {
+			frequency.log();
+		}
+		
+		if(doseQuantity != null){
+			doseQuantity.log();
+		}
+		
+		if(rateQuantity != null){
+			rateQuantity.log();
+		}
+		
+		if(consumable != null) {
+			consumable.log();
+		}
+	}
+	
 	public ArrayList<CCDAII> getTemplateIds() {
 		return templateIds;
 	}
 
-	public void setTemplateIds(ArrayList<CCDAII> templateIds) {
-		this.templateIds = templateIds;
+	public void setTemplateIds(ArrayList<CCDAII> ids) {
+		
+		if(ids != null)
+			this.templateIds = ids;
 	}
 
 	public CCDAEffTime getDuration() {
@@ -30,12 +74,12 @@ public class CCDAMedicationActivity {
 		this.duration = duration;
 	}
 
-	public CCDAEffTime getFrequency() {
+	public CCDAFrequency getFrequency() {
 		return frequency;
 	}
 
-	public void setFrequency(CCDAEffTime frequency) {
-		this.frequency = frequency;
+	public void setFrequency(CCDAFrequency ccdaFrequency) {
+		this.frequency = ccdaFrequency;
 	}
 
 	public CCDACode getRouteCode() {
@@ -86,9 +130,9 @@ public class CCDAMedicationActivity {
 		this.consumable = consumable;
 	}
 
-	CCDAMedicationActivity()
+	public CCDAMedicationActivity()
 	{
-		
+		templateIds = new ArrayList<CCDAII>();
 	}
 	
 }

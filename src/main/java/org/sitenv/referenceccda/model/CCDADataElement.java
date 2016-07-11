@@ -5,6 +5,20 @@ public class CCDADataElement {
 	private String  value;
 	private Integer lineNumber;
 	private String  xpath;
+	private String  use;
+	
+	public String getUse() {
+		return use;
+	}
+
+	public void setUse(String use) {
+		this.use = use;
+	}
+
+	public CCDADataElement(String value)
+	{
+		this.value = value;
+	}
 	
 	public CCDADataElement()
 	{

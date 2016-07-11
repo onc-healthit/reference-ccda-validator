@@ -28,7 +28,7 @@
     </logger>
 
     <logger name="org.hsqldb">
-        <level value="DEBUG" />
+        <level value="info" />
     </logger>
  
     <root>
