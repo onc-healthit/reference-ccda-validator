@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -309,7 +309,7 @@
                 <artifactId>jgitflow-maven-plugin</artifactId>
                 <version>1.0-m5.1</version>
                 <configuration>
-                    <noDeploy>false</noDeploy>
+                    <noDeploy>true</noDeploy>
                     <allowUntracked>true</allowUntracked>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <allowSnapshots>true</allowSnapshots>
