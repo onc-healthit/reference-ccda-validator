@@ -1,6 +1,7 @@
 package org.sitenv.referenceccda.model;
 
 import org.apache.log4j.Logger;
+import org.sitenv.referenceccda.validators.content.CareTeamMemberParser;
 
 public class CCDAParticipant {
 	
@@ -14,10 +15,13 @@ public class CCDAParticipant {
 	
 	public void log()
 	{
-		log.info(" Fist Name = " + ((firstName==null)?"No Data":firstName.getValue()));
+		log.info(" First Name = " + ((firstName==null)?"No Data":firstName.getValue()));
 		log.info(" Last Name = " + ((lastName==null)?"No Data":lastName.getValue()));
-		log.info(" Fist Name = " + ((middleName==null)?"No Data":middleName.getValue()));
-		address.log();
+		log.info(" Middle Name = " + ((middleName==null)?"No Data":middleName.getValue()));
+		
+		if(address != null)
+			address.log();
+		
 		log.info(" Telecom = " + ((telecom==null)?"No Data":telecom.getValue()));
 		
 	}

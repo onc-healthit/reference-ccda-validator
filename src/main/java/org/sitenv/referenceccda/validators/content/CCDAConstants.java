@@ -1,11 +1,15 @@
 package org.sitenv.referenceccda.validators.content;
 
+import java.util.HashMap;
+import java.util.Iterator;
+
 import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
-import java.util.Iterator;
+
+import org.sitenv.referenceccda.model.CCDARefModel;
 
 public class CCDAConstants {
 
@@ -22,9 +26,12 @@ public class CCDAConstants {
 	static public XPathExpression REL_COUNTRY_EXP;
 	static public XPathExpression REL_PATIENT_BIRTHPLACE_EXP;
 	static public XPathExpression REL_PATIENT_NAME_EXP;
+	static public XPathExpression REL_PATIENT_PREV_NAME_EXP;
 	static public XPathExpression REL_PLAY_ENTITY_NAME_EXP;
 	static public XPathExpression REL_GIVEN_NAME_EXP;
+	static public XPathExpression REL_MIDDLE_NAME_EXP;
 	static public XPathExpression REL_FAMILY_NAME_EXP;
+	static public XPathExpression REL_GIVEN_PREV_NAME_EXP;
 	static public XPathExpression REL_SUFFIX_EXP;
 	static public XPathExpression REL_PATIENT_ADMINGEN_EXP;
 	static public XPathExpression REL_PATIENT_BIRTHTIME_EXP;
@@ -151,9 +158,12 @@ public class CCDAConstants {
 			REL_POSTAL_EXP = CCDAConstants.CCDAXPATH.compile("./postalCode[not(@nullFlavor)]");
 			REL_COUNTRY_EXP = CCDAConstants.CCDAXPATH.compile("./country[not(@nullFlavor)]");
 			REL_PATIENT_BIRTHPLACE_EXP = CCDAConstants.CCDAXPATH.compile("./patient/birthplace/place/addr[not(@nullFlavor)]");
-			REL_PATIENT_NAME_EXP = CCDAConstants.CCDAXPATH.compile("./patient/name[not(@nullFlavor)]");
+			REL_PATIENT_NAME_EXP = CCDAConstants.CCDAXPATH.compile("(./patient/name[not(@nullFlavor)])[1]");
+			REL_PATIENT_PREV_NAME_EXP = CCDAConstants.CCDAXPATH.compile("(./patient/name[not(@nullFlavor)])[2]");
 			REL_PLAY_ENTITY_NAME_EXP = CCDAConstants.CCDAXPATH.compile("./playingEntity/name[not(@nullFlavor)]");
-			REL_GIVEN_NAME_EXP = CCDAConstants.CCDAXPATH.compile("./given[not(@nullFlavor)]");
+			REL_GIVEN_NAME_EXP = CCDAConstants.CCDAXPATH.compile("(./given[not(@nullFlavor)])[1]");
+			REL_MIDDLE_NAME_EXP = CCDAConstants.CCDAXPATH.compile("(./given[not(@nullFlavor)])[2]");
+			REL_GIVEN_PREV_NAME_EXP = CCDAConstants.CCDAXPATH.compile("(./given[not(@nullFlavor) and @qualifier='BR'])[1]");
 			REL_FAMILY_NAME_EXP = CCDAConstants.CCDAXPATH.compile("./family[not(@nullFlavor)]");
 			REL_SUFFIX_EXP = CCDAConstants.CCDAXPATH.compile("./suffix[not(@nullFlavor)]");
 			REL_PATIENT_ADMINGEN_EXP = CCDAConstants.CCDAXPATH.compile("./patient/administrativeGenderCode[not(@nullFlavor)]");

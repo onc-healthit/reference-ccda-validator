@@ -26,37 +26,37 @@
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <version>2.5.12.20160628</version>
+            <version>2.5.16.20160725</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <!-- 3rd party MDHT dependencies -->

@@ -1,10 +1,27 @@
 package org.sitenv.referenceccda.model;
 
-import org.apache.log4j.Logger;
-import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
-import org.sitenv.referenceccda.validators.enums.ValidationResultType;
-
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+import org.sitenv.referenceccda.model.CCDAAllergy;
+import org.sitenv.referenceccda.model.CCDACareTeamMember;
+import org.sitenv.referenceccda.model.CCDAEncounter;
+import org.sitenv.referenceccda.model.CCDAGoals;
+import org.sitenv.referenceccda.model.CCDAHealthConcerns;
+import org.sitenv.referenceccda.model.CCDAImmunization;
+import org.sitenv.referenceccda.model.CCDALabResult;
+import org.sitenv.referenceccda.model.CCDAMedication;
+import org.sitenv.referenceccda.model.CCDAPlanOfTreatment;
+import org.sitenv.referenceccda.model.CCDAPatient;
+import org.sitenv.referenceccda.model.CCDAProblem;
+import org.sitenv.referenceccda.model.CCDAProcedure;
+import org.sitenv.referenceccda.model.CCDARefModel;
+import org.sitenv.referenceccda.model.CCDASocialHistory;
+import org.sitenv.referenceccda.model.CCDAUDI;
+import org.sitenv.referenceccda.model.CCDAVitalSigns;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult.RefCCDAValidationResultBuilder;
+import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 
 public class CCDARefModel {
 	
@@ -30,6 +47,124 @@ public class CCDARefModel {
 	public CCDARefModel() {
 		udi = new ArrayList<CCDAUDI>();
 	}
+	
+	public ArrayList<RefCCDAValidationResult> compare(String validationObjective, CCDARefModel submittedCCDA) {
+		
+		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
+		
+		if(doesObjectiveRequireCCDS(validationObjective))
+		{
+			log.info(" Performing CCDS checks ");
+			compareCCDS(validationObjective, submittedCCDA, results);
+		}
+		else 
+		{
+			log.info(" Not performing CCDS checks ");
+		}
+		
+		return results;
+	}
+	
+	public void compareCCDS(String validationObjective, CCDARefModel submittedCCDA,ArrayList<RefCCDAValidationResult> results) 
+	{
+		log.info("Comparing Patient Data ");
+		comparePatients(submittedCCDA, results);
+		
+		log.info("Validating Birth Sex ");
+		validateBirthSex(submittedCCDA, results);
+		
+		compareProblems(validationObjective, submittedCCDA, results);
+		log.info("Finished comparison , returning results");
+		
+	}
+	
+	private void compareProblems(String validationObjective, CCDARefModel submittedCCDA, ArrayList<RefCCDAValidationResult> results) {
+		
+		if((this.getProblem() != null) && (submittedCCDA.getProblem() != null) ) {
+			log.info("Start Problem Comparison ");
+			this.problem.compare(submittedCCDA.getProblem(), results);
+		}
+		else if ( (this.getProblem() != null) && (submittedCCDA.getProblem() == null) ) 
+		{
+			// handle the case where the problem section does not exist in the submitted CCDA
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires data related to patient's problems, but the submitted C-CDA does not contain problem data.", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+			log.info(" Scenario requires problems but submitted document does not contain problems section");
+		}
+		else if ( (this.getProblem() == null) && (submittedCCDA.getProblem() != null) ){
+			
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario does not require data related to patient's problems, but the submitted C-CDA does contain problem data.", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+			log.info("Model does not have problems for comparison ");
+		}
+		else {
+			
+			log.info("Model and Submitted CCDA do not have problems for comparison ");
+		}
+		
+	}
+	
+	private void validateBirthSex(CCDARefModel submittedCCDA, ArrayList<RefCCDAValidationResult> results) {
+		
+		if( (submittedCCDA.getSmokingStatus() != null) &&
+			 (submittedCCDA.getSmokingStatus().getBirthSex() != null)) {
+			
+			// Validate that the code is M or F.
+			if( (submittedCCDA.getSmokingStatus().getBirthSex().getSexCode() != null)  && 
+				((submittedCCDA.getSmokingStatus().getBirthSex().getSexCode().getCode().equalsIgnoreCase("M")) || 
+				(submittedCCDA.getSmokingStatus().getBirthSex().getSexCode().getCode().equalsIgnoreCase("F"))) )
+			{
+				//do nothing.
+				return;
+			}
+			else {
+				RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient's birth sex to use the codes M or F but the submitted C-CDA does not contain either of these codes.", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+				results.add(rs);
+			}
+			
+		}
+		else {
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient's birth sex to be captured as part of social history data, but submitted file does have birth sex information", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+	}
+	
+	
+	private void comparePatients(CCDARefModel submittedCCDA, ArrayList<RefCCDAValidationResult> results) {
+		
+		if((patient != null) && (submittedCCDA.getPatient() != null)) {
+			this.patient.compare(submittedCCDA.getPatient(), results);
+		}
+		else if( (patient == null) && (submittedCCDA.getPatient() != null) ) {
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario does not require patient data, but submitted file does have patient data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+		else if((patient != null) && (submittedCCDA.getPatient() == null)){
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient data, but submitted file does have patient data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+		else {
+			log.info("Both the Ref Model and the Submitted Patient Data are null ");
+		}
+	}
+
+	public Boolean doesObjectiveRequireCCDS(String valObj) {
+		
+		if(valObj.equalsIgnoreCase("170.315_b1_ToC_Amb") || 
+			valObj.equalsIgnoreCase("170.315_b1_ToC_Inp") ||
+			valObj.equalsIgnoreCase("170.315_b4_CCDS_Amb") ||
+			valObj.equalsIgnoreCase("170.315_b4_CCDS_Inp") ||
+			valObj.equalsIgnoreCase("170.315_b6_DE_Amb") ||
+			valObj.equalsIgnoreCase("170.315_b6_DE_Inp") ||
+			valObj.equalsIgnoreCase("170.315_e1_VDT_Amb") ||
+			valObj.equalsIgnoreCase("170.315_e1_VDT_Inp") ||
+			valObj.equalsIgnoreCase("170.315_g9_APIAccess_Amb") || 
+			valObj.equalsIgnoreCase("170.315_g9_APIAccess_Inp") )
+				return true;
+		else
+			return false;
+	}
+	
 	
 	public void log() {
 		
@@ -337,58 +472,6 @@ public class CCDARefModel {
 		return true;
 	}
 
-	public ArrayList<RefCCDAValidationResult> compare(String validationObjective, CCDARefModel submittedCCDA) {
 		
-		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
-		
-		log.info("Comparing Patient Data ");
-		comparePatients(submittedCCDA, results);
-		
-		log.info("Validating Birth Sex ");
-		validateBirthSex(submittedCCDA, results);
-		
-		return results;
-	}
-	
-	private void validateBirthSex(CCDARefModel submittedCCDA, ArrayList<RefCCDAValidationResult> results) {
-		
-		if( (submittedCCDA.getSmokingStatus() != null) &&
-			 (submittedCCDA.getSmokingStatus().getBirthSex() != null)) {
-			
-			// Validate that the code is M or F.
-			if( (submittedCCDA.getSmokingStatus().getBirthSex().getSexCode().getCode().equalsIgnoreCase("M")) || 
-				(submittedCCDA.getSmokingStatus().getBirthSex().getSexCode().getCode().equalsIgnoreCase("F")) )
-			{
-				//do nothing.
-				return;
-			}
-			else {
-				RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient's birth sex to use the codes M or F.", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
-				results.add(rs);
-			}
-			
-		}
-		else {
-			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient's birth sex to be captured as part of social history data, but submitted file does have birth sex information", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
-			results.add(rs);
-		}
-	}
-	
-	
-	private void comparePatients(CCDARefModel submittedCCDA, ArrayList<RefCCDAValidationResult> results) {
-		
-		if((patient != null) && (submittedCCDA.getPatient() != null)) {
-			this.patient.compare(submittedCCDA.getPatient(), results);
-		}
-		else if(patient == null) {
-			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario does not require patient data, but submitted file does have patient data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
-			results.add(rs);
-		}
-		else {
-			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient data, but submitted file does have patient data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
-			results.add(rs);
-		}
-	}
-	
 
 }

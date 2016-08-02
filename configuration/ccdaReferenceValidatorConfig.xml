@@ -1667,7 +1667,7 @@
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>RXNORM</allowedCodesystemNames>
+			<allowedCodesystemNames>RXNORM,SNOMED-CT</allowedCodesystemNames>
 		</validator>
 	</expression>
 	<!-- ALLERGY - INTOLERANCE OBSERVATION END -->

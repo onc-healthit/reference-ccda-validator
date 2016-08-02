@@ -1,11 +1,33 @@
 package org.sitenv.referenceccda.model;
 
+import java.util.ArrayList;
+
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+
 public class CCDADataElement {
 
 	private String  value;
 	private Integer lineNumber;
 	private String  xpath;
 	private String  use;
+	
+	public Boolean matches(CCDADataElement cd, ArrayList<RefCCDAValidationResult> results, String elementName) {
+		
+		if( (value != null) && (cd.getValue() != null) &&
+			(value.equalsIgnoreCase(cd.getValue())) ) {
+			
+			return true;
+		}
+		else if((value == null) && (cd.getValue() == null))
+		{
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
 	
 	public String getUse() {
 		return use;

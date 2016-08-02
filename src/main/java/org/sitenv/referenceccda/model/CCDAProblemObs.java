@@ -1,8 +1,10 @@
 package org.sitenv.referenceccda.model;
 
-import org.apache.log4j.Logger;
-
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.content.ParserUtilities;
 
 public class CCDAProblemObs {
 
@@ -13,6 +15,26 @@ public class CCDAProblemObs {
 	private ArrayList<CCDACode>  translationProblemType;
 	private CCDAEffTime          effTime;
 	private CCDACode             problemCode;
+	
+	public void compare(CCDAProblemObs subObs, String probObsContext, ArrayList<RefCCDAValidationResult> results) {
+		
+		log.info(" Comparing data for problem observation Value element/code attribute: " + probObsContext);
+
+		String elementName = "Problem Observation for Value element/code attribute: " + probObsContext;
+
+		// Compare template Ids 
+		ParserUtilities.compareTemplateIds(templateId, subObs.getTemplateId(), results, elementName);
+
+		// Compare Effective Times
+		String elementNameTime = "Problem Observation Effective Time for Value element/code attribute: " + probObsContext;
+		ParserUtilities.compareEffectiveTime(effTime, subObs.getEffTime(), results, elementNameTime);
+		
+		// Compare PRoblem Codes 
+		String elementNameVal = "Problem Observation Value element/code attribute: " + probObsContext;
+		ParserUtilities.compareCode(problemCode, subObs.getProblemCode(), results, elementNameVal);
+		
+		// Add negation indicator
+	}
 	
 	public void log() {
 		
@@ -86,4 +108,6 @@ public class CCDAProblemObs {
 		templateId = new ArrayList<CCDAII>();
 		translationProblemType = new ArrayList<CCDACode>();
 	}
+
+	
 }

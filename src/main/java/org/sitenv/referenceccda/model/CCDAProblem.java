@@ -1,8 +1,14 @@
 package org.sitenv.referenceccda.model;
 
-import org.apache.log4j.Logger;
-
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import org.apache.log4j.Logger;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.content.ParserUtilities;
+import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 
 public class CCDAProblem {
 
@@ -11,6 +17,86 @@ public class CCDAProblem {
 	private ArrayList<CCDAII>       		sectionTemplateId;
 	private CCDACode                 		sectionCode;
 	private ArrayList<CCDAProblemConcern>  	problemConcerns;
+	
+	public void compare(CCDAProblem submittedProblem, ArrayList<RefCCDAValidationResult> results) {
+	
+		// handle section code.
+		ParserUtilities.compareCode(sectionCode, submittedProblem.getSectionCode(), results, "Problem Section"); 
+		
+		// Hanlde Section Template Ids
+		ParserUtilities.compareTemplateIds(sectionTemplateId, submittedProblem.getSectionTemplateId(), results, "Problem Section");
+		
+		//Compare details
+		compareProblemData(submittedProblem, results);
+	}
+	
+	private void compareProblemData(CCDAProblem submittedProblem, ArrayList<RefCCDAValidationResult> results) {
+		
+		HashMap<CCDAProblemObs, CCDAProblemConcern> probs = getProblemObservationsConcernMap();
+		
+		for(Map.Entry<CCDAProblemObs, CCDAProblemConcern> ent: probs.entrySet()) {
+			
+			//check to see if the ref data is part of the problem data submitted
+			submittedProblem.validateProblemData(ent.getKey(), ent.getValue(), results);
+			
+		}
+		
+	}
+	
+	private void validateProblemData(CCDAProblemObs refPo, CCDAProblemConcern refCo, ArrayList<RefCCDAValidationResult> results ) {
+	
+		HashMap<CCDAProblemObs, CCDAProblemConcern> probs = getProblemObservationsConcernMap();
+		
+		CCDAProblemObs subObs = null;
+		CCDAProblemConcern conc = null;
+		for(Map.Entry<CCDAProblemObs, CCDAProblemConcern> ent: probs.entrySet()) {
+			
+			// Find the entry which corresponds to the same value as the refPo
+			if(ent.getKey().getProblemCode() != null && 
+			   refPo.getProblemCode() != null && 
+			   refPo.getProblemCode().getCode().equalsIgnoreCase(ent.getKey().getProblemCode().getCode())) {
+				
+				log.info("Found the Problem Observation in submitted CCDA");
+				subObs = ent.getKey();
+				conc = ent.getValue();
+				
+				break;
+			}
+			
+		}
+		
+		if( (subObs != null) && (conc != null)) {
+			
+			String probObsContext = ((refPo.getProblemCode() != null)?(refPo.getProblemCode().getDisplayName()):" Unknown Observation ");
+			refCo.compare(conc, probObsContext, results);
+			refPo.compare(subObs, probObsContext, results);
+		}
+		else {
+			String error = "The scenario contains problem observation for " + 
+							((refPo.getProblemCode() != null)?(refPo.getProblemCode().getDisplayName()):" Unknown Observation ") +
+							" , however there is no matching observation in the submitted CCDA. ";
+			RefCCDAValidationResult rs = new RefCCDAValidationResult(error, ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+		
+	}
+	
+	private HashMap<CCDAProblemObs, CCDAProblemConcern> getProblemObservationsConcernMap() {
+		
+		HashMap<CCDAProblemObs, CCDAProblemConcern> pobs = new HashMap<CCDAProblemObs, CCDAProblemConcern>();
+		
+		for(CCDAProblemConcern c: problemConcerns) {
+			
+			ArrayList<CCDAProblemObs> obs = c.getProblems();
+			
+			for(CCDAProblemObs o: obs) {
+				pobs.put(o,  c);
+			}
+			
+		}
+		
+		return pobs;
+	}
 	
 	public void log() {
 		
