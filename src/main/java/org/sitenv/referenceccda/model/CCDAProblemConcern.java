@@ -1,8 +1,10 @@
 package org.sitenv.referenceccda.model;
 
-import org.apache.log4j.Logger;
-
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.content.ParserUtilities;
 
 public class CCDAProblemConcern {
 	
@@ -13,6 +15,26 @@ public class CCDAProblemConcern {
 	private CCDADataElement  			statusCode;
 	private CCDAEffTime      			effTime;
 	private ArrayList<CCDAProblemObs>  	problems;
+	
+	public void compare(CCDAProblemConcern subConc, String problemObsContext, ArrayList<RefCCDAValidationResult> results ) {
+		
+		log.info(" Comparing Concern data for problem " + problemObsContext);
+		
+		String elementName = "Problem Concern for " + problemObsContext;
+		
+		// Compare template Ids 
+		ParserUtilities.compareTemplateIds(templateId, subConc.getTemplateId(), results, elementName);
+		
+		// Compare Status Codes 
+		String elementNameStatus = "Problem Concern Status code for " + problemObsContext;
+		ParserUtilities.compareDataElement(statusCode, subConc.getStatusCode(), results, elementNameStatus);
+				
+		// Compare Effective Times
+		String elementNameTime = "Problem Concern Effective Time for " + problemObsContext;
+		ParserUtilities.compareEffectiveTime(effTime, subConc.getEffTime(), results, elementNameTime);
+		
+		
+	}
 	
 	public void log() {
 		
@@ -84,5 +106,7 @@ public class CCDAProblemConcern {
 		if(ps != null)
 			this.problems = ps;
 	}
+
+	
 	
 }

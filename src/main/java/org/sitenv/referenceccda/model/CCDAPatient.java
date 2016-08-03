@@ -1,10 +1,10 @@
 package org.sitenv.referenceccda.model;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
-
-import java.util.ArrayList;
 
 public class CCDAPatient {
 	
@@ -293,20 +293,68 @@ public class CCDAPatient {
 	
 	public Boolean containsLanguage(CCDAPreferredLanguage lang) {
 		
-		if (languageCommunication == null)
+		/* Since the reference model has a Preferred language code element 
+		 * but the submitted model does not have the element , the comparison fails.
+		 * The scenario where the language code element exists in the ref model indicates
+		 * that the code element is not null flavor so when languagecommunication is not 
+		 * present in the submitted model indicates a failure. 
+		 */
+		if (lang.getLanguageCode() != null &&
+			languageCommunication == null) 
 			return false;
 		
-		String[] language = lang.getLanguageCode().getCode().split("-");
-		String langPart = null;
-		if(language.length > 0)
-			langPart = language[0];
-		
 		for(CCDAPreferredLanguage l : languageCommunication) {
-			if(l.getLanguageCode().getCode().contains(langPart))
+		
+			if((l.getLanguageCode() != null) && 
+				(lang.getLanguageCode() != null) ) {
+		
+				// Extract the language part from the preferred language in the ref model.
+				log.info("Extracting Patient's Preferred Language");
+				String[] language = lang.getLanguageCode().getCode().split("-");
+				
+				String langPart = null;
+				if(language.length > 0)
+					langPart = language[0];
+				else
+					langPart = lang.getLanguageCode().getCode();
+				
+				if(l.getLanguageCode().getCode().contains(langPart)) {
+					// Happy Path , Normal Case
+					return true;
+				}
+				else {
+					log.info(" Lang Code in submitted CCDA " + l.getLanguageCode().getCode() 
+							+ " does not contain the required language string " + langPart );
+				}
+			}
+			else if( l.getLanguageCode() == null && 
+					 lang.getLanguageCode() == null )
+			{
+				log.info(" Patient's language null Flavored in both cases ");
+				// Normal case of null Flavor.
 				return true;
+			}
+			else if (lang.getLanguageCode() == null &&
+					 l.getLanguageCode() != null ) {
+				
+				// SUT has more data , so it is all right
+				// Do nothing. Cannot make a decision on just one element 
+				// in the array, so continue until we hit all the elements and 
+				// if we dont hit the positive cases anywhere, it will return false.
+				log.warn("SUT including more data elements ");
+			}
+			else if( lang.getLanguageCode() != null &&
+					 l.getLanguageCode() == null ) {
+				
+				// SUT has a data element which is not right , so it is all right
+				// Do nothing. Cannot make a decision on just one element 
+				// in the array, so continue until we hit all the elements and 
+				// if we dont hit the positive cases anywhere, it will return false.
+				log.warn("SUT including bad data elements ");
+			}
 		}
 		
-		
+		// Never hit the positive cases, so return false.
 		return false;
 		
 		
@@ -321,6 +369,7 @@ public class CCDAPatient {
 	
 	private void compareRaceAndEthnicity(CCDAPatient patient, ArrayList<RefCCDAValidationResult> results) {
 		
+		log.info("Comparing Patient's Aggregate Race Code ");
 		// Compare Race Code
 		for(CCDACode c : raceCodes) {
 			if(!patient.containsRaceCode(c))
@@ -333,6 +382,7 @@ public class CCDAPatient {
 			}
 		}
 
+		log.info("Comparing Patient's Granular Race Value ");
 		// Compare Race Code Ext
 		for(CCDACode c : raceCodeExt) {
 			if(!patient.containsRaceCodeExt(c))
@@ -345,6 +395,7 @@ public class CCDAPatient {
 			}
 		}
 		
+		log.info("Comparing Patient's Ethnicity");
 		// Compare Ethnicity
 		if((ethnicity != null) && (patient.getEthnicity() != null) ) {
 			if( !(ethnicity.getCode().equalsIgnoreCase(patient.getEthnicity().getCode())))
@@ -364,12 +415,16 @@ public class CCDAPatient {
 			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient ethnicity information, but submitted file does not have patient ethnicitiy information", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
 			results.add(rs);
 		}
+		else {
+			log.info("Ethnicity information is null in both reference and submitted CCDA models ");
+		}
 		
 		
 	}
 
 	private void compareMiscellaneous(CCDAPatient patient, ArrayList<RefCCDAValidationResult> results) {
 		
+		log.info("Comparing Patient's Date of Birth ");
 		// Compare date of birth
 		if((dob != null) && (patient.getDob() != null) ) {
 			if( !(dob.getValue().equalsIgnoreCase(patient.getDob().getValue())))
@@ -389,10 +444,15 @@ public class CCDAPatient {
 			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient date of birth information, but submitted file does not have patient date of birth information", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
 			results.add(rs);
 		}
+		else {
+			log.info("Both submitted and reference models have a null dob ");
+		}
 		
 		// Add Address
 		// Add Telecom
 		
+		log.info("Comparing Patient's Preferred Language ");
+			
 		// Compare Preferred Language
 		for(CCDAPreferredLanguage lang : languageCommunication) {
 			if(!patient.containsLanguage(lang))
@@ -405,10 +465,24 @@ public class CCDAPatient {
 			}
 		}
 		
+		// A case where the scenario does not require language and is nullFlavored where as the 
+		// SUT has data which is not specified should be handled.
+		if( languageCommunication != null && 
+			languageCommunication.isEmpty() && 
+			patient.getLanguageCommunication() != null && 
+			!(patient.getLanguageCommunication().isEmpty()) ) {
+			
+			String errorMessage = "Patient Language not expected, but submitted file contains language code";
+					RefCCDAValidationResult rs = new RefCCDAValidationResult(errorMessage, ValidationResultType.REF_CCDA_ERROR, 
+							"/ClinicalDocument", "0");
+					results.add(rs);
+		}
+		
 	}
 
 	private void compareNames(CCDAPatient patient, ArrayList<RefCCDAValidationResult> results) {
 		
+		log.info("Comparing Patient's First Name ");
 		// Compare First Name
 		if((firstName != null) && (patient.getFirstName() != null) ) {
 			if( !(firstName.getValue().equalsIgnoreCase(patient.getFirstName().getValue())))
@@ -428,7 +502,11 @@ public class CCDAPatient {
 			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient first name, but submitted file does not have patient first name", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
 			results.add(rs);
 		}
+		else {
+			log.info("Submitted and Reference CCDA models have null first name ");
+		}
 		
+		log.info("Comparing Patient's Last Name ");
 		// Compare Last Name
 		if((lastName != null) && (patient.getLastName() != null) ) {
 			if( !(lastName.getValue().equalsIgnoreCase(patient.getLastName().getValue())))
@@ -448,7 +526,11 @@ public class CCDAPatient {
 			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient last name, but submitted file does not have patient last name", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
 			results.add(rs);
 		}
+		else {
+			log.info("Submitted and Reference CCDA models have null last name ");
+		}
 		
+		log.info("Comparing Patient's Middle Name ");
 		// Compare Middle Name
 		if((middleName != null) && (patient.getMiddleName() != null) ) {
 			if( !(middleName.getValue().equalsIgnoreCase(patient.getMiddleName().getValue())))
@@ -468,7 +550,11 @@ public class CCDAPatient {
 			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient middle name, but submitted file does not have patient middle name", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
 			results.add(rs);
 		}
+		else {
+			log.info("Submitted and Reference CCDA models have null Middle name ");
+		}
 		
+		log.info("Comparing Patient's Previous Name ");
 		// Compare Previous Name
 		if((previousName != null) && (patient.getPreviousName() != null) ) {
 			if( !(previousName.getValue().equalsIgnoreCase(patient.getPreviousName().getValue())))
@@ -488,7 +574,11 @@ public class CCDAPatient {
 			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient previous name, but submitted file does not have patient previous name", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
 			results.add(rs);
 		}
+		else {
+			log.info("Submitted and Reference CCDA models have null previous name ");
+		}
 		
+		log.info("Comparing Patient's Suffix");
 		// Compare Suffix
 		if((suffix != null) && (patient.getSuffix() != null) ) {
 			if( !(suffix.getValue().equalsIgnoreCase(patient.getSuffix().getValue())))
@@ -507,6 +597,9 @@ public class CCDAPatient {
 		else if( (suffix != null) && (patient.getSuffix() == null)){
 			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires patient suffix, but submitted file does not have patient suffix", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
 			results.add(rs);
+		}
+		else {
+			log.info("Submitted and Reference CCDA models have null patient suffix information ");
 		}
 	}
 }

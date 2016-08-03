@@ -1,5 +1,13 @@
 package org.sitenv.referenceccda.validators.content;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -8,14 +16,9 @@ import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import org.xml.sax.SAXException;
 
 @Component
 public class ReferenceContentValidator extends BaseCCDAValidator implements CCDAValidator  {
@@ -50,8 +53,10 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
 				ref = ReferenceContent.getInstance().getCCDARefModel(referenceFileName);
 		}
 		
-		if((ref != null) && (submittedCCDA != null))
-				return ref.compare(validationObjective, submittedCCDA );
+		if((ref != null) && (submittedCCDA != null)) {
+			log.info("Comparing the Ref Model to the Submitted Model ");
+			return ref.compare(validationObjective, submittedCCDA );
+		}
 		else {
 			log.error(" Submitted Model = " + ((submittedCCDA==null)?" Model is null":submittedCCDA.toString()));
 			log.error(" Reference Model = " + ((ref==null)?" Model is null":ref.toString()));

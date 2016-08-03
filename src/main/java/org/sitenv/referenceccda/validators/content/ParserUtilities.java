@@ -1,17 +1,139 @@
 package org.sitenv.referenceccda.validators.content;
 
-import org.apache.log4j.Logger;
-import org.sitenv.referenceccda.model.*;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import java.util.ArrayList;
 
+import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
-import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
+import org.sitenv.referenceccda.model.CCDAAddress;
+import org.sitenv.referenceccda.model.CCDACode;
+import org.sitenv.referenceccda.model.CCDADataElement;
+import org.sitenv.referenceccda.model.CCDAEffTime;
+import org.sitenv.referenceccda.model.CCDAFrequency;
+import org.sitenv.referenceccda.model.CCDAII;
+import org.sitenv.referenceccda.model.CCDAPQ;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class ParserUtilities {
 	
 	private static Logger log = Logger.getLogger(ParserUtilities.class.getName());
+
+	public static void compareDataElement(CCDADataElement refCode, CCDADataElement submittedCode,
+			ArrayList<RefCCDAValidationResult> results, String elementName) {
+		
+		// handle nulls.
+		if((refCode != null) && (submittedCode != null) ) {
+
+			if(refCode.matches(submittedCode, results, elementName)) {
+				// do nothing since both match.
+				log.info(" Both Submitted and Ref codes match for " + elementName);
+			}
+
+		}
+		else if ((refCode == null) && (submittedCode != null)) {
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario does not require " + elementName + " data, but submitted file does have " + elementName + " data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+		else if((refCode != null) && (submittedCode == null)){
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires " + elementName + " data, but submitted file does not contain " + elementName + " data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		} 
+		else {
+			// do nothing since both are null.
+			log.info(" Both Submitted and Ref codes are null for " + elementName);
+		}
+	}
+	
+	public static void compareEffectiveTime(CCDAEffTime refTime, CCDAEffTime submittedTime,
+			ArrayList<RefCCDAValidationResult> results, String elementName) {
+		
+		// handle nulls.
+		if((refTime != null) && (submittedTime != null) ) {
+
+			refTime.compare(submittedTime, results, elementName);
+
+		}
+		else if ((refTime == null) && (submittedTime != null)) {
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario does not require " + elementName + " data, but submitted file does have " + elementName + " data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+		else if((refTime != null) && (submittedTime == null)){
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires " + elementName + " data, but submitted file does not contain " + elementName + " data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		} 
+		else {
+			// do nothing since both are null.
+			log.info(" Both Submitted and Ref times are null for " + elementName);
+		}
+	}
+
+	public static void compareCode(CCDACode refCode, CCDACode submittedCode,
+			ArrayList<RefCCDAValidationResult> results, String elementName) {
+		
+		// handle section code.
+		if((refCode != null) && (submittedCode != null) ) {
+
+			if(refCode.matches(submittedCode, results, elementName)) {
+				// do nothing since both match.
+				log.info(" Both Submitted and Ref codes match for " + elementName);
+			}
+
+		}
+		else if ((refCode == null) && (submittedCode != null)) {
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario does not require " + elementName + " data, but submitted file does have " + elementName + " data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+		else if((refCode != null) && (submittedCode == null)){
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires " + elementName + " data, but submitted file does not contain " + elementName + " data", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		} 
+		else {
+			// do nothing since both are null.
+			log.info(" Both Submitted and Ref codes are null for " + elementName);
+		}
+	}
+	
+	public static void compareTemplateIds(ArrayList<CCDAII> refList, ArrayList<CCDAII> submittedList,
+			ArrayList<RefCCDAValidationResult> results, String elementName) {
+		
+		if((refList != null) && (submittedList != null)) {
+		
+			// Check to see if each of the templates in the reflist are part of the submitted list.
+			for(CCDAII r : refList) {
+			
+				if(!r.isPartOf(submittedList)) {
+					String error = "The " + elementName + " template id, Root Value = " 
+							+ ((r.getRootValue() != null)?r.getRootValue():"None specified") + " and Extension Value = " 
+					        + ((r.getExtValue() != null)?r.getExtValue():"No Extension value") + " is not present in the submitted CCDA's " + elementName;
+					RefCCDAValidationResult rs = new RefCCDAValidationResult(error, ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+					results.add(rs);
+				}
+				else {
+					log.info("Template Ids for " + elementName + " matched. ");
+				}
+			
+			}
+		}
+		else if((refList == null) && (submittedList != null)) {
+			
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario does not require " + elementName + " template ids, but submitted file does contain " + elementName + " template ids", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		}
+		else if ((refList != null) && (submittedList == null)){
+			RefCCDAValidationResult rs = new RefCCDAValidationResult("The scenario requires " + elementName + " template ids, but submitted file does not containt " + elementName + " template ids", ValidationResultType.REF_CCDA_ERROR, "/ClinicalDocument", "0" );
+			results.add(rs);
+		} 
+		else {
+			// do nothing since both are null
+			log.info("Both Ref and submitted CCDA have no templated Ids for " + elementName);
+		}
+	}
 	
 	public static CCDACode readCode(Element codeElement)
 	{

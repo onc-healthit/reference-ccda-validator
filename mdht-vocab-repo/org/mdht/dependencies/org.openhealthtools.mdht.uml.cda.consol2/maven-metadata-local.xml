@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.mdht.dependencies</groupId>
+  <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
+  <versioning>
+    <release>2.5.16.20160725</release>
+    <versions>
+      <version>2.5.16.20160725</version>
+    </versions>
+    <lastUpdated>20160802002421</lastUpdated>
+  </versioning>
+</metadata>

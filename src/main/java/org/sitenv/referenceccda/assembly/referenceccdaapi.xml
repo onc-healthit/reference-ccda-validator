@@ -21,7 +21,7 @@
             <directory>configuration</directory>
             <includes>
                 <include>ccdaReferenceValidatorConfig.xml</include>
-                <include>referenceccda-orientdb-server-config.xml</include>
+                <include>referenceccda-orientdb-server-profiles.xml</include>
             </includes>
             <outputDirectory>VocabularyConfiguration</outputDirectory>
         </fileSet>

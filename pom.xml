@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -26,37 +26,37 @@
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <version>2.5.12.20160628</version>
+            <version>2.5.16.20160725</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-            <version>3.0.0.201606280501</version>
+            <version>3.0.0.201607250501</version>
         </dependency>
 
         <!-- 3rd party MDHT dependencies -->
@@ -120,7 +120,7 @@
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
 
@@ -330,10 +330,7 @@
     </build>
     <profiles>
         <profile>
-            <id>deploy-localhost</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>local</id>
             <properties>
                 <tomcat-server>localhost</tomcat-server>
                 <tomcat-url>http://localhost:8070/manager/text</tomcat-url>
@@ -343,10 +340,7 @@
             </properties>
         </profile>
         <profile>
-            <id>deploy-test</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
+            <id>test</id>
             <properties>
                 <tomcat-server>test</tomcat-server>
                 <tomcat-url>https://devccda.sitenv.org/manager/text</tomcat-url>
@@ -356,9 +350,9 @@
             </properties>
         </profile>
         <profile>
-            <id>deploy-prod</id>
+            <id>prod</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <tomcat-server>prod</tomcat-server>

@@ -1,15 +1,17 @@
 package org.sitenv.referenceccda.validators.content;
 
+import java.util.ArrayList;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+
 import org.apache.log4j.Logger;
 import org.sitenv.referenceccda.model.CCDAPatient;
 import org.sitenv.referenceccda.model.CCDAPreferredLanguage;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import java.util.ArrayList;
 
 public class CCDAHeaderParser {
 	
@@ -40,6 +42,10 @@ public class CCDAHeaderParser {
 	        //Getting name of the patient
 	        readName((Element) CCDAConstants.REL_PATIENT_NAME_EXP.
 	    				evaluate(patientRoleElement, XPathConstants.NODE), patient);
+	        
+	        // Read PRevious Name
+	        readPreviousName((Element) CCDAConstants.REL_PATIENT_PREV_NAME_EXP.
+    				evaluate(patientRoleElement, XPathConstants.NODE), patient);
 	           
 	        //Get Gender of the patient
 	        patient.setAdminGender(ParserUtilities.readCode((Element) CCDAConstants.REL_PATIENT_ADMINGEN_EXP.
@@ -98,6 +104,7 @@ public class CCDAHeaderParser {
 		log.info(" Reading Name ");
 		if(nameElement != null)
 		{
+			/*
 			NodeList giveNameNodeList = (NodeList) CCDAConstants.REL_GIVEN_NAME_EXP.
 					evaluate(nameElement, XPathConstants.NODESET);
 			
@@ -117,7 +124,11 @@ public class CCDAHeaderParser {
 					patient.setMiddleName(ParserUtilities.readTextContext(givenNameElement));
 				}
 			}
-			
+			*/
+			patient.setFirstName(ParserUtilities.readTextContext((Element) CCDAConstants.REL_GIVEN_NAME_EXP.
+					evaluate(nameElement, XPathConstants.NODE)));
+			patient.setMiddleName(ParserUtilities.readTextContext((Element) CCDAConstants.REL_MIDDLE_NAME_EXP.
+					evaluate(nameElement, XPathConstants.NODE)));
 			patient.setLastName(ParserUtilities.readTextContext((Element) CCDAConstants.REL_FAMILY_NAME_EXP.
 					evaluate(nameElement, XPathConstants.NODE)));
 			patient.setSuffix(ParserUtilities.readTextContext((Element) CCDAConstants.REL_SUFFIX_EXP.
@@ -125,6 +136,15 @@ public class CCDAHeaderParser {
 		}
 	}
 	
+	public static void readPreviousName(Element nameElement,CCDAPatient patient) throws XPathExpressionException
+	{
+		log.info(" Reading Previous Name ");
+		if(nameElement != null)
+		{
+			patient.setPreviousName(ParserUtilities.readTextContext((Element) CCDAConstants.REL_GIVEN_PREV_NAME_EXP.
+					evaluate(nameElement, XPathConstants.NODE)));
+		}
+	}
 	
 	public static ArrayList<CCDAPreferredLanguage> readPreferredLanguage(NodeList languageCommElementList ) throws XPathExpressionException
 	{
