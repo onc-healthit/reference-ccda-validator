@@ -1,13 +1,5 @@
 package org.sitenv.referenceccda.validators.content;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.HashMap;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -16,9 +8,15 @@ import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import org.xml.sax.SAXException;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 @Component
 public class ReferenceContentValidator extends BaseCCDAValidator implements CCDAValidator  {
@@ -27,6 +25,8 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
 
 	@Autowired
 	private CCDAParser parser;
+	@Autowired
+	private Environment environment;
 	
 	@Override
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
@@ -98,7 +98,7 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
 		// Get each of the scenarios from resources folder and add them into the system.
 		Enumeration<URL> en = null;
 		try {
-			en = getClass().getClassLoader().getResources("scenarios");
+			en = getClass().getClassLoader().getResources(environment.getProperty("content.scenariosDir"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			log.info(e.getMessage());

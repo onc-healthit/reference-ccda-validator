@@ -120,7 +120,7 @@
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3-SNAPSHOT</version>
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
 
@@ -336,6 +336,7 @@
                 <tomcat-url>http://localhost:8070/manager/text</tomcat-url>
                 <vocabulary.localCodeRepositoryDir>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary\code_repository\</vocabulary.localCodeRepositoryDir>
                 <vocabulary.localValueSetRepositoryDir>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary\valueset_repository\</vocabulary.localValueSetRepositoryDir>
+                <content.scenariosDir>E:\Brian\Development\Environment\VocabularyConfiguration\scenarios\</content.scenariosDir>
                 <referenceccda.configFile>E:\Brian\Development\Environment\VocabularyConfiguration\ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
             </properties>
         </profile>
@@ -346,6 +347,7 @@
                 <tomcat-url>https://devccda.sitenv.org/manager/text</tomcat-url>
                 <vocabulary.localCodeRepositoryDir>/var/opt/sitenv/code_repository/</vocabulary.localCodeRepositoryDir>
                 <vocabulary.localValueSetRepositoryDir>/var/opt/sitenv/valueset_repository/</vocabulary.localValueSetRepositoryDir>
+                <content.scenariosDir>/var/opt/sitenv/scenarios/</content.scenariosDir>
                 <referenceccda.configFile>/var/opt/sitenv/config/ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
             </properties>
         </profile>
@@ -359,6 +361,7 @@
                 <tomcat-url>http://prodccda.sitenv.org/manager/text</tomcat-url>
                 <vocabulary.localCodeRepositoryDir>/var/opt/sitenv/code_repository/</vocabulary.localCodeRepositoryDir>
                 <vocabulary.localValueSetRepositoryDir>/var/opt/sitenv/valueset_repository/</vocabulary.localValueSetRepositoryDir>
+                <content.scenariosDir>/var/opt/sitenv/scenarios/</content.scenariosDir>
                 <referenceccda.configFile>/var/opt/sitenv/config/ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
             </properties>
         </profile>
