@@ -26,6 +26,10 @@
             <outputDirectory>VocabularyConfiguration</outputDirectory>
         </fileSet>
         <fileSet>
+            <directory>E:\Brian\Development\Environment\VocabularyConfiguration\scenarios</directory>
+            <outputDirectory>VocabularyConfiguration\scenarios</outputDirectory>
+        </fileSet>
+        <fileSet>
             <directory>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary</directory>
             <outputDirectory>VocabularyConfiguration\Vocabulary</outputDirectory>
         </fileSet>
