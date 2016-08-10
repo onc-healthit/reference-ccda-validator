@@ -115,7 +115,7 @@
 	</expression>
 
 	<!--a. The guardian, if present, SHOULD contain zero or one [0..1] code, which SHALL be selected from ValueSet Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1 DYNAMIC (CONF:1198-5326).-->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:guardian/V3:code[not(@nullFlavor)]">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:guardian/v3:code[not(@nullFlavor)]">
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -1516,6 +1516,7 @@
 
 	<!-- RESULT OBSERVATION START -->
 	<!--5. SHALL contain exactly one [1..1] code, which SHOULD be selected from CodeSystem LOINC (urn:oid:2.16.840.1.113883.6.1) (CONF:1198-7133).-->
+	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CodeSystemCodeValidator</name>
@@ -1551,6 +1552,7 @@
 
 	<!-- RESULT ORGANIZER START -->
 	<!--a. SHOULD be selected from LOINC (codeSystem 2.16.840.1.113883.6.1) OR SNOMED CT (codeSystem 2.16.840.1.113883.6.96), and MAY be selected from CPT-4 (codeSystem 2.16.840.1.113883.6.12) (CONF:1198-19218).-->
+	<!--overriding IG due to Regulation-->
 	<expression xpathExpression="//v3:organizer/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.1' and @extension='2015-08-01']/ancestor::v3:organizer[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>CodeSystemCodeValidator</name>
@@ -1663,11 +1665,11 @@
 	<!--2. This playingEntity SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet Substance-Reactant for Intolerance urn:oid:2.16.840.1.113762.1.4.1010.1 DYNAMIC (CONF:1098-7419).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.7' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:participant/v3:participantRole/v3:playingEntity/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CodeSystemCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>RXNORM,SNOMED-CT</allowedCodesystemNames>
+			<allowedValuesetOids>2.16.840.1.113762.1.4.1010.1</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- ALLERGY - INTOLERANCE OBSERVATION END -->
@@ -1711,7 +1713,7 @@
 
 	<!-- WOUND CHARACTERISTICS CONSTRAINTS OVERVIEW START -->
 	<!--8. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Wound Characteristic urn:oid:2.16.840.1.113883.11.20.9.58 DYNAMIC (CONF:1098-29947).-->
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.134' and @extension='2014-06-09']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.134']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
@@ -1993,7 +1995,7 @@
 
 	<!--  VITAL SIGNS START -->
 	<!-- REQUIRED CODE SYSTEMS FOR TEMPLATES -->
-	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.4.1' and @extension='2014-06-09']/ancestor::v3:section[1]/v3:code">
+	<expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.4.1' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
 		<validator>
 			<name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
 			<nodeType>codeSystem</nodeType>
