@@ -124,6 +124,14 @@
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
 
+        <!-- START CONTENT DEPENDENCIES -->
+        <dependency>
+            <groupId>org.sitenv</groupId>
+            <artifactId>contentvalidator-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- END CONTENT DEPENDENCIES -->
+
         <!-- Core utilities used by other modules. Define this if you use Spring
             Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
         <dependency>

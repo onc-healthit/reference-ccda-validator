@@ -1,5 +1,6 @@
 package org.sitenv.referenceccda.configuration;
 
+import org.sitenv.contentvalidator.configuration.ContentValidatorApiConfiguration;
 import org.sitenv.vocabularies.configuration.CodeValidatorApiConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -9,7 +10,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { MvcConfiguration.class, CodeValidatorApiConfiguration.class };
+		return new Class<?>[] { MvcConfiguration.class, CodeValidatorApiConfiguration.class, ContentValidatorApiConfiguration.class};
 	}
 
 	@Override

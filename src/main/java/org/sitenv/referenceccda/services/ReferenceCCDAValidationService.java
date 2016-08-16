@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
-import org.sitenv.referenceccda.validators.content.CCDAParser;
 import org.sitenv.referenceccda.validators.content.ReferenceContentValidator;
 import org.sitenv.referenceccda.validators.schema.CCDAIssueStates;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
@@ -23,9 +22,7 @@ import java.util.List;
 
 @Service
 public class ReferenceCCDAValidationService {
-	
-	private static Logger log = Logger.getLogger(CCDAParser.class.getName());
-
+	private static Logger log = Logger.getLogger(ReferenceCCDAValidationService.class.getName());
     private ReferenceCCDAValidator referenceCCDAValidator;
     private VocabularyCCDAValidator vocabularyCCDAValidator;
     private ReferenceContentValidator goldMatchingValidator;
