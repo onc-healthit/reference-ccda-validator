@@ -10,7 +10,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { MvcConfiguration.class, CodeValidatorApiConfiguration.class, ContentValidatorApiConfiguration.class};
+		return new Class<?>[] { MvcConfiguration.class, CodeValidatorApiConfiguration.class, ContentValidatorApiConfiguration.class, SwaggerConfig.class};
 	}
 
 	@Override
