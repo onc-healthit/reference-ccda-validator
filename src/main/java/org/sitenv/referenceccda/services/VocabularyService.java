@@ -1,22 +1,28 @@
 package org.sitenv.referenceccda.services;
 
+import org.sitenv.referenceccda.controllers.wrappers.GithubResponseWrapper;
+import org.sitenv.referenceccda.controllers.wrappers.TestDataTreeWrapper;
 import org.sitenv.vocabularies.validation.entities.Code;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyCodeService;
 import org.sitenv.vocabularies.validation.services.VocabularyValuesetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Brian on 2/23/2016.
  */
 @Service
 public class VocabularyService {
-    VocabularyValuesetService vocabularyValuesetService;
-    VocabularyCodeService vocabularyCodeService;
+    private VocabularyValuesetService vocabularyValuesetService;
+    private VocabularyCodeService vocabularyCodeService;
+    private static final String GITHUB_URL = "https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/git/trees/master?recursive=1";
 
     @Autowired
     public VocabularyService(VocabularyValuesetService vocabularyValuesetService, VocabularyCodeService vocabularyCodeService) {
@@ -42,5 +48,47 @@ public class VocabularyService {
 
     public List<Code> getByCodeInCodesystems(String code, List<String> codeSystems){
         return vocabularyCodeService.getByCodeInCodeSystems(code, codeSystems);
+    }
+
+    public Map<String, Map<String, List<String>>> getMapOfSenderAndRecieverValidationObjectivesWithReferenceFiles(){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<GithubResponseWrapper> responseEntity = restTemplate.exchange(GITHUB_URL, HttpMethod.GET, null, new ParameterizedTypeReference<GithubResponseWrapper>() {
+        });
+
+        Map<String, Map<String, List<String>>> messageTypeValidationObjectiveReferenceFilesMap = new HashMap<>();
+        for(TestDataTreeWrapper testDataTreeWrapper : responseEntity.getBody().getTestDataTrees()){
+            if(!(testDataTreeWrapper.getPath().equalsIgnoreCase("license") || testDataTreeWrapper.getPath().equalsIgnoreCase("README.md"))){
+                if(isMessageTypeInMap(messageTypeValidationObjectiveReferenceFilesMap, testDataTreeWrapper)){
+                    if(isValidationObjectiveInMap(messageTypeValidationObjectiveReferenceFilesMap, testDataTreeWrapper)){
+                        addReferenceFileNameToListInValidationObjectiveMap(messageTypeValidationObjectiveReferenceFilesMap, testDataTreeWrapper);
+                    }else{
+                        addValidationObjectiveToMap(messageTypeValidationObjectiveReferenceFilesMap, testDataTreeWrapper);
+                    }
+                }else{
+                    addMessageTypeToMap(messageTypeValidationObjectiveReferenceFilesMap, testDataTreeWrapper);
+                }
+            }
+        }
+        return messageTypeValidationObjectiveReferenceFilesMap;
+    }
+
+    private void addReferenceFileNameToListInValidationObjectiveMap(Map<String, Map<String, List<String>>> messageTypeValidationObjectiveReferenceFilesMap, TestDataTreeWrapper testDataTreeWrapper) {
+        messageTypeValidationObjectiveReferenceFilesMap.get(testDataTreeWrapper.getMessageType()).get(testDataTreeWrapper.getValidationObjective()).add(testDataTreeWrapper.getReferenceFileName());
+    }
+
+    private void addValidationObjectiveToMap(Map<String, Map<String, List<String>>> messageTypeValidationObjectiveReferenceFilesMap, TestDataTreeWrapper testDataTreeWrapper) {
+        messageTypeValidationObjectiveReferenceFilesMap.get(testDataTreeWrapper.getMessageType()).put(testDataTreeWrapper.getValidationObjective(), new ArrayList<String>());
+    }
+
+    private boolean isValidationObjectiveInMap(Map<String, Map<String, List<String>>> messageTypeValidationObjectiveReferenceFilesMap, TestDataTreeWrapper testDataTreeWrapper) {
+        return messageTypeValidationObjectiveReferenceFilesMap.get(testDataTreeWrapper.getMessageType()).containsKey(testDataTreeWrapper.getValidationObjective());
+    }
+
+    private void addMessageTypeToMap(Map<String, Map<String, List<String>>> messageTypeValidationObjectiveReferenceFilesMap, TestDataTreeWrapper testDataTreeWrapper) {
+        messageTypeValidationObjectiveReferenceFilesMap.put(testDataTreeWrapper.getMessageType(), new HashMap<String, List<String>>());
+    }
+
+    private boolean isMessageTypeInMap(Map<String, Map<String, List<String>>> messageTypeValidationObjectiveReferenceFilesMap, TestDataTreeWrapper testDataTreeWrapper) {
+        return messageTypeValidationObjectiveReferenceFilesMap.containsKey(testDataTreeWrapper.getMessageType());
     }
 }
