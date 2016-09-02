@@ -1,4 +1,4 @@
-package org.sitenv.referenceccda.controllers.wrappers;
+package org.sitenv.referenceccda.services.wrappers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,7 +16,7 @@ public class GithubResponseWrapper {
     @JsonProperty("url")
     private String url;
     @JsonProperty("tree")
-    private List<TestDataTreeWrapper> testDataTrees;
+    private List<TestDataTreeWrapper> tree;
 
     public String getSha() {
         return sha;
@@ -34,13 +34,11 @@ public class GithubResponseWrapper {
         this.url = url;
     }
 
-    public List<TestDataTreeWrapper> getTestDataTrees() {
-        return testDataTrees;
+    public List<TestDataTreeWrapper> getTree() {
+        return tree;
     }
 
-    public void setTestDataTrees(List<TestDataTreeWrapper> testDataTrees) {
-        this.testDataTrees = testDataTrees;
+    public void setTree(List<TestDataTreeWrapper> tree) {
+        this.tree = tree;
     }
-
-
 }

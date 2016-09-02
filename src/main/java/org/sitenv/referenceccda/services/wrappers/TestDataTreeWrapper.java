@@ -1,4 +1,4 @@
-package org.sitenv.referenceccda.controllers.wrappers;
+package org.sitenv.referenceccda.services.wrappers;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

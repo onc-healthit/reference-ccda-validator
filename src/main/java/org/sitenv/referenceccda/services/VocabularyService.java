@@ -1,7 +1,7 @@
 package org.sitenv.referenceccda.services;
 
-import org.sitenv.referenceccda.controllers.wrappers.GithubResponseWrapper;
-import org.sitenv.referenceccda.controllers.wrappers.TestDataTreeWrapper;
+import org.sitenv.referenceccda.services.wrappers.GithubResponseWrapper;
+import org.sitenv.referenceccda.services.wrappers.TestDataTreeWrapper;
 import org.sitenv.vocabularies.validation.entities.Code;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyCodeService;
@@ -56,7 +56,7 @@ public class VocabularyService {
         });
 
         Map<String, Map<String, List<String>>> messageTypeValidationObjectiveReferenceFilesMap = new HashMap<>();
-        for(TestDataTreeWrapper testDataTreeWrapper : responseEntity.getBody().getTestDataTrees()){
+        for(TestDataTreeWrapper testDataTreeWrapper : responseEntity.getBody().getTree()){
             if(!(testDataTreeWrapper.getPath().equalsIgnoreCase("license") || testDataTreeWrapper.getPath().equalsIgnoreCase("README.md"))){
                 if(isMessageTypeInMap(messageTypeValidationObjectiveReferenceFilesMap, testDataTreeWrapper)){
                     if(isValidationObjectiveInMap(messageTypeValidationObjectiveReferenceFilesMap, testDataTreeWrapper)){
