@@ -5,7 +5,6 @@
 angular.module('referenceValidator').factory('ValidatorService', ['$http', '$q', function($http, $q){
 
     var factory = {
-        validate: validate
     };
     return factory;
 
