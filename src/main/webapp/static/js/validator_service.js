@@ -5,14 +5,9 @@
 angular.module('referenceValidator').factory('ValidatorService', ['$http', '$q', function($http, $q){
 
     var factory = {
-        validate: validate,
-        senderRecieverValidationObjectives: senderRecieverValidationObjectives
+        validate: validate
     };
     return factory;
-
-    function validate(validationModel) {
-       alert("Im gonna validate! " + validationModel.objective + ' and ' + validationModel.referenceFileName);
-    }
 
     function senderRecieverValidationObjectives(){
         return $http.get('senderreceivervalidationobjectivesandreferencefiles').data;
