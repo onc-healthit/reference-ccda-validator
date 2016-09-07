@@ -42,7 +42,9 @@ public class ReferenceCCDAValidationService {
         try {
             validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile);
             resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
-        } catch (SAXException e) {
+            resultsMetaData.setCcdaFileName(ccdaFile.getName());
+            resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
+        } catch (SAXException | IOException e) {
             resultsMetaData.setServiceError(true);
             resultsMetaData.setServiceErrorMessage(e.getMessage());
             resultsMetaData.setCcdaDocumentType(validationObjective);

@@ -13,6 +13,8 @@ public class ValidationResultsMetaData {
 	private String ccdaDocumentType;
 	private boolean serviceError;
 	private String serviceErrorMessage;
+	private String ccdaFileName;
+	private String ccdaFileContents;
 	private final Map<String, AtomicInteger> errorCounts = new LinkedHashMap<String, AtomicInteger>();
 	private List<ResultMetaData> resultMetaData;
 
@@ -52,6 +54,22 @@ public class ValidationResultsMetaData {
 			resultMetaData.add(new ResultMetaData(entry.getKey(), entry.getValue().intValue()));
 		}
 		return resultMetaData;
+	}
+
+	public String getCcdaFileName() {
+		return ccdaFileName;
+	}
+
+	public void setCcdaFileName(String ccdaFileName) {
+		this.ccdaFileName = ccdaFileName;
+	}
+
+	public String getCcdaFileContents() {
+		return ccdaFileContents;
+	}
+
+	public void setCcdaFileContents(String ccdaFileContents) {
+		this.ccdaFileContents = ccdaFileContents;
 	}
 
 	public void addCount(ValidationResultType resultType) {

@@ -29,6 +29,7 @@ public class ReferenceCCDAValidationController {
 
 	private static final String GITHUB_URL = "https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/git/trees/master?recursive=1";
 
+	@CrossOrigin
 	@RequestMapping(value = "/", headers = "content-type=multipart/*", method = RequestMethod.POST)
 	public ValidationResultsDto doValidation(
 			@RequestParam(value = "validationObjective", required = true) String validationObjective,
