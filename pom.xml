@@ -279,21 +279,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <webResources>
-                        <resource>
-                            <directory>src/main/webapp/META-INF</directory>
-                            <filtering>true</filtering>
-                            <targetPath>META-INF</targetPath>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
@@ -349,39 +334,84 @@
     <profiles>
         <profile>
             <id>local</id>
-            <properties>
-                <tomcat-server>localhost</tomcat-server>
-                <tomcat-url>http://localhost:8070/manager/text</tomcat-url>
-                <vocabulary.localCodeRepositoryDir>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary\code_repository\</vocabulary.localCodeRepositoryDir>
-                <vocabulary.localValueSetRepositoryDir>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary\valueset_repository\</vocabulary.localValueSetRepositoryDir>
-                <content.scenariosDir>E:\Brian\Development\Environment\VocabularyConfiguration\scenarios\</content.scenariosDir>
-                <referenceccda.configFile>E:\Brian\Development\Environment\VocabularyConfiguration\ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                            <filters>
+                                <filter>src/main/profiles/local/environment.properties</filter>
+                            </filters>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/webapp/META-INF</directory>
+                                    <filtering>true</filtering>
+                                    <targetPath>META-INF</targetPath>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>test</id>
-            <properties>
-                <tomcat-server>test</tomcat-server>
-                <tomcat-url>https://devccda.sitenv.org/manager/text</tomcat-url>
-                <vocabulary.localCodeRepositoryDir>/var/opt/sitenv/code_repository/</vocabulary.localCodeRepositoryDir>
-                <vocabulary.localValueSetRepositoryDir>/var/opt/sitenv/valueset_repository/</vocabulary.localValueSetRepositoryDir>
-                <content.scenariosDir>/var/opt/sitenv/scenarios/</content.scenariosDir>
-                <referenceccda.configFile>/var/opt/sitenv/config/ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                            <filters>
+                                <filter>src/main/profiles/test/environment.properties</filter>
+                            </filters>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/webapp/META-INF</directory>
+                                    <filtering>true</filtering>
+                                    <targetPath>META-INF</targetPath>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>prod</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <tomcat-server>prod</tomcat-server>
-                <tomcat-url>http://prodccda.sitenv.org/manager/text</tomcat-url>
-                <vocabulary.localCodeRepositoryDir>/var/opt/sitenv/code_repository/</vocabulary.localCodeRepositoryDir>
-                <vocabulary.localValueSetRepositoryDir>/var/opt/sitenv/valueset_repository/</vocabulary.localValueSetRepositoryDir>
-                <content.scenariosDir>/var/opt/sitenv/scenarios/</content.scenariosDir>
-                <referenceccda.configFile>/var/opt/sitenv/config/ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                            <filters>
+                                <filter>src/main/profiles/prod/environment.properties</filter>
+                            </filters>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/webapp/META-INF</directory>
+                                    <filtering>true</filtering>
+                                    <targetPath>META-INF</targetPath>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
