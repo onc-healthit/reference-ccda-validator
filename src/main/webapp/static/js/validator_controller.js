@@ -1,11 +1,8 @@
 'use strict';
 
-angular.module('referenceValidator').controller('ValidationController', ['$scope', '$http', 'Upload', 'ValidatorService', function($scope, $http, Upload, ValidatorService) {
+angular.module('referenceValidator').controller('ValidationController', function($scope, $http, Upload, ValidatorService, blockUI) {
     var senderGitHubUrl = 'https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/contents/Sender SUT Test Data';
     var receiverGitHubUrl = 'https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/contents/Receiver SUT Test Data';
-    var ccdaErrorCount;
-    var ccdaWarningCount;
-    var ccdaInfoCount;
     var validationError;
     var self = this;
     self.senderRecieverValidationObjectives = [];
@@ -17,7 +14,9 @@ angular.module('referenceValidator').controller('ValidationController', ['$scope
 
     function validate(){
         if ($scope.validationModel.file) {
+            blockUI.start('VALIDATING...');
             uploadFile($scope.validationModel.file);
+            blockUI.stop();
         }
     }
 
@@ -411,4 +410,4 @@ angular.module('referenceValidator').controller('ValidationController', ['$scope
             $("#CCDAR2_refdocsfordocumenttype option").remove();
         }
     }
-}]);
+});
