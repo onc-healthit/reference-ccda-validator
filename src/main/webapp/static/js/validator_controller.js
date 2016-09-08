@@ -5,16 +5,17 @@ angular.module('referenceValidator').controller('ValidationController', function
     var receiverGitHubUrl = 'https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/contents/Receiver SUT Test Data';
     var validationError;
     var self = this;
-    self.senderRecieverValidationObjectives = [];
-    self.validationModel = {objective:'', referenceFileName:'', file:''};
+    self.validationModel = {selectedObjective:'', selectedReferenceFileName:'', file:''};
     self.toggleMessageType = toggleMessageType;
     self.getReferenceFiles = getReferenceFiles;
     self.validate = validate;
     $scope.radioModel = 'sender';
+    $scope.objectives = [];
+    $scope.referenceFileNames = [];
 
     function validate(){
         if ($scope.validationModel.file) {
-            blockUI.start('VALIDATING...');
+            blockUI.start();
             uploadFile($scope.validationModel.file);
             blockUI.stop();
         }
@@ -23,7 +24,7 @@ angular.module('referenceValidator').controller('ValidationController', function
     function uploadFile(file) {
         Upload.upload({
             url: '/referenceccdaservice/',
-            fields: {'validationObjective': $scope.validationModel.objective, 'referenceFileName': $scope.validationModel.referenceFileName, 'ccdaFile': file}
+            fields: {'validationObjective': $scope.validationModel.selectedObjective.name, 'referenceFileName': $scope.validationModel.selectedReferenceFileName.name, 'ccdaFile': file}
         }).then(function (resp) {
             console.log('Success ' + 'uploaded. Response: ' + resp.data);
             showValidationResults(resp.data)
@@ -249,16 +250,6 @@ angular.module('referenceValidator').controller('ValidationController', function
         }
     }
 
-    /* function getSelectedDocumentType(data){
-     var docTypeSelected = '';
-     if(data.result.body.ccdaResults != undefined){
-     docTypeSelected =  data.result.body.ccdaResults.report.docTypeSelected;
-     }else{
-     docTypeSelected =  data.result.body.resultsMetaData.ccdaDocumentType
-     }
-     return docTypeSelected;
-     }
-     */
     function highlightCcdaXMLResults(resultsMap){
         if($.map(resultsMap, function(n, i) { return i; }).length > 0){
             for (var resultLineNumber in resultsMap){
@@ -333,30 +324,7 @@ angular.module('referenceValidator').controller('ValidationController', function
         $("div[class$='Highlight']").attr('tabindex', '0');
     }
 
-    function toggleMessageType(){
-        if($scope.radioModel == 'sender'){
-            getTestDocuments(senderGitHubUrl);
-        }else{
-            getTestDocuments(receiverGitHubUrl);
-        }
-    }
 
-    function getTestDocuments(endpointToDocuments){
-        $("#CCDAR2_refdocsfordocumenttype").find("option").remove();
-        $("#validation_objectives option").remove().append(
-            $http.get(endpointToDocuments).then(function(data){
-                angular.forEach(data.data, function(item){
-                    $("#validation_objectives").append(
-                        $("<option></option>")
-                            .text(item.name)
-                            .val(item.url));
-                });
-            }));
-        $("#validation_objectives").prepend(
-            $("<option></option>")
-                .text('-- select one ---')
-                .val(''));
-    }
 
     $('#resultModal').on('click', '.glyphicon-arrow-down', function(){
         var $elem = jQuery(this).parent().parent().nextAll('.ccdaErrorHighlight, .ccdaWarningHighlight, .ccdaInfoHighlight').first();
@@ -385,29 +353,40 @@ angular.module('referenceValidator').controller('ValidationController', function
         }
     });
 
-    function getReferenceFiles(){
-        if($scope.validationModel.objective != ''){
-            $.getJSON($scope.validationModel.objective + '&callback=?', function(data){
-                $("#CCDAR2_refdocsfordocumenttype option").remove();
-                $("#CCDAR2_refdocsfordocumenttype").append(
-                    $("<option></option>")
-                        .text('-- select one ---')
-                        .val(''));
-                $.each(data.data, function(index, item){
-                    var optionText = item.name;
-                    var documentDownloadUrl = item.html_url;
-                    $("#CCDAR2_refdocsfordocumenttype").append(
-                        $("<option></option>")
-                            .text(optionText)
-                            .val(optionText));
-                });
-                $("#CCDAR2_refdocsfordocumenttype").append(
-                    $("<option></option>")
-                        .text('No Scenario File')
-                        .val('noscenariofile'));
-            });
+    function toggleMessageType(){
+        $scope.objectives = [];
+        $scope.referenceFileNames = [];
+        if($scope.radioModel == 'sender'){
+            getTestDocuments(senderGitHubUrl);
         }else{
-            $("#CCDAR2_refdocsfordocumenttype option").remove();
+            getTestDocuments(receiverGitHubUrl);
+        }
+    }
+
+    function getTestDocuments(endpointToDocuments){
+        $scope.objectives = [];
+        $scope.referenceFileNames = [];
+        $http.get(endpointToDocuments).then(function(data){
+            angular.forEach(data.data, function(item){
+                var objective = new Object();
+                objective.name = item.name;
+                objective.url = item.url;
+                $scope.objectives.push(objective);
+            });
+        });
+    }
+
+    function getReferenceFiles(){
+        $scope.referenceFileNames = [];
+        if($scope.validationModel.selectedObjective != undefined){
+            $http.get($scope.validationModel.selectedObjective.url).then(function(data){
+                angular.forEach(data.data, function(item){
+                    var referenceFileName = new Object();
+                    referenceFileName.name = item.name;
+                    referenceFileName.url = item.url;
+                    $scope.referenceFileNames.push(referenceFileName);
+                });
+            });
         }
     }
 });

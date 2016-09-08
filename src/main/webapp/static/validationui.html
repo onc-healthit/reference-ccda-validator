@@ -21,18 +21,18 @@
             </li>
             <li>Select ONC 2015 Edition S&CC objective or other C-CDA IG conformance criteria from the list below.
                 <div class="form-group">
-                    <select id="validation_objectives" name="validation_objectives" class="form-control" tabindex="1" ng-model="validationModel.objective" ng-change="vCtrl.getReferenceFiles()" required></select>
+                    <select id="validation_objectives" name="validation_objectives" class="form-control" tabindex="1" ng-model="validationModel.selectedObjective" ng-options="objective.name for objective in objectives track by objective.url" ng-change="vCtrl.getReferenceFiles()" required></select>
                 </div>
             </li>
             <li>Select the scenario file that you used to generate the C-CDA, if you are testing a C-CDA generated without using any of the scenario files in the drop down, select "No scenario File".
                 <div class="form-group">
-                    <select id="CCDAR2_refdocsfordocumenttype" name="CCDAR2_refdocsfordocumenttype" class="form-control" tabindex="1" ng-model="validationModel.referenceFileName" required></select>
+                    <select id="CCDAR2_refdocsfordocumenttype" name="CCDAR2_refdocsfordocumenttype" class="form-control" tabindex="1" ng-model="validationModel.selectedReferenceFileName" ng-options="referenceFileName.name for referenceFileName in referenceFileNames track by referenceFileName.url" required></select>
                 </div>
             </li>
             <li>Upload generated C-CDA file to validate.
                 <div class="btn btn-primary start" ngf-select ng-model="validationModel.file" name="file">Select</div>
             </li>
-            <li>Validate.
+            <li>Validate {{validationModel.file.name}}
                 <div>
                     <button id="CCDAR2_0FormSubmit"
                             class="btn btn-primary start" tabindex="1" ng-disabled="validationForm.$invalid" ng-click="vCtrl.validate()">
