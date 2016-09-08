@@ -332,9 +332,8 @@
                             </filters>
                             <webResources>
                                 <resource>
-                                    <directory>src/main/webapp/META-INF</directory>
+                                    <directory>src/main/webapp</directory>
                                     <filtering>true</filtering>
-                                    <targetPath>META-INF</targetPath>
                                 </resource>
                             </webResources>
                         </configuration>
@@ -358,9 +357,8 @@
                             </filters>
                             <webResources>
                                 <resource>
-                                    <directory>src/main/webapp/META-INF</directory>
+                                    <directory>src/main/webapp</directory>
                                     <filtering>true</filtering>
-                                    <targetPath>META-INF</targetPath>
                                 </resource>
                             </webResources>
                         </configuration>
@@ -387,9 +385,8 @@
                             </filters>
                             <webResources>
                                 <resource>
-                                    <directory>src/main/webapp/META-INF</directory>
+                                    <directory>src/main/webapp</directory>
                                     <filtering>true</filtering>
-                                    <targetPath>META-INF</targetPath>
                                 </resource>
                             </webResources>
                         </configuration>
