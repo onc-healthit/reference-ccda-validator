@@ -158,13 +158,13 @@ public class XPathIndexer implements ContentHandler {
 			elementEntry = elementEntry.elementParent;
 		}
 
-		String result = "";
+		StringBuilder result = new StringBuilder();
 
 		while (!path.isEmpty()) {
-			result += path.pop();
+			result.append(path.pop());
 		}
 
-		return result;
+		return result.toString();
 	}
 
 	public void ignorableWhitespace(char[] text, int start, int length) throws SAXException {

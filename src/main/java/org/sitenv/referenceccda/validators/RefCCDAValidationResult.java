@@ -31,16 +31,6 @@ public class RefCCDAValidationResult {
         this.isSchemaError = builder.isSchemaError;
         this.isDataTypeSchemaError = builder.isDataTypeSchemaError;
     }
-	
-	public RefCCDAValidationResult(String desc, ValidationResultType t, String xpath, String linenum) {
-		description = desc;
-		type = t;
-		xPath = xpath;
-		validatorConfiguredXpath = xpath;
-		documentLineNumber = linenum;
-		isSchemaError = false;
-		isDataTypeSchemaError = false;
-	}
 
     public String getDescription() {
         return description;

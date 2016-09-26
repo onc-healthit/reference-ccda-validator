@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
-import org.sitenv.referenceccda.validators.content.CCDAParser;
 import org.sitenv.referenceccda.validators.content.ReferenceContentValidator;
 import org.sitenv.referenceccda.validators.schema.CCDAIssueStates;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
@@ -23,9 +22,7 @@ import java.util.List;
 
 @Service
 public class ReferenceCCDAValidationService {
-	
-	private static Logger log = Logger.getLogger(CCDAParser.class.getName());
-
+	private static Logger log = Logger.getLogger(ReferenceCCDAValidationService.class.getName());
     private ReferenceCCDAValidator referenceCCDAValidator;
     private VocabularyCCDAValidator vocabularyCCDAValidator;
     private ReferenceContentValidator goldMatchingValidator;
@@ -45,7 +42,9 @@ public class ReferenceCCDAValidationService {
         try {
             validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile);
             resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
-        } catch (SAXException e) {
+            resultsMetaData.setCcdaFileName(ccdaFile.getName());
+            resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
+        } catch (SAXException | IOException e) {
             resultsMetaData.setServiceError(true);
             resultsMetaData.setServiceErrorMessage(e.getMessage());
             resultsMetaData.setCcdaDocumentType(validationObjective);
@@ -58,21 +57,16 @@ public class ReferenceCCDAValidationService {
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
                                                         MultipartFile ccdaFile) throws SAXException {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
-        List<RefCCDAValidationResult> mdhtResults = new ArrayList<>();
-        List<RefCCDAValidationResult> vocabResults = new ArrayList<>();
-        List<RefCCDAValidationResult> contentResults = new ArrayList<>();
-        
-        String ccdaFileContents;
         try {
-            ccdaFileContents = IOUtils.toString(new BOMInputStream(ccdaFile.getInputStream()));
-            
-            mdhtResults = doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents);
+            String ccdaFileContents = IOUtils.toString(new BOMInputStream(ccdaFile.getInputStream()));
+
+            List<RefCCDAValidationResult> mdhtResults = doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents);
             if(mdhtResults != null && !mdhtResults.isEmpty())
             	validatorResults.addAll(mdhtResults);
             
             if (shouldRunVocabularyValidation()) {
-            	
-            	vocabResults = DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents);
+
+                List<RefCCDAValidationResult> vocabResults = DoVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents);
             	
             	if(vocabResults != null && !vocabResults.isEmpty())
                 	validatorResults.addAll(vocabResults);
@@ -82,7 +76,7 @@ public class ReferenceCCDAValidationService {
             if(shouldRunContentValidation()) {
             	
             	log.info("Running Content validation");
-            	contentResults = doContentValidation(validationObjective, referenceFileName, ccdaFileContents);
+                List<RefCCDAValidationResult> contentResults = doContentValidation(validationObjective, referenceFileName, ccdaFileContents);
             	
             	if(contentResults != null && !contentResults.isEmpty()) {
             		

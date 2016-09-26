@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -26,37 +26,37 @@
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-            <version>3.0.0.201607250501</version>
+            <version>3.0.0.201608160501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <version>2.5.16.20160725</version>
+            <version>2.5.17.20160816</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>3.0.0.201607250501</version>
+            <version>3.0.0.201608160501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-            <version>3.0.0.201607250501</version>
+            <version>3.0.0.201608160501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-            <version>3.0.0.201607250501</version>
+            <version>3.0.0.201608160501</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-            <version>3.0.0.201607250501</version>
+            <version>3.0.0.201608160501</version>
         </dependency>
 
         <!-- 3rd party MDHT dependencies -->
@@ -120,9 +120,17 @@
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.4</version>
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
+
+        <!-- START CONTENT DEPENDENCIES -->
+        <dependency>
+            <groupId>org.sitenv</groupId>
+            <artifactId>contentvalidator-api</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- END CONTENT DEPENDENCIES -->
 
         <!-- Core utilities used by other modules. Define this if you use Spring
             Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
@@ -158,6 +166,16 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.5.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -232,7 +250,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
-                <version>4.1.7.RELEASE</version>
+                <version>4.2.4.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -260,38 +278,7 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <webResources>
-                        <resource>
-                            <directory>src/main/webapp/META-INF</directory>
-                            <filtering>true</filtering>
-                            <targetPath>META-INF</targetPath>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.5.3</version>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/java/org/sitenv/referenceccda/assembly/referenceccdaapi.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -331,36 +318,116 @@
     <profiles>
         <profile>
             <id>local</id>
-            <properties>
-                <tomcat-server>localhost</tomcat-server>
-                <tomcat-url>http://localhost:8070/manager/text</tomcat-url>
-                <vocabulary.localCodeRepositoryDir>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary\code_repository\</vocabulary.localCodeRepositoryDir>
-                <vocabulary.localValueSetRepositoryDir>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary\valueset_repository\</vocabulary.localValueSetRepositoryDir>
-                <referenceccda.configFile>E:\Brian\Development\Environment\VocabularyConfiguration\ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                            <filters>
+                                <filter>src/main/profiles/local/environment.properties</filter>
+                            </filters>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/webapp</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>test</id>
-            <properties>
-                <tomcat-server>test</tomcat-server>
-                <tomcat-url>https://devccda.sitenv.org/manager/text</tomcat-url>
-                <vocabulary.localCodeRepositoryDir>/var/opt/sitenv/code_repository/</vocabulary.localCodeRepositoryDir>
-                <vocabulary.localValueSetRepositoryDir>/var/opt/sitenv/valueset_repository/</vocabulary.localValueSetRepositoryDir>
-                <referenceccda.configFile>/var/opt/sitenv/config/ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                            <filters>
+                                <filter>src/main/profiles/test/environment.properties</filter>
+                            </filters>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/webapp</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
         <profile>
             <id>prod</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <tomcat-server>prod</tomcat-server>
-                <tomcat-url>http://prodccda.sitenv.org/manager/text</tomcat-url>
-                <vocabulary.localCodeRepositoryDir>/var/opt/sitenv/code_repository/</vocabulary.localCodeRepositoryDir>
-                <vocabulary.localValueSetRepositoryDir>/var/opt/sitenv/valueset_repository/</vocabulary.localValueSetRepositoryDir>
-                <referenceccda.configFile>/var/opt/sitenv/config/ccdaReferenceValidatorConfig.xml</referenceccda.configFile>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                            <filters>
+                                <filter>src/main/profiles/prod/environment.properties</filter>
+                            </filters>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/webapp</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- This profile will build a zip file of the war and all of the necessary artifacts to deploy the validator. -->
+            <id>distribution</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>2.5.3</version>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/java/org/sitenv/referenceccda/assembly/referenceccdaapi.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
+                           <packagingExcludes>**/context.xml</packagingExcludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
