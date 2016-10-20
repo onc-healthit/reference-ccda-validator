@@ -34,6 +34,7 @@ Vocabulary Artifacts
        a. /path/to/validatorconfiguration/vocabulary/code_repository
        b. /path/to/validatorconfiguration/vocabulary/valueset_repository/VSAC
        c. /path/to/validatorconfiguration/scenarios
+
 >     NOTE: Code systems and valuesets are externally published and this project does **NOT** come packaged with any of these files.
 >     code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
 >     value set - selects a set of codes from those defined by one or more code systems
@@ -49,17 +50,18 @@ Server Configuration
 
     1. Place a copy of referenceccdaservice.xml in $CATALINA_BASE/conf/[enginename]/[hostname]/. For example, ~/apache-tomcat-7.0.57/conf/Catalina/localhost
     2. Edit the referenceccdaservice.xml key values to point to the locations configured in the previous steps. For example;
-            Context reloadable="true">
-                <Parameter name="vocabulary.localCodeRepositoryDir" value="E:/Development/Environment/VocabularyConfiguration/Vocabulary/code_repository" override="true"/>
-            	<Parameter name="vocabulary.localValueSetRepositoryDir" value="E:/Development/Environment/VocabularyConfiguration/Vocabulary/valueset_repository" override="true"/>
-            	<Parameter name="referenceccda.configFile" value="E:/Development/Environment/VocabularyConfiguration/ccdaReferenceValidatorConfig.xml" override="true"/>
-            </Context>
+            <Context reloadable="true">
+                <Parameter name="vocabulary.localCodeRepositoryDir" value="path/to/your/code_repository" override="true"/>
+                <Parameter name="vocabulary.localValueSetRepositoryDir" value="path/to/your/valueset_repository" override="true"/>
+                <Parameter name="referenceccda.configFile" value="path/to/your/ccdaReferenceValidatorConfig.xml" override="true"/>
+                <Parameter name="content.scenariosDir" value="path/to/your/scenarion_directory" override="true"/>
+             </Context>
 
 **3. Run the application**
 
     1. Start your tomcat instance - you should see output showing the databases getting initialized and the .war file getting deployed.
     NOTE: Allow a few moments for the vocabulary valuesets and codes to be inserted into the in-memory database.
     2. Access the endpoint. For example, localhost:8080/referenceccdaservice/
-    3. For convenience, API documentation and a validation UI is included.
-    API documentation - /referenceccdaservice/swagger-ui.html
-    UI - referenceccdaservice/ui
+    3. For convenience, API documentation and a validation UI is included:
+        API documentation - /referenceccdaservice/swagger-ui.html
+        UI - referenceccdaservice/ui
