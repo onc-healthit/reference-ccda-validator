@@ -1,1 +1,0 @@
-mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=D:\MDHT\7_7\org.openhealthtools.mdht.uml.hl7.rim-2.5.4.201507022155.jar -DgroupId=org.mdht.dependencies -DartifactId=org.openhealthtools.mdht.uml.hl7.rim -Dversion=2.5.4.201507022155
