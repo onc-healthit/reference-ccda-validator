@@ -1,0 +1,1 @@
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=C:\NIST\09_26_2016\runtime\mdht\org.openhealthtools.mdht.uml.cda.consol2-2.5.17.20160816.jar -DgroupId=org.mdht.dependencies -DartifactId=org.openhealthtools.mdht.uml.cda.consol2 -Dversion=2.5.17.20160816

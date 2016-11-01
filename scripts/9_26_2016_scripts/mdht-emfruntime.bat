@@ -1,0 +1,1 @@
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=C:\NIST\09_26_2016\runtime\mdht\org.eclipse.mdht.emf.runtime-3.0.0.201608160501.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.mdht.emf.runtime -Dversion=3.0.0.201608160501
