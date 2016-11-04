@@ -1434,7 +1434,7 @@
 		<validator>
 			<name>CodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedCodesystemNames>CDT,SNOMED-CT</allowedCodesystemNames><!-- need to add CPT-4 and HCPS -->
 		</validator>
