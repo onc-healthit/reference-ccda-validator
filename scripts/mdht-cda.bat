@@ -1,1 +1,1 @@
-mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=C:\NIST\10_31_2016\runtime\mdht\org.eclipse.mdht.uml.cda-3.0.0.201610260501.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.mdht.uml.cda -Dversion=3.0.0.201610260501
+mvn install:install-file -DlocalRepositoryPath=mdht-vocab-repo -DcreateChecksum=true -Dpackaging=jar -Dfile=C:\NIST\11_4_2016\runtime\mdht\org.eclipse.mdht.uml.cda-3.0.0.201611020501.jar -DgroupId=org.mdht.dependencies -DartifactId=org.eclipse.mdht.uml.cda -Dversion=3.0.0.201611020501
