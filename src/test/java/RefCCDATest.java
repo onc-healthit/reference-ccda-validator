@@ -1,7 +1,6 @@
 import org.junit.Test;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
-import org.sitenv.referenceccda.validators.schema.CCDAIssueStates;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.xml.sax.SAXException;
 
@@ -11,6 +10,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -60,7 +60,7 @@ public class RefCCDATest {
 		// global result
 		assertTrue(
 				"The document has a schema error yet the flag is set to false",
-				CCDAIssueStates.hasSchemaError());
+				mdhtResultsHaveSchemaError(results));
 		// and for sanity, check the single results as well
 		boolean schemaErrorInSingleResultFound = false;
 		for (RefCCDAValidationResult result : results)
@@ -77,7 +77,7 @@ public class RefCCDATest {
 		// global result
 		assertFalse(
 				"The document does not have schema error yet the flag is set to true",
-				CCDAIssueStates.hasSchemaError());
+				mdhtResultsHaveSchemaError(results));
 		// and for sanity, check the single results as well
 		boolean schemaErrorInSingleResultFound = false;
 		for (RefCCDAValidationResult result : results)
@@ -102,17 +102,17 @@ public class RefCCDATest {
 			System.out
 					.println(System.lineSeparator()
 							+ "CCDAIssueStates.hasSchemaError(): "
-							+ CCDAIssueStates.hasSchemaError()
+							+ mdhtResultsHaveSchemaError(results)
 							+ System.lineSeparator());
 			if (curCCDAFileIndex == 0
 					|| curCCDAFileIndex == LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX) {
 				assertFalse(
 						"The document does not have schema error yet the flag is set to true",
-						CCDAIssueStates.hasSchemaError());
+						mdhtResultsHaveSchemaError(results));
 			} else {
 				assertTrue(
 						"The document has a schema error yet the flag is set to false",
-						CCDAIssueStates.hasSchemaError());
+						mdhtResultsHaveSchemaError(results));
 			}
 
 			for (RefCCDAValidationResult result : results) {
@@ -174,6 +174,15 @@ public class RefCCDATest {
 		System.out.println("result.isDataTypeSchemaError() : "
 				+ result.isDataTypeSchemaError());
 		System.out.println();
+	}
+
+	private boolean mdhtResultsHaveSchemaError(List<RefCCDAValidationResult> mdhtResults) {
+		for(RefCCDAValidationResult result : mdhtResults){
+			if(result.isSchemaError()){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

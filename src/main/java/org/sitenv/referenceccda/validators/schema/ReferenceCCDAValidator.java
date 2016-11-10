@@ -22,8 +22,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.sitenv.referenceccda.validators.schema.CCDAIssueStates.*;
-
 @Component
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
 
@@ -58,7 +56,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private ArrayList<RefCCDAValidationResult> processValidationResults(final XPathIndexer xpathIndexer,
 			ValidationResult result) {
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
-		CCDAIssueStates.resetHasSchemaError();
+		//CCDAIssueStates.resetHasSchemaError();
 		for (Diagnostic diagnostic : result.getErrorDiagnostics()) {
 			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR));
 		}
@@ -75,28 +73,28 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 
 	private RefCCDAValidationResult buildValidationResult(Diagnostic diagnostic, XPathIndexer xPathIndexer,
 			ValidationResultType resultType) {
+		boolean isResultIGIssue = false;
+		boolean isResultMUIssue = false;
+		boolean isResultSchemaError = false;
+		boolean isResultDataTypeSchemaError = false;
+		boolean isDocumentSchemaError = false;
 		CDADiagnostic diag = new CDADiagnostic(diagnostic);
 		String lineNumber = getLineNumberInXMLUsingXpath(xPathIndexer, diagnostic);
 		if(resultType == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR) {
-			setIssueType(diag);
-		}
-		return createNewValidationResult(diag, resultType, lineNumber);
-	}
-	
-	private void setIssueType(CDADiagnostic cDiag) {
-		resetUniqueResultValues();
-		if (cDiag.getSource() != null) {
-			if (cDiag.getSource().contains("a.consol")) {
-				setIsIGIssue(true);
-			} else {
-				// javax.xml.validation.Validator, org.eclipse.emf.ecore, etc.
-				setIsSchemaError(true);
-				if (cDiag.getPath() != null && cDiag.getCode() > 0) {
-					// org.eclipse.emf.ecore, etc.
-					setIsDataTypeSchemaError(true);
+			if (diag.getSource() != null) {
+				if (diag.getSource().contains("a.consol")) {
+					isResultIGIssue = true;
+				} else {
+					// javax.xml.validation.Validator, org.eclipse.emf.ecore, etc.
+					isResultSchemaError = true;
+					if (diag.getPath() != null && diag.getCode() > 0) {
+						// org.eclipse.emf.ecore, etc.
+						isResultDataTypeSchemaError = true;
+					}
 				}
 			}
 		}
+		return createNewValidationResult(diag, resultType, lineNumber, isResultSchemaError, isResultDataTypeSchemaError);
 	}
 
 	private String getLineNumberInXMLUsingXpath(final XPathIndexer xpathIndexer, Diagnostic diagnostic) {
@@ -128,10 +126,10 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	}
 
 	private RefCCDAValidationResult createNewValidationResult(CDADiagnostic cdaDiag, ValidationResultType resultType,
-			String resultLineNumber) {
+			String resultLineNumber, boolean isResultSchemaError, boolean isResultDataTypeSchemaError) {
 		return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(
 				cdaDiag.getMessage(), cdaDiag.getPath(), null, resultType,
-				resultLineNumber, getCurrentSchemaErrorState(),
-				getCurrentDataTypeSchemaErrorState()).build();
+				resultLineNumber, isResultSchemaError,
+				isResultDataTypeSchemaError).build();
 	}
 }
