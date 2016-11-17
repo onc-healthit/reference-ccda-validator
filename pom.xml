@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>1.0.7</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
