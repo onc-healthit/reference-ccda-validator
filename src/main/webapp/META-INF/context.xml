@@ -1,4 +1,4 @@
-ASd<Context reloadable="true">
+<Context reloadable="true">
     <Parameter name="vocabulary.localCodeRepositoryDir" value="${vocabulary.localCodeRepositoryDir}" override="true"/>
 	<Parameter name="vocabulary.localValueSetRepositoryDir" value="${vocabulary.localValueSetRepositoryDir}" override="true"/>
 	<Parameter name="referenceccda.configFile" value="${referenceccda.configFile}" override="true"/>
