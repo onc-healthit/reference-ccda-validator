@@ -120,7 +120,7 @@
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
+            <version>1.0.4</version>
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
 
@@ -128,7 +128,7 @@
         <dependency>
             <groupId>org.sitenv</groupId>
             <artifactId>contentvalidator-api</artifactId>
-            <version>1.0.4-SNAPSHOT</version>
+            <version>1.0.4</version>
         </dependency>
         <!-- END CONTENT DEPENDENCIES -->
 
