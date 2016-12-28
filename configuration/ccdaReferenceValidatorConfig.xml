@@ -995,14 +995,14 @@
 		</validator>
 	</expression>
 
-	<!--15. MAY contain zero or one [0..1] administrationUnitCode, which SHALL be selected from ValueSet Medication Product Form Value Set urn:oid:2.16.840.1.113883.3.88.12.3221.8.11 DYNAMIC (CONF:1098-7519).-->
+	<!--15. MAY contain zero or one [0..1] administrationUnitCode, which SHALL be selected from ValueSet AdministrationUnitDoseForm urn:oid:2.16.840.1.113762.1.4.1021.30 DYNAMIC (CONF:1098-7519).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:administrationUnitCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.11</allowedValuesetOids>
+			<allowedValuesetOids>2.16.840.1.113762.1.4.1021.30</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- MEDICATION ACTIVITY END -->
@@ -1434,7 +1434,7 @@
 		<validator>
 			<name>CodeSystemCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedCodesystemNames>CDT,SNOMED-CT</allowedCodesystemNames><!-- need to add CPT-4 and HCPS -->
 		</validator>

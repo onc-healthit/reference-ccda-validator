@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.10</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -26,37 +26,37 @@
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-            <version>3.0.0.201608160501</version>
+            <version>3.0.0.201612130602</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <version>2.5.17.20160816</version>
+            <version>2.5.22.20161213</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>3.0.0.201608160501</version>
+            <version>3.0.0.201612130602</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-            <version>3.0.0.201608160501</version>
+            <version>3.0.0.201612130602</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-            <version>3.0.0.201608160501</version>
+            <version>3.0.0.201612130602</version>
         </dependency>
 
         <dependency>
             <groupId>org.mdht.dependencies</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-            <version>3.0.0.201608160501</version>
+            <version>3.0.0.201612130602</version>
         </dependency>
 
         <!-- 3rd party MDHT dependencies -->
@@ -128,7 +128,7 @@
         <dependency>
             <groupId>org.sitenv</groupId>
             <artifactId>contentvalidator-api</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.6</version>
         </dependency>
         <!-- END CONTENT DEPENDENCIES -->
 
