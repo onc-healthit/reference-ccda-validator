@@ -1,5 +1,10 @@
 package org.sitenv.referenceccda.services;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.BOMInputStream;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
@@ -13,16 +18,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class ReferenceCCDAValidationService {
     private ReferenceCCDAValidator referenceCCDAValidator;
     private VocabularyCCDAValidator vocabularyCCDAValidator;
     private ReferenceContentValidator goldMatchingValidator;
+    
+    private static final String ERROR_GENERAL_PREFIX = "The service has encountered ";
+    private static final String ERROR_PARSING_PREFIX = ERROR_GENERAL_PREFIX + "an error parsing the document. ";
+    private static final String ERROR_FOLLOWING_ERROR_POSTFIX = "the following error: ";
+    private static final String ERROR_IO_EXCEPTION = ERROR_GENERAL_PREFIX + "the following input/output error: ";
+	private static final String ERROR_CLASS_CAST_EXCEPTION = ERROR_PARSING_PREFIX
+			+ "Please verify the document is valid against schema and "
+			+ "contains a v3 namespace definition: ";
+	private static final String ERROR_SAX_PARSE_EXCEPTION = ERROR_PARSING_PREFIX
+			+ "Please verify the document does not contain in-line XSL styling and/or address " + ERROR_FOLLOWING_ERROR_POSTFIX;
+	private static final String ERROR_GENERIC_EXCEPTION = ERROR_GENERAL_PREFIX + ERROR_FOLLOWING_ERROR_POSTFIX;
 
     @Autowired
     public ReferenceCCDAValidationService(ReferenceCCDAValidator referenceCCDAValidator, VocabularyCCDAValidator vocabularyCCDAValidator, 
@@ -41,18 +52,34 @@ public class ReferenceCCDAValidationService {
             resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
             resultsMetaData.setCcdaFileName(ccdaFile.getName());
             resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
-        } catch (SAXException | IOException e) {
-            resultsMetaData.setServiceError(true);
-            resultsMetaData.setServiceErrorMessage(e.getMessage());
-            resultsMetaData.setCcdaDocumentType(validationObjective);
+        } catch (IOException ioE) {
+        	processValidateCCDAException(resultsMetaData, 
+        			ERROR_IO_EXCEPTION + ioE.getMessage(), validationObjective);
+        } catch (SAXException saxE) {
+        	processValidateCCDAException(resultsMetaData, 
+        			ERROR_SAX_PARSE_EXCEPTION + saxE.getMessage(), validationObjective);
+		} catch (ClassCastException cce) {
+			processValidateCCDAException(resultsMetaData, 
+					ERROR_CLASS_CAST_EXCEPTION + cce.getMessage(), validationObjective);
+		} catch (Exception catchAllE) {
+			processValidateCCDAException(resultsMetaData, 
+					ERROR_GENERIC_EXCEPTION + catchAllE.getMessage(), validationObjective);
         }
         resultsDto.setResultsMetaData(resultsMetaData);
         resultsDto.setCcdaValidationResults(validatorResults);
         return resultsDto;
     }
+    
+	private static void processValidateCCDAException(
+			ValidationResultsMetaData resultsMetaData,
+			String serviceErrorMessage, String validationObjective) {
+		resultsMetaData.setServiceError(true);
+		resultsMetaData.setServiceErrorMessage(serviceErrorMessage);
+		resultsMetaData.setCcdaDocumentType(validationObjective);
+	}
 
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
-                                                        MultipartFile ccdaFile) throws SAXException {
+                                                        MultipartFile ccdaFile) throws SAXException, Exception {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         InputStream ccdaFileInputStream = null;
         try {
@@ -94,7 +121,7 @@ public class ReferenceCCDAValidationService {
         return vocabularyCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 
-    private List<RefCCDAValidationResult> doMDHTValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
+    private List<RefCCDAValidationResult> doMDHTValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException, Exception {
         return referenceCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
     
