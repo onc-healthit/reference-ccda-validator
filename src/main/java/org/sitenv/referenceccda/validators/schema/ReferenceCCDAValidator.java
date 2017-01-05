@@ -1,7 +1,14 @@
 package org.sitenv.referenceccda.validators.schema;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.mdht.uml.cda.DocumentRoot;
@@ -9,6 +16,7 @@ import org.eclipse.mdht.uml.cda.util.CDADiagnostic;
 import org.eclipse.mdht.uml.cda.util.CDAUtil;
 import org.eclipse.mdht.uml.cda.util.ValidationResult;
 import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
+import org.openhealthtools.mdht.uml.cda.mu2consol.Mu2consolPackage;
 import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
@@ -17,24 +25,19 @@ import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
+	private static Logger logger = Logger.getLogger(ReferenceCCDAValidator.class);
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
 			String referenceFileName, String ccdaFile) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
 		ValidationResult result = new ValidationResult();
 		InputStream in = null;
-		createValidationResultObjectToCollectDiagnosticsProducedDuringValidation();
 		trackXPathsInXML(xpathIndexer, ccdaFile);
 		try {
 			in = IOUtils.toInputStream(ccdaFile, "UTF-8");
-			CDAUtil.load(in, result);
+			validateDocumentByTypeUsingMDHTApi(in, validationObjective, result);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -49,8 +52,32 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		return processValidationResults(xpathIndexer, result);
 	}
 
-	private void createValidationResultObjectToCollectDiagnosticsProducedDuringValidation() {
-		ConsolPackage.eINSTANCE.eClass();
+	private static void validateDocumentByTypeUsingMDHTApi(InputStream in, String validationObjective, 
+			ValidationResult result) throws Exception{	
+		if (validationObjective.equalsIgnoreCase(CCDATypes.NON_SPECIFIC_CCDAR2) || 
+				validationObjective.equalsIgnoreCase(CCDATypes.NON_SPECIFIC_CCDA)) {
+			Mu2consolPackage.eINSTANCE.unload();
+			ConsolPackage.eINSTANCE.eClass();
+			logger.info("Loading valdationObjective: " + validationObjective);
+			CDAUtil.load(in, result);
+		} else {
+			Mu2consolPackage.eINSTANCE.reload();
+			Mu2consolPackage.eINSTANCE.eClass();
+			EClass docType = null;
+			if (validationObjective.equalsIgnoreCase(CCDATypes.CLINICAL_OFFICE_VISIT_SUMMARY)) {
+				docType = Mu2consolPackage.eINSTANCE.getClinicalOfficeVisitSummary();
+			} else if (validationObjective.equalsIgnoreCase(CCDATypes.TRANSITIONS_OF_CARE_AMBULATORY_SUMMARY)) {
+				docType = Mu2consolPackage.eINSTANCE.getTransitionOfCareAmbulatorySummary();
+			} else if (validationObjective.equalsIgnoreCase(CCDATypes.TRANSITIONS_OF_CARE_INPATIENT_SUMMARY)) {
+				docType = Mu2consolPackage.eINSTANCE.getTransitionOfCareInpatientSummary();
+			} else if (validationObjective.equalsIgnoreCase(CCDATypes.VDT_AMBULATORY_SUMMARY)) {
+				docType = Mu2consolPackage.eINSTANCE.getVDTAmbulatorySummary();
+			} else if (validationObjective.equalsIgnoreCase(CCDATypes.VDT_INPATIENT_SUMMARY)) {
+				docType = Mu2consolPackage.eINSTANCE.getVDTInpatientSummary();
+			}
+			logger.info("Loading valdationObjective: " + validationObjective + " as MU2 docType: " + docType.getName());
+			CDAUtil.loadAs(in, docType, result);
+		}
 	}
 
 	private ArrayList<RefCCDAValidationResult> processValidationResults(final XPathIndexer xpathIndexer,
