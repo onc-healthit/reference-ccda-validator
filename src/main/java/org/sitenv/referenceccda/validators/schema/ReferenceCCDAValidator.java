@@ -26,7 +26,7 @@ import java.util.List;
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
-			String referenceFileName, String ccdaFile) throws SAXException {
+			String referenceFileName, String ccdaFile) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
 		ValidationResult result = new ValidationResult();
 		InputStream in = null;
@@ -35,9 +35,9 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		try {
 			in = IOUtils.toInputStream(ccdaFile, "UTF-8");
 			CDAUtil.load(in, result);
-		}  catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			if (in != null) {
 				try {
 					in.close();
@@ -56,19 +56,17 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private ArrayList<RefCCDAValidationResult> processValidationResults(final XPathIndexer xpathIndexer,
 			ValidationResult result) {
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
-		//CCDAIssueStates.resetHasSchemaError();
-		for (Diagnostic diagnostic : result.getErrorDiagnostics()) {
-			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR));
-		}
-
-		for (Diagnostic diagnostic : result.getWarningDiagnostics()) {
-			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN));
-		}
-
-		for (Diagnostic diagnostic : result.getInfoDiagnostics()) {
-			results.add(buildValidationResult(diagnostic, xpathIndexer, ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO));
-		}
+		addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
+		addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, result.getWarningDiagnostics(), xpathIndexer);
+		addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO, result.getInfoDiagnostics(), xpathIndexer);		
 		return results;
+	}
+	
+	private void addValidationResults(ArrayList<RefCCDAValidationResult> results, ValidationResultType currentValidationResultType,
+			List<Diagnostic> diagnosticsOfCurrentSeverity, final XPathIndexer xpathIndexer) {
+		for (Diagnostic diagnostic : diagnosticsOfCurrentSeverity) {
+			results.add(buildValidationResult(diagnostic, xpathIndexer, currentValidationResultType));
+		}
 	}
 
 	private RefCCDAValidationResult buildValidationResult(Diagnostic diagnostic, XPathIndexer xPathIndexer,

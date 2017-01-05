@@ -1,8 +1,5 @@
-import org.junit.Test;
-import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
-import org.sitenv.referenceccda.validators.enums.ValidationResultType;
-import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
-import org.xml.sax.SAXException;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,25 +9,45 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import javax.security.auth.x500.X500Principal;
+
+import org.junit.Test;
+import org.sitenv.contentvalidator.service.ContentValidatorService;
+import org.sitenv.referenceccda.dto.ValidationResultsDto;
+import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
+import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
+import org.sitenv.referenceccda.validators.content.ReferenceContentValidator;
+import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
+import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
+import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
+import org.springframework.mock.web.MockMultipartFile;
+import org.xml.sax.SAXException;
 
 public class RefCCDATest {
 
 	private static final boolean SHOW_ERRORS_ONLY = true;
-	private static final int LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2;
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1;
+	private static final int LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2;
+	private static final int INVALID_SNIPPET_ONLY_INDEX = 3;
+	private static final int NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4;
+	private static final int BLANK_EMPTY_DOCUMENT_INDEX = 5;
 
-	// it is fine to add documents to the end of this if desired but do not
-	// alter indexes 0, 1, or 2
+	// feel free to add docs to the end but don't alter existing data
 	private static URI[] CCDA_FILES = new URI[0];
-
 	static {
 		try {
-			CCDA_FILES = new URI[]{
-                    RefCCDATest.class.getResource("/Sample.xml").toURI(),
-                    RefCCDATest.class.getResource("/Sample_addSchemaErrors.xml").toURI(),
-                    RefCCDATest.class.getResource("/Sample.xml").toURI()};
+			CCDA_FILES = new URI[] {
+					RefCCDATest.class.getResource("/Sample.xml").toURI(),
+					RefCCDATest.class
+							.getResource("/Sample_addSchemaErrors.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample.xml").toURI(),
+					RefCCDATest.class.getResource(
+							"/Sample_invalid-SnippetOnly.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample_basicHTML.xml")
+							.toURI(),
+					RefCCDATest.class.getResource(
+							"Sample_blank_Empty_Document.xml").toURI() };
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -99,11 +116,10 @@ public class RefCCDATest {
 
 			ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[curCCDAFileIndex]));
 
-			System.out
-					.println(System.lineSeparator()
-							+ "CCDAIssueStates.hasSchemaError(): "
-							+ mdhtResultsHaveSchemaError(results)
-							+ System.lineSeparator());
+			System.out.println(System.lineSeparator()
+					+ "CCDAIssueStates.hasSchemaError(): "
+					+ mdhtResultsHaveSchemaError(results)
+					+ System.lineSeparator());
 			if (curCCDAFileIndex == 0
 					|| curCCDAFileIndex == LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX) {
 				assertFalse(
@@ -131,6 +147,52 @@ public class RefCCDATest {
 		}
 	}
 
+	@Test
+	public void invalidSnippetOnlyValidationResultsTest() {
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[INVALID_SNIPPET_ONLY_INDEX]));
+		assertTrue(
+				"The results should be null because a SAXParseException should have been thrown",
+				results == null);
+		System.out
+				.println("Note: As indicated by the pass, the SAXParseException is not an issue for the document tested.");
+	}
+
+	@Test
+	public void invalidSnippetOnlyServiceErrorTest() {
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
+				"NonSpecificCCDAR2", INVALID_SNIPPET_ONLY_INDEX);
+		handleServiceErrorTest(results);
+	}
+
+	@Test
+	public void classCastMDHTExceptionThrownServiceErrorTest() {
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
+				"NonSpecificCCDAR2",
+				NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX);
+		handleServiceErrorTest(results);
+	}
+
+	@Test
+	public void altSaxParseMDHTExceptionThrownServiceErrorTest() {
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
+				"NonSpecificCCDAR2", BLANK_EMPTY_DOCUMENT_INDEX);
+		handleServiceErrorTest(results);
+	}
+
+	private static void handleServiceErrorTest(ValidationResultsDto results) {
+		boolean isServiceError = results.getResultsMetaData().isServiceError()
+				&& (results.getResultsMetaData().getServiceErrorMessage() != null && !results
+						.getResultsMetaData().getServiceErrorMessage()
+						.isEmpty());
+		assertTrue(
+				"The results are supposed to contain a service error since the snippet sent is invalid",
+				isServiceError);
+		if (isServiceError) {
+			System.out.println("Service Error Message: "
+					+ results.getResultsMetaData().getServiceErrorMessage());
+		}
+	}
+
 	private static String convertCCDAFileToString(URI ccdaFileURL) {
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br = null;
@@ -153,6 +215,19 @@ public class RefCCDATest {
 		return sb.toString();
 	}
 
+	private static ValidationResultsDto runReferenceCCDAValidationServiceAndReturnResults(
+			String validationObjective, final int XML_FILE_INDEX) {
+		MockMultipartFile mockSample = new MockMultipartFile("data", null,
+				"text/xml", convertCCDAFileToString(CCDA_FILES[XML_FILE_INDEX])
+						.getBytes());
+		ReferenceCCDAValidationService referenceCcdaValidationService = new ReferenceCCDAValidationService(
+				new ReferenceCCDAValidator(), new VocabularyCCDAValidator(
+						new VocabularyValidationService()),
+				new ReferenceContentValidator(new ContentValidatorService()));
+		return referenceCcdaValidationService.validateCCDA(validationObjective,
+				null, mockSample);
+	}
+
 	private static ArrayList<RefCCDAValidationResult> validateDocumentAndReturnResults(
 			String ccdaFileAsString) {
 		ReferenceCCDAValidator referenceCCDAValidator = new ReferenceCCDAValidator();
@@ -161,6 +236,8 @@ public class RefCCDATest {
 			results = referenceCCDAValidator.validateFile("Test", "Test",
 					ccdaFileAsString);
 		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return results;
@@ -176,9 +253,10 @@ public class RefCCDATest {
 		System.out.println();
 	}
 
-	private boolean mdhtResultsHaveSchemaError(List<RefCCDAValidationResult> mdhtResults) {
-		for(RefCCDAValidationResult result : mdhtResults){
-			if(result.isSchemaError()){
+	private boolean mdhtResultsHaveSchemaError(
+			List<RefCCDAValidationResult> mdhtResults) {
+		for (RefCCDAValidationResult result : mdhtResults) {
+			if (result.isSchemaError()) {
 				return true;
 			}
 		}
