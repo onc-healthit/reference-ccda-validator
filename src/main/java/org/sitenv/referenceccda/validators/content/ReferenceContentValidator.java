@@ -6,6 +6,7 @@ import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.referenceccda.validators.schema.MDHTResultDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
@@ -54,8 +55,9 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
             default: type = ValidationResultType.REF_CCDA_INFO;
                 break;
         }
-
-        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), null, null, type, "0", false, false)
+        
+        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), null, null, type, "0", 
+        		new MDHTResultDetails(false, false, false, false))
                 .build();
     }
 }

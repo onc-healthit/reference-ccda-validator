@@ -6,6 +6,7 @@ import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.referenceccda.validators.schema.MDHTResultDetails;
 import org.sitenv.vocabularies.validation.dto.VocabularyValidationResult;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,8 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
         }
         String lineNumber = getLineNumberInXMLUsingXpath(xpathIndexer, result.getNodeValidationResult().getValidatedDocumentXpathExpression());
 
-        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), result.getNodeValidationResult().getValidatedDocumentXpathExpression(), result.getNodeValidationResult().getConfiguredXpathExpression(), type, lineNumber, false, false)
+        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), result.getNodeValidationResult().getValidatedDocumentXpathExpression(), result.getNodeValidationResult().getConfiguredXpathExpression(), type, lineNumber, 
+        		new MDHTResultDetails(false, false, false, false))
                 .actualCode(result.getNodeValidationResult().getRequestedCode())
                 .actualCodeSystem(result.getNodeValidationResult().getRequestedCodeSystem())
                 .actualCodeSystemName(result.getNodeValidationResult().getRequestedCodeSystemName())
