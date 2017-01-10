@@ -1,6 +1,7 @@
 package org.sitenv.referenceccda.validators;
 
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.referenceccda.validators.schema.MDHTResultDetails;
 
 public class RefCCDAValidationResult {
 
@@ -10,7 +11,7 @@ public class RefCCDAValidationResult {
 	private final String xPath;
     private final String validatorConfiguredXpath;
 	private final String documentLineNumber;
-	private final boolean isSchemaError, isDataTypeSchemaError;
+    private final MDHTResultDetails mdhtResultDetails;
 
 	// Only valid for Vocabulary testing
 	private String actualCode;
@@ -28,8 +29,7 @@ public class RefCCDAValidationResult {
         this.actualCodeSystem = builder.actualCodeSystem;
         this.actualCodeSystemName = builder.actualCodeSystemName;
         this.actualDisplayName = builder.actualDisplayName;
-        this.isSchemaError = builder.isSchemaError;
-        this.isDataTypeSchemaError = builder.isDataTypeSchemaError;
+        this.mdhtResultDetails = builder.mdhtResultDetails;
     }
 
     public String getDescription() {
@@ -53,12 +53,20 @@ public class RefCCDAValidationResult {
     }
     
     public boolean isSchemaError() {
-    	return isSchemaError;
+    	return mdhtResultDetails.isSchemaError();
     }
     
     public boolean isDataTypeSchemaError() {
-    	return isDataTypeSchemaError;
+    	return mdhtResultDetails.isDataTypeSchemaError();
     }
+    
+	public boolean isIGIssue() {
+		return mdhtResultDetails.isIGIssue();
+	}
+
+	public boolean isMUIssue() {
+		return mdhtResultDetails.isMUIssue();
+	}    
 
     public String getActualCodeSystem() {
         return actualCodeSystem;
@@ -84,7 +92,7 @@ public class RefCCDAValidationResult {
         private final String xPath;
         private final String validatorConfiguredXpath;
         private final String documentLineNumber;
-        private final boolean isSchemaError, isDataTypeSchemaError;         
+        private final MDHTResultDetails mdhtResultDetails;
 
         // Only valid for Vocabulary testing
         private String actualCodeSystem;
@@ -93,16 +101,14 @@ public class RefCCDAValidationResult {
         private String actualCodeSystemName;
 
 		public RefCCDAValidationResultBuilder(String description, String xPath,
-				String validatorConfiguredXpath, ValidationResultType type,
-				String documentLineNumber, boolean isSchemaError,
-				boolean isDataTypeSchemaError) {
+				String validatorConfiguredXpath, ValidationResultType type, String documentLineNumber, 
+				MDHTResultDetails mdhtResultDetails) {
 			this.description = description;
 			this.validatorConfiguredXpath = validatorConfiguredXpath;
 			this.type = type;
 			this.xPath = xPath;
 			this.documentLineNumber = documentLineNumber;
-			this.isSchemaError = isSchemaError;
-			this.isDataTypeSchemaError = isDataTypeSchemaError;
+			this.mdhtResultDetails = mdhtResultDetails;
 		}
 
         public RefCCDAValidationResultBuilder actualCodeSystem(String actualCodeSystem) {
