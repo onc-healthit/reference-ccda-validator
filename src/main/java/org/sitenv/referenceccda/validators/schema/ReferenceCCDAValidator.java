@@ -239,6 +239,8 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private RefCCDAValidationResult createNewValidationResult(CDADiagnostic cdaDiag, ValidationResultType resultType,
 			String resultLineNumber, MDHTResultDetails mdhtResultDetails) {
 		return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(
-				cdaDiag.getMessage(), cdaDiag.getPath(), null, resultType, resultLineNumber, mdhtResultDetails).build();
+				cdaDiag.getMessage(), cdaDiag.getPath(), null, resultType, resultLineNumber)
+				.mdhtResultDetails(mdhtResultDetails)
+				.build();
 	}
 }

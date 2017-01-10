@@ -11,6 +11,8 @@ public class RefCCDAValidationResult {
 	private final String xPath;
     private final String validatorConfiguredXpath;
 	private final String documentLineNumber;
+	
+    // Only required for MDHT
     private final MDHTResultDetails mdhtResultDetails;
 
 	// Only valid for Vocabulary testing
@@ -92,7 +94,9 @@ public class RefCCDAValidationResult {
         private final String xPath;
         private final String validatorConfiguredXpath;
         private final String documentLineNumber;
-        private final MDHTResultDetails mdhtResultDetails;
+        
+        // Only required for MDHT
+        private MDHTResultDetails mdhtResultDetails;
 
         // Only valid for Vocabulary testing
         private String actualCodeSystem;
@@ -101,14 +105,17 @@ public class RefCCDAValidationResult {
         private String actualCodeSystemName;
 
 		public RefCCDAValidationResultBuilder(String description, String xPath,
-				String validatorConfiguredXpath, ValidationResultType type, String documentLineNumber, 
-				MDHTResultDetails mdhtResultDetails) {
+				String validatorConfiguredXpath, ValidationResultType type, String documentLineNumber) {
 			this.description = description;
 			this.validatorConfiguredXpath = validatorConfiguredXpath;
 			this.type = type;
 			this.xPath = xPath;
 			this.documentLineNumber = documentLineNumber;
+		}
+		
+		public RefCCDAValidationResultBuilder mdhtResultDetails(MDHTResultDetails mdhtResultDetails) {
 			this.mdhtResultDetails = mdhtResultDetails;
+			return this;
 		}
 
         public RefCCDAValidationResultBuilder actualCodeSystem(String actualCodeSystem) {

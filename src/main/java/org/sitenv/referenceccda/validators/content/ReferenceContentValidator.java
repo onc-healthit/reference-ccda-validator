@@ -1,18 +1,17 @@
 package org.sitenv.referenceccda.validators.content;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sitenv.contentvalidator.dto.ContentValidationResult;
 import org.sitenv.contentvalidator.service.ContentValidatorService;
 import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
-import org.sitenv.referenceccda.validators.schema.MDHTResultDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -56,8 +55,7 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
                 break;
         }
         
-        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), null, null, type, "0", 
-        		new MDHTResultDetails(false, false, false, false))
+        return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), null, null, type, "0")
                 .build();
     }
 }
