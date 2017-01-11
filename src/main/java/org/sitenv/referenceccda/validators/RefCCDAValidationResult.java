@@ -31,7 +31,11 @@ public class RefCCDAValidationResult {
         this.actualCodeSystem = builder.actualCodeSystem;
         this.actualCodeSystemName = builder.actualCodeSystemName;
         this.actualDisplayName = builder.actualDisplayName;
-        this.mdhtResultDetails = builder.mdhtResultDetails;
+        if(builder.mdhtResultDetails != null) {
+        	this.mdhtResultDetails = builder.mdhtResultDetails;
+        } else {
+        	this.mdhtResultDetails = new MDHTResultDetails(false, false, false, false);
+        }
     }
 
     public String getDescription() {
@@ -138,7 +142,7 @@ public class RefCCDAValidationResult {
             return this;
         }
 
-        public RefCCDAValidationResult build(){
+        public RefCCDAValidationResult build() {
             return new RefCCDAValidationResult(this);
         }
     }

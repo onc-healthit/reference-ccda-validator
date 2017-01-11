@@ -13,6 +13,7 @@ import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.content.ReferenceContentValidator;
+import org.sitenv.referenceccda.validators.schema.CCDATypes;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.schema.ValidationObjectives;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
@@ -122,7 +123,7 @@ public class ReferenceCCDAValidationService {
             	} else {
                 	logger.info("Skipping Content validation due to: "
                 			+ "validationObjective (" + (validationObjective != null ? validationObjective : "null objective") 
-                			+ ") is not relevant or valid for Content validation at this time");            		
+                			+ ") is not relevant or valid for Content validation");            		
             	}
             } else {
             	String separator = !isObjectiveAllowingVocabularyValidation && isSchemaErrorInMdhtResults ? " and " : "";
@@ -149,13 +150,14 @@ public class ReferenceCCDAValidationService {
 	}    
     
     private boolean objectiveAllowsVocabularyValidation(String validationObjective) {
-    	//Note: May expand this disallow MU2 types as well 
-        return !validationObjective.equalsIgnoreCase(ValidationObjectives.Sender.C_CDA_IG_ONLY); 
+        return !validationObjective.equalsIgnoreCase(ValidationObjectives.Sender.C_CDA_IG_ONLY) 
+        		&& !referenceCCDAValidator.isValidationObjectiveMu2Type() 
+        		&& !validationObjective.equalsIgnoreCase(CCDATypes.NON_SPECIFIC_CCDA);
     }
 	
 	private boolean objectiveAllowsContentValidation(String validationObjective) {
 		return ReferenceCCDAValidator.isValidationObjectiveACertainType(validationObjective, 
-				ValidationObjectives.VALID_CONTENT_OBJECTIVES);
+				ValidationObjectives.ALL_UNIQUE_CONTENT_ONLY);
 	}
 
     private List<RefCCDAValidationResult> doMDHTValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException, Exception {

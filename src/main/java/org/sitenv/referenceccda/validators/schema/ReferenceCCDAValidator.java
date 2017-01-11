@@ -3,6 +3,7 @@ package org.sitenv.referenceccda.validators.schema;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
@@ -33,6 +34,10 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private static final String IG_ISSUE_ID = "a.consol", MU_ISSUE_ID = "a.mu2con";
 	private boolean isValidationObjectiveMu2Type = false;
 	
+	public boolean isValidationObjectiveMu2Type() {
+		return isValidationObjectiveMu2Type;
+	}
+
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
 			String referenceFileName, String ccdaFile) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
@@ -117,8 +122,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 				isValidationObjectiveACertainType(validationObjectivePOSTed, CCDATypes.MU2_TYPES)) {
 			// we already have a *specific* MDHT objective (it was sent directly so no re-mapping required)
 			return validationObjectivePOSTed;
-		} else if (isValidationObjectiveACertainType(validationObjectivePOSTed,
-				ValidationObjectives.ALL)) {
+		} else if (isValidationObjectiveACertainType(validationObjectivePOSTed, ValidationObjectives.ALL_UNIQUE)) {
 			// convert to a *generic* MDHT objective (runs R2.1 or R1.1 MDHT validation using the consol2 model)
 			return CCDATypes.NON_SPECIFIC_CCDAR2;
 		}
@@ -135,7 +139,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		throw new Exception(userErrorMessage);
 	}
 	
-	public static boolean isValidationObjectiveACertainType(String validationObjective, List<String> types) {
+	public static boolean isValidationObjectiveACertainType(String validationObjective, Collection<String> types) {
 		for(String type: types) {
 			if(validationObjective.equalsIgnoreCase(type)) {
 				return true;

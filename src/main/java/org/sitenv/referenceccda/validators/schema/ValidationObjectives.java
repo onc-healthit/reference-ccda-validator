@@ -2,15 +2,24 @@ package org.sitenv.referenceccda.validators.schema;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public final class ValidationObjectives {
 	public static final List<String> ALL = new ArrayList<String>();
+	public static final Set<String> ALL_UNIQUE = new HashSet<String>();
+	public static final Set<String> ALL_UNIQUE_CONTENT_ONLY = new HashSet<String>();
 	static {
 		ALL.addAll(Sender.OBJECTIVES);
 		ALL.addAll(Receiver.OBJECTIVES);
+		ALL_UNIQUE.addAll(ALL);
+		ALL_UNIQUE_CONTENT_ONLY.addAll(ALL_UNIQUE);
+		ALL_UNIQUE_CONTENT_ONLY.removeAll(Arrays.asList(Sender.C_CDA_IG_ONLY, Sender.C_CDA_IG_PLUS_VOCAB));
 	}
-	public static final List<String> VALID_CONTENT_OBJECTIVES = new ArrayList<String>(Arrays.asList(
+	
+	public static final List<String> CURRENTLY_PROCESSED_BY_CONTENT_VALIDATOR = new ArrayList<String>(Arrays.asList(
 			Sender.B1_TOC_AMB_170_315, Sender.B1_TOC_INP_170_315, 
 			Sender.B2_CIRI_AMB_170_315, Sender.B2_CIRI_INP_170_315,
 			Sender.B4_CCDS_AMB_170_315, Sender.B4_CCDS_INP_170_315, 
@@ -91,6 +100,15 @@ public final class ValidationObjectives {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(ValidationObjectives.getObjectives());
+		System.out.println("ValidationObjectives.getObjectives():" + System.lineSeparator() + "-" + ValidationObjectives.getObjectives());
+		printObjectivesHelperForDebugging(ALL, "ALL");
+		printObjectivesHelperForDebugging(ALL_UNIQUE, "ALL_UNIQUE");
+		printObjectivesHelperForDebugging(ALL_UNIQUE_CONTENT_ONLY, "ALL_UNIQUE_CONTENT_ONLY");
+		printObjectivesHelperForDebugging(CURRENTLY_PROCESSED_BY_CONTENT_VALIDATOR, "CURRENTLY_PROCESSED_BY_CONTENT_VALIDATOR");
+	}
+	
+	private static void printObjectivesHelperForDebugging(Collection<String> collection, String description) {
+		System.out.println(description + ":" + System.lineSeparator() + "-Size: " + collection.size() + System.lineSeparator()
+				+ "-Content" + collection);
 	}
 }

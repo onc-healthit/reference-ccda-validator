@@ -259,11 +259,11 @@ public class RefCCDATest {
 		handleServiceErrorTest(results);
 	}
 	
-	private static void handleServiceErrorTest(ValidationResultsDto results) {
-		handleServiceErrorTest(results, true);
+	private String handleServiceErrorTest(ValidationResultsDto results) {
+		return handleServiceErrorTest(results, true);
 	}
 	
-	private static void handleServiceErrorTest(ValidationResultsDto results, boolean expectException) {
+	private static String handleServiceErrorTest(ValidationResultsDto results, boolean expectException) {
 		boolean isServiceError = results.getResultsMetaData().isServiceError()
 				&& (results.getResultsMetaData().getServiceErrorMessage() != null && !results
 						.getResultsMetaData().getServiceErrorMessage()
@@ -280,7 +280,8 @@ public class RefCCDATest {
 			assertFalse(
 					"The results are NOT supposed to contain a service error the XML file sent is valid",
 					isServiceError);
-		}		
+		}
+		return results.getResultsMetaData().getServiceErrorMessage();
 	}	
 	
 	@Test
@@ -350,19 +351,23 @@ public class RefCCDATest {
 	public void invalidValidationObjectiveSentTest() {
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
 				"INVALID VALIDATION OBJECTIVE", HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR);
-		handleServiceErrorTest(results);
+		final String msg = handleServiceErrorTest(results);
+		final String match = "invalid";
+		assertTrue("The service error returned did not contain: " + match, msg.contains(match));
 	}
 	
 	@Test
 	public void emptyStringValidationObjectiveSentTest() {
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
 				"", HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR);
-		handleServiceErrorTest(results);
+		final String msg = handleServiceErrorTest(results);
+		final String match = "empty";
+		assertTrue("The service error returned did not contain: " + match, msg.contains(match));
 	}
 	
 	@Test
 	public void allPossibleValidValidationObjectivesSentTest() {
-		for (String objective : ValidationObjectives.ALL) {
+		for (String objective : ValidationObjectives.ALL_UNIQUE) {
 			List<RefCCDAValidationResult> results = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
 					convertCCDAFileToString(CCDA_FILES[HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR]), objective));
 			printResults(results, false, false, false);
