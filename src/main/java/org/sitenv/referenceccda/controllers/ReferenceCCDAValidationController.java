@@ -8,12 +8,12 @@ import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -61,17 +61,6 @@ public class ReferenceCCDAValidationController {
 	public boolean isCodeFoundInValuesetOids(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "valuesetOids", required = true) String[] valuesetOids){
 		return vocabularyService.isCodeFoundInValuesetOids(code, Arrays.asList(valuesetOids));
 	}
-
-    @RequestMapping(value = "/downloadreferenceccdaartifact/{artifactType}", method = RequestMethod.GET)
-	public void downloadReferenceCCDAArtifact(HttpServletResponse httpServletResponse, @PathVariable("artifactType") String artifactType) throws IOException{
-        File fileToDownload = new File("referenceccdaservice-bundle." + artifactType);
-        String mimeType = "application/octet-stream";
-        httpServletResponse.setContentType(mimeType);
-        httpServletResponse.setHeader("Content-Disposition", String.format("attachment; filename=\"%s\"", fileToDownload.getName()));
-        httpServletResponse.setContentLength((int)fileToDownload.length());
-        InputStream inputStream = new BufferedInputStream(new FileInputStream(fileToDownload));
-        FileCopyUtils.copy(inputStream, httpServletResponse.getOutputStream());
-    }
 
 	@Cacheable("messagetypeValidationObjectivesAndReferenceFilesMap")
 	@RequestMapping(value = "/senderreceivervalidationobjectivesandreferencefiles", method = RequestMethod.GET)
