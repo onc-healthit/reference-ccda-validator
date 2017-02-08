@@ -1436,7 +1436,7 @@
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>CDT,SNOMED-CT</allowedCodesystemNames><!-- need to add CPT-4 and HCPS -->
+			<allowedCodesystemNames>CDT,SNOMED-CT,CPT</allowedCodesystemNames><!-- need to add HCPS -->
 		</validator>
 	</expression>
 
@@ -1559,7 +1559,7 @@
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>LOINC,SNOMED-CT</allowedCodesystemNames>
+			<allowedCodesystemNames>LOINC,SNOMED-CT,CPT</allowedCodesystemNames>
 		</validator>
 	</expression>
 	<!-- RESULT ORGANIZER END -->
