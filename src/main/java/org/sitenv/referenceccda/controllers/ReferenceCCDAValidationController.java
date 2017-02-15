@@ -47,6 +47,11 @@ public class ReferenceCCDAValidationController {
 		return vocabularyService.getByCodeInCodesystems(code, Arrays.asList(codeSystems));
 	}
 
+	@RequestMapping(value = "/getbycodeinvaluesetoid", method = RequestMethod.GET)
+	public List<VsacValueSet> getByCodeInValuesetOid(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "oids", required = true) String[] valuesetOids){
+		return vocabularyService.getByCodeInValuesetOids(code, Arrays.asList(valuesetOids));
+	}
+
 	@RequestMapping(value = "/iscodeandisplaynameincodesystem", method = RequestMethod.GET)
 	public boolean isCodeAndDisplayNameFoundInCodeSystems(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "displayName", required = true)String displayName, @RequestParam(value = "codeSystems", required = true) String[] codeSystems){
 		return vocabularyService.isCodeAndDisplayNameFoundInCodeSystems(code, displayName, Arrays.asList(codeSystems));
