@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.11</version>
+    <version>1.0.12</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -126,7 +126,7 @@
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.6</version>
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
 

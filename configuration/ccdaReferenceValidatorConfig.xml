@@ -1391,6 +1391,16 @@
 	<!-- PROBLEM STATUS (DEPRICATED) END -->
 
 	<!-- PROCEDURE ACTIVITY ACT START -->
+	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.12' and @extension='2014-06-09']/ancestor::v3:act[1]/v3:code[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CodeSystemCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedCodesystemNames>CDT,SNOMED-CT,CPT</allowedCodesystemNames><!-- need to add HCPS -->
+		</validator>
+	</expression>
+
 	<!--8. MAY contain zero or one [0..1] priorityCode, which SHALL be selected from ValueSet Act Priority urn:oid:2.16.840.1.113883.1.11.16866 DYNAMIC (CONF:1098-8300).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.12' and @extension='2014-06-09']/ancestor::v3:act[1]/v3:priorityCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
@@ -1436,7 +1446,7 @@
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>CDT,SNOMED-CT</allowedCodesystemNames><!-- need to add CPT-4 and HCPS -->
+			<allowedCodesystemNames>CDT,SNOMED-CT,CPT</allowedCodesystemNames><!-- need to add HCPS -->
 		</validator>
 	</expression>
 
@@ -1559,7 +1569,7 @@
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHOULD</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>LOINC,SNOMED-CT</allowedCodesystemNames>
+			<allowedCodesystemNames>LOINC,SNOMED-CT,CPT</allowedCodesystemNames>
 		</validator>
 	</expression>
 	<!-- RESULT ORGANIZER END -->

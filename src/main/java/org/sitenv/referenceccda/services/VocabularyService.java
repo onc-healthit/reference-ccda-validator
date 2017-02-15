@@ -50,6 +50,10 @@ public class VocabularyService {
         return vocabularyCodeService.getByCodeInCodeSystems(code, codeSystems);
     }
 
+    public List<VsacValueSet> getByCodeInValuesetOids(String code, List<String> valuesetOids){
+        return vocabularyValuesetService.getValuesetByCodeInValuesetOids(code, new HashSet<>(valuesetOids));
+    }
+
     public Map<String, Map<String, List<String>>> getMapOfSenderAndRecieverValidationObjectivesWithReferenceFiles(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<GithubResponseWrapper> responseEntity = restTemplate.exchange(GITHUB_URL, HttpMethod.GET, null, new ParameterizedTypeReference<GithubResponseWrapper>() {
