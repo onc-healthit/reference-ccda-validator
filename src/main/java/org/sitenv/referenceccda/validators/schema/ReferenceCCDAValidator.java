@@ -73,8 +73,14 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 					+ ValidationObjectives.getObjectives() + " " + CCDATypes.getTypes());
 		}
 		
-		String mdhtValidationObjective = mapMdhtValidationObjective(validationObjective);
+		String mdhtValidationObjective = mapMdhtValidationObjective(validationObjective);		
+		//implementing a temporary work-around to allow invalid objectives to apply a default for the ETT
+		if(mdhtValidationObjective == null) {
+			validationObjective = ValidationObjectives.Sender.C_CDA_IG_PLUS_VOCAB;
+			mdhtValidationObjective = CCDATypes.NON_SPECIFIC_CCDAR2;
+		}		
 		logger.info("Mapped mdhtValidationObjective: " + (mdhtValidationObjective != null ? mdhtValidationObjective : "null objective"));
+		
 		if(mdhtValidationObjective != null) {
 			//populate the field for reuse
 			isValidationObjectiveMu2Type = isValidationObjectiveMu2Type(mdhtValidationObjective);
@@ -111,6 +117,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 				}
 			}
 		} else {
+			//Note: This is dead code for now as null values are populated to a default
 			logAndThrowException("The validationObjective given is invalid", 
 					"The validationObjective given was invalid. Please try one of the following valid Strings instead: "
 					+ ValidationObjectives.getObjectives() + " " + CCDATypes.getTypes());
