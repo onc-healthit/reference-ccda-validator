@@ -347,6 +347,8 @@ public class RefCCDATest {
 		}
 	}
 	
+	//Ignoring test due to temporary allowance of invalid objectives
+	@Ignore
 	@Test
 	public void invalidValidationObjectiveSentTest() {
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
@@ -355,6 +357,16 @@ public class RefCCDATest {
 		final String match = "invalid";
 		assertTrue("The service error returned did not contain: " + match, msg.contains(match));
 	}
+	
+	//Temporary test introduced due to temporary allowance of invalid objectives
+	@Test
+	public void invalidValidationObjectiveSentConvertToDefaultTest() {
+		List<RefCCDAValidationResult> results = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR]), 
+				"INVALID VALIDATION OBJECTIVE"));
+		printResults(results, false, false, false);
+		assertTrue(results != null && !results.isEmpty());
+	}	
 	
 	@Test
 	public void emptyStringValidationObjectiveSentTest() {
