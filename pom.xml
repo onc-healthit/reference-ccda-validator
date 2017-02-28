@@ -12,13 +12,12 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <code.validator.version>1.0.7</code.validator.version>
+        <content.validator.version>1.0.7</content.validator.version>
+
     </properties>
 
     <repositories>
-        <!--<repository>
-            <id>mdht-vocab-repo</id>
-            <url>file://${project.basedir}/mdht-vocab-repo</url>
-        </repository>-->
         <repository>
             <snapshots>
                 <enabled>false</enabled>
@@ -126,7 +125,7 @@
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
-            <version>1.0.6</version>
+            <version>${code.validator.version}</version>
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
 
@@ -134,7 +133,7 @@
         <dependency>
             <groupId>org.sitenv</groupId>
             <artifactId>contentvalidator-api</artifactId>
-            <version>1.0.6</version>
+            <version>${content.validator.version}</version>
         </dependency>
         <!-- END CONTENT DEPENDENCIES -->
 
