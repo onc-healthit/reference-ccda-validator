@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.15</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -12,8 +12,8 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.8</code.validator.version>
-        <content.validator.version>1.0.7</content.validator.version>
+        <code.validator.version>1.0.9</code.validator.version>
+        <content.validator.version>1.0.8</content.validator.version>
 
     </properties>
 
@@ -22,17 +22,19 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-            <id>central</id>
+            <id>mdht-libs</id>
             <name>libs-release</name>
             <url>http://devsoap.sitenv.org:8081/artifactory/libs-release</url>
         </repository>
         <repository>
-            <snapshots />
-            <id>snapshots</id>
-            <name>libs-snapshot</name>
-            <url>http://devsoap.sitenv.org:8081/artifactory/libs-snapshot</url>
-        </repository>        
-    </repositories>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>        
+            <id>mdht-plugins</id>
+            <name>plugins-release</name>
+            <url>http://devsoap.sitenv.org:8081/artifactory/plugins-release-local</url>
+        </repository> 
+    </repositories>   
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from devsoap.sitenv.org:8081 artifactory -->
@@ -40,38 +42,38 @@
 		<dependency>
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-		    <version>2.6.0.20161229</version>
+		    <version>2.6.3.20170323</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
-		    <version>2.6.0.20161229</version>
+		    <version>2.6.3.20170323</version>
 		</dependency>
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-		    <version>3.0.0-20170103.233449-2</version>
+		    <version>3.0.0.201703230502</version>
 		</dependency>
-		<dependency>
-		    <groupId>org.eclipse.mdht</groupId>
-		    <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-		    <version>3.0.0-20170103.234048-3</version>
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.cda</artifactId>
+            <version>3.0.0.201703230502</version>
+        </dependency>
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-		    <version>3.0.0-20170103.234136-3</version>
+		    <version>3.0.0.201703230502</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-		    <version>3.0.0-20170103.234147-3</version>
+		    <version>3.0.0.201703230502</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-		    <version>3.0.0-20170103.234157-3</version>
+		    <version>3.0.0.201703230502</version>
 		</dependency>	
 		<!-- 3rd party MDHT -->
 		<dependency>
