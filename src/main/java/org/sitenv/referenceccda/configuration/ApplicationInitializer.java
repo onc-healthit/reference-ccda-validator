@@ -1,10 +1,10 @@
 package org.sitenv.referenceccda.configuration;
 
+import javax.servlet.ServletContext;
+
 import org.sitenv.contentvalidator.configuration.ContentValidatorApiConfiguration;
 import org.sitenv.vocabularies.configuration.CodeValidatorApiConfiguration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import javax.servlet.ServletContext;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

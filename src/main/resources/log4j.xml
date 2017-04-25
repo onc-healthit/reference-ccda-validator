@@ -11,7 +11,11 @@
  
     <appender name="FILE" class="org.apache.log4j.rolling.RollingFileAppender">
         <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-            <param name="FileNamePattern" value="${catalina.home}/logs/referenceccdaservice.%d{yyyy-MM-dd}.log" />
+        	<!-- 
+        		<param name="FileNamePattern" value="${catalina.home}/logs/referenceccdaservice.%d{yyyy-MM-dd}.log" />
+        	 -->
+            <param name="FileNamePattern" value="${VALIDATOR_LOGDIR}/logs/referenceccdaservice.%d{yyyy-MM-dd}.log" />
+            
         </rollingPolicy>
  
         <layout class="org.apache.log4j.PatternLayout">
@@ -20,15 +24,22 @@
     </appender>
 
     <logger name="org.springframework.orm.jpa">
-        <level value="info" />
+        <level value="error" />
     </logger>
 
+
+    <logger name="org.sitenv.referenceccda.controllers">
+        <level value="ERROR" />
+    </logger>
+	
+
+
     <logger name="org.springframework.transaction">
-        <level value="info" />
+        <level value="error" />
     </logger>
 
     <logger name="org.hsqldb">
-        <level value="info" />
+        <level value="ERROR" />
     </logger>
  
     <root>

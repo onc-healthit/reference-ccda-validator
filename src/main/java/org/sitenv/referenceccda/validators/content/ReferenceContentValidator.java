@@ -9,6 +9,7 @@ import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.referenceccda.validators.schema.CCDAIssueStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
@@ -27,7 +28,7 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
     }
 
     @Override
-    public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName, String ccdaFile) throws SAXException {
+    public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName, String ccdaFile, String severityLevel) throws SAXException {
         ArrayList<RefCCDAValidationResult> results = null;
         if (ccdaFile != null) {
             results = doValidation(validationObjective, referenceFileName, ccdaFile);
@@ -54,7 +55,7 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
             default: type = ValidationResultType.REF_CCDA_INFO;
                 break;
         }
-        
+
         return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(result.getMessage(), null, null, type, "0")
                 .build();
     }

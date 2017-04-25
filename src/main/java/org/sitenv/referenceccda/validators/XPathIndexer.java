@@ -12,14 +12,14 @@
  *******************************************************************************/
 package org.sitenv.referenceccda.validators;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Stack;
+
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
 
 /**
  * XPathIndexer creates and index of line and column number of all elements

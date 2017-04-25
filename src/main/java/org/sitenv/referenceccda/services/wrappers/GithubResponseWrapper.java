@@ -1,9 +1,9 @@
 package org.sitenv.referenceccda.services.wrappers;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
 
 /**
  * Created by Brian on 8/24/2016.

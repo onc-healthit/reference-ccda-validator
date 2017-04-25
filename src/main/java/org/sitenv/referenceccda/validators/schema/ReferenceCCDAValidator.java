@@ -39,15 +39,16 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	}
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
-			String referenceFileName, String ccdaFile) throws SAXException, Exception {
+			String referenceFileName, String ccdaFile, String severityLevel) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
 		ValidationResult result = new ValidationResult();
 		InputStream in = null;
 		trackXPathsInXML(xpathIndexer, ccdaFile);
-		try {
-			in = IOUtils.toInputStream(ccdaFile, "UTF-8");
+		try {						
+			in = IOUtils.toInputStream(ccdaFile, "UTF-8");					
+//			OCLLoader.loadocl();
 			validateDocumentByTypeUsingMDHTApi(in, validationObjective, result);
-		} catch (IOException e) {
+		}  catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			if (in != null) {
@@ -68,7 +69,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		logger.info("Processing and returning MDHT validation results");
 		return processValidationResults(xpathIndexer, result);
 	}
-
+   
 	private void validateDocumentByTypeUsingMDHTApi(InputStream in, String validationObjective, 
 			ValidationResult result) throws Exception {
 		if(StringUtils.isEmpty(validationObjective)) {
@@ -91,6 +92,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 			if (isValidationObjectiveCCDAType(mdhtValidationObjective)) {
 				Mu2consolPackage.eINSTANCE.unload();
 				ConsolPackage.eINSTANCE.eClass();
+				OCLLoader.loadocl();
 				logger.info("Loading mdhtValidationObjective: " + mdhtValidationObjective
 						+ " mapped from valdationObjective: " + validationObjective);
 				CDAUtil.load(in, result);
@@ -182,7 +184,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 			results.add(buildValidationResult(diagnostic, xpathIndexer, currentValidationResultType));
 		}
 	}
-
+	
 	private RefCCDAValidationResult buildValidationResult(Diagnostic diagnostic, XPathIndexer xPathIndexer,
 			ValidationResultType resultType) {
 		CDADiagnostic diag = new CDADiagnostic(diagnostic);
@@ -254,7 +256,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private RefCCDAValidationResult createNewValidationResult(CDADiagnostic cdaDiag, ValidationResultType resultType,
 			String resultLineNumber, MDHTResultDetails mdhtResultDetails) {
 		return new RefCCDAValidationResult.RefCCDAValidationResultBuilder(
-				cdaDiag.getMessage(), cdaDiag.getPath(), null, resultType, resultLineNumber)
+				cdaDiag.getMessage(), cdaDiag.getPath(), null, resultType, resultLineNumber, cdaDiag.getSource())
 				.mdhtResultDetails(mdhtResultDetails)
 				.build();
 	}

@@ -2,9 +2,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.sitenv</groupId>
-    <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.18</version>
-    <packaging>war</packaging>
+    <artifactId>cerner-referenceccdavalidator</artifactId>
+    <version>1.0.18-SNAPSHOT</version>
+    <!--
+	    <packaging>war</packaging>
+    -->
     <name>Reference CCDA Validator</name>
 
     <properties>
@@ -12,8 +14,8 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.10</code.validator.version>
-        <content.validator.version>1.0.10</content.validator.version>
+        <code.validator.version>1.0.10-SNAPSHOT</code.validator.version>
+        <content.validator.version>1.0.10-SNAPSHOT</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.0.20170622</mdht.models.version>
         <mdht.plugins.version>3.0.0.201706220503</mdht.plugins.version>
@@ -22,7 +24,7 @@
     <repositories>
         <repository>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
             <id>mdht-libs</id>
             <name>libs-release</name>
@@ -31,12 +33,12 @@
         <repository>
             <snapshots>
                 <enabled>true</enabled>
-            </snapshots>        
+            </snapshots>
             <id>mdht-plugins</id>
             <name>plugins-release</name>
             <url>http://devsoap.sitenv.org:8081/artifactory/plugins-release-local</url>
-        </repository> 
-    </repositories>   
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from devsoap.sitenv.org:8081 artifactory -->
@@ -128,7 +130,7 @@
         <!-- START VOCAB DEPENDENCIES -->
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
-            <artifactId>codevalidator-api</artifactId>
+            <artifactId>cerner-codevalidator-api</artifactId>
             <version>${code.validator.version}</version>
         </dependency>
         <!-- END VOCAB DEPENDENCIES -->
@@ -312,6 +314,17 @@
                     <allowSnapshots>true</allowSnapshots>
                 </configuration>
             </plugin>
+            <!-- START : Need to exclude ApplicationInitializer from building since Cerner specific Custom initializer is used in a separate project -->
+			<plugin>
+			      <groupId>org.apache.maven.plugins</groupId>
+			      <artifactId>maven-compiler-plugin</artifactId>
+			      <configuration>
+			        <excludes>
+			          <exclude>org/sitenv/referenceccda/configuration/ApplicationInitializer.java</exclude>
+			        </excludes>
+			      </configuration>
+			</plugin>
+			<!--  END :  -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -408,6 +421,7 @@
             <!-- This profile will build a zip file of the war and all of the necessary artifacts to deploy the validator. -->
             <id>distribution</id>
             <build>
+            	<finalName>cerner-referencevalidator-${version}</finalName>
                 <plugins>
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
@@ -436,6 +450,19 @@
                            <packagingExcludes>**/context.xml</packagingExcludes>
                         </configuration>
                     </plugin>
+
+                    <!--  Need to exclude since Cerner Custom initializer is being used-->
+                    <plugin>
+					      <groupId>org.apache.maven.plugins</groupId>
+					      <artifactId>maven-compiler-plugin</artifactId>
+					      <configuration>
+					        <excludes>
+					          <exclude>org/sitenv/referenceccda/configuration/ApplicationInitializer.java</exclude>
+					        </excludes>
+					      </configuration>
+					</plugin>
+                    <!--  Need to exclude since Cerner Custom initializer is being used-->
+
                 </plugins>
             </build>
         </profile>

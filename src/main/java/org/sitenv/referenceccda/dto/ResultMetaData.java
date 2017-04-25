@@ -8,7 +8,7 @@ public class ResultMetaData {
 		this.type = type;
 		this.count = count;
 	}
-
+	
 	public String getType() {
 		return type;
 	}
@@ -25,6 +25,25 @@ public class ResultMetaData {
 		this.count = count;
 	}
 
+	// ------------------------- INTERNAL CODE CHANGE START
+	private String severity;
+	
+	public ResultMetaData(String type, int count, String severity) {
+		this(type, count); 
+		this.severity = severity;
+	}
+
+	
+	public String getSeverity() {
+		return severity;
+	}
+
+	public void setSeverity(String severity) {
+		this.severity = severity;
+	}
+
+	// ------------------------- INTERNAL CODE CHANGE END
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

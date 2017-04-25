@@ -1,5 +1,11 @@
 package org.sitenv.referenceccda.services;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+
 import org.sitenv.referenceccda.services.wrappers.GithubResponseWrapper;
 import org.sitenv.referenceccda.services.wrappers.TestDataTreeWrapper;
 import org.sitenv.vocabularies.validation.entities.Code;
@@ -12,8 +18,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.*;
 
 /**
  * Created by Brian on 2/23/2016.

@@ -21,13 +21,9 @@
             <directory>configuration</directory>
             <includes>
                 <include>ccdaReferenceValidatorConfig.xml</include>
-                <include>referenceccda-orientdb-server-profiles.xml</include>
+                <include>referenceccda-orientdb-server-config.xml</include>
             </includes>
             <outputDirectory>VocabularyConfiguration</outputDirectory>
-        </fileSet>
-        <fileSet>
-            <directory>E:\Brian\Development\Environment\VocabularyConfiguration\scenarios</directory>
-            <outputDirectory>VocabularyConfiguration\scenarios</outputDirectory>
         </fileSet>
         <fileSet>
             <directory>E:\Brian\Development\Environment\VocabularyConfiguration\Vocabulary</directory>
