@@ -28,7 +28,7 @@
         </repository>
         <repository>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>        
             <id>mdht-plugins</id>
             <name>plugins-release</name>
