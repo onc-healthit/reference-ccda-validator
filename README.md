@@ -15,10 +15,10 @@ This document is meant to outline the steps to successfully configure and deploy
 
 Vocabulary Artifacts
 
-      1. Create a directory that will hold the vocabulary artifacts. For example, /path/to/VocabularyConfiguration
+      1. Create a directory that will hold the vocabulary artifacts. For example, /path/to/validator_configuration
           a. this folder will contain the needed vocabulary configuration files
 
-      2. Place the ccdaReferenceValidatorConfig.xml in this folder. For example, /path/to/VocabularyConfiguration/ccdaReferenceValidatorConfig.xml
+      2. Place the ccdaReferenceValidatorConfig.xml in this folder. For example, /path/to/validator_configuration/ccdaReferenceValidatorConfig.xml
           a. this file contains the xpath expressions that target particular nodes in the given C-CDA to be validated. Each expression is configured with at least one validator. For example:
 >            <expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:confidentialityCode[not(@nullFlavor)]">
 >            		<validator>
@@ -31,9 +31,9 @@ Vocabulary Artifacts
 >           	</expression>
 
     3.Create a local directory for Codes, Valuesets and Scenario files. For example,
-       a. /path/to/validatorconfiguration/vocabulary/code_repository
-       b. /path/to/validatorconfiguration/vocabulary/valueset_repository/VSAC
-       c. /path/to/validatorconfiguration/scenarios
+       a. /path/to/validator_configuration/vocabulary/code_repository
+       b. /path/to/validator_configuration/vocabulary/valueset_repository/VSAC
+       c. /path/to/validator_configuration/scenarios
 
 >     NOTE: Code systems and valuesets are externally published and this project does **NOT** come packaged with any of these files.
 >     code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
@@ -51,10 +51,10 @@ Server Configuration
     1. Place a copy of referenceccdaservice.xml in $CATALINA_BASE/conf/[enginename]/[hostname]/. For example, ~/apache-tomcat-7.0.57/conf/Catalina/localhost
     2. Edit the referenceccdaservice.xml key values to point to the locations configured in the previous steps. For example;
             <Context reloadable="true">
-                <Parameter name="vocabulary.localCodeRepositoryDir" value="path/to/your/code_repository" override="true"/>
-                <Parameter name="vocabulary.localValueSetRepositoryDir" value="path/to/your/valueset_repository" override="true"/>
-                <Parameter name="referenceccda.configFile" value="path/to/your/ccdaReferenceValidatorConfig.xml" override="true"/>
-                <Parameter name="content.scenariosDir" value="path/to/your/scenarion_directory" override="true"/>
+                <Parameter name="vocabulary.localCodeRepositoryDir" value="/path/to/validator_configuration/vocabulary/code_repository" override="true"/>
+                <Parameter name="vocabulary.localValueSetRepositoryDir" value="/path/to/validator_configuration/vocabulary/valueset_repository/VSAC" override="true"/>
+                <Parameter name="referenceccda.configFile" value="/path/to/validator_configuration/ccdaReferenceValidatorConfig.xml" override="true"/>
+                <Parameter name="content.scenariosDir" value="/path/to/validator_configuration/scenarios" override="true"/>
              </Context>
 
 **3. Run the application**
