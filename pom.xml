@@ -12,9 +12,11 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.10-SNAPSHOT</code.validator.version>
-        <content.validator.version>1.0.9</content.validator.version>
-
+        <code.validator.version>1.0.11-SNAPSHOT</code.validator.version>
+        <content.validator.version>1.0.9</content.validator.version>        
+        <!-- MDHT properties -->
+        <mdht.models.version>3.0.0.20170524</mdht.models.version>
+        <mdht.plugins.version>3.0.0.201705240503</mdht.plugins.version>
     </properties>
 
     <repositories>
@@ -42,38 +44,38 @@
 		<dependency>
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-		    <version>2.6.3.20170323</version>
+		    <version>${mdht.models.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
-		    <version>2.6.3.20170323</version>
+		    <version>${mdht.models.version}</version>
 		</dependency>
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-		    <version>3.0.0.201703230502</version>
+		    <version>${mdht.plugins.version}</version>
 		</dependency>
         <dependency>
             <groupId>org.eclipse.mdht</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>3.0.0.201703230502</version>
+            <version>${mdht.plugins.version}</version>
         </dependency>
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-		    <version>3.0.0.201703230502</version>
+		    <version>${mdht.plugins.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-		    <version>3.0.0.201703230502</version>
+		    <version>${mdht.plugins.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
 		    <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-		    <version>3.0.0.201703230502</version>
+		    <version>${mdht.plugins.version}</version>
 		</dependency>	
 		<!-- 3rd party MDHT -->
 		<dependency>
