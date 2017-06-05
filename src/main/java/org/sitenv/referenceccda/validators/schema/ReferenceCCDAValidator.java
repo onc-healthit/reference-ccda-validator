@@ -59,7 +59,11 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 			}
 		}
 		if(result.getAllDiagnostics().isEmpty()) {
-			logAndThrowException("The MDHT ValidationResult object was not populated for an unknown reason.");
+			logAndThrowException("The MDHT ValidationResult object was not populated for an unknown reason. "
+					+ "Please ensure that the XML document sent is a valid C-CDA R1.0, R1.1, or R2.1 file. "
+					+ "This error may be related to but is not limited to: "
+					+ "An invalid document type templateId/@root, an invalid templateId/@extension, "
+					+ "or invalid combination of the two. Note: C-CDA R2.0 is not supported by the validator.");
 		}
 		logger.info("Processing and returning MDHT validation results");
 		return processValidationResults(xpathIndexer, result);
