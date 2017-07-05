@@ -12,8 +12,8 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.10</code.validator.version>
-        <content.validator.version>1.0.10</content.validator.version>
+        <code.validator.version>1.0.11-SNAPSHOT</code.validator.version>
+        <content.validator.version>1.0.11-SNAPSHOT</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.0.20170622</mdht.models.version>
         <mdht.plugins.version>3.0.0.201706220503</mdht.plugins.version>
@@ -22,7 +22,7 @@
     <repositories>
         <repository>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
             <id>mdht-libs</id>
             <name>libs-release</name>
@@ -51,6 +51,11 @@
 		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
 		    <version>${mdht.models.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.hl7.security.ds4p</groupId>
+            <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
+            <version>0.1.0-20170705.191458-1</version>
+        </dependency>
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
