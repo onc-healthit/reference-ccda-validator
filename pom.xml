@@ -54,7 +54,7 @@
         <dependency>
             <groupId>org.hl7.security.ds4p</groupId>
             <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
-            <version>0.1.0-20170705.191458-1</version>
+            <version>3.0.0.20170706</version>
         </dependency>
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
