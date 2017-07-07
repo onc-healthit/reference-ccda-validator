@@ -50,11 +50,11 @@
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
 		    <version>${mdht.models.version}</version>
-		</dependency>
-        <dependency>
+        </dependency>
+		<dependency>
             <groupId>org.hl7.security.ds4p</groupId>
             <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
-            <version>3.0.0.20170706</version>
+            <version>3.0.0.20170707</version>
         </dependency>
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
