@@ -34,7 +34,7 @@ public class RefCCDAValidationResult {
         if(builder.mdhtResultDetails != null) {
         	this.mdhtResultDetails = builder.mdhtResultDetails;
         } else {
-        	this.mdhtResultDetails = new MDHTResultDetails(false, false, false, false);
+        	this.mdhtResultDetails = new MDHTResultDetails();
         }
     }
 
@@ -73,6 +73,10 @@ public class RefCCDAValidationResult {
 	public boolean isMUIssue() {
 		return mdhtResultDetails.isMUIssue();
 	}    
+	
+	public boolean isDS4PIssue() {
+		return mdhtResultDetails.isDS4PIssue();
+	}	
 
     public String getActualCodeSystem() {
         return actualCodeSystem;
