@@ -37,12 +37,10 @@ public class RefCCDATest {
 	
 	private static final boolean SHOW_ERRORS_ONLY = false;
 	
-	private static final int HAS_SCHEMA_ERROR_INDEX = 1;
-	private static final int LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2;
-	private static final int INVALID_SNIPPET_ONLY_INDEX = 3;
-	private static final int NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4;
-	private static final int BLANK_EMPTY_DOCUMENT_INDEX = 5;
-	private static final int HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6;
+	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
+			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
+			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
+			DS4P_AMB_1 = 8, DS4P_INP_1 = 9;
 
 	// feel free to add docs to the end but don't alter existing data
 	// - the same sample is referenced twice due to a loop test
@@ -51,17 +49,15 @@ public class RefCCDATest {
 		try {
 			CCDA_FILES = new URI[] {
 					RefCCDATest.class.getResource("/Sample.xml").toURI(),
-					RefCCDATest.class
-							.getResource("/Sample_addSchemaErrors.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample_addSchemaErrors.xml").toURI(),
 					RefCCDATest.class.getResource("/Sample.xml").toURI(),
-					RefCCDATest.class.getResource(
-							"/Sample_invalid-SnippetOnly.xml").toURI(),
-					RefCCDATest.class.getResource("/Sample_basicHTML.xml")
-							.toURI(),
-					RefCCDATest.class.getResource(
-							"/Sample_blank_Empty_Document.xml").toURI(),
-					RefCCDATest.class.getResource(
-							"/Sample_CCDA_CCD_b1_Ambulatory_v2.xml").toURI()};
+					RefCCDATest.class.getResource("/Sample_invalid-SnippetOnly.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample_basicHTML.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample_blank_Empty_Document.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample_CCDA_CCD_b1_Ambulatory_v2.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v2.xml").toURI(),
+					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI()};
 		} catch (URISyntaxException e) {
 			if(LOG_RESULTS_TO_CONSOLE) e.printStackTrace();
 		}
@@ -177,26 +173,51 @@ public class RefCCDATest {
 	
 	@Test
 	public void igOrMu2SchemaErrorsFileTest() {		
-		runIgOrMu2AndNotSchemaTests(HAS_SCHEMA_ERROR_INDEX, CCDATypes.CLINICAL_OFFICE_VISIT_SUMMARY, true);
+		runIgOrMu2OrDS4PAndNotSchemaTests(HAS_SCHEMA_ERROR_INDEX, CCDATypes.CLINICAL_OFFICE_VISIT_SUMMARY, true);
 	}
 	
 	@Test
 	public void igOrMu2NoSchemaErrorsHasMU2ErrorsFileTest() {
-		runIgOrMu2AndNotSchemaTests(HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR, 
+		runIgOrMu2OrDS4PAndNotSchemaTests(HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR, 
 				CCDATypes.TRANSITIONS_OF_CARE_AMBULATORY_SUMMARY, false);
 	}
 	
-	private static void runIgOrMu2AndNotSchemaTests(final int ccdaFileIndex, String ccdaTypesObjective, 
-			boolean shouldHaveSchemaErrors) {
+	@Test
+	public void ds4pGeneralTestAndHasErrors() {		
+		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(
+				runIgOrMu2OrDS4PAndNotSchemaTests(DS4P_FROM_MDHT, CCDATypes.DS4P_AMBULATORY, false));
+		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
+	}
+	
+	@Test
+	public void ds4pOfficialAmbulatory() {
+		ArrayList<RefCCDAValidationResult> results = 
+				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_AMB_1]), 
+						CCDATypes.DS4P_AMBULATORY);
+		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
+//		assertTrue("The Ambulatory DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
+		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
+		printResultsBasedOnFlags(results);
+	}	
+	
+	@Test
+	public void ds4pOfficialInpatient() {
+		ArrayList<RefCCDAValidationResult> results = 
+				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_INP_1]), 
+						CCDATypes.DS4P_INPATIENT);
+		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
+//		assertTrue("The Inpatient DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
+		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
+		printResultsBasedOnFlags(results);
+	}
+	
+	private static ArrayList<RefCCDAValidationResult> runIgOrMu2OrDS4PAndNotSchemaTests(final int ccdaFileIndex,
+			String ccdaTypesObjective, boolean shouldHaveSchemaErrors) {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[ccdaFileIndex]), 
 						ccdaTypesObjective);
 		
-		if(SHOW_ERRORS_ONLY) {
-			printResults(getMDHTErrorsFromResults(results));
-		} else {
-			printResults(results);
-		}
+		printResultsBasedOnFlags(results);
 		
 		boolean hasSchemaError = false;
 		for (RefCCDAValidationResult result : getMDHTErrorsFromResults(results)) {
@@ -216,15 +237,25 @@ public class RefCCDATest {
 			if(result.getDescription().startsWith("Consol")) {
 				assertTrue("The issue (" + result.getDescription() + ") is an IG Issue but was not flagged as such", result.isIGIssue());
 				assertFalse("The issue (" + result.getDescription() + ") is an IG Issue but was flagged as an MU Issue", result.isMUIssue());
+				assertFalse("The issue (" + result.getDescription() + ") is an IG Issue but was flagged as a DS4P Issue", result.isDS4PIssue());
 				assertFalse("An IG" + msgSuffixSchemaError + " (" + result.getDescription() + ")", result.isSchemaError());
 				assertFalse("An IG" + msgSuffixDatatypeSchemaError + " (" + result.getDescription() + ")", result.isDataTypeSchemaError());
 			} else if(result.getDescription().startsWith("Mu2consol")) {
 				assertTrue("The issue (" + result.getDescription() + ") is an MU Issue but was not flagged as such", result.isMUIssue());
 				assertFalse("The issue (" + result.getDescription() + ") is an MU Issue but was flagged as an IG Issue", result.isIGIssue());
+				assertFalse("The issue (" + result.getDescription() + ") is an MU Issue but was flagged as a DS4P Issue", result.isDS4PIssue());
 				assertFalse("An Mu2" + msgSuffixSchemaError + " (" + result.getDescription() + ")", result.isSchemaError());
 				assertFalse("An Mu2" + msgSuffixDatatypeSchemaError + " (" + result.getDescription() + ")", result.isDataTypeSchemaError());				
+			} else if(result.getDescription().startsWith("CONTENTPROFILE")) {
+				assertTrue("The issue (" + result.getDescription() + ") is a DS4P Issue but was not flagged as such", result.isDS4PIssue());
+				assertFalse("The issue (" + result.getDescription() + ") is a DS4P Issue but was flagged as an IG Issue", result.isIGIssue());
+				assertFalse("The issue (" + result.getDescription() + ") is an DS4P Issue but was flagged as an MU Issue", result.isMUIssue());
+				assertFalse("A DS4P" + msgSuffixSchemaError + " (" + result.getDescription() + ")", result.isSchemaError());
+				assertFalse("A DS4P" + msgSuffixDatatypeSchemaError + " (" + result.getDescription() + ")", result.isDataTypeSchemaError());				
 			}
-		}		
+		}
+		
+		return results;
 	}
 
 	@Test
@@ -297,6 +328,13 @@ public class RefCCDATest {
 				CCDATypes.TRANSITIONS_OF_CARE_AMBULATORY_SUMMARY,
 				convertCCDAFileToString(CCDA_FILES[HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR]));
 	}
+	
+	@Test
+	public void ds4pResultsAreRemovedAfterSwitchAndBackTest() {
+		handlePackageSwitchAndBackTestChoice(
+				CCDATypes.DS4P_AMBULATORY,
+				convertCCDAFileToString(CCDA_FILES[DS4P_FROM_MDHT]));
+	}	
 
 	private static void handlePackageSwitchAndBackTestChoice(String firstTestCCDATypesType, String ccdaFileAsString) {
 		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(ccdaFileAsString, firstTestCCDATypesType);
@@ -343,6 +381,27 @@ public class RefCCDATest {
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.CCDAR11_MU2));
 			assertTrue("ConsolPackage results SHOULD have been returned as well since MU2 inherits from consol "
 					+ "and the doc tested has base level errors",
+					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.CCDAR21_OR_CCDAR11));
+		} else if(firstTestCCDATypesType.equals(CCDATypes.DS4P_AMBULATORY)) {
+			println("check original results to ensure there ARE DS4P results");
+			List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
+			printResults(mdhtErrors, false, false, false);
+			assertTrue("Since this is a DS4P validation, CONTENTPROFILEPackage results SHOULD have been returned",
+					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.DS4P));			
+			println("run a new validation against Consol and ensure there are NO DS4P results)");
+			mdhtErrors = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
+					ccdaFileAsString, CCDATypes.NON_SPECIFIC_CCDAR2));		
+			printResults(mdhtErrors, false, false, false);
+			assertFalse("Since this was NOT a DS4P validation, CONTENTPROFILEPackage results should NOT have been returned",
+					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.DS4P));			
+			println("run a final validation against DS4P and ensure the DS4P results HAVE RETURNED");
+			mdhtErrors = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
+					ccdaFileAsString, CCDATypes.DS4P_INPATIENT)); 
+			printResults(mdhtErrors, false, false, false);
+			assertTrue("Since this was a DS4P validation (reverted from Consol), CONTENTPROFILEPackage results SHOULD have been returned",
+					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.DS4P));
+			assertFalse("ConsolPackage results should NOT have been returned as well since DS4P does not inherit from consol "
+					+ "but instead from CDA",
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.CCDAR21_OR_CCDAR11));
 		}
 	}
@@ -423,7 +482,7 @@ public class RefCCDATest {
 	}	
 	
 	private static boolean mdhtErrorsHaveProvidedPackageResult(List<RefCCDAValidationResult> mdhtErrors, String ccdaTypeToCheckFor) {
-		boolean hasMu2 = false, hasConsol = false;
+		boolean hasMu2 = false, hasConsol = false, hasDs4p = false;
 		for(RefCCDAValidationResult mdhtError :  mdhtErrors) {
 			if(mdhtError.getDescription().contains("Mu2consol")) {
 				hasMu2 = true;
@@ -431,11 +490,16 @@ public class RefCCDATest {
 			if(mdhtError.getDescription().contains("Consol")) {
 				hasConsol = true;
 			}
+			if(mdhtError.getDescription().contains("CONTENTPROFILE")) {
+				hasDs4p = true;
+			}			
 		}
 		if(ccdaTypeToCheckFor.equals(CCDATypes.CCDAR11_MU2)) {
 			return hasMu2;
 		} else if(ccdaTypeToCheckFor.equals(CCDATypes.CCDAR21_OR_CCDAR11)) {
 			return hasConsol;
+		} else if(ccdaTypeToCheckFor.equals(CCDATypes.DS4P)) {
+			return hasDs4p;
 		}
 		return false;
 	}
@@ -505,6 +569,14 @@ public class RefCCDATest {
 		}
 		return results;
 	}
+	
+	private static void printResultsBasedOnFlags(List<RefCCDAValidationResult> results) {
+		if(SHOW_ERRORS_ONLY) {
+			printResults(getMDHTErrorsFromResults(results));
+		} else {
+			printResults(results);
+		}		
+	}
 
 	private static void printResults(List<RefCCDAValidationResult> results) {
 			printResults(results, true, true, true);
@@ -529,7 +601,7 @@ public class RefCCDATest {
 	}
 	
 	private static void printResults(RefCCDAValidationResult result, 
-			boolean showSchema, boolean showType, boolean showIgOrMuType) {
+			boolean showSchema, boolean showType, boolean showIgOrMuOrDS4PType) {
 		if (LOG_RESULTS_TO_CONSOLE) {
 			println("Description : " + result.getDescription());
 			if(showType) {
@@ -539,9 +611,10 @@ public class RefCCDATest {
 				println("result.isSchemaError() : " + result.isSchemaError());
 				println("result.isDataTypeSchemaError() : " + result.isDataTypeSchemaError());
 			}
-			if(showIgOrMuType) {
+			if(showIgOrMuOrDS4PType) {
 				println("result.isIGIssue() : " + result.isIGIssue());
-				println("result.isMUIssue() : " + result.isMUIssue());				
+				println("result.isMUIssue() : " + result.isMUIssue());
+				println("result.isDS4PIssue() : " + result.isDS4PIssue());
 			}
 		}
 	}
