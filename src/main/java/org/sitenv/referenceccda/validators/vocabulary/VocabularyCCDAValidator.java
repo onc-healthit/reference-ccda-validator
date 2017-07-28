@@ -40,10 +40,7 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
 	    //------------------------- INTERNAL CODE CHANGE  END --------------------------   
         ArrayList<RefCCDAValidationResult> results = null;
         if (ccdaFile != null) {
-            //final XPathIndexer xpathIndexer = new XPathIndexer();
-            //trackXPathsInXML(xpathIndexer, ccdaFile);
             try {
-//                results = doValidation(ccdaFile, xpathIndexer, severityLevel);
                 results = doValidation(ccdaFile, severityLevel);
             } catch (IOException e) {
                 e.printStackTrace();

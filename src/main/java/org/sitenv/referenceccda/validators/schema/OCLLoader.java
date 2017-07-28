@@ -78,20 +78,14 @@ public class OCLLoader {
 							logger.debug("Pre-loading: " + c2.getName() + " Method:" + method.getName());
 							method.invoke(null, null, null, null);
 						} catch (IllegalAccessException e) {
-							// TODO Auto-generated catch block
-							// e.printStackTrace();
+//							logger.error("Error loading OCLs.", e);
 						} catch (IllegalArgumentException e) {
-							// TODO Auto-generated catch block
-							// e.printStackTrace();
+//							logger.error("Error loading OCLs.", e);
 						} catch (InvocationTargetException e) {
-							// TODO Auto-generated catch block
-							// e.printStackTrace();
+//							logger.error("Error loading OCLs.", e);
 						}
 					}
-					// method.invoke(null, "whatever");
 				}
-
-				// System.out.println(c2.getCanonicalName());
 			}
 		} catch (Exception e) {
 			r.put("Error", e.getMessage());

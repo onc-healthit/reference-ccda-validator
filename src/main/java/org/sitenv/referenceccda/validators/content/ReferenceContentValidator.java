@@ -9,7 +9,6 @@ import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
-import org.sitenv.referenceccda.validators.schema.CCDAIssueStates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;

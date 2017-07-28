@@ -1,34 +1,24 @@
 package org.sitenv.referenceccda.controllers;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.services.VocabularyService;
+import org.sitenv.referenceccda.validators.schema.CCDATypes;
 import org.sitenv.referenceccda.validators.schema.OCLLoader;
 import org.sitenv.vocabularies.validation.entities.Code;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.sitenv.referenceccda.validators.schema.CCDATypes;
-import org.sitenv.referenceccda.validators.schema.ValidationObjectives;
 
 
 @RestController
@@ -97,8 +87,6 @@ public class ReferenceCCDAValidationController {
      *  The file cache must be shared and accessible to the service.
      */
     //------------------------- INTERNAL CODE CHANGE  START --------------------------
-
-
 
 	/*
      * 	Following method is another flavor to validate a CDA document by file.

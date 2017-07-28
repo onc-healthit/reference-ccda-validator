@@ -63,13 +63,9 @@ public class XPathIndexer implements ContentHandler {
 	public static class ElementLocationData {
 		public int line;
 
-		// public int column;
-
-		// public ElementLocationData(int line, int column) {
 		public ElementLocationData(int line) {
 			super();
 			this.line = line;
-			// this.column = column;
 		}
 	};
 
@@ -211,9 +207,6 @@ public class XPathIndexer implements ContentHandler {
 
 		currentXMLElement = new ElementEntry(name, index, currentXMLElement);
 
-		// ElementLocationData location = new
-		// ElementLocationData(locator.getLineNumber(),
-		// locator.getColumnNumber());
 		ElementLocationData location = new ElementLocationData(locator.getLineNumber());
 
 		xpathLocations.put(getXPathFromEntry(currentXMLElement).toUpperCase(), location);

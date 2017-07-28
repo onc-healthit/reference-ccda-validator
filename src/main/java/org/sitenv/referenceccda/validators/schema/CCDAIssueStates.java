@@ -25,13 +25,6 @@ public class CCDAIssueStates {
 		this.isDataTypeSchemaError = false;
 	}
 
-	/**
-	 * Should be reset for each validation as a whole (e.g. a full document)
-	 */
-//	public  void resetHasSchemaError() {
-//		this.hasSchemaError = false;
-//	}
-//
 	public  boolean isBaseLevelIGIssueOnly() {
 		return this.isIGIssue && !this.isMUIssue;
 	}
