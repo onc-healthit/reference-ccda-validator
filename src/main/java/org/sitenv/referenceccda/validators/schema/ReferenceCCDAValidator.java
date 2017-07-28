@@ -17,6 +17,8 @@ import org.eclipse.mdht.uml.cda.DocumentRoot;
 import org.eclipse.mdht.uml.cda.util.CDADiagnostic;
 import org.eclipse.mdht.uml.cda.util.CDAUtil;
 import org.eclipse.mdht.uml.cda.util.ValidationResult;
+import org.hl7.security.ds4p.contentprofile.CONTENTPROFILEPackage;
+import org.hl7.security.ds4p.contentprofile.util.DS4PUtil;
 import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
 import org.openhealthtools.mdht.uml.cda.mu2consol.Mu2consolPackage;
 import org.sitenv.referenceccda.validators.BaseCCDAValidator;
@@ -31,11 +33,16 @@ import org.xml.sax.SAXException;
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
 	private static Logger logger = Logger.getLogger(ReferenceCCDAValidator.class);
 	
-	private static final String IG_ISSUE_ID = "a.consol", MU_ISSUE_ID = "a.mu2con";
+	private static final String IG_ISSUE_ID = "a.consol", MU_ISSUE_ID = "a.mu2con", DS4P_ISSUE_ID = "ds4p";
 	private boolean isValidationObjectiveMu2Type = false;
+	private boolean isValidationObjectiveDS4PType = false;
 	
-	public boolean isValidationObjectiveMu2Type() {
-		return isValidationObjectiveMu2Type;
+	public boolean isValidationObjectiveMu2Type() { 
+		return isValidationObjectiveMu2Type; 
+	}
+	
+	public boolean isValidationObjectiveDS4PType() { 
+		return isValidationObjectiveDS4PType; 
 	}
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
@@ -88,13 +95,16 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		if(mdhtValidationObjective != null) {
 			//populate the field for reuse
 			isValidationObjectiveMu2Type = isValidationObjectiveMu2Type(mdhtValidationObjective);
+			isValidationObjectiveDS4PType = isValidationObjectiveDS4PType(mdhtValidationObjective);
 			if (isValidationObjectiveCCDAType(mdhtValidationObjective)) {
 				Mu2consolPackage.eINSTANCE.unload();
+				CONTENTPROFILEPackage.eINSTANCE.unload();
 				ConsolPackage.eINSTANCE.eClass();
 				logger.info("Loading mdhtValidationObjective: " + mdhtValidationObjective
 						+ " mapped from valdationObjective: " + validationObjective);
 				CDAUtil.load(in, result);
 			} else if (isValidationObjectiveMu2Type) {
+				CONTENTPROFILEPackage.eINSTANCE.unload();
 				Mu2consolPackage.eINSTANCE.reload();
 				Mu2consolPackage.eINSTANCE.eClass();
 				EClass docType = null;
@@ -119,9 +129,14 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 					logAndThrowException("docType == null", "The MU2 docType EClass could not be assigned "
 							+ "from mdhtValidationObjective: " + mdhtValidationObjective);
 				}
+			} else if (isValidationObjectiveDS4PType) {
+				Mu2consolPackage.eINSTANCE.unload();
+				CONTENTPROFILEPackage.eINSTANCE.reload();
+				CONTENTPROFILEPackage.eINSTANCE.eClass();
+				DS4PUtil.validateAsDS4P(in, result);
 			}
 		} else {
-			//Note: This is dead code for now as null values are populated to a default
+			//Note: This is dead code for now as null values are temporarily populated to a default
 			logAndThrowException("The validationObjective given is invalid", 
 					"The validationObjective given was invalid. Please try one of the following valid Strings instead: "
 					+ ValidationObjectives.getObjectives() + " " + CCDATypes.getTypes());
@@ -129,8 +144,9 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	}
 	
 	private static String mapMdhtValidationObjective(String validationObjectivePOSTed) throws Exception {
-		if (isValidationObjectiveACertainType(validationObjectivePOSTed, CCDATypes.NON_SPECIFIC_CCDA_TYPES) || 
-				isValidationObjectiveACertainType(validationObjectivePOSTed, CCDATypes.MU2_TYPES)) {
+		if (isValidationObjectiveACertainType(validationObjectivePOSTed, CCDATypes.NON_SPECIFIC_CCDA_TYPES)
+				|| isValidationObjectiveACertainType(validationObjectivePOSTed, CCDATypes.MU2_TYPES)
+				|| isValidationObjectiveACertainType(validationObjectivePOSTed, CCDATypes.DS4P_TYPES)) {
 			// we already have a *specific* MDHT objective (it was sent directly so no re-mapping required)
 			return validationObjectivePOSTed;
 		} else if (isValidationObjectiveACertainType(validationObjectivePOSTed, ValidationObjectives.ALL_UNIQUE)) {
@@ -163,6 +179,10 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		return isValidationObjectiveACertainType(validationObjective, CCDATypes.MU2_TYPES);
 	}
 	
+	private static boolean isValidationObjectiveDS4PType(String validationObjective) {
+		return isValidationObjectiveACertainType(validationObjective, CCDATypes.DS4P_TYPES);
+	}	
+	
 	private static boolean isValidationObjectiveCCDAType(String validationObjective) {
 		return isValidationObjectiveACertainType(validationObjective, CCDATypes.NON_SPECIFIC_CCDA_TYPES);
 	}
@@ -192,10 +212,11 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	}
 	
 	private MDHTResultDetails populateMDHTResultDetails(CDADiagnostic diag, ValidationResultType resultType) {
-		MDHTResultDetails mdhtResultDetails = new MDHTResultDetails(false, false, false, false);
+		MDHTResultDetails mdhtResultDetails = new MDHTResultDetails();
 		if (diag.getSource() != null) {
 			boolean isIGIssue = diag.getSource().contains(IG_ISSUE_ID);
 			boolean isMUIssue = isValidationObjectiveMu2Type ? diag.getSource().contains(MU_ISSUE_ID) : false;
+			boolean isDS4PIssue = isValidationObjectiveDS4PType ? diag.getSource().contains(DS4P_ISSUE_ID) : false;
 			//IG/MU2 - all severities
 			if(resultType == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR || 
 					resultType == ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN || 
@@ -206,6 +227,9 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 				} else if (isMUIssue) {
 					mdhtResultDetails.setMUIssue(true);
 					return mdhtResultDetails;
+				} else if (isDS4PIssue) {
+					mdhtResultDetails.setDS4PIssue(true);
+					return mdhtResultDetails;					
 				} else {
 					//schema - errors only
 					if(resultType == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR) {

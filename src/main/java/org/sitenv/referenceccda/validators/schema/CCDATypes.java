@@ -5,9 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public final class CCDATypes {
-	// higher level validation versions - not an objective
+	// higher level validation versions - NOT an objective
 	public static final String CCDAR21_OR_CCDAR11 = "C-CDA R2.1 or R1.1 Document";
 	public static final String CCDAR11_MU2 = "C-CDA R1.1 MU2 Document";
+	public static final String DS4P = "DS4P Document";
 	
 	/// all below here are an actual validationObjective
 	// generic CCDA base level
@@ -40,11 +41,18 @@ public final class CCDATypes {
 	public static final String PROGRESS_NOTE = "ProgressNote";
 	public static final String UNSTRUCTURED_DOCUMENT = "UnstructuredDocument";
 	
+	//ds4p
+	public static final String DS4P_AMBULATORY = "DS4PAmbulatory";
+	public static final String DS4P_INPATIENT = "DS4PInpatient";
+	public static final List<String> DS4P_TYPES = new ArrayList<String>(Arrays.asList(DS4P_AMBULATORY, DS4P_INPATIENT));
+	
 	public static String getTypes() {
 		StringBuffer sb = new StringBuffer();
 		ValidationObjectives.appendObjectivesData(NON_SPECIFIC_CCDA_TYPES, "LEGACY (same result as 'C-CDA_IG_Plus_Vocab')", sb);
 		sb.append(" ");
 		ValidationObjectives.appendObjectivesData(MU2_TYPES, "C-CDA R1.1 WITH MU2", sb);
+		sb.append(" ");
+		ValidationObjectives.appendObjectivesData(DS4P_TYPES, "DS4P", sb);		
 		return sb.toString();
 	}
 	
