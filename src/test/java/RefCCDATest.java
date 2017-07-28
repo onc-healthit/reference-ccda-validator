@@ -185,7 +185,7 @@ public class RefCCDATest {
 	@Test
 	public void ds4pGeneralTestAndHasErrors() {		
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(
-				runIgOrMu2OrDS4PAndNotSchemaTests(DS4P_FROM_MDHT, CCDATypes.DS4P_AMBULATORY, false));
+				runIgOrMu2OrDS4PAndNotSchemaTests(DS4P_FROM_MDHT, CCDATypes.NON_SPECIFIC_DS4P, false));
 		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
 	}
 	
@@ -193,7 +193,7 @@ public class RefCCDATest {
 	public void ds4pOfficialAmbulatory() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_AMB_1]), 
-						CCDATypes.DS4P_AMBULATORY);
+						ValidationObjectives.Sender.B7_DS4P_AMB_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
 //		assertTrue("The Ambulatory DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
@@ -204,7 +204,7 @@ public class RefCCDATest {
 	public void ds4pOfficialInpatient() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_INP_1]), 
-						CCDATypes.DS4P_INPATIENT);
+						ValidationObjectives.Sender.B7_DS4P_INP_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
 //		assertTrue("The Inpatient DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
@@ -332,7 +332,7 @@ public class RefCCDATest {
 	@Test
 	public void ds4pResultsAreRemovedAfterSwitchAndBackTest() {
 		handlePackageSwitchAndBackTestChoice(
-				CCDATypes.DS4P_AMBULATORY,
+				CCDATypes.NON_SPECIFIC_DS4P,
 				convertCCDAFileToString(CCDA_FILES[DS4P_FROM_MDHT]));
 	}	
 
@@ -382,7 +382,7 @@ public class RefCCDATest {
 			assertTrue("ConsolPackage results SHOULD have been returned as well since MU2 inherits from consol "
 					+ "and the doc tested has base level errors",
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.CCDAR21_OR_CCDAR11));
-		} else if(firstTestCCDATypesType.equals(CCDATypes.DS4P_AMBULATORY)) {
+		} else if(firstTestCCDATypesType.equals(ValidationObjectives.Receiver.B8_DS4P_AMB_170_315)) {
 			println("check original results to ensure there ARE DS4P results");
 			List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
 			printResults(mdhtErrors, false, false, false);
@@ -396,7 +396,7 @@ public class RefCCDATest {
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.DS4P));			
 			println("run a final validation against DS4P and ensure the DS4P results HAVE RETURNED");
 			mdhtErrors = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
-					ccdaFileAsString, CCDATypes.DS4P_INPATIENT)); 
+					ccdaFileAsString, ValidationObjectives.Receiver.B8_DS4P_INP_170_315)); 
 			printResults(mdhtErrors, false, false, false);
 			assertTrue("Since this was a DS4P validation (reverted from Consol), CONTENTPROFILEPackage results SHOULD have been returned",
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.DS4P));
@@ -437,8 +437,8 @@ public class RefCCDATest {
 	}
 	
 	@Test
-	public void allPossibleValidValidationObjectivesSentTest() {
-		for (String objective : ValidationObjectives.ALL_UNIQUE) {
+	public void allPossibleValidValidationObjectivesExceptDS4PSentTest() {
+		for (String objective : ValidationObjectives.ALL_UNIQUE_EXCEPT_DS4P) {
 			List<RefCCDAValidationResult> results = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
 					convertCCDAFileToString(CCDA_FILES[HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR]), objective));
 			printResults(results, false, false, false);

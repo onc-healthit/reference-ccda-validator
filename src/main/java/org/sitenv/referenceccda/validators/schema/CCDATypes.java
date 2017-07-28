@@ -6,6 +6,7 @@ import java.util.List;
 
 public final class CCDATypes {
 	// higher level validation versions - NOT an objective
+	// TODO: Refactor the 3 constants below into either a separate class or a sub class (and update references)
 	public static final String CCDAR21_OR_CCDAR11 = "C-CDA R2.1 or R1.1 Document";
 	public static final String CCDAR11_MU2 = "C-CDA R1.1 MU2 Document";
 	public static final String DS4P = "DS4P Document";
@@ -42,9 +43,10 @@ public final class CCDATypes {
 	public static final String UNSTRUCTURED_DOCUMENT = "UnstructuredDocument";
 	
 	//ds4p
-	public static final String DS4P_AMBULATORY = "DS4PAmbulatory";
-	public static final String DS4P_INPATIENT = "DS4PInpatient";
-	public static final List<String> DS4P_TYPES = new ArrayList<String>(Arrays.asList(DS4P_AMBULATORY, DS4P_INPATIENT));
+	public static final String NON_SPECIFIC_DS4P = "NonSpecificDS4P";
+	public static final List<String> DS4P_TYPES = new ArrayList<String>(Arrays.asList(NON_SPECIFIC_DS4P, 
+			ValidationObjectives.Sender.B7_DS4P_AMB_170_315, ValidationObjectives.Sender.B7_DS4P_INP_170_315, 
+			ValidationObjectives.Receiver.B8_DS4P_AMB_170_315, ValidationObjectives.Receiver.B8_DS4P_INP_170_315));
 	
 	public static String getTypes() {
 		StringBuffer sb = new StringBuffer();
@@ -52,7 +54,7 @@ public final class CCDATypes {
 		sb.append(" ");
 		ValidationObjectives.appendObjectivesData(MU2_TYPES, "C-CDA R1.1 WITH MU2", sb);
 		sb.append(" ");
-		ValidationObjectives.appendObjectivesData(DS4P_TYPES, "DS4P", sb);		
+		ValidationObjectives.appendObjectivesData(Arrays.asList(NON_SPECIFIC_DS4P), "DS4P", sb);		
 		return sb.toString();
 	}
 	

@@ -10,13 +10,19 @@ import java.util.Set;
 public final class ValidationObjectives {
 	public static final List<String> ALL = new ArrayList<String>();
 	public static final Set<String> ALL_UNIQUE = new HashSet<String>();
+	public static final Set<String> ALL_UNIQUE_EXCEPT_DS4P = new HashSet<String>();
 	public static final Set<String> ALL_UNIQUE_CONTENT_ONLY = new HashSet<String>();
 	static {
 		ALL.addAll(Sender.OBJECTIVES);
 		ALL.addAll(Receiver.OBJECTIVES);
+		
 		ALL_UNIQUE.addAll(ALL);
+		
 		ALL_UNIQUE_CONTENT_ONLY.addAll(ALL_UNIQUE);
 		ALL_UNIQUE_CONTENT_ONLY.removeAll(Arrays.asList(Sender.C_CDA_IG_ONLY, Sender.C_CDA_IG_PLUS_VOCAB));
+		
+		ALL_UNIQUE_EXCEPT_DS4P.addAll(ALL_UNIQUE);
+		ALL_UNIQUE_EXCEPT_DS4P.removeAll(CCDATypes.DS4P_TYPES);
 	}
 	
 	public static final List<String> CURRENTLY_PROCESSED_BY_CONTENT_VALIDATOR = new ArrayList<String>(Arrays.asList(
