@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ValidationResultsMetaData {
 	private String ccdaDocumentType;
+	private String objectiveProvided;
 	private boolean serviceError;
 	private String serviceErrorMessage;
 	private String ccdaFileName;
@@ -31,6 +32,16 @@ public class ValidationResultsMetaData {
 	public void setCcdaDocumentType(String ccdaDocumentType) {
 		this.ccdaDocumentType = ccdaDocumentType;
 	}
+	
+	public String getObjectiveProvided() {
+		return objectiveProvided;
+	}
+	
+
+	public void setObjectiveProvided(String objectiveProvided) {
+		this.objectiveProvided = objectiveProvided;
+	}
+	
 
 	public boolean isServiceError() {
 		return serviceError;

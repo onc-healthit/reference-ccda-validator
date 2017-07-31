@@ -132,7 +132,7 @@ angular.module('referenceValidator').controller('ValidationController', function
 
     function buildCcdaValidationSummary(data){
         var uploadedFileName = data.resultsMetaData.ccdaFileName;
-        var docTypeSelected = data.resultsMetaData.ccdaDocumentType;
+        var docTypeSelected = data.resultsMetaData.objectiveProvided;
         var numberOfTypesOfErrorsPerGroup = 3; //error, warning, info
         var resultTypeCount = 0;
         var resultGroup = '';

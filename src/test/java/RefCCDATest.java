@@ -18,9 +18,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.sitenv.contentvalidator.service.ContentValidatorService;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
+import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.content.ReferenceContentValidator;
+import org.sitenv.referenceccda.validators.enums.UsrhSubType;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.referenceccda.validators.schema.CCDATypes;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
@@ -465,7 +467,33 @@ public class RefCCDATest {
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
 				ValidationObjectives.Sender.B1_TOC_AMB_170_315, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR);
 		handleServiceErrorTest(results, false);
-	}		
+	}
+	
+	@Test
+	public void testDocumentTypeIdentificationCCDAndObjectiveSentMetaDataUsingServiceNonVocab() {
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
+				CCDATypes.NON_SPECIFIC_CCDA, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR);
+		
+		final String docTypeExpected = UsrhSubType.CONTINUITY_OF_CARE_DOCUMENT.getName();  
+		final String docTypeSet = results.getResultsMetaData().getCcdaDocumentType();
+		final String objectiveExpected = CCDATypes.NON_SPECIFIC_CCDA;
+		final String objectiveSet = results.getResultsMetaData().getObjectiveProvided();
+		
+		testDocumentTypeIdentificationAndObjectiveSentMetaDataUsingServiceNonVocab(results.getResultsMetaData(), 
+				docTypeExpected, docTypeSet, objectiveExpected, objectiveSet);
+	}
+	
+	private static void testDocumentTypeIdentificationAndObjectiveSentMetaDataUsingServiceNonVocab(ValidationResultsMetaData resultsMetaData, 
+			final String docTypeExpected, final String docTypeSet, final String objectiveExpected, final String objectiveSet) {
+		
+		assertTrue("The document type should be '" + docTypeExpected + "' but it is '" + docTypeSet + "' instead",
+				docTypeSet.equals(docTypeExpected));
+		System.out.println("docTypeExpected");System.out.println(docTypeExpected);
+		System.out.println("docTypeSet");System.out.println(docTypeSet);
+		
+		assertTrue("The given validation objective should be '" + objectiveExpected + "' but it is '" + objectiveSet + "' instead",
+				objectiveSet.equals(objectiveExpected));
+	}
 	
 	private static boolean hasMDHTValidationErrors(List<RefCCDAValidationResult> results) {
 		return !getMDHTErrorsFromResults(results).isEmpty();

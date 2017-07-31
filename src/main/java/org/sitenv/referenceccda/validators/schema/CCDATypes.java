@@ -6,10 +6,10 @@ import java.util.List;
 
 public final class CCDATypes {
 	// higher level validation versions - NOT an objective
-	// TODO: Refactor the 3 constants below into either a separate class or a sub class (and update references)
 	public static final String CCDAR21_OR_CCDAR11 = "C-CDA R2.1 or R1.1 Document";
 	public static final String CCDAR11_MU2 = "C-CDA R1.1 MU2 Document";
 	public static final String DS4P = "DS4P Document";
+	public static final String UNKNOWN_DOC_TYPE = "Unknown Document Type";
 	
 	/// all below here are an actual validationObjective
 	// generic CCDA base level
