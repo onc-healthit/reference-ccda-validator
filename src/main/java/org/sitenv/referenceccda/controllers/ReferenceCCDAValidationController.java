@@ -109,28 +109,6 @@ public class ReferenceCCDAValidationController {
 				performMDHTValidation, performVocabularyValidation, performContentValidation, defaultR21ValidationObjective, defaultR11ValidationObjective);
 	}
 
-	/*
-     * 	Following method is another flavor to validate a CDA document by file.
-     *  It's without OAuth for easy soapUI load testing.
-     *
-     *  Additional parameter severityLevel is passed to filter the results based on the severity.
-     */
-	@RequestMapping(value = "/validateDocumentByFile_NoOAuth", headers = "content-type=multipart/*", method = RequestMethod.POST)
-	public ValidationResultsDto doValidation_NoOAuth(
-			@RequestParam(value = "validationObjective", required = true) String validationObjective,
-			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
-			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
-			@RequestParam(value = "severityLevel", required = true, defaultValue = "Error") String severityLevel,
-			@RequestParam(value = "performMDHTValidation", required = false, defaultValue = "true") boolean performMDHTValidation,
-			@RequestParam(value = "performVocabularyValidation", required = false, defaultValue = "true") boolean performVocabularyValidation,
-			@RequestParam(value = "performContentValidation", required = false, defaultValue = "false") boolean performContentValidation,
-			@RequestParam(value = "defaultR21ValidationObjective", required = false, defaultValue = CCDATypes.NON_SPECIFIC_CCDAR2) String defaultR21ValidationObjective,
-			@RequestParam(value = "defaultR11ValidationObjective", required = false, defaultValue = CCDATypes.NON_SPECIFIC_CCDAR2) String defaultR11ValidationObjective
-			) {
-		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile,severityLevel.toUpperCase(),
-				performMDHTValidation, performVocabularyValidation, performContentValidation, defaultR21ValidationObjective, defaultR11ValidationObjective);
-	}
-
 	@RequestMapping(value = "/initOCL", method = RequestMethod.GET)
 	public Map<String,String> doIniOCL() {
 
