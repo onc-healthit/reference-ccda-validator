@@ -42,7 +42,7 @@ public class RefCCDATest {
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
 			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
-			DS4P_AMB_1 = 8, DS4P_INP_1 = 9;
+			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10;
 
 	// feel free to add docs to the end but don't alter existing data
 	// - the same sample is referenced twice due to a loop test
@@ -59,7 +59,8 @@ public class RefCCDATest {
 					RefCCDATest.class.getResource("/Sample_CCDA_CCD_b1_Ambulatory_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v2.xml").toURI(),
-					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI()};
+					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI()};
 		} catch (URISyntaxException e) {
 			if(LOG_RESULTS_TO_CONSOLE) e.printStackTrace();
 		}
@@ -483,6 +484,20 @@ public class RefCCDATest {
 				docTypeExpected, docTypeSet, objectiveExpected, objectiveSet);
 	}
 	
+	@Test
+	public void testDocumentTypeIdentificationCCDR2AndObjectiveSentMetaDataUsingServiceNonVocab() {
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
+				CCDATypes.NON_SPECIFIC_CCDA, CCD_R21);
+		
+		final String docTypeExpected = UsrhSubType.CONTINUITY_OF_CARE_DOCUMENT.getName();  
+		final String docTypeSet = results.getResultsMetaData().getCcdaDocumentType();
+		final String objectiveExpected = CCDATypes.NON_SPECIFIC_CCDA;
+		final String objectiveSet = results.getResultsMetaData().getObjectiveProvided();
+		
+		testDocumentTypeIdentificationAndObjectiveSentMetaDataUsingServiceNonVocab(results.getResultsMetaData(), 
+				docTypeExpected, docTypeSet, objectiveExpected, objectiveSet);
+	}
+	
 	private static void testDocumentTypeIdentificationAndObjectiveSentMetaDataUsingServiceNonVocab(ValidationResultsMetaData resultsMetaData, 
 			final String docTypeExpected, final String docTypeSet, final String objectiveExpected, final String objectiveSet) {
 		
@@ -653,7 +668,7 @@ public class RefCCDATest {
 	
 	private static void println(String message) {
 		print(message);
-		println();		
+		println();
 	}
 	
 	private static void print(String message) {

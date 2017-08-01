@@ -23,17 +23,26 @@ import org.hl7.security.ds4p.contentprofile.util.DS4PUtil;
 import org.openhealthtools.mdht.uml.cda.consol.CarePlan;
 import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
 import org.openhealthtools.mdht.uml.cda.consol.ConsultationNote;
+import org.openhealthtools.mdht.uml.cda.consol.ConsultationNote2;
 import org.openhealthtools.mdht.uml.cda.consol.ContinuityOfCareDocument;
+import org.openhealthtools.mdht.uml.cda.consol.ContinuityOfCareDocument2;
 import org.openhealthtools.mdht.uml.cda.consol.DiagnosticImagingReport;
+import org.openhealthtools.mdht.uml.cda.consol.DiagnosticImagingReport2;
 import org.openhealthtools.mdht.uml.cda.consol.DischargeSummary;
+import org.openhealthtools.mdht.uml.cda.consol.DischargeSummary2;
 import org.openhealthtools.mdht.uml.cda.consol.HistoryAndPhysicalNote;
+import org.openhealthtools.mdht.uml.cda.consol.HistoryAndPhysicalNote2;
 import org.openhealthtools.mdht.uml.cda.consol.OperativeNote;
+import org.openhealthtools.mdht.uml.cda.consol.OperativeNote2;
 import org.openhealthtools.mdht.uml.cda.consol.ProcedureNote;
+import org.openhealthtools.mdht.uml.cda.consol.ProcedureNote2;
 import org.openhealthtools.mdht.uml.cda.consol.ProgressNote;
+import org.openhealthtools.mdht.uml.cda.consol.ProgressNote2;
 import org.openhealthtools.mdht.uml.cda.consol.ReferralNote;
 import org.openhealthtools.mdht.uml.cda.consol.TransferSummary;
 import org.openhealthtools.mdht.uml.cda.consol.USRealmHeaderPatientGeneratedDocument;
 import org.openhealthtools.mdht.uml.cda.consol.UnstructuredDocument;
+import org.openhealthtools.mdht.uml.cda.consol.UnstructuredDocument2;
 import org.openhealthtools.mdht.uml.cda.mu2consol.Mu2consolPackage;
 import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
@@ -170,23 +179,23 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		String docType = null;
 		
 		if(clinicalDocument != null) {
-			if (clinicalDocument instanceof ConsultationNote) {
+			if (clinicalDocument instanceof ConsultationNote || clinicalDocument instanceof ConsultationNote2) {
 				usrhSubType = UsrhSubType.CONSULTATION_NOTE;
-			} else if (clinicalDocument instanceof ContinuityOfCareDocument) {
+			} else if (clinicalDocument instanceof ContinuityOfCareDocument || clinicalDocument instanceof ContinuityOfCareDocument2) {
 				usrhSubType = UsrhSubType.CONTINUITY_OF_CARE_DOCUMENT;
-			} else if (clinicalDocument instanceof DiagnosticImagingReport) {
+			} else if (clinicalDocument instanceof DiagnosticImagingReport || clinicalDocument instanceof DiagnosticImagingReport2) {
 				usrhSubType = UsrhSubType.DIAGNOSTIC_IMAGING_REPORT;
-			} else if (clinicalDocument instanceof DischargeSummary) {
+			} else if (clinicalDocument instanceof DischargeSummary || clinicalDocument instanceof DischargeSummary2) {
 				usrhSubType = UsrhSubType.DISCHARGE_SUMMARY;
-			} else if (clinicalDocument instanceof HistoryAndPhysicalNote) {
+			} else if (clinicalDocument instanceof HistoryAndPhysicalNote || clinicalDocument instanceof HistoryAndPhysicalNote2) {
 				usrhSubType = UsrhSubType.HISTORY_AND_PHYSICAL_NOTE;
-			} else if (clinicalDocument instanceof OperativeNote) {
+			} else if (clinicalDocument instanceof OperativeNote || clinicalDocument instanceof OperativeNote2) {
 				usrhSubType = UsrhSubType.OPERATIVE_NOTE;
-			} else if (clinicalDocument instanceof ProcedureNote) {
+			} else if (clinicalDocument instanceof ProcedureNote || clinicalDocument instanceof ProcedureNote2) {
 				usrhSubType = UsrhSubType.PROCEDURE_NOTE;
-			} else if (clinicalDocument instanceof ProgressNote) {
+			} else if (clinicalDocument instanceof ProgressNote || clinicalDocument instanceof ProgressNote2) {
 				usrhSubType = UsrhSubType.PROGRESS_NOTE;
-			} else if (clinicalDocument instanceof UnstructuredDocument) {
+			} else if (clinicalDocument instanceof UnstructuredDocument || clinicalDocument instanceof UnstructuredDocument2) {
 				usrhSubType = UsrhSubType.UNSTRUCTURED_DOCUMENT;
 			} else if (clinicalDocument instanceof CarePlan) {
 				usrhSubType = UsrhSubType.CARE_PLAN;
