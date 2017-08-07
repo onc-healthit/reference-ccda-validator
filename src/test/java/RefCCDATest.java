@@ -18,9 +18,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.sitenv.contentvalidator.service.ContentValidatorService;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
+import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.content.ReferenceContentValidator;
+import org.sitenv.referenceccda.validators.enums.UsrhSubType;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.referenceccda.validators.schema.CCDATypes;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
@@ -40,7 +42,7 @@ public class RefCCDATest {
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
 			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
-			DS4P_AMB_1 = 8, DS4P_INP_1 = 9;
+			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10;
 
 	// feel free to add docs to the end but don't alter existing data
 	// - the same sample is referenced twice due to a loop test
@@ -57,7 +59,8 @@ public class RefCCDATest {
 					RefCCDATest.class.getResource("/Sample_CCDA_CCD_b1_Ambulatory_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v2.xml").toURI(),
-					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI()};
+					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI()};
 		} catch (URISyntaxException e) {
 			if(LOG_RESULTS_TO_CONSOLE) e.printStackTrace();
 		}
@@ -185,7 +188,7 @@ public class RefCCDATest {
 	@Test
 	public void ds4pGeneralTestAndHasErrors() {		
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(
-				runIgOrMu2OrDS4PAndNotSchemaTests(DS4P_FROM_MDHT, CCDATypes.DS4P_AMBULATORY, false));
+				runIgOrMu2OrDS4PAndNotSchemaTests(DS4P_FROM_MDHT, CCDATypes.NON_SPECIFIC_DS4P, false));
 		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
 	}
 	
@@ -193,7 +196,7 @@ public class RefCCDATest {
 	public void ds4pOfficialAmbulatory() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_AMB_1]), 
-						CCDATypes.DS4P_AMBULATORY);
+						ValidationObjectives.Sender.B7_DS4P_AMB_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
 //		assertTrue("The Ambulatory DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
@@ -204,7 +207,7 @@ public class RefCCDATest {
 	public void ds4pOfficialInpatient() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_INP_1]), 
-						CCDATypes.DS4P_INPATIENT);
+						ValidationObjectives.Sender.B7_DS4P_INP_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
 //		assertTrue("The Inpatient DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
@@ -332,7 +335,7 @@ public class RefCCDATest {
 	@Test
 	public void ds4pResultsAreRemovedAfterSwitchAndBackTest() {
 		handlePackageSwitchAndBackTestChoice(
-				CCDATypes.DS4P_AMBULATORY,
+				CCDATypes.NON_SPECIFIC_DS4P,
 				convertCCDAFileToString(CCDA_FILES[DS4P_FROM_MDHT]));
 	}	
 
@@ -382,7 +385,7 @@ public class RefCCDATest {
 			assertTrue("ConsolPackage results SHOULD have been returned as well since MU2 inherits from consol "
 					+ "and the doc tested has base level errors",
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.CCDAR21_OR_CCDAR11));
-		} else if(firstTestCCDATypesType.equals(CCDATypes.DS4P_AMBULATORY)) {
+		} else if(firstTestCCDATypesType.equals(ValidationObjectives.Receiver.B8_DS4P_AMB_170_315)) {
 			println("check original results to ensure there ARE DS4P results");
 			List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
 			printResults(mdhtErrors, false, false, false);
@@ -396,7 +399,7 @@ public class RefCCDATest {
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.DS4P));			
 			println("run a final validation against DS4P and ensure the DS4P results HAVE RETURNED");
 			mdhtErrors = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
-					ccdaFileAsString, CCDATypes.DS4P_INPATIENT)); 
+					ccdaFileAsString, ValidationObjectives.Receiver.B8_DS4P_INP_170_315)); 
 			printResults(mdhtErrors, false, false, false);
 			assertTrue("Since this was a DS4P validation (reverted from Consol), CONTENTPROFILEPackage results SHOULD have been returned",
 					mdhtErrorsHaveProvidedPackageResult(mdhtErrors, CCDATypes.DS4P));
@@ -437,8 +440,8 @@ public class RefCCDATest {
 	}
 	
 	@Test
-	public void allPossibleValidValidationObjectivesSentTest() {
-		for (String objective : ValidationObjectives.ALL_UNIQUE) {
+	public void allPossibleValidValidationObjectivesExceptDS4PSentTest() {
+		for (String objective : ValidationObjectives.ALL_UNIQUE_EXCEPT_DS4P) {
 			List<RefCCDAValidationResult> results = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
 					convertCCDAFileToString(CCDA_FILES[HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR]), objective));
 			printResults(results, false, false, false);
@@ -465,7 +468,47 @@ public class RefCCDATest {
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
 				ValidationObjectives.Sender.B1_TOC_AMB_170_315, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR);
 		handleServiceErrorTest(results, false);
-	}		
+	}
+	
+	@Test
+	public void testDocumentTypeIdentificationCCDAndObjectiveSentMetaDataUsingServiceNonVocab() {
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
+				CCDATypes.NON_SPECIFIC_CCDA, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR);
+		
+		final String docTypeExpected = UsrhSubType.CONTINUITY_OF_CARE_DOCUMENT.getName();  
+		final String docTypeSet = results.getResultsMetaData().getCcdaDocumentType();
+		final String objectiveExpected = CCDATypes.NON_SPECIFIC_CCDA;
+		final String objectiveSet = results.getResultsMetaData().getObjectiveProvided();
+		
+		testDocumentTypeIdentificationAndObjectiveSentMetaDataUsingServiceNonVocab(results.getResultsMetaData(), 
+				docTypeExpected, docTypeSet, objectiveExpected, objectiveSet);
+	}
+	
+	@Test
+	public void testDocumentTypeIdentificationCCDR2AndObjectiveSentMetaDataUsingServiceNonVocab() {
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(
+				CCDATypes.NON_SPECIFIC_CCDA, CCD_R21);
+		
+		final String docTypeExpected = UsrhSubType.CONTINUITY_OF_CARE_DOCUMENT.getName();  
+		final String docTypeSet = results.getResultsMetaData().getCcdaDocumentType();
+		final String objectiveExpected = CCDATypes.NON_SPECIFIC_CCDA;
+		final String objectiveSet = results.getResultsMetaData().getObjectiveProvided();
+		
+		testDocumentTypeIdentificationAndObjectiveSentMetaDataUsingServiceNonVocab(results.getResultsMetaData(), 
+				docTypeExpected, docTypeSet, objectiveExpected, objectiveSet);
+	}
+	
+	private static void testDocumentTypeIdentificationAndObjectiveSentMetaDataUsingServiceNonVocab(ValidationResultsMetaData resultsMetaData, 
+			final String docTypeExpected, final String docTypeSet, final String objectiveExpected, final String objectiveSet) {
+		
+		assertTrue("The document type should be '" + docTypeExpected + "' but it is '" + docTypeSet + "' instead",
+				docTypeSet.equals(docTypeExpected));
+		System.out.println("docTypeExpected");System.out.println(docTypeExpected);
+		System.out.println("docTypeSet");System.out.println(docTypeSet);
+		
+		assertTrue("The given validation objective should be '" + objectiveExpected + "' but it is '" + objectiveSet + "' instead",
+				objectiveSet.equals(objectiveExpected));
+	}
 	
 	private static boolean hasMDHTValidationErrors(List<RefCCDAValidationResult> results) {
 		return !getMDHTErrorsFromResults(results).isEmpty();
@@ -625,7 +668,7 @@ public class RefCCDATest {
 	
 	private static void println(String message) {
 		print(message);
-		println();		
+		println();
 	}
 	
 	private static void print(String message) {

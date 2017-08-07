@@ -88,7 +88,7 @@ public class ReferenceCCDAValidationService {
 			logger.error(fullError);
 			resultsMetaData.setServiceErrorMessage(fullError);
 		}
-		resultsMetaData.setCcdaDocumentType(validationObjective);
+		resultsMetaData.setObjectiveProvided(validationObjective);
 	}
 
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
@@ -175,12 +175,13 @@ public class ReferenceCCDAValidationService {
     	return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 
-    private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults, String ccdaDocType) {
+    private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults, String validationObjective) {
         ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
         for (RefCCDAValidationResult result : validatorResults) {
             resultsMetaData.addCount(result.getType());
         }
-        resultsMetaData.setCcdaDocumentType(ccdaDocType);
+        resultsMetaData.setObjectiveProvided(validationObjective);
+        resultsMetaData.setCcdaDocumentType(referenceCCDAValidator.getCcdaDocumentType());
         return resultsMetaData;
     }
 

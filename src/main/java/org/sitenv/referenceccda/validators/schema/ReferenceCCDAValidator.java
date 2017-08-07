@@ -13,18 +13,42 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.mdht.uml.cda.ClinicalDocument;
 import org.eclipse.mdht.uml.cda.DocumentRoot;
 import org.eclipse.mdht.uml.cda.util.CDADiagnostic;
 import org.eclipse.mdht.uml.cda.util.CDAUtil;
 import org.eclipse.mdht.uml.cda.util.ValidationResult;
 import org.hl7.security.ds4p.contentprofile.CONTENTPROFILEPackage;
 import org.hl7.security.ds4p.contentprofile.util.DS4PUtil;
+import org.openhealthtools.mdht.uml.cda.consol.CarePlan;
 import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
+import org.openhealthtools.mdht.uml.cda.consol.ConsultationNote;
+import org.openhealthtools.mdht.uml.cda.consol.ConsultationNote2;
+import org.openhealthtools.mdht.uml.cda.consol.ContinuityOfCareDocument;
+import org.openhealthtools.mdht.uml.cda.consol.ContinuityOfCareDocument2;
+import org.openhealthtools.mdht.uml.cda.consol.DiagnosticImagingReport;
+import org.openhealthtools.mdht.uml.cda.consol.DiagnosticImagingReport2;
+import org.openhealthtools.mdht.uml.cda.consol.DischargeSummary;
+import org.openhealthtools.mdht.uml.cda.consol.DischargeSummary2;
+import org.openhealthtools.mdht.uml.cda.consol.HistoryAndPhysicalNote;
+import org.openhealthtools.mdht.uml.cda.consol.HistoryAndPhysicalNote2;
+import org.openhealthtools.mdht.uml.cda.consol.OperativeNote;
+import org.openhealthtools.mdht.uml.cda.consol.OperativeNote2;
+import org.openhealthtools.mdht.uml.cda.consol.ProcedureNote;
+import org.openhealthtools.mdht.uml.cda.consol.ProcedureNote2;
+import org.openhealthtools.mdht.uml.cda.consol.ProgressNote;
+import org.openhealthtools.mdht.uml.cda.consol.ProgressNote2;
+import org.openhealthtools.mdht.uml.cda.consol.ReferralNote;
+import org.openhealthtools.mdht.uml.cda.consol.TransferSummary;
+import org.openhealthtools.mdht.uml.cda.consol.USRealmHeaderPatientGeneratedDocument;
+import org.openhealthtools.mdht.uml.cda.consol.UnstructuredDocument;
+import org.openhealthtools.mdht.uml.cda.consol.UnstructuredDocument2;
 import org.openhealthtools.mdht.uml.cda.mu2consol.Mu2consolPackage;
 import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
+import org.sitenv.referenceccda.validators.enums.UsrhSubType;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
@@ -35,7 +59,8 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	
 	private static final String IG_ISSUE_ID = "a.consol", MU_ISSUE_ID = "a.mu2con", DS4P_ISSUE_ID = "ds4p";
 	private boolean isValidationObjectiveMu2Type = false;
-	private boolean isValidationObjectiveDS4PType = false;
+	private boolean isValidationObjectiveDS4PType = false;	
+	private String ccdaDocumentType = CCDATypes.UNKNOWN_DOC_TYPE;
 	
 	public boolean isValidationObjectiveMu2Type() { 
 		return isValidationObjectiveMu2Type; 
@@ -43,6 +68,10 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	
 	public boolean isValidationObjectiveDS4PType() { 
 		return isValidationObjectiveDS4PType; 
+	}
+	
+	public String getCcdaDocumentType() {
+		return ccdaDocumentType;
 	}
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
@@ -92,6 +121,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		}		
 		logger.info("Mapped mdhtValidationObjective: " + (mdhtValidationObjective != null ? mdhtValidationObjective : "null objective"));
 		
+		ClinicalDocument clinicalDocument = null;
 		if(mdhtValidationObjective != null) {
 			//populate the field for reuse
 			isValidationObjectiveMu2Type = isValidationObjectiveMu2Type(mdhtValidationObjective);
@@ -102,7 +132,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 				ConsolPackage.eINSTANCE.eClass();
 				logger.info("Loading mdhtValidationObjective: " + mdhtValidationObjective
 						+ " mapped from valdationObjective: " + validationObjective);
-				CDAUtil.load(in, result);
+				clinicalDocument = CDAUtil.load(in, result);
 			} else if (isValidationObjectiveMu2Type) {
 				CONTENTPROFILEPackage.eINSTANCE.unload();
 				Mu2consolPackage.eINSTANCE.reload();
@@ -124,7 +154,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 						+ " as MU2 docType: " + (!isDocTypeNull ? docType : "null docType")
 						+ " mapped from valdationObjective: " + validationObjective);
 				if(!isDocTypeNull) {
-					CDAUtil.loadAs(in, docType, result);
+					clinicalDocument = CDAUtil.loadAs(in, docType, result);
 				} else {
 					logAndThrowException("docType == null", "The MU2 docType EClass could not be assigned "
 							+ "from mdhtValidationObjective: " + mdhtValidationObjective);
@@ -141,7 +171,59 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 					"The validationObjective given was invalid. Please try one of the following valid Strings instead: "
 					+ ValidationObjectives.getObjectives() + " " + CCDATypes.getTypes());
 		}
+		ccdaDocumentType = determineCcdaDocumentType(clinicalDocument);
 	}
+	
+	private String determineCcdaDocumentType(ClinicalDocument clinicalDocument) {
+		UsrhSubType usrhSubType = null;
+		String docType = null;
+		
+		if(clinicalDocument != null) {
+			if (clinicalDocument instanceof ConsultationNote || clinicalDocument instanceof ConsultationNote2) {
+				usrhSubType = UsrhSubType.CONSULTATION_NOTE;
+			} else if (clinicalDocument instanceof ContinuityOfCareDocument || clinicalDocument instanceof ContinuityOfCareDocument2) {
+				usrhSubType = UsrhSubType.CONTINUITY_OF_CARE_DOCUMENT;
+			} else if (clinicalDocument instanceof DiagnosticImagingReport || clinicalDocument instanceof DiagnosticImagingReport2) {
+				usrhSubType = UsrhSubType.DIAGNOSTIC_IMAGING_REPORT;
+			} else if (clinicalDocument instanceof DischargeSummary || clinicalDocument instanceof DischargeSummary2) {
+				usrhSubType = UsrhSubType.DISCHARGE_SUMMARY;
+			} else if (clinicalDocument instanceof HistoryAndPhysicalNote || clinicalDocument instanceof HistoryAndPhysicalNote2) {
+				usrhSubType = UsrhSubType.HISTORY_AND_PHYSICAL_NOTE;
+			} else if (clinicalDocument instanceof OperativeNote || clinicalDocument instanceof OperativeNote2) {
+				usrhSubType = UsrhSubType.OPERATIVE_NOTE;
+			} else if (clinicalDocument instanceof ProcedureNote || clinicalDocument instanceof ProcedureNote2) {
+				usrhSubType = UsrhSubType.PROCEDURE_NOTE;
+			} else if (clinicalDocument instanceof ProgressNote || clinicalDocument instanceof ProgressNote2) {
+				usrhSubType = UsrhSubType.PROGRESS_NOTE;
+			} else if (clinicalDocument instanceof UnstructuredDocument || clinicalDocument instanceof UnstructuredDocument2) {
+				usrhSubType = UsrhSubType.UNSTRUCTURED_DOCUMENT;
+			} else if (clinicalDocument instanceof CarePlan) {
+				usrhSubType = UsrhSubType.CARE_PLAN;
+			} else if (clinicalDocument instanceof ReferralNote) {
+				usrhSubType = UsrhSubType.REFERRAL_NOTE;
+			} else if (clinicalDocument instanceof TransferSummary) {
+				usrhSubType = UsrhSubType.TRANSFER_SUMMARY;
+			} else if (clinicalDocument instanceof USRealmHeaderPatientGeneratedDocument) {
+				usrhSubType = UsrhSubType.US_REALM_HEADER_PATIENT_GENERATED_DOCUMENT;
+			}
+		} else {			
+			if(isValidationObjectiveDS4PType) {
+				docType = CCDATypes.DS4P;
+			} else {
+				docType = CCDATypes.UNKNOWN_DOC_TYPE;
+			}
+		}
+
+		if(usrhSubType != null) {
+			docType = usrhSubType.getName();
+		} else {
+			if(docType == null) {
+				docType = CCDATypes.UNKNOWN_DOC_TYPE;
+			}
+		}
+		
+		return docType;
+	}	
 	
 	private static String mapMdhtValidationObjective(String validationObjectivePOSTed) throws Exception {
 		if (isValidationObjectiveACertainType(validationObjectivePOSTed, CCDATypes.NON_SPECIFIC_CCDA_TYPES)
