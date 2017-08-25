@@ -42,7 +42,7 @@ public class RefCCDATest {
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
 			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
-			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10;
+			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10, DS4P_WITH_NO_DS4P_DATA = 11;
 
 	// feel free to add docs to the end but don't alter existing data
 	// - the same sample is referenced twice due to a loop test
@@ -60,7 +60,9 @@ public class RefCCDATest {
 					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v4.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample1_v4.xml").toURI(),
-					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI()};
+					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample2_v2.xml").toURI()
+			};
 		} catch (URISyntaxException e) {
 			if(LOG_RESULTS_TO_CONSOLE) e.printStackTrace();
 		}
