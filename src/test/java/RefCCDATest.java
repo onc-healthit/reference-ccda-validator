@@ -200,8 +200,7 @@ public class RefCCDATest {
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_AMB_1]), 
 						ValidationObjectives.Sender.B7_DS4P_AMB_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
-//		assertTrue("The Ambulatory DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
-		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
+		assertTrue("The Ambulatory DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		printResultsBasedOnFlags(results);
 	}	
 	
@@ -211,8 +210,7 @@ public class RefCCDATest {
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_INP_1]), 
 						ValidationObjectives.Sender.B7_DS4P_INP_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
-//		assertTrue("The Inpatient DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
-		assertTrue("The DS4P file does not contain errors as it should", mdhtErrors.size() > 0);
+		assertTrue("The Inpatient DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		printResultsBasedOnFlags(results);
 	}
 	
