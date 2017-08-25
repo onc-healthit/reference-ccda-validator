@@ -58,8 +58,8 @@ public class RefCCDATest {
 					RefCCDATest.class.getResource("/Sample_blank_Empty_Document.xml").toURI(),
 					RefCCDATest.class.getResource("/Sample_CCDA_CCD_b1_Ambulatory_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
-					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v2.xml").toURI(),
-					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v4.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample1_v4.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI()};
 		} catch (URISyntaxException e) {
 			if(LOG_RESULTS_TO_CONSOLE) e.printStackTrace();
