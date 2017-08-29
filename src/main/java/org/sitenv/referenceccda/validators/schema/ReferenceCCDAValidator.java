@@ -3,6 +3,7 @@ package org.sitenv.referenceccda.validators.schema;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -78,21 +79,16 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 			String referenceFileName, String ccdaFile) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
 		ValidationResult result = new ValidationResult();
-		InputStream in = null;
+		InputStream in = null, in2 = null;
 		trackXPathsInXML(xpathIndexer, ccdaFile);
 		try {
 			in = IOUtils.toInputStream(ccdaFile, "UTF-8");
-			validateDocumentByTypeUsingMDHTApi(in, validationObjective, result);
+			in2 = IOUtils.toInputStream(ccdaFile, "UTF-8");
+			validateDocumentByTypeUsingMDHTApi(in, in2, validationObjective, result);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+			closeInputStreams(new ArrayList<InputStream>(Arrays.asList(in, in2)));
 		}
 		if(result.getAllDiagnostics().isEmpty()) {
 			logAndThrowException("The MDHT ValidationResult object was not populated for an unknown reason. "
@@ -104,8 +100,20 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		logger.info("Processing and returning MDHT validation results");
 		return processValidationResults(xpathIndexer, result);
 	}
+	
+	private static void closeInputStreams(List<InputStream> inputStreams) {
+		for (InputStream is : inputStreams) {
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
-	private void validateDocumentByTypeUsingMDHTApi(InputStream in, String validationObjective, 
+	private void validateDocumentByTypeUsingMDHTApi(InputStream in, InputStream in2, String validationObjective, 
 			ValidationResult result) throws Exception {
 		if(StringUtils.isEmpty(validationObjective)) {
 			logAndThrowException("The validationObjective given is " + (validationObjective == null ? "null" : "empty"),
@@ -163,7 +171,10 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 				Mu2consolPackage.eINSTANCE.unload();
 				CONTENTPROFILEPackage.eINSTANCE.reload();
 				CONTENTPROFILEPackage.eINSTANCE.eClass();
+				logger.info("Loading mdhtValidationObjective: " + mdhtValidationObjective
+						+ " mapped from valdationObjective: " + validationObjective);
 				DS4PUtil.validateAsDS4P(in, result);
+				clinicalDocument = CDAUtil.load(in2, result);
 			}
 		} else {
 			//Note: This is dead code for now as null values are temporarily populated to a default
