@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.20</version>
+    <version>1.0.21</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -12,11 +12,13 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.10</code.validator.version>
-        <content.validator.version>1.0.11</content.validator.version>
+        <code.validator.version>1.0.11</code.validator.version>
+        <content.validator.version>1.0.12</content.validator.version>
         <!-- MDHT properties -->
-        <mdht.models.version>3.0.0.20170725</mdht.models.version>
-        <mdht.plugins.version>3.0.0.201707251814</mdht.plugins.version>
+        <mdht.models.version>3.0.1.20170825</mdht.models.version>
+        <mdht.plugins.version>3.0.0.201708250502</mdht.plugins.version>
+        <ds4pcontent.version>3.0.0.20170824</ds4pcontent.version>
+        <consentdirective.version>1.0.0.20170824</consentdirective.version>
     </properties>
 
     <repositories>
@@ -54,8 +56,13 @@
 		<dependency>
             <groupId>org.hl7.security.ds4p</groupId>
             <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
-            <version>3.0.0.20170707</version>
+            <version>${ds4pcontent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.hl7.cbcc.privacy</groupId>
+            <artifactId>org.hl7.cbcc.privacy.consentdirective</artifactId>
+            <version>${consentdirective.version}</version>
+        </dependency>        
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
 		    <groupId>org.eclipse.mdht</groupId>
