@@ -566,10 +566,9 @@
 									<code code="SECCONOBS" codeSystem="2.16.840.1.113883.1.11.20457"
 										displayName="Security Classification"
 										codeSystemName="HL7 SecurityObservationTypeCodeSystem"/>
-									<!-- Value set constraint "2.16.840.1.113883.1.11.20448" -->
 									<value xsi:type="CE" code="TREAT"
-										codeSystem="2.16.840.1.113883.5.1063"
-										codeSystemName="SecurityObservationValueCodeSystem"
+										codeSystem="2.16.840.1.113883.5.8"
+										codeSystemName="ActReason"
 										displayName="Treatment">
 										<originalText>Information intended for
 										treatment</originalText>
