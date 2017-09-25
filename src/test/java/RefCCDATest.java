@@ -1,16 +1,3 @@
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -31,11 +18,20 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class RefCCDATest {
 
 	private static final boolean LOG_RESULTS_TO_CONSOLE = false;
 	
-	private static final boolean SHOW_ERRORS_ONLY = false;
+	private static final boolean SHOW_ERRORS_ONLY = true;
 	
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
@@ -56,8 +52,8 @@ public class RefCCDATest {
 					RefCCDATest.class.getResource("/Sample_blank_Empty_Document.xml").toURI(),
 					RefCCDATest.class.getResource("/Sample_CCDA_CCD_b1_Ambulatory_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/Sample_DS4P_MDHTGen.xml").toURI(),
-					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v4.xml").toURI(),
-					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample1_v4.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample1_v5.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample1_v5.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample2_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample2_v2.xml").toURI()
@@ -197,20 +193,21 @@ public class RefCCDATest {
 	public void ds4pOfficialAmbulatory() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_AMB_1]), 
-						ValidationObjectives.Sender.B7_DS4P_AMB_170_315);
+						ValidationObjectives.Receiver.B8_DS4P_AMB_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
-		assertTrue("The Ambulatory DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		printResultsBasedOnFlags(results);
+		assertTrue("The Ambulatory DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
+		
 	}	
 	
 	@Test
 	public void ds4pOfficialInpatient() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_INP_1]), 
-						ValidationObjectives.Sender.B7_DS4P_INP_170_315);
+						ValidationObjectives.Receiver.B8_DS4P_INP_170_315);
 		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(results);
-		assertTrue("The Inpatient DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 		printResultsBasedOnFlags(results);
+		assertTrue("The Inpatient DS4P file has errors but it should not have any errors", mdhtErrors.isEmpty());
 	}
 	
 	@Test
