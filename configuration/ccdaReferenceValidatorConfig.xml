@@ -1760,6 +1760,34 @@
 	</expression>
 	<!-- AUTHOR PARTICIPATION END -->
 
+    <!-- US REALM ADDRESS (AD.US.FIELDED) STATE ELEMENT START -->
+    <!-- GLOBAL DATATYPE RULE applied to all related section occurrences:
+         3. SHOULD contain zero or one [0..1] state (ValueSet: StateValueSet urn:oid:2.16.840.1.113883.3.88.12.80.1 DYNAMIC) (CONF:81-7293).      
+         Exception: If country is something other than US, the state MAY be present but MAY be bound to different vocabularies (CONF:81-10024). -->    
+    <!-- POLICY ACTIVITY START -->
+    <!-- PAYER: This assignedEntity MAY contain zero or one [0..1] US Realm Address (AD.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1198-8910). -->    
+    <expression xpathExpression="//v3:section[not(@nullFlavor) and v3:templateId[@root='2.16.840.1.113883.10.20.22.2.18' and @extension='2015-08-01']]//v3:act[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.60' and @extension='2015-08-01']]//v3:act[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']]//v3:performer[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.87']]/v3:assignedEntity/v3:addr[v3:country='US']/v3:state">
+      <validator>
+        <name>TextNodeValidator</name>
+        <validationResultSeverityLevels>
+          <codeSeverityLevel>SHOULD</codeSeverityLevel>
+        </validationResultSeverityLevels>
+        <allowedValuesetOids>2.16.840.1.113883.3.88.12.80.1</allowedValuesetOids>
+      </validator>
+    </expression>
+    <!-- GUARANTOR: This assignedEntity SHOULD contain zero or one [0..1] US Realm Address (AD.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1198-8964) -->
+    <expression xpathExpression="//v3:section[not(@nullFlavor) and v3:templateId[@root='2.16.840.1.113883.10.20.22.2.18' and @extension='2015-08-01']]//v3:act[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.60' and @extension='2015-08-01']]//v3:act[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']]//v3:performer[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.88']]/v3:assignedEntity/v3:addr[v3:country='US']/v3:state">
+      <validator>
+        <name>TextNodeValidator</name>
+        <validationResultSeverityLevels>
+          <codeSeverityLevel>SHOULD</codeSeverityLevel>
+        </validationResultSeverityLevels>
+        <allowedValuesetOids>2.16.840.1.113883.3.88.12.80.1</allowedValuesetOids>
+      </validator>
+    </expression>
+    <!-- POLICY ACTIVITY END -->    
+    <!-- US REALM ADDRESS (AD.US.FIELDED) STATE ELEMENT END -->
+
 	<!-- US REALM ADDRESS (AD.US.FIELDED) START -->
 	<!--2. SHOULD contain zero or one [0..1] country, which SHALL be selected from ValueSet Country urn:oid:2.16.840.1.113883.3.88.12.80.63 DYNAMIC (CONF:81-7295).-->
 	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:country">
@@ -1769,18 +1797,6 @@
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.63</allowedValuesetOids>
-		</validator>
-	</expression>
-
-	<!--3. SHOULD contain zero or one [0..1] state (ValueSet: StateValueSet urn:oid:2.16.840.1.113883.3.88.12.80.1 DYNAMIC) (CONF:81-7293).-->
-	<!-- IG does not specify if this is a shall or should -->
-	<expression xpathExpression="//v3:addr/v3:templateId[@root='2.16.840.1.113883.10.20.22.5.2']/ancestor::v3:addr[1]/v3:state">
-		<validator>
-			<name>TextNodeValidator</name>
-			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel>
-			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.1</allowedValuesetOids>
 		</validator>
 	</expression>
 
