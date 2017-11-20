@@ -79,15 +79,14 @@ public class ReferenceCCDAValidationService {
 	private static void processValidateCCDAException(ValidationResultsMetaData resultsMetaData, 
 			String serviceErrorStart, String validationObjective, Exception exception) {
 		resultsMetaData.setServiceError(true);
+		String fullErrorWithStackTrace = serviceErrorStart + ExceptionUtils.getStackTrace(exception);
 		if(exception.getMessage() != null) {
 			String fullError = serviceErrorStart + exception.getMessage();
-			logger.error(fullError);
 			resultsMetaData.setServiceErrorMessage(fullError);
 		} else {
-			String fullError = serviceErrorStart + ExceptionUtils.getStackTrace(exception);
-			logger.error(fullError);
-			resultsMetaData.setServiceErrorMessage(fullError);
+			resultsMetaData.setServiceErrorMessage(fullErrorWithStackTrace);
 		}
+		logger.error(fullErrorWithStackTrace);
 		resultsMetaData.setObjectiveProvided(validationObjective);
 	}
 
