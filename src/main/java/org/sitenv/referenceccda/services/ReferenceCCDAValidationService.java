@@ -181,6 +181,7 @@ public class ReferenceCCDAValidationService {
         }
         resultsMetaData.setObjectiveProvided(validationObjective);
         resultsMetaData.setCcdaDocumentType(referenceCCDAValidator.getCcdaDocumentType());
+        resultsMetaData.setCcdaVersion(referenceCCDAValidator.getCcdaVersion().getVersion());
         return resultsMetaData;
     }
 

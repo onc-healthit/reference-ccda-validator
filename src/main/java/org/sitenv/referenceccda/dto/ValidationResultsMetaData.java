@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ValidationResultsMetaData {
 	private String ccdaDocumentType;
+	private String ccdaVersion;
 	private String objectiveProvided;
 	private boolean serviceError;
 	private String serviceErrorMessage;
@@ -31,6 +32,14 @@ public class ValidationResultsMetaData {
 
 	public void setCcdaDocumentType(String ccdaDocumentType) {
 		this.ccdaDocumentType = ccdaDocumentType;
+	}
+	
+	public void setCcdaVersion(String ccdaVersion) {
+		this.ccdaVersion = ccdaVersion;
+	}
+	
+	public String getCcdaVersion() {
+		return ccdaVersion;
 	}
 	
 	public String getObjectiveProvided() {

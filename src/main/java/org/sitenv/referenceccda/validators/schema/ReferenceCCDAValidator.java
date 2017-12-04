@@ -19,6 +19,7 @@ import org.eclipse.mdht.uml.cda.DocumentRoot;
 import org.eclipse.mdht.uml.cda.util.CDADiagnostic;
 import org.eclipse.mdht.uml.cda.util.CDAUtil;
 import org.eclipse.mdht.uml.cda.util.ValidationResult;
+import org.eclipse.mdht.uml.hl7.datatypes.II;
 import org.hl7.security.ds4p.contentprofile.CONTENTPROFILEPackage;
 import org.hl7.security.ds4p.contentprofile.util.DS4PUtil;
 import org.openhealthtools.mdht.uml.cda.consol.CarePlan;
@@ -62,6 +63,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private boolean isValidationObjectiveMu2Type = false;
 	private boolean isValidationObjectiveDS4PType = false;	
 	private String ccdaDocumentType = CCDATypes.UNKNOWN_DOC_TYPE;
+	private CCDAVersion ccdaVersion = CCDAVersion.NOT_CCDA;
 	
 	public boolean isValidationObjectiveMu2Type() { 
 		return isValidationObjectiveMu2Type; 
@@ -73,6 +75,10 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	
 	public String getCcdaDocumentType() {
 		return ccdaDocumentType;
+	}
+	
+	public CCDAVersion getCcdaVersion() {
+		return ccdaVersion;
 	}
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
@@ -183,6 +189,41 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 					+ ValidationObjectives.getObjectives() + " " + CCDATypes.getTypes());
 		}
 		ccdaDocumentType = determineCcdaDocumentType(clinicalDocument);
+		ccdaVersion = determineCcdaDocumentVersion(clinicalDocument);
+		logger.info("ccdaVersion identified as: " + ccdaVersion.getVersion());
+	}
+	 
+	private CCDAVersion determineCcdaDocumentVersion(ClinicalDocument clinicalDocument) {
+		CCDAVersion version = CCDAVersion.NOT_CCDA;
+		for (II templateIdInHeader : clinicalDocument.getTemplateIds()) {
+			String xmlRoot = templateIdInHeader.getRoot();
+			String xmlExt = templateIdInHeader.getExtension();
+			if (xmlRoot != null && !xmlRoot.isEmpty()) {
+				for (String officialRoot : CCDATemplateIds.USRH_AND_ALL_DOC_ROOTS) {
+					if (xmlRoot.equals(officialRoot)) {
+						if (xmlExt != null && !xmlExt.isEmpty()) {
+							if (xmlExt.equals(CCDATemplateIds.R21_EXTENSION)) {
+								return CCDAVersion.R21;								
+							} else if (xmlExt.equals(CCDATemplateIds.R20_EXTENSION)) {
+								return CCDAVersion.R20;
+							}
+						} else {
+							for (String r20NewDocsNoExtRoot : CCDATemplateIds.R20_NEW_DOCS_NO_EXT) {
+								if (xmlRoot.equals(r20NewDocsNoExtRoot)) {
+									logger.info("returning version R20 for NEW doc");
+									return CCDAVersion.R20;
+								}
+							}
+							// Set vs return because ordering of IIs can be random, and some docs have both R11 and R21
+							// included (which counts as R21) - need to allow another version to overwrite it.
+							version = CCDAVersion.R11;
+						}
+					}
+				}
+			}
+		}
+		logger.info("returning version by determineCcdaDocumentVersion method end");
+		return version;
 	}
 	
 	private String determineCcdaDocumentType(ClinicalDocument clinicalDocument) {
