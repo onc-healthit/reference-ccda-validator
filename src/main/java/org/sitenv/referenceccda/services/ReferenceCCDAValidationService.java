@@ -56,7 +56,7 @@ public class ReferenceCCDAValidationService {
         try {
             validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile);
             resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
-            resultsMetaData.setCcdaFileName(ccdaFile.getName());
+            resultsMetaData.setCcdaFileName(ccdaFile.getOriginalFilename());
             resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
 	    } catch (IOException ioE) {
 	    	processValidateCCDAException(resultsMetaData, 
