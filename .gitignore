@@ -5,3 +5,5 @@
 .project
 .classpath
 /src/main/profiles/local/
+/bin
+/reference-ccda-api
