@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.27</version>
+    <version>1.0.28</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>1.0.13</code.validator.version>
-        <content.validator.version>1.0.17</content.validator.version>
+        <content.validator.version>1.0.18</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.3.20180222</mdht.models.version>
         <mdht.plugins.version>3.0.0.201802220601</mdht.plugins.version>

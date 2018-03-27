@@ -286,7 +286,7 @@
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
-	</expression>
+	</expression>  
 	<!-- HEADER END -->
 
 	<!-- CARE PLAN START -->
@@ -300,6 +300,28 @@
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
+  
+    <!--iii. This associatedEntity SHOULD contain zero or one [0..1] code (CONF:1198-31685). -->
+    <!--1. The code, if present, SHALL contain exactly one [1..1] @code (ValueSet: Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1) (CONF:1198-32367). -->
+    <expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant/v3:associatedEntity/v3:code[not(@nullFlavor)]">
+        <validator>
+            <name>ValueSetCodeValidator</name>
+            <validationResultSeverityLevels>
+                <codeSeverityLevel>SHALL</codeSeverityLevel>
+            </validationResultSeverityLevels>
+            <allowedValuesetOids>2.16.840.1.113883.11.20.12.1</allowedValuesetOids>
+        </validator>
+    </expression>    
+    <expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant/v3:associatedEntity/v3:code[not(@nullFlavor)]">
+        <validator>
+            <name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
+            <validationResultSeverityLevels>
+                <codeSeverityLevel>SHALL</codeSeverityLevel>
+            </validationResultSeverityLevels>            
+            <nodeType>codeSystem</nodeType>
+            <allowedValuesetOids>2.16.840.1.113883.5.111</allowedValuesetOids>
+        </validator>
+    </expression>
 	<!-- CARE PLAN END -->
 
 	<!-- CONSULTATION NOTE START -->
