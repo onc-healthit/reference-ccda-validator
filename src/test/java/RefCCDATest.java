@@ -190,6 +190,7 @@ public class RefCCDATest {
 	}
 	
 	@Test
+	@Ignore
 	public void ds4pOfficialAmbulatory() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_AMB_1]), 
@@ -201,6 +202,7 @@ public class RefCCDATest {
 	}	
 	
 	@Test
+	@Ignore
 	public void ds4pOfficialInpatient() {
 		ArrayList<RefCCDAValidationResult> results = 
 				validateDocumentAndReturnResults(convertCCDAFileToString(CCDA_FILES[DS4P_INP_1]), 
