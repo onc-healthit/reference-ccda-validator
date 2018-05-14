@@ -853,15 +853,14 @@
 		</validator>
 	</expression>
 
-	<!--OLD: 10. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1198-8839).-->
-    <!--NEW for 2018 errata:  Consol Immunization Activity (V3) MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1198-8839, DSTU:1276)-->
+	<!--10. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1198-8839).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CodeSystemCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -974,15 +973,14 @@
 		</validator>
 	</expression>
 
-	<!--OLD: 10. SHOULD contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-7514).-->
-    <!--NEW for 2018 errata: MedicationActivity2MedicationActivityRouteCode = Consol Medication Activity2 SHOULD contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-7514, DSTU:1276)-->
+	<!--10. SHOULD contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-7514).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CodeSystemCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1159,15 +1157,14 @@
 	<!-- PLANNED ENCOUNTER END -->
 
 	<!-- PLANNED IMMUNIZATION ACTIVITY START -->
-	<!--OLD: 8. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32127).-->
-    <!--NEW for 2018 errata: PlannedImmunizationActivityPlannedImmunizationActivityRouteCode = Consol Planned Immunization Activity MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32127, DSTU:1276) -->
+	<!--8. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32127).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CodeSystemCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -1195,15 +1192,14 @@
 	<!-- PLANNED IMMUNIZATION ACTIVITY END -->
 
 	<!-- PLANNED MEDICATION ACTIVITY START -->
-	<!--OLD: 8. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32067).-->
-    <!--NEW for 2018 errata: Consol Planned Medication Activity2 MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32067, DSTU:1276) -->
+	<!--8. MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA urn:oid:2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32067).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CodeSystemCodeValidator</name>
+			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
 
