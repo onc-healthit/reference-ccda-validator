@@ -864,6 +864,18 @@
 		</validator>
 	</expression>
 
+    <!--NEW for 2018 errata: Consol Immunization Activity2 MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1198-8839, DSTU:1276) 
+	Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1198-32960, DSTU:1276) -->
+	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+		<validator>
+			<name>CodeSystemCodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+			<allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+		</validator>
+	</expression>
+
 	<!--11. MAY contain zero or one [0..1] approachSiteCode, where the code SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1198-8840).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
@@ -983,6 +995,18 @@
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
+
+    <!--NEW for 2018 errata: Consol Medication Activity2 SHOULD contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-7514, DSTU:1276) 
+    Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32950, DSTU:1276) -->
+    <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+      <validator>
+        <name>CodeSystemCodeValidator</name>
+        <validationResultSeverityLevels>
+          <codeSeverityLevel>SHALL</codeSeverityLevel>
+        </validationResultSeverityLevels>
+        <allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+      </validator>
+    </expression>  
 
 	<!--11. MAY contain zero or one [0..1] approachSiteCode, where the code SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-7515).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
@@ -1168,6 +1192,18 @@
 		</validator>
 	</expression>
 
+    <!--NEW for 2018 errata: Consol Planned Immunization Activity MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32127, DSTU:1276) 
+    Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32951, DSTU:1276) -->
+    <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+      <validator>
+        <name>CodeSystemCodeValidator</name>
+        <validationResultSeverityLevels>
+          <codeSeverityLevel>SHALL</codeSeverityLevel>
+        </validationResultSeverityLevels>
+        <allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+      </validator>
+    </expression>
+
 	<!--9. MAY contain zero or more [0..*] approachSiteCode, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-32128).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
@@ -1202,6 +1238,18 @@
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.8.7</allowedValuesetOids>
 		</validator>
 	</expression>
+
+    <!--NEW for 2018 errata: Consol Planned Medication Activity2 MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32067, DSTU:1276) 
+    Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32952, DSTU:1276) -->
+    <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+      <validator>
+        <name>CodeSystemCodeValidator</name>
+        <validationResultSeverityLevels>
+          <codeSeverityLevel>SHALL</codeSeverityLevel>
+        </validationResultSeverityLevels>
+        <allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+      </validator>
+    </expression>
 
 	<!--9. MAY contain zero or more [0..*] approachSiteCode, which SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-32078).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
