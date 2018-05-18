@@ -47,7 +47,7 @@
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
 		    <!--<version>${mdht.models.version}</version>-->
-            <version>3.0.6.20180514</version>
+            <version>3.0.7.20180516</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
