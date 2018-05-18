@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.29</version>
+    <version>1.0.30</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -46,7 +46,8 @@
 		<dependency>
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-		    <version>${mdht.models.version}</version>
+		    <!--<version>${mdht.models.version}</version>-->
+            <version>3.0.7.20180516</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.openhealthtools.mdht.cda</groupId>
@@ -215,6 +216,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
