@@ -17,6 +17,7 @@ import org.sitenv.referenceccda.validators.schema.CCDATypes;
 import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.schema.ValidationObjectives;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
+import org.sitenv.vocabularies.constants.VocabularyConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,11 +51,21 @@ public class ReferenceCCDAValidationService {
     }
 
     public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName, MultipartFile ccdaFile) {
+    	return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, VocabularyConstants.Config.DEFAULT);
+    }
+    
+    public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName, MultipartFile ccdaFile, 
+    		String vocabularyConfig) {
+    	return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig);
+    }
+    
+    private ValidationResultsDto validateCCDAImplementation(String validationObjective, String referenceFileName, 
+    		MultipartFile ccdaFile, String vocabularyConfig) {
         ValidationResultsDto resultsDto = new ValidationResultsDto();
         ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         try {
-            validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile);
+            validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, vocabularyConfig);
             resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
             resultsMetaData.setCcdaFileName(ccdaFile.getOriginalFilename());
             resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
@@ -91,7 +102,8 @@ public class ReferenceCCDAValidationService {
 	}
 
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
-                                                        MultipartFile ccdaFile) throws SAXException, Exception {
+                                                        MultipartFile ccdaFile, String vocabularyConfig) 
+                                                        		throws SAXException, Exception {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         InputStream ccdaFileInputStream = null;
         try {
@@ -107,12 +119,17 @@ public class ReferenceCCDAValidationService {
             boolean isSchemaErrorInMdhtResults = mdhtResultsHaveSchemaError(mdhtResults);
             boolean isObjectiveAllowingVocabularyValidation = objectiveAllowsVocabularyValidation(validationObjective);
             if (!isSchemaErrorInMdhtResults && isObjectiveAllowingVocabularyValidation) {
-                List<RefCCDAValidationResult> vocabResults = doVocabularyValidation(validationObjective, referenceFileName, ccdaFileContents);
+            	if(vocabularyConfig == null || vocabularyConfig.isEmpty()) {
+					logger.warn("Invalid vocabularyConfig of '" + vocabularyConfig != null ? vocabularyConfig : "null" + "' "
+							+ "received. Assigned default config of '" + VocabularyConstants.Config.DEFAULT + "'.");
+            		vocabularyConfig = VocabularyConstants.Config.DEFAULT;
+            	}
+				List<RefCCDAValidationResult> vocabResults = doVocabularyValidation(validationObjective,
+						referenceFileName, ccdaFileContents, vocabularyConfig);
             	if(vocabResults != null && !vocabResults.isEmpty()) {
             		logger.info("Adding Vocabulary results");
             		validatorResults.addAll(vocabResults);
-            	}
-            	
+            	}   	
             	if(objectiveAllowsContentValidation(validationObjective)) {
 	                List<RefCCDAValidationResult> contentResults = doContentValidation(validationObjective, referenceFileName, ccdaFileContents);
 	            	if(contentResults != null && !contentResults.isEmpty()) {
@@ -138,7 +155,7 @@ public class ReferenceCCDAValidationService {
         }
         return validatorResults;
     }
-     
+
 	private boolean mdhtResultsHaveSchemaError(List<RefCCDAValidationResult> mdhtResults) {
         for(RefCCDAValidationResult result : mdhtResults){
             if(result.isSchemaError()){
@@ -164,9 +181,10 @@ public class ReferenceCCDAValidationService {
         return referenceCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
     }
 	
-    private ArrayList<RefCCDAValidationResult> doVocabularyValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
+	private ArrayList<RefCCDAValidationResult> doVocabularyValidation(String validationObjective,
+			String referenceFileName, String ccdaFileContents, String vocabularyConfig) throws SAXException {
     	logger.info("Attempting Vocabulary validation...");
-    	return vocabularyCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
+    	return vocabularyCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, vocabularyConfig);
     }
     
     private List<RefCCDAValidationResult> doContentValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException {
