@@ -3,6 +3,7 @@ package org.sitenv.referenceccda.controllers;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.services.VocabularyService;
+import org.sitenv.vocabularies.constants.VocabularyConstants;
 import org.sitenv.vocabularies.validation.entities.Code;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
@@ -33,8 +34,10 @@ public class ReferenceCCDAValidationController {
 	public ValidationResultsDto doValidation(
 			@RequestParam(value = "validationObjective", required = true) String validationObjective,
 			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
-			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile) {
-		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile);
+			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
+			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig) {
+		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile, 
+				vocabularyConfig);
 	}
 
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)

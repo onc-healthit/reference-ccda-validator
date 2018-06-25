@@ -10,6 +10,7 @@ import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.vocabularies.constants.VocabularyConstants;
 import org.sitenv.vocabularies.validation.dto.VocabularyValidationResult;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,22 +29,35 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
         this.vocabularyValidationService = vocabularyValidationService;
     }
 
-    public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName, String ccdaFile) throws SAXException {
+	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
+			String ccdaFile) throws SAXException {
+    	return validateFileImplementation(validationObjective, referenceFileName, ccdaFile, VocabularyConstants.Config.DEFAULT);
+    }
+    
+	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
+			String ccdaFile, String vocabularyConfig) throws SAXException {
+		return validateFileImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig);			
+	}
+	
+	private ArrayList<RefCCDAValidationResult> validateFileImplementation(String validationObjective, String referenceFileName,
+			String ccdaFile, String vocabularyConfig) throws SAXException {
         ArrayList<RefCCDAValidationResult> results = null;
         if (ccdaFile != null) {
             final XPathIndexer xpathIndexer = new XPathIndexer();
             trackXPathsInXML(xpathIndexer, ccdaFile);
             try {
-                results = doValidation(ccdaFile, xpathIndexer);
+                results = doValidation(ccdaFile, xpathIndexer, vocabularyConfig);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        return results;
-    }
+        return results;		
+	}
 
-    private ArrayList<RefCCDAValidationResult> doValidation(String ccdaFile, XPathIndexer xpathIndexer) throws IOException, SAXException {
-        List<VocabularyValidationResult> validationResults = vocabularyValidationService.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"));
+	private ArrayList<RefCCDAValidationResult> doValidation(String ccdaFile, XPathIndexer xpathIndexer,
+			String vocabularyConfig) throws IOException, SAXException {
+		List<VocabularyValidationResult> validationResults = vocabularyValidationService
+				.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"), vocabularyConfig);
         ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
         for (VocabularyValidationResult result : validationResults) {
             results.add(createValidationResult(result, xpathIndexer));
