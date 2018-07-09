@@ -37,7 +37,12 @@
             <id>mdht-plugins</id>
             <name>plugins-release</name>
             <url>http://devsoap.sitenv.org:8081/artifactory/plugins-release-local</url>
-        </repository> 
+        </repository>
+        <repository>
+            <id>mdht-external</id>
+            <name>ext-release</name>
+            <url>http://devsoap.sitenv.org:8081/artifactory/ext-release-local</url>
+        </repository>
     </repositories>   
 
     <dependencies>
