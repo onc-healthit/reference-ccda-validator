@@ -8,7 +8,7 @@ This document is meant to outline the steps to successfully configure and deploy
     c. With Tomcat installed and the referenceccdaservice.war in your hands, you are ready to begin configuration and deployment.
 
 **2. Configuration Instructions**
-*    Vocabulary Artifacts needed for vocabulary validation
+*    Vocabulary Artifacts needed for vocabulary validation (please see https://github.com/siteadmin/code-validator-api and https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs for further information)
 *    Scenario files needed for content validation
 *    The war
 *    Server (tomcat) configuration
@@ -30,15 +30,18 @@ Vocabulary Artifacts
 >           		</validator>
 >           	</expression>
 
-    3.Create a local directory for Codes, Valuesets and Scenario files. For example,
+    3. Create a local directory for Codes, Valuesets and Scenario files. For example,
        a. /path/to/validator_configuration/vocabulary/code_repository
        b. /path/to/validator_configuration/vocabulary/valueset_repository/VSAC
        c. /path/to/validator_configuration/scenarios
 
->     NOTE: Code systems and valuesets are externally published and this project does **NOT** come packaged with any of these files.
->     code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
->     value set - selects a set of codes from those defined by one or more code systems
->     To learn more about valuesets and code systems, go to:
+NOTE: Most of the code systems and valuesets are externally published and this project does **NOT** come packaged with any of these externally published files. However, valuesets which were not externally published by VSAC were hand created by SITE and are available for download here: https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs/ValueSetsHandCreatedbySITE
+
+code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
+
+value set - selects a set of codes from those defined by one or more code systems
+
+To learn more about valuesets and code systems, go to:
 [VSAC Support](https://www.nlm.nih.gov/vsac/support/authorguidelines/code-systems.html)
 
 The referenceccdaservice.war
