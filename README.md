@@ -31,11 +31,13 @@ Vocabulary Artifacts
 >           	</expression>
 
     3. Create a local directory for Codes, Valuesets and Scenario files. For example,
-       a. /path/to/validator_configuration/vocabulary/code_repository
-       b. /path/to/validator_configuration/vocabulary/valueset_repository/VSAC
-       c. /path/to/validator_configuration/scenarios
+       a. /path/to/validator_configuration/vocabulary/code_repository/
+       b. /path/to/validator_configuration/vocabulary/valueset_repository/VSAC/
+       c. /path/to/validator_configuration/scenarios/
 
-NOTE: Most of the code systems and valuesets are externally published and this project does **NOT** come packaged with any of these externally published files. However, valuesets which were not externally published by VSAC were hand created by SITE and are available for download here: https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs/ValueSetsHandCreatedbySITE
+NOTES: 
+* For the valueset_repository, assuming the path above of /path/to/validator_configuration/vocabulary/valueset_repository/VSAC/, please ensure that the valueset repository spreadsheet files are in the aformentioned subfolder labeled VSAC. However, please do **NOT** include this VSAC folder in the referenceccdaservice.xml config file. So in this example, the actual path on the user computer or server would be /path/to/validator_configuration/vocabulary/valueset_repository/VSAC/ where as the path saved in the referenceccdaservice.xml config file referenceccdaservice.xml would be /path/to/validator_configuration/vocabulary/valueset_repository/
+* Most of the code systems and valuesets are externally published and this project does **NOT** come packaged with any of these externally published files. However, valuesets which were not externally published by VSAC were hand created by SITE and are available for download here: https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs/ValueSetsHandCreatedbySITE
 
 code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
 
