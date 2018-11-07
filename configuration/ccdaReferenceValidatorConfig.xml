@@ -1619,13 +1619,25 @@
 	</expression>
 
 	<!--a. If Observation/value is a physical quantity (xsi:type="PQ"), the unit of measure SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive 2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1198-31484).-->
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+    <expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@xsi:type='PQ' and @unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+        <validator>
+            <name>UnitValidator</name>
+            <validationResultSeverityLevels>
+                <codeSeverityLevel>SHALL</codeSeverityLevel>
+            </validationResultSeverityLevels>
+            <allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
+        </validator>
+    </expression>  
+    <expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@xsi:type='PQ' and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>UnitValidator</name>
+			<name>RequiredNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
+            <!-- Provide an @attributeName or elementName e.g. enter '@unit' for an attribute or just 'observation' for an element -->
+            <requiredNodeName>@unit</requiredNodeName>
+            <!-- Provide a unique validation message for the situation. A simple version is generated from the requiredNodeName and the two are merged -->
+			<validationMessage>If Observation/value is a physical quantity (xsi:type="PQ"), the unit of measure SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive 2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1198-31484).</validationMessage>
 		</validator>
 	</expression>
 	<!-- RESULT OBSERVATION END -->
