@@ -1619,13 +1619,25 @@
 	</expression>
 
 	<!--a. If Observation/value is a physical quantity (xsi:type="PQ"), the unit of measure SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive 2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1198-31484).-->
-	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+    <expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@xsi:type='PQ' and @unit and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+        <validator>
+            <name>UnitValidator</name>
+            <validationResultSeverityLevels>
+                <codeSeverityLevel>SHALL</codeSeverityLevel>
+            </validationResultSeverityLevels>
+            <allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
+        </validator>
+    </expression>  
+    <expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@xsi:type='PQ' and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>UnitValidator</name>
+			<name>RequiredNodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
+            <!-- Provide an @attributeName or elementName e.g. enter '@unit' for an attribute or 'v3:observation' for an element -->
+            <requiredNodeName>@unit</requiredNodeName>
+            <!-- Provide a unique validation message for the situation. A simple version is generated from the requiredNodeName and the two are merged -->
+			<validationMessage>If Observation/value is a physical quantity (xsi:type="PQ"), the unit of measure SHALL be selected from ValueSet UnitsOfMeasureCaseSensitive 2.16.840.1.113883.1.11.12839 DYNAMIC (CONF:1198-31484).</validationMessage>
 		</validator>
 	</expression>
 	<!-- RESULT OBSERVATION END -->
@@ -1657,7 +1669,7 @@
 	</expression>
 	<!-- SELF-CARE ACTIVITIES (ADL AND IADL) END -->
 
-	<!--SENSORY STATUS CONSTRAINTS OVERVIEW START -->
+	<!-- SENSORY STATUS CONSTRAINTS OVERVIEW START -->
 	<!--4. SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Sensory Status Problem Type urn:oid:2.16.840.1.113883.11.20.9.50 DYNAMIC (CONF:1098-27962).-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.127']/ancestor::v3:observation[1]/v3:code[not(@nullFlavor)]">
 		<validator>
@@ -1679,7 +1691,20 @@
 			<allowedValuesetOids>2.16.840.1.113883.11.20.9.44</allowedValuesetOids>
 		</validator>
 	</expression>
-	<!--SENSORY STATUS CONSTRAINTS OVERVIEW END -->
+	<!-- SENSORY STATUS CONSTRAINTS OVERVIEW END -->
+  
+    <!-- SERVICE DELIVERY LOCATION START -->  
+    <!--3. SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet HealthcareServiceLocation urn:oid:2.16.840.1.113883.1.11.20275 STATIC (CONF:81-16850).-->
+    <expression xpathExpression="//v3:participantRole/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.32']/ancestor::v3:participantRole[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
+        <validator>
+            <name>ValueSetCodeValidator</name>
+            <validationResultSeverityLevels>
+                <codeSeverityLevel>SHALL</codeSeverityLevel>
+            </validationResultSeverityLevels>
+            <allowedValuesetOids>2.16.840.1.113883.1.11.20275</allowedValuesetOids>
+        </validator>
+    </expression>
+    <!--SERVICE DELIVERY LOCATION END -->
 
 	<!-- SEVERITY OBSERVATION START -->
 	<!--6. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHALL be selected from ValueSet Problem Severity urn:oid:2.16.840.1.113883.3.88.12.3221.6.8 DYNAMIC (CONF:1098-7356).-->
