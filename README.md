@@ -1,5 +1,7 @@
 This document is meant to outline the steps to successfully configure and deploy the reference ccda application.
 
+If you would like to get a test virtual machine up and running in very short order, check out https://github.com/mieweb/vagrant-ccda-validator for a vagrant build.
+
 **1. Assumptions**
 
     a. Tomcat 7 or above has been installed and NOT running. https://tomcat.apache.org/download-70.cgi
