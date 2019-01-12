@@ -170,7 +170,7 @@ angular.module('referenceValidator').controller('ValidationController', function
         var currentResultType;
         $.each(data.ccdaValidationResults, function(ccdaValidationResults,result){
             if(result.type.toLowerCase().indexOf("error") >= 0){
-                resultList.push('<font color="red">');
+                resultList.push('<div style=style="border-style: none none none solid; border-color: #d9534f; border-width: 3px; padding: 5px 0px 0.5px 5px; background-color: rgba(217, 83, 79, 0.1)">');
             }else if(result.type.toLowerCase().indexOf("warn") >= 0){
                 resultList.push('<font color="orange">');
             }else{
@@ -181,18 +181,19 @@ angular.module('referenceValidator').controller('ValidationController', function
                 resultList.push('<a href="#" name="'+ result.type + '"></a>');
             }
 
-            var errorDescription = ['<li>' + result.type + '<ul class="">',
-                '<li class="">Description: '+ result.description + '</li>',
-                '<li class="">xPath: '+ result.xPath + '</li>',
-                '<li class="">Document Line Number (approximate): '+ result.documentLineNumber + '</li>',
-                '</ul></li>'];
+            var errorDescription = ['<p><font style="font-weight:bold; color: #d9534f">' + result.type + '</font> - ',
+                + result.description + '<br/>',
+                '<font style="font-weight:bold">' + result.xPath + '</font><br/>',
+                '<u>Line Number:</u><b>'+ result.documentLineNumber + '</b>',
+                '</p>'];
             resultList = resultList.concat(errorDescription);
             if(result.expectedValueSet != null){
                 var expectedValueSets = ['<a href=">' + result.expectedValueSet + '</a>'];
                 resultList = resultList.concat(expectedValueSets);
             }
-            resultList.push('</font>');
-            resultList.push('<hr/><div class="pull-right"><a href="#validationResults" title="top">^</a></div>');
+            resultList.push('</div>');
+            resultList.push('<div style="height: 3px" />');
+            resultList.push('<div class="pull-right"><a href="#validationResults" title="top">^</a></div>');
             currentResultType = result.type.toLowerCase();
         });
         return (resultList.join('\n'));
