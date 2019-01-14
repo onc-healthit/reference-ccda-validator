@@ -168,23 +168,38 @@ angular.module('referenceValidator').controller('ValidationController', function
     function buildCcdaValidationResults(data){
         var resultList = [];
         var currentResultType;
+		
+		var errorColor = '#d9534f';
+		var errorBG = 'rgba(217, 83, 79, 0.1)';
+		var warnColor = '#f0ad4e';
+		var warnBG = 'rgba(240, 173, 78, 0.1);'
+		var infoColor = '#5bc0de';
+		var infoBG = 'rgba(91, 192, 222, 0.1);';
+		
         $.each(data.ccdaValidationResults, function(ccdaValidationResults,result){
+			var resultColor = '';
+			var resultBG = '';
             if(result.type.toLowerCase().indexOf("error") >= 0){
-                resultList.push('<div style=style="border-style: none none none solid; border-color: #d9534f; border-width: 3px; padding: 5px 0px 0.5px 5px; background-color: rgba(217, 83, 79, 0.1)">');
+				resultColor = errorColor;
+				resultBG = errorBG;
             }else if(result.type.toLowerCase().indexOf("warn") >= 0){
-                resultList.push('<font color="orange">');
+                resultColor = warnColor;
+				resultBG = warnBG;
             }else{
-                resultList.push('<font color="#5bc0de">');
+                resultColor = infoColor;
+				resultBG = infoBG;
             }
+			
+			resultList.push('<div style="border-style: none none none solid; border-color: ' + resultColor + '; border-width: 5px; padding: 5px 0px 0.5px 5px; background-color: ' + resultBG + '">');
 
             if(currentResultType != result.type.toLowerCase()){
                 resultList.push('<a href="#" name="'+ result.type + '"></a>');
             }
 
-            var errorDescription = ['<p><font style="font-weight:bold; color: #d9534f">' + result.type + '</font> - ',
-                + result.description + '<br/>',
+            var errorDescription = ['<p><font style="font-weight:bold; color: ' + resultColor + '">' + result.type + '</font>',
+                ' - ' + result.description + '<br/>',
                 '<font style="font-weight:bold">' + result.xPath + '</font><br/>',
-                '<u>Line Number:</u><b>'+ result.documentLineNumber + '</b>',
+                '<u>Line Number:</u> <b>'+ result.documentLineNumber + '</b>',
                 '</p>'];
             resultList = resultList.concat(errorDescription);
             if(result.expectedValueSet != null){
