@@ -1,6 +1,6 @@
 This document is meant to outline the steps to successfully configure and deploy the reference ccda application.
 
-If you would like to get a test virtual machine up and running in very short order, check out https://github.com/mieweb/vagrant-ccda-validator for a vagrant build.
+If you would like to get a test virtual machine up and running quickly, check out https://github.com/mieweb/vagrant-ccda-validator for a Vagrant build. Note: This is a 3rd-party option and is not directly supported by SITE/the ONC. It intends to pull, configure, and deploy the data from our codebase based on these instructions. Otherwise, please continue to follow the full instructions below to create a local, external, or customized instance of the validator.
 
 **1. Assumptions**
 
