@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.37</version>
+    <version>1.0.38</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -17,133 +17,117 @@
         <!-- MDHT properties -->
         <mdht.models.version>3.0.8.20180531</mdht.models.version>
         <mdht.plugins.version>3.0.0.201805310501</mdht.plugins.version>
-        <ds4pcontent.version>3.0.0.20170920</ds4pcontent.version>
         <consentdirective.version>1.0.0.20170920</consentdirective.version>
+        <ds4pcontent.version>3.0.0.20170920</ds4pcontent.version>
     </properties>
 
     <repositories>
         <repository>
             <snapshots>
                 <enabled>true</enabled>
-            </snapshots>
-            <id>mdht-libs</id>
-            <name>libs-release</name>
-            <!--<url>http://devsoap.sitenv.org:8081/artifactory/libs-release-local</url>-->
-            <url>file://C:\Users\AIadministrator\.m2\repository</url>
-        </repository>
-        <repository>
-            <snapshots>
-                <enabled>true</enabled>
             </snapshots>        
-            <id>mdht-plugins</id>
-            <name>plugins-release</name>
-            <!--<url>http://devsoap.sitenv.org:8081/artifactory/plugins-release-local</url>-->
-            <url>file://C:\Users\AIadministrator\.m2\repository</url>
-        </repository>
-        <repository>
-            <id>mdht-external</id>
-            <name>ext-release</name>
-            <!--<url>http://devsoap.sitenv.org:8081/artifactory/ext-release-local</url>-->
-            <url>file://C:\Users\AIadministrator\.m2\repository</url>
+            <id>central</id>
+            <name>ONCSITE-DEV-CCDA-releases</name>
+            <url>http://ccda.dev.sitenv.org:8081/artifactory/libs-release-local</url>
         </repository>
     </repositories>   
 
     <dependencies>
-        <!-- START MDHT DEPENDENCIES - from devsoap.sitenv.org:8081 artifactory -->
+        <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
 		<!-- 1st party MDHT - MODELS from https://github.com/mdht/mdht-models -->
+        <dependency>
+            <groupId>mdht.openhealthtools.mdht.cda</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
+            <!--<version>${mdht.models.version}</version>-->
+            <version>3.0.9.20180622</version>                   
+        </dependency>
 		<dependency>
-		    <groupId>org.openhealthtools.mdht.cda</groupId>
-		    <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <version>3.0.9.20180622</version>
-		    <!--<version>${mdht.models.version}</version>-->
-		</dependency>
-		<dependency>
-		    <groupId>org.openhealthtools.mdht.cda</groupId>
+		    <groupId>mdht.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
 		    <version>${mdht.models.version}</version>
         </dependency>
-		<dependency>
-            <groupId>org.hl7.security.ds4p</groupId>
-            <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
-            <version>${ds4pcontent.version}</version>
-        </dependency>
         <dependency>
-            <groupId>org.hl7.cbcc.privacy</groupId>
+            <groupId>mdht.hl7.ds4p</groupId>
             <artifactId>org.hl7.cbcc.privacy.consentdirective</artifactId>
             <version>${consentdirective.version}</version>
-        </dependency>        
+        </dependency>
+        <dependency>
+            <groupId>mdht.hl7.ds4p</groupId>
+            <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
+            <version>${ds4pcontent.version}</version>
+        </dependency> 
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
-		    <groupId>org.eclipse.mdht</groupId>
-		    <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
+            <groupId>mdht.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>
         <dependency>
-            <groupId>org.eclipse.mdht</groupId>
+            <groupId>mdht.eclipse.mdht</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
             <version>${mdht.plugins.version}</version>            
         </dependency>
 		<dependency>
-		    <groupId>org.eclipse.mdht</groupId>
-		    <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
+            <groupId>mdht.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.eclipse.mdht</groupId>
-		    <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
+            <groupId>mdht.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.eclipse.mdht</groupId>
-		    <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
+            <groupId>mdht.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>	
 		<!-- 3rd party MDHT -->
-		<dependency>
-			<groupId>lpg.runtime.java</groupId>
-			<artifactId>lpg.runtime.java</artifactId>
-			<version>2.0.17.v201004271640</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.emf.common</groupId>
-			<artifactId>org.eclipse.emf.common</artifactId>
-			<version>2.11.1.v20160208-0816</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.eclipse.emf.ecore</groupId>
-		    <artifactId>org.eclipse.emf.ecore</artifactId>
-		    <version>2.11.2.v20160208-0816</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.eclipse.emf.ecore.xmi</groupId>
-		    <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-		    <version>2.11.1.v20160208-0816</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.eclipse.ocl</groupId>
-		    <artifactId>org.eclipse.ocl</artifactId>
-		    <version>3.5.0.v20150521-1211</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.ocl.common</groupId>
-			<artifactId>org.eclipse.ocl.common</artifactId>
-			<version>1.3.0.v20150519-0914</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.ocl.ecore</groupId>
-			<artifactId>org.eclipse.ocl.ecore</artifactId>
-			<version>3.5.0.v20150525-1635</version>		
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.uml2.common</groupId>
-			<artifactId>org.eclipse.uml2.common</artifactId>
-			<version>2.1.0.v20160201-0816</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.eclipse.uml2.types</groupId>
-		    <artifactId>org.eclipse.uml2.types</artifactId>
-		    <version>2.0.0.v20160201-0816</version>
-		</dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>lpg.runtime.java</artifactId>
+            <version>2.0.17.v201004271640</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.emf.common</artifactId>
+            <version>2.12.0.v20160420</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.emf.ecore</artifactId>
+            <version>2.12.0.v20160420</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+            <version>2.12.0.v20160420</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.ocl</artifactId>
+            <version>3.6.0.v20160523</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.ocl.common</artifactId>
+            <version>1.4.0.v20160521</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.ocl.ecore</artifactId>
+            <version>3.6.0.v20160523</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.uml2.common</artifactId>
+            <version>2.1.0.v20170227</version>
+        </dependency>
+        <dependency>
+            <groupId>mdht-dependency</groupId>
+            <artifactId>org.eclipse.uml2.types</artifactId>
+            <version>2.0.0.v20170227</version>
+        </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
