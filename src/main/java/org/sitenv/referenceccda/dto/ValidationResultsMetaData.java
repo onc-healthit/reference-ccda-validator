@@ -19,6 +19,7 @@ public class ValidationResultsMetaData {
 	private String ccdaFileContents;
 	private final Map<String, AtomicInteger> errorCounts = new LinkedHashMap<String, AtomicInteger>();
 	private List<ResultMetaData> resultMetaData;
+	private int vocabularyValidationConfigurationsCount;
 
 	public ValidationResultsMetaData() {
 		for (ValidationResultType resultType : ValidationResultType.values()) {
@@ -98,5 +99,13 @@ public class ValidationResultsMetaData {
 		} else {
 			errorCounts.put(resultType.getTypePrettyName(), new AtomicInteger(1));
 		}
+	}
+	
+	public int getVocabularyValidationConfigurationsCount() {
+		return vocabularyValidationConfigurationsCount;
+	}
+	
+	public void setVocabularyValidationConfigurationsCount(int vocabularyValidationConfigurationsCount) {
+		this.vocabularyValidationConfigurationsCount = vocabularyValidationConfigurationsCount;
 	}
 }
