@@ -141,6 +141,14 @@
             <artifactId>codevalidator-api</artifactId>
             <version>${code.validator.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.sitenv.vocabulary</groupId>
+            <artifactId>codevalidator-api</artifactId>
+            <classifier>tests</classifier>
+            <version>${code.validator.version}</version>                                   
+            <type>test-jar</type>
+            <scope>test</scope>          
+        </dependency>        
         <!-- END VOCAB DEPENDENCIES -->
 
         <!-- START CONTENT DEPENDENCIES -->
