@@ -11,6 +11,7 @@ import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.vocabularies.constants.VocabularyConstants;
+import org.sitenv.vocabularies.validation.dto.GlobalCodeValidatorResults;
 import org.sitenv.vocabularies.validation.dto.VocabularyValidationResult;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,12 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
     @Value("${referenceccda.configFile}")
     private String vocabularyXpathExpressionConfiguration;
     private VocabularyValidationService vocabularyValidationService;
+    private GlobalCodeValidatorResults globalCodeValidatorResults;
 
     @Autowired
     public VocabularyCCDAValidator(VocabularyValidationService vocabularyValidationService) {
         this.vocabularyValidationService = vocabularyValidationService;
+        globalCodeValidatorResults = new GlobalCodeValidatorResults();
     }
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
@@ -55,15 +58,20 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
 	}
 
 	private ArrayList<RefCCDAValidationResult> doValidation(String ccdaFile, XPathIndexer xpathIndexer,
-			String vocabularyConfig) throws IOException, SAXException {
+			String vocabularyConfig) throws IOException, SAXException {		
 		List<VocabularyValidationResult> validationResults = vocabularyValidationService
 				.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"), vocabularyConfig);
+		globalCodeValidatorResults = vocabularyValidationService.getGlobalCodeValidatorResults();
         ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
         for (VocabularyValidationResult result : validationResults) {
             results.add(createValidationResult(result, xpathIndexer));
         }
         return results;
     }
+	
+	public GlobalCodeValidatorResults getGlobalCodeValidatorResults() {
+		return globalCodeValidatorResults;
+	}
 
     private RefCCDAValidationResult createValidationResult(VocabularyValidationResult result, XPathIndexer xpathIndexer) {
         ValidationResultType type;

@@ -18,6 +18,7 @@ import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.schema.ValidationObjectives;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
 import org.sitenv.vocabularies.constants.VocabularyConstants;
+import org.sitenv.vocabularies.validation.dto.GlobalCodeValidatorResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -200,6 +201,8 @@ public class ReferenceCCDAValidationService {
         resultsMetaData.setObjectiveProvided(validationObjective);
         resultsMetaData.setCcdaDocumentType(referenceCCDAValidator.getCcdaDocumentType());
         resultsMetaData.setCcdaVersion(referenceCCDAValidator.getCcdaVersion().getVersion());
+        GlobalCodeValidatorResults globalCodeValidatorResults = vocabularyCCDAValidator.getGlobalCodeValidatorResults();         
+        resultsMetaData.setVocabularyValidationConfigurationsCount(globalCodeValidatorResults.getVocabularyValidationConfigurationsCount());
         return resultsMetaData;
     }
 
