@@ -12,7 +12,7 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.19</code.validator.version>
+        <code.validator.version>1.0.20-SNAPSHOT</code.validator.version>
         <content.validator.version>1.0.19</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.8.20180531</mdht.models.version>
