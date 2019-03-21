@@ -57,7 +57,7 @@ The referenceccdaservice.war
 
 Server Configuration
 
-    1. Place a copy of referenceccdaservice.xml in $CATALINA_BASE/conf/[enginename]/[hostname]/. For example, ~/apache-tomcat-7.0.57/conf/Catalina/localhost
+    1. Place a copy of referenceccdaservice.xml in $CATALINA_BASE/conf/[enginename]/[hostname]/. Note: You will likely be using the "Catalina" engine and the default host for Tomcat is "localhost". For example, ~/apache-tomcat-7.0.57/conf/Catalina/localhost
     2. Edit the referenceccdaservice.xml key values to point to the locations configured in the previous steps and setup other values. For example;
             <Context reloadable="true">
                 <Parameter name="vocabulary.localCodeRepositoryDir" value="path/to/your/code_repository" override="true"/>
