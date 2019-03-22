@@ -8,12 +8,17 @@ If you would like to get a test virtual machine up and running quickly, check ou
     b. You are using a pre-built referenceccdaservice.war file. In other words, the .war file was not built from the project directly.
         Such a thing is possible but beyond the scope of this document.
     c. With Tomcat installed and the referenceccdaservice.war in your hands, you are ready to begin configuration and deployment.
+    d. Java 7 or 8 is installed and a JAVA_HOME is set. Note: Java 7 is recommended.
 
 **2. Configuration Instructions**
 *    Vocabulary Artifacts needed for vocabulary validation (please see https://github.com/siteadmin/code-validator-api and https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs for further information)
-*    Scenario files needed for content validation
+*    Scenario files needed for content validation (based on https://github.com/siteadmin/content-validator-api)
+        * If not wanting to perform content validation, it is OK to have an empty scenario directory. The application will startup fine and validate correctly as long as a scenario isn't sent in the API. It will still perform IG and Vocabulary validation as needed. 
+        * The scenario files used in SITE are located here: https://github.com/siteadmin/2015-certification-ccda-testdata
 *    The war
+        * Get the latest war here https://github.com/siteadmin/reference-ccda-validator/releases
 *    Server (tomcat) configuration
+        * Get the latest configuration file, ccdaReferenceValidatorConfig.xml, here https://github.com/siteadmin/reference-ccda-validator/tree/master/configuration
 
 Vocabulary Artifacts
 
@@ -35,7 +40,7 @@ Vocabulary Artifacts
     3. Create a local directory for Codes, Valuesets and Scenario files. For example,
        a. path/to/validator_configuration/vocabulary/code_repository/
        b. path/to/validator_configuration/vocabulary/valueset_repository/VSAC/
-       c. path/to/validator_configuration/scenarios_directory/
+       c. path/to/validator_configuration/scenarios/
        
     4. Optional: Add custom configurations to the existing path (path/to/your/configs_folder) or create a separate local directory for your custom vocabulary configurations (xml files). Using the existing path is preferred but either option works fine. This allows one to take advantage of dynamic vocabulary configurations which can be changed in realtime for each validation via the API by sending the "vocabularyConfig" key and the filename without extension as the value. The default configuration file is the one that was added earlier and is located in this repository (ccdaReferenceValidatorConfig.xml). If "referenceccda.isDynamicVocab" is set to "false" or not set at all the default file (ccdaReferenceValidatorConfig.xml) will be used. If it is set to "true" and the path is set as described, one can use any config in the directory.
 
