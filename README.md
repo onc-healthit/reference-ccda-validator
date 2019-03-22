@@ -19,6 +19,7 @@ If you would like to get a test virtual machine up and running quickly, check ou
         * Get the latest war here https://github.com/siteadmin/reference-ccda-validator/releases
 *    Server (tomcat) configuration
         * Get the latest configuration file, ccdaReferenceValidatorConfig.xml, here https://github.com/siteadmin/reference-ccda-validator/tree/master/configuration
+        * Note: Please watch out for any updates to this file for each release in order keep your validator up to date as it is not included with the WAR
 
 Vocabulary Artifacts
 
@@ -93,3 +94,16 @@ Server Configuration
     3. For convenience, API documentation and a validation UI is included:
         API documentation - /referenceccdaservice/swagger-ui.html
         UI - referenceccdaservice/ui
+        
+**4. Troubleshooting (please feel free to submit PRs with updates from your own issues/solutions)**
+
+* The best way to resolve an issue is to refer to the log at tomcat/logs/referenceccdaservice.<TODAY'S DATE>.log. The errors in that log along with the various documentation for this project and its dependencies should help point to a resolution. If there is still confusion, ahead are some examples and their solutions:
+    * The log states, "LOADING SCENARIO FILES AT /opt/apache-tomcat-7.0.53/mdht/Environment/VocabularyConfiguration/scenarios/" instead of the directory you have specified in your ccdaReferenceValidatorConfig.xml which exists on your computer or server
+        * The ccdaReferenceValidatorConfig.xml configuration file is designed to override default settings with your local settings/directory setup. What this message means (if the path doesn't match you local file structure) is that the application has not found your ccdaReferenceValidatorConfig.xml file. Please ensure that you have taken the latest version from here https://github.com/siteadmin/reference-ccda-validator/tree/master/configuration and have placed it in a path similar to tomcat/conf/Catalina/localhost
+    * The log states, "nested exception is java.lang.OutOfMemoryError: GC overhead limit exceeded"
+        * It is recommended that your computer has at least 4GBs of RAM as the software loads all of the vocabulary into RAM. It uses an "in-memory database" on boot so it's very RAM intensive. However, just because you have the RAM doesn't mean Java is handling it appropriately. If you have enough RAM free and there is still an issue, please ensure you are using Java 7 vs Java 8 or higher and create a file named setenv.sh (.bat for windows) file in your tomcat/bin directory. Please include the following data within that file:
+            * ``` 
+                  #!/bin/bash
+                  JAVA_HOME=/usr/lib/jvm/java-7-oracle
+                  JAVA_OPTS="$JAVA_OPTS -Xmx5120m -XX:MaxPermSize=1024m"
+              ```
