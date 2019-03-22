@@ -4,7 +4,7 @@ If you would like to get a test virtual machine up and running quickly, check ou
 
 **1. Assumptions**
 
-    a. Tomcat 7 or above has been installed and NOT running. https://tomcat.apache.org/download-70.cgi
+    a. Tomcat 7 (7.0.53 recommended) or above has been installed and NOT running. https://tomcat.apache.org/download-70.cgi
     b. You are using a pre-built referenceccdaservice.war file. In other words, the .war file was not built from the project directly.
         Such a thing is possible but beyond the scope of this document.
     c. With Tomcat installed and the referenceccdaservice.war in your hands, you are ready to begin configuration and deployment.
@@ -57,12 +57,15 @@ To learn more about valuesets and code systems, go to:
 
 The referenceccdaservice.war
 
-    1. Navigate to the webapps directory in your Tomcat instance. For example, ~/apache-tomcat-7.0.57/webapps
+    1. Navigate to the webapps directory in your Tomcat instance. For example, ~/apache-tomcat-7.0.53/webapps
     2. Place the referenceccdaservice.war file here
 
 Server Configuration
 
-    1. Place a copy of referenceccdaservice.xml in $CATALINA_BASE/conf/[enginename]/[hostname]/. Note: You will likely be using the "Catalina" engine and the default host for Tomcat is "localhost". For example, ~/apache-tomcat-7.0.57/conf/Catalina/localhost
+    1. Place a copy of referenceccdaservice.xml in $CATALINA_BASE/conf/[enginename]/[hostname]/
+    Note: You will likely be using the "Catalina" engine and the default host for Tomcat is "localhost". 
+    For example, ~/apache-tomcat-7.0.53/conf/Catalina/localhost
+    
     At this point, your directory structure should contain at least the following:
     -tomcat
     --conf
