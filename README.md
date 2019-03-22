@@ -63,7 +63,16 @@ The referenceccdaservice.war
 Server Configuration
 
     1. Place a copy of referenceccdaservice.xml in $CATALINA_BASE/conf/[enginename]/[hostname]/. Note: You will likely be using the "Catalina" engine and the default host for Tomcat is "localhost". For example, ~/apache-tomcat-7.0.57/conf/Catalina/localhost
-    2. Edit the referenceccdaservice.xml key values to point to the locations configured in the previous steps and setup other values. For example;
+    At this point, your directory structure should contain at least the following:
+    -tomcat
+    --conf
+    ---Catalina
+    ----localhost
+    ----referenceccdaservice.xml
+    --webapps
+    ---referenceccdaservice.war  
+    
+    2. Edit the referenceccdaservice.xml key values to point to the locations configured in the previous steps and setup other values. For example:
             <Context reloadable="true">
                 <Parameter name="vocabulary.localCodeRepositoryDir" value="path/to/your/code_repository" override="true"/>
                 <Parameter name="vocabulary.localValueSetRepositoryDir" value="path/to/your/valueset_repository" override="true"/>
@@ -76,7 +85,7 @@ Server Configuration
 **3. Run the application**
 
     1. Start your tomcat instance - you should see output showing the databases getting initialized and the .war file getting deployed.
-    NOTE: Allow a few moments for the vocabulary valuesets and codes to be inserted into the in-memory database.
+    NOTE: Allow a few minutes for the vocabulary valuesets and codes to be inserted into the in-memory database.
     2. Access the endpoint. For example, localhost:8080/referenceccdaservice/
     3. For convenience, API documentation and a validation UI is included:
         API documentation - /referenceccdaservice/swagger-ui.html
