@@ -1,7 +1,8 @@
 package org.sitenv.referenceccda.test.tests;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.sitenv.referenceccda.test.other.ReferenceValidationLogger.*;
+import static org.sitenv.referenceccda.test.other.ReferenceValidationLogger.printResults;
+import static org.sitenv.vocabularies.test.other.ValidationLogger.println;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,6 +37,8 @@ import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
+import junit.runner.Version;
+
 public class RefCCDATest extends ReferenceValidationTester implements ValidationTest {
 
 	private static final boolean LOG_RESULTS_TO_CONSOLE = true;
@@ -51,7 +54,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
 			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
-			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10, DS4P_WITH_NO_DS4P_DATA_AMB = 11, DS4P_WITH_NO_DS4P_DATA_INP = 12;
+			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10, DS4P_WITH_NO_DS4P_DATA_AMB = 11, DS4P_WITH_NO_DS4P_DATA_INP = 12,
+			TWO_MEGS=13;
 
 	// Feel free to add docs to the end but don't alter existing data
 	// Note: The same sample is referenced twice due to a loop test
@@ -71,7 +75,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample1_v5.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample2_v2.xml").toURI(),
-					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample2_v2.xml").toURI()
+					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample2_v2.xml").toURI(),
+					RefCCDATest.class.getResource("/tempResults_ValidatorBrokeETTGG.xml").toURI()
 			};
 		} catch (URISyntaxException e) {
 			if(LOG_RESULTS_TO_CONSOLE) e.printStackTrace();
@@ -81,7 +86,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	@Override
 	@Before
 	public void initializeLogResultsToConsoleValue() {
-		ValidationLogger.logResults = LOG_RESULTS_TO_CONSOLE;		
+		ValidationLogger.logResults = LOG_RESULTS_TO_CONSOLE;
+		println("JUnit version: " + Version.id());
 	}	
 	
 	@Test
@@ -425,7 +431,33 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		Assert.assertTrue("VocabularyValidationConfigurationsCount should be more than 0", configCount > 0);
 		Assert.assertTrue("VocabularyValidationConfigurationsCount should equal to " + expectedConfigCount + " as per the content of "
 				+ "requiredNodeValidatorMissingElementConfig", configCount == expectedConfigCount);
-	}	
+	}
+	
+	@Ignore // Does not work with maven install due to some glitch but works otherwise 
+	@Test
+	public void tempResults_UTF8_BOM_EttGg_GetMDHTErrors_Test() {
+			List<RefCCDAValidationResult> results = getMDHTErrorsFromResults(validateDocumentAndReturnResults(
+					convertCCDAFileToString(CCDA_FILES[TWO_MEGS]), CCDATypes.NON_SPECIFIC_CCDAR2));
+			printResults(results, true, true, true);
+	}
+	
+	@Test
+	public void tempResults_UTF8_BOM_EttGg_runReferenceCCDAValidation_Test() {
+		String validationMessage = "Test Validation Message";
+		// The following expression is not specifically relevant to the test but must be a valid expression
+		String configuredXpathExpression = "//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']"
+				+ "/ancestor::v3:observation[1]/v3:value"
+				+ "[@xsi:type='PQ' and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]";
+		programmaticallyConfigureRequiredNodeValidator(new ConfiguredValidationResultSeverityLevel("SHALL"), "@unit",
+				validationMessage, configuredXpathExpression);
+		injectDependencies();
+		
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				TWO_MEGS, new VocabularyCCDAValidator(getVocabularyValidationService()));
+		
+		printResults(getMDHTErrorsFromResults(results.getCcdaValidationResults()));
+		println("Service Error: " + results.getResultsMetaData().getServiceErrorMessage());
+	}		
 	
 	private static void ds4pTestAgainstDocWithNoDS4PContent(int ccdaFileIndex, String type,
 			String validationObjective) {

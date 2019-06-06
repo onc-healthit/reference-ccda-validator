@@ -109,7 +109,13 @@ public class ReferenceCCDAValidationService {
         InputStream ccdaFileInputStream = null;
         try {
             ccdaFileInputStream = ccdaFile.getInputStream();
-            String ccdaFileContents = IOUtils.toString(new BOMInputStream(ccdaFileInputStream));
+            BOMInputStream bomInputStream = new BOMInputStream(ccdaFileInputStream);
+            if(bomInputStream.hasBOM()) {
+				logger.warn(
+						"The C-CDA file has a BOM which is supposed to be removed by BOMInputStream - encoding w/o BOM: "
+								+ bomInputStream.getBOMCharsetName());
+            }
+            String ccdaFileContents = IOUtils.toString(bomInputStream, "UTF-8");
 
             List<RefCCDAValidationResult> mdhtResults = doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents);
             if(mdhtResults != null && !mdhtResults.isEmpty()) {
