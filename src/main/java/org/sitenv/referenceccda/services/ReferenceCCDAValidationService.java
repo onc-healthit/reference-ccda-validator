@@ -18,6 +18,7 @@ import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.schema.ValidationObjectives;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
 import org.sitenv.vocabularies.constants.VocabularyConstants;
+import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.sitenv.vocabularies.validation.dto.GlobalCodeValidatorResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,21 +53,26 @@ public class ReferenceCCDAValidationService {
     }
 
     public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName, MultipartFile ccdaFile) {
-    	return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, VocabularyConstants.Config.DEFAULT);
+    	return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, VocabularyConstants.Config.DEFAULT, SeverityLevel.INFO);
     }
     
     public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName, MultipartFile ccdaFile, 
     		String vocabularyConfig) {
-    	return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig);
+    	return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig, SeverityLevel.INFO);
     }
     
+    public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName, MultipartFile ccdaFile, 
+    		String vocabularyConfig, SeverityLevel severityLevel) {
+    	return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig, severityLevel);
+    }    
+    
     private ValidationResultsDto validateCCDAImplementation(String validationObjective, String referenceFileName, 
-    		MultipartFile ccdaFile, String vocabularyConfig) {
+    		MultipartFile ccdaFile, String vocabularyConfig, SeverityLevel severityLevel) {
         ValidationResultsDto resultsDto = new ValidationResultsDto();
         ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         try {
-            validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, vocabularyConfig);
+            validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, vocabularyConfig, severityLevel);
             resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
             resultsMetaData.setCcdaFileName(ccdaFile.getOriginalFilename());
             resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
@@ -103,7 +109,7 @@ public class ReferenceCCDAValidationService {
 	}
 
     private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
-                                                        MultipartFile ccdaFile, String vocabularyConfig) 
+                                                        MultipartFile ccdaFile, String vocabularyConfig, SeverityLevel severityLevel) 
                                                         		throws SAXException, Exception {
         List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
         InputStream ccdaFileInputStream = null;
@@ -117,7 +123,7 @@ public class ReferenceCCDAValidationService {
             }
             String ccdaFileContents = IOUtils.toString(bomInputStream, "UTF-8");
 
-            List<RefCCDAValidationResult> mdhtResults = doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents);
+            List<RefCCDAValidationResult> mdhtResults = doMDHTValidation(validationObjective, referenceFileName, ccdaFileContents, severityLevel);
             if(mdhtResults != null && !mdhtResults.isEmpty()) {
             	logger.info("Adding MDHT results");
             	validatorResults.addAll(mdhtResults);
@@ -183,9 +189,10 @@ public class ReferenceCCDAValidationService {
 				ValidationObjectives.ALL_UNIQUE_CONTENT_ONLY);
 	}
 
-    private List<RefCCDAValidationResult> doMDHTValidation(String validationObjective, String referenceFileName, String ccdaFileContents) throws SAXException, Exception {
+	private List<RefCCDAValidationResult> doMDHTValidation(String validationObjective, String referenceFileName,
+			String ccdaFileContents, SeverityLevel severityLevel) throws SAXException, Exception {
     	logger.info("Attempting MDHT validation...");
-        return referenceCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
+        return referenceCCDAValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, severityLevel);
     }
 	
 	private ArrayList<RefCCDAValidationResult> doVocabularyValidation(String validationObjective,

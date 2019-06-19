@@ -4,6 +4,7 @@ import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.services.VocabularyService;
 import org.sitenv.vocabularies.constants.VocabularyConstants;
+import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.sitenv.vocabularies.validation.entities.Code;
 import org.sitenv.vocabularies.validation.entities.VsacValueSet;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
@@ -35,9 +36,15 @@ public class ReferenceCCDAValidationController {
 			@RequestParam(value = "validationObjective", required = true) String validationObjective,
 			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
 			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
-			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig) {
+			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig,
+			@RequestParam(defaultValue = "info", required = false) String severityLevel) {		
+		if (severityLevel == null || severityLevel.equals("")) {
+			severityLevel = "info";
+		}
+		SeverityLevel severityLevelEnum = SeverityLevel.valueOf(severityLevel.toUpperCase());
+		
 		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile, 
-				vocabularyConfig);
+				vocabularyConfig, severityLevelEnum);		
 	}
 
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)

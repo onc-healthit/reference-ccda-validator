@@ -31,6 +31,8 @@ import org.sitenv.referenceccda.validators.schema.ReferenceCCDAValidator;
 import org.sitenv.referenceccda.validators.schema.ValidationObjectives;
 import org.sitenv.referenceccda.validators.vocabulary.VocabularyCCDAValidator;
 import org.sitenv.vocabularies.configuration.ConfiguredValidationResultSeverityLevel;
+import org.sitenv.vocabularies.constants.VocabularyConstants;
+import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.sitenv.vocabularies.test.other.ValidationLogger;
 import org.sitenv.vocabularies.test.other.ValidationTest;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
@@ -43,7 +45,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 	private static final boolean LOG_RESULTS_TO_CONSOLE = true;
 	
-	private static final boolean SHOW_ERRORS_ONLY = true;
+	private static final boolean SHOW_ERRORS_ONLY = false;
 	private static final boolean LOG_LOG4J = true;
 	static {
 		if(LOG_LOG4J) {
@@ -394,6 +396,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	}
 	
 	@Test
+	@Ignore
 	public void globalCodeValidatorResultsVocabularyValidationConfigurationsCountTest() {
 		setupInitParameters(true);
 		injectDependencies();
@@ -413,14 +416,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	
 	@Test
 	public void globalCodeValidatorResultsVocabularyValidationConfigurationsCountProgrammaticTest() {
-		String validationMessage = "Test Validation Message";
-		// The following expression is not specifically relevant to the test but must be a valid expression - only the config count is relevant
-		String configuredXpathExpression = "//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']"
-				+ "/ancestor::v3:observation[1]/v3:value"
-				+ "[@xsi:type='PQ' and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]";
-		programmaticallyConfigureRequiredNodeValidator(new ConfiguredValidationResultSeverityLevel("SHALL"), "@unit",
-				validationMessage, configuredXpathExpression);
-		injectDependencies();
+		createGenericExpressionForProgrammaticConfigAndInjectDependencies();
 		
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
 				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()));
@@ -443,6 +439,107 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	
 	@Test
 	public void tempResults_UTF8_BOM_EttGg_runReferenceCCDAValidation_Test() {
+		createGenericExpressionForProgrammaticConfigAndInjectDependencies();
+		
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				TWO_MEGS, new VocabularyCCDAValidator(getVocabularyValidationService()));
+		
+		printResults(getMDHTErrorsFromResults(results.getCcdaValidationResults()));
+		println("Service Error: " + results.getResultsMetaData().getServiceErrorMessage());
+	}
+	
+	@Test
+	public void mDHTSeverityLevelTest() {
+		createGenericExpressionForProgrammaticConfigAndInjectDependencies();
+
+		// ERRORS ONLY
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR,
+				new VocabularyCCDAValidator(getVocabularyValidationService()),
+				new ReferenceContentValidator(new ContentValidatorService()), VocabularyConstants.Config.DEFAULT,
+				SeverityLevel.ERROR);
+		int oldErrorResultCount = results.getCcdaValidationResults().size();
+		printResults(results.getCcdaValidationResults());
+
+		for (int i = 0; i < results.getCcdaValidationResults().size(); i++) {
+			RefCCDAValidationResult result = results.getCcdaValidationResults().get(i);
+			assertTrue(
+					"The result is not an error but only errors should be returned since SeverityLevel.ERROR was sent in.",
+					result.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR);
+		}
+
+		// ERRORS AND WARNINGS
+		results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR,
+				new VocabularyCCDAValidator(getVocabularyValidationService()),
+				new ReferenceContentValidator(new ContentValidatorService()), VocabularyConstants.Config.DEFAULT,
+				SeverityLevel.WARNING);
+		int newErrorResultCount = getMDHTErrorsFromResults(results.getCcdaValidationResults()).size();
+		int oldWarningResultCount = 0;
+		printResults(results.getCcdaValidationResults());
+
+		for (int i = 0; i < results.getCcdaValidationResults().size(); i++) {
+			RefCCDAValidationResult result = results.getCcdaValidationResults().get(i);
+			assertTrue(
+					"The result is not an error or a warning but only errors or warnings should be returned since SeverityLevel.WARNING was sent in.",
+					result.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR
+							|| result.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN);
+			if (result.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN) {
+				oldWarningResultCount++;
+			}
+		}
+		assertTrue(
+				"The error count has somehow changed from when SeverityLevel.ERROR was set vs SeverityLevel.WARNING. "
+						+ "The errorResultCount was previously " + oldErrorResultCount + " but is now "
+						+ newErrorResultCount,
+				oldErrorResultCount == newErrorResultCount);
+		assertTrue(
+				"There wasn't at least one warning yet the file HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR has warnings "
+						+ "and SeverityLevel.WARNING was sent in ",
+				oldWarningResultCount > 0);
+
+		// ERRORS AND WARNINGS AND INFO
+		results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR,
+				new VocabularyCCDAValidator(getVocabularyValidationService()),
+				new ReferenceContentValidator(new ContentValidatorService()), VocabularyConstants.Config.DEFAULT,
+				SeverityLevel.INFO);
+		int newWarningResultCount = 0;
+		int infoResultCount = 0;
+		int finalErrorCount = 0;
+		printResults(results.getCcdaValidationResults());
+
+		for (int i = 0; i < results.getCcdaValidationResults().size(); i++) {
+			RefCCDAValidationResult result = results.getCcdaValidationResults().get(i);
+			if (result.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR) {
+				finalErrorCount++;
+			} else if (result.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN) {
+				newWarningResultCount++;
+			} else if (result.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO) {
+				infoResultCount++;
+			}
+		}
+		assertTrue(
+				"The warning count has somehow changed from when SeverityLevel.WARNING was set vs SeverityLevel.INFO. "
+						+ "The warningResultCount was previously " + oldWarningResultCount + " but is now "
+						+ newWarningResultCount,
+				oldWarningResultCount == newWarningResultCount);
+		assertTrue(
+				"There wasn't at least one warning yet the file HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR has warnings "
+						+ "and SeverityLevel.INFO was sent in ",
+				newWarningResultCount > 0);
+		assertTrue(
+				"There wasn't at least one info yet the file HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR has info "
+						+ "and SeverityLevel.INFO was sent in ",
+				infoResultCount > 0);
+		assertTrue(
+				"There wasn't at least one error yet the file HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR has errors "
+						+ "and SeverityLevel.INFO was sent in ",
+				finalErrorCount > 0);
+	}
+	
+	
+	private void createGenericExpressionForProgrammaticConfigAndInjectDependencies() {
 		String validationMessage = "Test Validation Message";
 		// The following expression is not specifically relevant to the test but must be a valid expression
 		String configuredXpathExpression = "//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']"
@@ -451,13 +548,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		programmaticallyConfigureRequiredNodeValidator(new ConfiguredValidationResultSeverityLevel("SHALL"), "@unit",
 				validationMessage, configuredXpathExpression);
 		injectDependencies();
-		
-		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
-				TWO_MEGS, new VocabularyCCDAValidator(getVocabularyValidationService()));
-		
-		printResults(getMDHTErrorsFromResults(results.getCcdaValidationResults()));
-		println("Service Error: " + results.getResultsMetaData().getServiceErrorMessage());
-	}		
+	}
 	
 	private static void ds4pTestAgainstDocWithNoDS4PContent(int ccdaFileIndex, String type,
 			String validationObjective) {
@@ -545,12 +636,19 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			String validationObjective, final int XML_FILE_INDEX, VocabularyCCDAValidator vocabularyCCDAValidator, 
 			ReferenceContentValidator referenceContentValidator) {	
 		return runReferenceCCDAValidationServiceAndReturnResults(validationObjective, XML_FILE_INDEX,
-				vocabularyCCDAValidator, referenceContentValidator, null);		
+				vocabularyCCDAValidator, referenceContentValidator, null);
 	}
 	
 	private static ValidationResultsDto runReferenceCCDAValidationServiceAndReturnResults(
 			String validationObjective, final int XML_FILE_INDEX, VocabularyCCDAValidator vocabularyCCDAValidator, 
 			ReferenceContentValidator referenceContentValidator, String vocabularyConfig) {
+		return runReferenceCCDAValidationServiceAndReturnResults(validationObjective, XML_FILE_INDEX,
+				vocabularyCCDAValidator, referenceContentValidator, null, null); 
+	}
+	
+	private static ValidationResultsDto runReferenceCCDAValidationServiceAndReturnResults(
+			String validationObjective, final int XML_FILE_INDEX, VocabularyCCDAValidator vocabularyCCDAValidator, 
+			ReferenceContentValidator referenceContentValidator, String vocabularyConfig, SeverityLevel severityLevel) {
 		println("vocabularyConfig: " + vocabularyConfig);
 		File file = new File(CCDA_FILES[XML_FILE_INDEX]);
 		ReferenceCCDAValidationService referenceCcdaValidationService = null;
@@ -569,10 +667,18 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					+ (referenceCcdaValidationService == null ? "null" : "not null")
 					+ ("mockSample is " + mockSample == null ? "null" : "not null"));
 		}
+
+//		return vocabularyConfig == null
+//				? referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample)
+//				: referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig);
 		
-		return vocabularyConfig == null
-				? referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample)
-				: referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig);
+		if(vocabularyConfig == null && severityLevel == null) {
+			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample); 
+		} else if(vocabularyConfig != null && severityLevel != null) {
+			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig, severityLevel);
+		}
+		return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig);
+
 	}
 	
 	private static void printResultsBasedOnFlags(List<RefCCDAValidationResult> results) {
