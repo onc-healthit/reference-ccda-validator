@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.vocabularies.constants.VocabularyConstants;
+import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.sitenv.vocabularies.validation.dto.GlobalCodeValidatorResults;
 import org.sitenv.vocabularies.validation.dto.VocabularyValidationResult;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
@@ -25,6 +27,7 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
     private String vocabularyXpathExpressionConfiguration;
     private VocabularyValidationService vocabularyValidationService;
     private GlobalCodeValidatorResults globalCodeValidatorResults;
+    private static Logger logger = Logger.getLogger(VocabularyCCDAValidator.class);
 
     @Autowired
     public VocabularyCCDAValidator(VocabularyValidationService vocabularyValidationService) {
@@ -34,22 +37,31 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
 			String ccdaFile) throws SAXException {
-    	return validateFileImplementation(validationObjective, referenceFileName, ccdaFile, VocabularyConstants.Config.DEFAULT);
+		return validateFileImplementation(validationObjective, referenceFileName, ccdaFile,
+				VocabularyConstants.Config.DEFAULT, SeverityLevel.INFO);
     }
-    
+
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
 			String ccdaFile, String vocabularyConfig) throws SAXException {
-		return validateFileImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig);			
+		return validateFileImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig,
+				SeverityLevel.INFO);			
+	}
+	
+	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
+			String ccdaFile, String vocabularyConfig, SeverityLevel severityLevel) throws SAXException {
+		return validateFileImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig,
+				severityLevel);			
 	}
 	
 	private ArrayList<RefCCDAValidationResult> validateFileImplementation(String validationObjective, String referenceFileName,
-			String ccdaFile, String vocabularyConfig) throws SAXException {
+			String ccdaFile, String vocabularyConfig, SeverityLevel severityLevel) throws SAXException {
         ArrayList<RefCCDAValidationResult> results = null;
         if (ccdaFile != null) {
             final XPathIndexer xpathIndexer = new XPathIndexer();
             trackXPathsInXML(xpathIndexer, ccdaFile);
             try {
-                results = doValidation(ccdaFile, xpathIndexer, vocabularyConfig);
+            	logger.info("15: severityLevel (Enum) in validateFileImplementation for vocab calling doValidation " + severityLevel.name());
+                results = doValidation(ccdaFile, xpathIndexer, vocabularyConfig, severityLevel);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -58,9 +70,10 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
 	}
 
 	private ArrayList<RefCCDAValidationResult> doValidation(String ccdaFile, XPathIndexer xpathIndexer,
-			String vocabularyConfig) throws IOException, SAXException {		
+			String vocabularyConfig, SeverityLevel severityLevel) throws IOException, SAXException {
+		logger.info("16: severityLevel (Enum) in doValidation for vocab calling doValidation before run validate" + severityLevel.name());
 		List<VocabularyValidationResult> validationResults = vocabularyValidationService
-				.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"), vocabularyConfig);
+				.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"), vocabularyConfig, severityLevel);
 		globalCodeValidatorResults = vocabularyValidationService.getGlobalCodeValidatorResults();
         ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
         for (VocabularyValidationResult result : validationResults) {

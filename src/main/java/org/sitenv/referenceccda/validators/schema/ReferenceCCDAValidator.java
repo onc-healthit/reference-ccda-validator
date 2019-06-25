@@ -52,6 +52,8 @@ import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.XPathIndexer;
 import org.sitenv.referenceccda.validators.enums.UsrhSubType;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.vocabularies.constants.VocabularyConstants;
+import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
@@ -81,8 +83,13 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		return ccdaVersion;
 	}
 
-	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
-			String referenceFileName, String ccdaFile) throws SAXException, Exception {
+	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
+			String ccdaFile) throws SAXException, Exception {
+		return validateFile(validationObjective, referenceFileName, ccdaFile, SeverityLevel.INFO);
+	}
+	
+	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
+			String ccdaFile, SeverityLevel severityLevel) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
 		ValidationResult result = new ValidationResult();
 		InputStream in = null, in2 = null;
@@ -104,7 +111,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 					+ "or invalid combination of the two. Note: C-CDA R2.0 is not supported by the validator.");
 		}
 		logger.info("Processing and returning MDHT validation results");
-		return processValidationResults(xpathIndexer, result);
+		return processValidationResults(xpathIndexer, result, severityLevel);
 	}
 	
 	private static void closeInputStreams(List<InputStream> inputStreams) {
@@ -119,7 +126,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		}
 	}
 
-	private void validateDocumentByTypeUsingMDHTApi(InputStream in, InputStream in2, String validationObjective, 
+	private void validateDocumentByTypeUsingMDHTApi(InputStream in, InputStream in2, String validationObjective,
 			ValidationResult result) throws Exception {
 		if(StringUtils.isEmpty(validationObjective)) {
 			logAndThrowException("The validationObjective given is " + (validationObjective == null ? "null" : "empty"),
@@ -322,11 +329,27 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	}
 
 	private ArrayList<RefCCDAValidationResult> processValidationResults(final XPathIndexer xpathIndexer,
-			ValidationResult result) {
+			ValidationResult result, SeverityLevel severityLevel) {
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
-		addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
-		addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, result.getWarningDiagnostics(), xpathIndexer);
-		addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO, result.getInfoDiagnostics(), xpathIndexer);		
+		switch (severityLevel) {
+		case ERROR:
+			logger.info("limiting MDHT results to errors only");
+			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
+			break;			
+		case WARNING:
+			logger.info("limiting MDHT results to errors and warnings only");
+			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
+			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, result.getWarningDiagnostics(), xpathIndexer);			
+			break;
+		default:
+		// break excluded and default above info on purpose in order to flow into next case/add all results/not duplicate code if there's no match
+		case INFO:
+			logger.info("adding all MDHT results, errors, warnings, and info");
+			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
+			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, result.getWarningDiagnostics(), xpathIndexer);
+			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO, result.getInfoDiagnostics(), xpathIndexer);			
+			break;
+		}
 		return results;
 	}
 	
