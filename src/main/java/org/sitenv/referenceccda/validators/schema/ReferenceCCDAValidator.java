@@ -333,15 +333,18 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
 		switch (severityLevel) {
 		case ERROR:
+			logger.info("limiting MDHT results to errors only");
 			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
 			break;			
 		case WARNING:
+			logger.info("limiting MDHT results to errors and warnings only");
 			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
 			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, result.getWarningDiagnostics(), xpathIndexer);			
 			break;
 		default:
 		// break excluded and default above info on purpose in order to flow into next case/add all results/not duplicate code if there's no match
 		case INFO:
+			logger.info("adding all MDHT results, errors, warnings, and info");
 			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, result.getErrorDiagnostics(), xpathIndexer);
 			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, result.getWarningDiagnostics(), xpathIndexer);
 			addValidationResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO, result.getInfoDiagnostics(), xpathIndexer);			

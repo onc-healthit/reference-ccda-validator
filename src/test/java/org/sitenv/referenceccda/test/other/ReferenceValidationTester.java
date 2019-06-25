@@ -141,7 +141,43 @@ public class ReferenceValidationTester extends VocabularyValidationTester {
 			}
 		}
 		return mdhtErrors;
-	}	
+	}
+	
+	protected static List<RefCCDAValidationResult> getSpecificIssuesFromResults(List<RefCCDAValidationResult> results,
+			ValidationResultType infoType, ValidationResultType warnType, ValidationResultType errorType) {
+		List<RefCCDAValidationResult> mdhtIssues = new ArrayList<RefCCDAValidationResult>();
+		for (RefCCDAValidationResult result : results) {
+			if (result.getType() == infoType || result.getType() == warnType || result.getType() == errorType) {
+				mdhtIssues.add(result);
+			}
+		}
+		return mdhtIssues;
+	}
+
+	protected static List<RefCCDAValidationResult> getMDHTIssuesFromResults(List<RefCCDAValidationResult> results) {
+		return getSpecificIssuesFromResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_INFO,
+				ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR);
+	}
+
+	protected static List<RefCCDAValidationResult> getVocabIssuesFromResults(List<RefCCDAValidationResult> results) {
+		return getSpecificIssuesFromResults(results, ValidationResultType.CCDA_VOCAB_CONFORMANCE_INFO,
+				ValidationResultType.CCDA_VOCAB_CONFORMANCE_WARN, ValidationResultType.CCDA_VOCAB_CONFORMANCE_ERROR);
+	}
+
+	protected static List<RefCCDAValidationResult> getContentIssuesFromResults(List<RefCCDAValidationResult> results) {
+		return getSpecificIssuesFromResults(results, ValidationResultType.REF_CCDA_INFO,
+				ValidationResultType.REF_CCDA_WARN, ValidationResultType.REF_CCDA_ERROR);
+	}
+	
+	protected static int countSpecifcResults(List<RefCCDAValidationResult> results, ValidationResultType type) {
+		int issueTypeCount = 0;
+		for(RefCCDAValidationResult result : results) {
+			if (result.getType() == type) {
+				issueTypeCount++;
+			}
+		}
+		return issueTypeCount;
+	}
 	
 	private static boolean mdhtErrorsHaveProvidedPackageResult(List<RefCCDAValidationResult> mdhtErrors, String ccdaTypeToCheckFor) {
 		boolean hasMu2 = false, hasConsol = false, hasDs4p = false;

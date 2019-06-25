@@ -1,5 +1,6 @@
 package org.sitenv.referenceccda.controllers;
 
+import org.apache.log4j.Logger;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.services.VocabularyService;
@@ -30,19 +31,28 @@ public class ReferenceCCDAValidationController {
 	VocabularyValidationService validationManager;
 
 	private static final String GITHUB_URL = "https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/git/trees/master?recursive=1";
-
+	private static final String DEFAULT_SEVERITY_LEVEL = "INFO";
+	private static Logger logger = Logger.getLogger(ReferenceCCDAValidationController.class);
+	
 	@RequestMapping(value = "/", headers = "content-type=multipart/*", method = RequestMethod.POST)
 	public ValidationResultsDto doValidation(
 			@RequestParam(value = "validationObjective", required = true) String validationObjective,
 			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
 			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
 			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig,
-			@RequestParam(defaultValue = "info", required = false) String severityLevel) {		
-		if (severityLevel == null || severityLevel.equals("")) {
-			severityLevel = "info";
-		}
-		SeverityLevel severityLevelEnum = SeverityLevel.valueOf(severityLevel.toUpperCase());
+			@RequestParam(defaultValue = DEFAULT_SEVERITY_LEVEL, required = false) String severityLevel) {
+		logger.info("severityLevel requestParam: " + severityLevel);
 		
+		if ((severityLevel == null || severityLevel.equals("")) || 
+				(!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.INFO.name())  && 
+						!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.WARNING.name()) && 
+								!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.ERROR.name())) ) {
+			severityLevel = DEFAULT_SEVERITY_LEVEL;
+			logger.info("severityLevel was set/overwritten to default: " + severityLevel);
+		}
+		
+		SeverityLevel severityLevelEnum = SeverityLevel.valueOf(severityLevel.toUpperCase());
+		logger.info("Final severityLevelEnum.name() " + severityLevelEnum.name());		
 		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile, 
 				vocabularyConfig, severityLevelEnum);		
 	}

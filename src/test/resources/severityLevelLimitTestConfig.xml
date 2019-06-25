@@ -1,0 +1,84 @@
+<configurations>
+
+    <expression xpathExpression="//v3:informant/v3:relatedEntity/v3:relatedPerson/v3:name">
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>MAY</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name MAY contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>MAY</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name MAY contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>MAY</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name MAY contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>				
+	</expression>		
+	
+    <expression xpathExpression="//v3:informant/v3:relatedEntity/v3:relatedPerson/v3:name">
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name SHOULD contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name SHOULD contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHOULD</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name SHOULD contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>				
+	</expression>
+	
+    <expression xpathExpression="//v3:informant/v3:relatedEntity/v3:relatedPerson/v3:name">
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name SHALL contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name SHALL contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>
+		<validator>
+			<name>RequiredNodeValidator</name>
+			<validationResultSeverityLevels>
+				<codeSeverityLevel>SHALL</codeSeverityLevel>
+			</validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+			<validationMessage>informant/relatedEntity/relatedPerson/name SHALL contain a prefix element (not a real rule - just a test)</validationMessage>
+		</validator>				
+	</expression>		
+  
+</configurations>
