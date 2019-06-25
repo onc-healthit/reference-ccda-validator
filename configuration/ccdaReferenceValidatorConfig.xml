@@ -315,10 +315,7 @@
     </expression>    
     <expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant/v3:associatedEntity/v3:code[not(@nullFlavor)]">
         <validator>
-            <name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
-            <validationResultSeverityLevels>
-                <codeSeverityLevel>SHALL</codeSeverityLevel>
-            </validationResultSeverityLevels>            
+            <name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>     
             <nodeType>codeSystem</nodeType>
             <allowedValuesetOids>2.16.840.1.113883.5.111</allowedValuesetOids>
         </validator>
