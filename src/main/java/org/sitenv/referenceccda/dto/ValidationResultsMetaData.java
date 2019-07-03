@@ -20,6 +20,7 @@ public class ValidationResultsMetaData {
 	private final Map<String, AtomicInteger> errorCounts = new LinkedHashMap<String, AtomicInteger>();
 	private List<ResultMetaData> resultMetaData;
 	private int vocabularyValidationConfigurationsCount;
+	private String severityLevel;
 
 	public ValidationResultsMetaData() {
 		for (ValidationResultType resultType : ValidationResultType.values()) {
@@ -107,5 +108,13 @@ public class ValidationResultsMetaData {
 	
 	public void setVocabularyValidationConfigurationsCount(int vocabularyValidationConfigurationsCount) {
 		this.vocabularyValidationConfigurationsCount = vocabularyValidationConfigurationsCount;
+	}
+	
+	public String getSeverityLevel() {
+		return severityLevel;
+	}
+	
+	public void setSeverityLevel(String severityLevel) {
+		this.severityLevel = severityLevel;
 	}
 }
