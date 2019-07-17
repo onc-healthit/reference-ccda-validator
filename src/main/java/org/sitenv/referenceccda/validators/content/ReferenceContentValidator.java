@@ -9,6 +9,7 @@ import org.sitenv.referenceccda.validators.BaseCCDAValidator;
 import org.sitenv.referenceccda.validators.CCDAValidator;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
 import org.sitenv.referenceccda.validators.enums.ValidationResultType;
+import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
@@ -26,23 +27,33 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
         this.contentValidatorService = contentValidatorService;
     }
 
-    @Override
-    public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName, String ccdaFile) throws SAXException {
-        ArrayList<RefCCDAValidationResult> results = null;
-        if (ccdaFile != null) {
-            results = doValidation(validationObjective, referenceFileName, ccdaFile);
-        }
-        return results;
-    }
+	@Override
+	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
+			String ccdaFile) throws SAXException {
+		return validateFile(validationObjective, referenceFileName, ccdaFile, SeverityLevel.INFO);
+	}
+    
+	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
+			String ccdaFile, SeverityLevel severityLevel) throws SAXException {
+		ArrayList<RefCCDAValidationResult> results = null;
+		if (ccdaFile != null) {
+			results = doValidation(validationObjective, referenceFileName, ccdaFile, severityLevel);
+		}
+		return results;
+	}
 
-    private ArrayList<RefCCDAValidationResult> doValidation(String validationObjective, String referenceFileName, String ccdaFile) throws SAXException {
-        List<ContentValidationResult> validationResults = contentValidatorService.validate(validationObjective, referenceFileName, ccdaFile);
-        ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
-        for (ContentValidationResult result : validationResults) {
-            results.add(createValidationResult(result));
-        }
-        return results;
-    }
+	private ArrayList<RefCCDAValidationResult> doValidation(String validationObjective, String referenceFileName,
+			String ccdaFile, SeverityLevel severityLevel) throws SAXException {
+		org.sitenv.contentvalidator.dto.enums.SeverityLevel userSeverityLevelForContentValidation = 
+				org.sitenv.contentvalidator.dto.enums.SeverityLevel.valueOf(severityLevel.name()); 
+		List<ContentValidationResult> validationResults = contentValidatorService.validate(validationObjective,
+				referenceFileName, ccdaFile, userSeverityLevelForContentValidation);
+		ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
+		for (ContentValidationResult result : validationResults) {
+			results.add(createValidationResult(result));
+		}
+		return results;
+	}
 
     private RefCCDAValidationResult createValidationResult(ContentValidationResult result) {
         ValidationResultType type;

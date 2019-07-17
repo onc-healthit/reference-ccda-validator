@@ -148,7 +148,7 @@ public class ReferenceCCDAValidationService {
 				}
 				if (objectiveAllowsContentValidation(validationObjective)) {
 					List<RefCCDAValidationResult> contentResults = doContentValidation(validationObjective,
-							referenceFileName, ccdaFileContents);
+							referenceFileName, ccdaFileContents, severityLevel);
 					if (contentResults != null && !contentResults.isEmpty()) {
 						logger.info("Adding Content results");
 						validatorResults.addAll(contentResults);
@@ -212,9 +212,9 @@ public class ReferenceCCDAValidationService {
 	}
 
 	private List<RefCCDAValidationResult> doContentValidation(String validationObjective, String referenceFileName,
-			String ccdaFileContents) throws SAXException {
+			String ccdaFileContents, SeverityLevel severityLevel) throws SAXException {
 		logger.info("Attempting Content validation...");
-		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
+		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, severityLevel);
 	}
 
 	private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults,
