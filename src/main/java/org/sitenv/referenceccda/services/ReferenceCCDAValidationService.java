@@ -78,7 +78,7 @@ public class ReferenceCCDAValidationService {
 		try {
 			validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, vocabularyConfig,
 					severityLevel);
-			resultsMetaData = buildValidationMedata(validatorResults, validationObjective);
+			resultsMetaData = buildValidationMedata(validatorResults, validationObjective, severityLevel);
 			resultsMetaData.setCcdaFileName(ccdaFile.getOriginalFilename());
 			resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
 		} catch (IOException ioE) {
@@ -148,7 +148,7 @@ public class ReferenceCCDAValidationService {
 				}
 				if (objectiveAllowsContentValidation(validationObjective)) {
 					List<RefCCDAValidationResult> contentResults = doContentValidation(validationObjective,
-							referenceFileName, ccdaFileContents);
+							referenceFileName, ccdaFileContents, severityLevel);
 					if (contentResults != null && !contentResults.isEmpty()) {
 						logger.info("Adding Content results");
 						validatorResults.addAll(contentResults);
@@ -212,13 +212,13 @@ public class ReferenceCCDAValidationService {
 	}
 
 	private List<RefCCDAValidationResult> doContentValidation(String validationObjective, String referenceFileName,
-			String ccdaFileContents) throws SAXException {
+			String ccdaFileContents, SeverityLevel severityLevel) throws SAXException {
 		logger.info("Attempting Content validation...");
-		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents);
+		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, severityLevel);
 	}
 
 	private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults,
-			String validationObjective) {
+			String validationObjective, SeverityLevel severityLevel) {
 		ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
 		for (RefCCDAValidationResult result : validatorResults) {
 			resultsMetaData.addCount(result.getType());
@@ -226,6 +226,7 @@ public class ReferenceCCDAValidationService {
 		resultsMetaData.setObjectiveProvided(validationObjective);
 		resultsMetaData.setCcdaDocumentType(referenceCCDAValidator.getCcdaDocumentType());
 		resultsMetaData.setCcdaVersion(referenceCCDAValidator.getCcdaVersion().getVersion());
+		resultsMetaData.setSeverityLevel(severityLevel.name());
 		GlobalCodeValidatorResults globalCodeValidatorResults = vocabularyCCDAValidator.getGlobalCodeValidatorResults();
 		resultsMetaData.setVocabularyValidationConfigurationsCount(
 				globalCodeValidatorResults.getVocabularyValidationConfigurationsCount());

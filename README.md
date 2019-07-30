@@ -11,14 +11,14 @@ If you would like to get a test virtual machine up and running quickly, check ou
     d. Java 7 or 8 is installed and a JAVA_HOME is set. Note: Java 7 is recommended.
 
 **2. Configuration Instructions**
-*    Vocabulary Artifacts needed for vocabulary validation (please see https://github.com/siteadmin/code-validator-api and https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs for further information)
-*    Scenario files needed for content validation (based on https://github.com/siteadmin/content-validator-api)
+*    Vocabulary Artifacts needed for vocabulary validation (please see https://github.com/onc-healthit/code-validator-api and https://github.com/onc-healthit/code-validator-api/tree/master/codevalidator-api/docs for further information)
+*    Scenario files needed for content validation (based on https://github.com/onc-healthit/content-validator-api)
         * If not wanting to perform content validation, it is OK to have an empty scenario directory. The application will startup fine and validate correctly as long as a scenario isn't sent in the API. It will still perform IG and Vocabulary validation as needed. 
-        * The scenario files used in SITE are located here: https://github.com/siteadmin/2015-certification-ccda-testdata
+        * The scenario files used in SITE are located here: https://github.com/onc-healthit/2015-certification-ccda-testdata
 *    The war
-        * Get the latest war here https://github.com/siteadmin/reference-ccda-validator/releases
+        * Get the latest war here https://github.com/onc-healthit/reference-ccda-validator/releases
 *    Server (tomcat) configuration
-        * Get the latest configuration file, ccdaReferenceValidatorConfig.xml, here https://github.com/siteadmin/reference-ccda-validator/tree/master/configuration
+        * Get the latest configuration file, ccdaReferenceValidatorConfig.xml, here https://github.com/onc-healthit/reference-ccda-validator/tree/master/configuration
         * Note: Please watch out for any updates to this file for each release in order keep your validator up to date as it is not included with the WAR
 
 Vocabulary Artifacts
@@ -47,7 +47,7 @@ Vocabulary Artifacts
 
 NOTES: 
 * For the valueset_repository, assuming the path above of /path/to/validator_configuration/vocabulary/valueset_repository/VSAC/, please ensure that the valueset repository spreadsheet files are in the aformentioned subfolder labeled VSAC. However, please do **NOT** include this VSAC folder in the referenceccdaservice.xml config file. So in this example, the actual path on the user computer or server would be /path/to/validator_configuration/vocabulary/valueset_repository/VSAC/ where as the path saved in the referenceccdaservice.xml config file referenceccdaservice.xml would be /path/to/validator_configuration/vocabulary/valueset_repository/
-* Most of the code systems and valuesets are externally published and this project does **NOT** come packaged with any of these externally published files. However, valuesets which were not externally published by VSAC were hand created by SITE and are available for download here: https://github.com/siteadmin/code-validator-api/tree/master/codevalidator-api/docs/ValueSetsHandCreatedbySITE
+* Most of the code systems and valuesets are externally published and this project does **NOT** come packaged with any of these externally published files. However, valuesets which were not externally published by VSAC were hand created by SITE and are available for download here: https://github.com/onc-healthit/code-validator-api/tree/master/codevalidator-api/docs/ValueSetsHandCreatedbySITE
 
 code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
 
@@ -99,7 +99,7 @@ Server Configuration
 
 * The best way to resolve an issue is to refer to the log at tomcat/logs/referenceccdaservice.<TODAY'S DATE>.log. The errors in that log along with the various documentation for this project and its dependencies should help point to a resolution. If there is still confusion, ahead are some examples and their solutions:
     * The log states, "LOADING SCENARIO FILES AT /opt/apache-tomcat-7.0.53/mdht/Environment/VocabularyConfiguration/scenarios/" instead of the directory you have specified in your ccdaReferenceValidatorConfig.xml which exists on your computer or server
-        * The ccdaReferenceValidatorConfig.xml configuration file is designed to override default settings with your local settings/directory setup. What this message means (if the path doesn't match you local file structure) is that the application has not found your ccdaReferenceValidatorConfig.xml file. Please ensure that you have taken the latest version from here https://github.com/siteadmin/reference-ccda-validator/tree/master/configuration and have placed it in a path similar to tomcat/conf/Catalina/localhost
+        * The ccdaReferenceValidatorConfig.xml configuration file is designed to override default settings with your local settings/directory setup. What this message means (if the path doesn't match you local file structure) is that the application has not found your ccdaReferenceValidatorConfig.xml file. Please ensure that you have taken the latest version from here https://github.com/onc-healthit/reference-ccda-validator/tree/master/configuration and have placed it in a path similar to tomcat/conf/Catalina/localhost
     * The log states, "nested exception is java.lang.OutOfMemoryError: GC overhead limit exceeded"
         * It is recommended that your computer has at least 4GBs of RAM as the software loads all of the vocabulary into RAM. It uses an "in-memory database" on boot so it's very RAM intensive. However, just because you have the RAM doesn't mean Java is handling it appropriately. If you have enough RAM free and there is still an issue, please ensure you are using Java 7 vs Java 8 or higher and create a file named setenv.sh (.bat for windows) file in your tomcat/bin directory. Please include the following data within that file:
             * ``` 
