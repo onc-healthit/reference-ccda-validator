@@ -386,7 +386,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()),
 				"ccdaReferenceValidatorConfigTest");
 
-		final int expectedConfigCount = 5;
+		final int expectedConfigCount = 9;
 		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsCount();
 		println("vocabularyValidationConfigurationsCount: " + configCount);
 		Assert.assertTrue("VocabularyValidationConfigurationsCount should be more than 0", configCount > 0);
@@ -412,6 +412,42 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 						+ " as per the content of " + "requiredNodeValidatorMissingElementConfig",
 				configCount == expectedConfigCount);
 	}
+	
+	@Test
+	public void globalCodeValidatorResultsVocabularyValidationConfigurationsErrorCountTest() {
+		setupInitParameters(true);
+		injectDependencies();
+
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()),
+				"ccdaReferenceValidatorConfigTest");
+
+		final int expectedConfigCount = 7;
+		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsErrorCount();
+		println("vocabularyValidationConfigurationsErrorCount: " + configCount);
+		Assert.assertTrue("VocabularyValidationConfigurationsErrorCount should be more than 0", configCount > 0);
+		Assert.assertTrue(
+				"VocabularyValidationConfigurationsErrorCount should equal to " + expectedConfigCount
+						+ " as per the content of " + "requiredNodeValidatorMissingElementConfig",
+				configCount == expectedConfigCount);
+	}	
+	
+	@Test
+	public void globalCodeValidatorResultsVocabularyValidationConfigurationsErrorCountProgrammaticTest() {
+		createGenericExpressionForProgrammaticConfigAndInjectDependencies();
+
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()));
+
+		final int expectedConfigCount = 1;
+		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsErrorCount();
+		println("vocabularyValidationConfigurationsErrorCount: " + configCount);
+		Assert.assertTrue("VocabularyValidationConfigurationsErrorCount should be more than 0", configCount > 0);
+		Assert.assertTrue(
+				"VocabularyValidationConfigurationsErrorCount should equal to " + expectedConfigCount
+						+ " as per the content of " + "requiredNodeValidatorMissingElementConfig",
+				configCount == expectedConfigCount);
+	}	
 
 	@Ignore // Does not work with maven install due to some glitch but works
 			// otherwise

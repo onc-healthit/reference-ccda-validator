@@ -123,5 +123,45 @@
       </validator>
     </expression>
     -->
+    
+  <!-- dynamically converts to SHALL so we need to add this to our count of errors -->
+  <expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.4.1' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
+    <validator>
+      <name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
+      <nodeType>codeSystem</nodeType>
+      <allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
+    </validator>
+  </expression>
+  
+  <!-- dynamically converts to SHALL so we need to add this to our count of errors -->
+  <expression xpathExpression="//v3:section[not(@nullFlavor)]/v3:templateId[@root='2.16.840.1.113883.10.20.22.2.4.1' and @extension='2015-08-01']/ancestor::v3:section[1]/v3:code">
+    <validator>
+      <name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
+      <nodeType>codeSystem</nodeType>
+      <allowedValuesetOids>2.16.840.1.113883.6.1</allowedValuesetOids>
+    </validator>
+  </expression>
+  
+  <expression xpathExpression="//v3:informant/v3:relatedEntity/v3:relatedPerson/v3:name">
+    <validator>
+      <name>RequiredNodeValidator</name>
+      <validationResultSeverityLevels>
+        <codeSeverityLevel>SHOULD</codeSeverityLevel>
+      </validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+      <validationMessage>informant/relatedEntity/relatedPerson/name SHOULD contain a prefix element (not a real rule - just a test)</validationMessage>
+    </validator>
+  </expression>
+  
+  <expression xpathExpression="//v3:informant/v3:relatedEntity/v3:relatedPerson/v3:name">
+    <validator>
+      <name>RequiredNodeValidator</name>
+      <validationResultSeverityLevels>
+        <codeSeverityLevel>MAY</codeSeverityLevel>
+      </validationResultSeverityLevels>
+            <requiredNodeName>v3:prefix</requiredNodeName>
+      <validationMessage>informant/relatedEntity/relatedPerson/name MAY contain a prefix element (not a real rule - just a test)</validationMessage>
+    </validator>
+  </expression>  
 
 </configurations>
