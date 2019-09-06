@@ -230,6 +230,8 @@ public class ReferenceCCDAValidationService {
 		GlobalCodeValidatorResults globalCodeValidatorResults = vocabularyCCDAValidator.getGlobalCodeValidatorResults();
 		resultsMetaData.setVocabularyValidationConfigurationsCount(
 				globalCodeValidatorResults.getVocabularyValidationConfigurationsCount());
+		resultsMetaData.setVocabularyValidationConfigurationsErrorCount(
+				globalCodeValidatorResults.getVocabularyValidationConfigurationsErrorCount());		
 		return resultsMetaData;
 	}
 
