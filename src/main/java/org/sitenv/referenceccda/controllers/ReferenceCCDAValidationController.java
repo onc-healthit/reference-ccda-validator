@@ -30,7 +30,7 @@ public class ReferenceCCDAValidationController {
 	@Autowired
 	VocabularyValidationService validationManager;
 
-	private static final String GITHUB_URL = "https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/git/trees/master?recursive=1";
+	private static final String GITHUB_URL = "https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/git/trees/master?recursive=1";
 	private static final String DEFAULT_SEVERITY_LEVEL = "INFO";
 	private static Logger logger = Logger.getLogger(ReferenceCCDAValidationController.class);
 	

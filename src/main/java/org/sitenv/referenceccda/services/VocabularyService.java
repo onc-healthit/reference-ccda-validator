@@ -22,7 +22,7 @@ import java.util.*;
 public class VocabularyService {
     private VocabularyValuesetService vocabularyValuesetService;
     private VocabularyCodeService vocabularyCodeService;
-    private static final String GITHUB_URL = "https://api.github.com/repos/siteadmin/2015-Certification-C-CDA-Test-Data/git/trees/master?recursive=1";
+    private static final String GITHUB_URL = "https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/git/trees/master?recursive=1";
 
     @Autowired
     public VocabularyService(VocabularyValuesetService vocabularyValuesetService, VocabularyCodeService vocabularyCodeService) {
