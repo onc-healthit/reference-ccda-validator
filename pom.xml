@@ -27,10 +27,10 @@
                 <enabled>true</enabled>
             </snapshots>        
             <id>central</id>
-            <name>ONCSITE-DEV-CCDA-releases</name>
-            <url>http://ccda.dev.sitenv.org:8081/artifactory/libs-release-local</url>
+	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
+	        <url>http://54.224.242.23:8081/artifactory/libs-release-local</url>
         </repository>
-    </repositories>   
+    </repositories>    
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
