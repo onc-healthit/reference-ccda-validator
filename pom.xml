@@ -28,7 +28,7 @@
             </snapshots>        
             <id>central</id>
 	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
-	        <url>http://54.224.242.23:8081/artifactory/libs-release-local</url>
+	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url>
         </repository>
     </repositories>    
 
