@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.42-SNAPSHOT</version>
+    <version>1.0.44-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -12,7 +12,7 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.23-SNAPSHOT</code.validator.version>
+        <code.validator.version>1.0.23</code.validator.version>
         <content.validator.version>1.0.20</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.8.20180531</mdht.models.version>
@@ -39,7 +39,8 @@
             <groupId>mdht.openhealthtools.mdht.cda</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <!--<version>${mdht.models.version}</version>-->
-            <version>3.0.9.20180622</version>                   
+            <!--<version>3.0.9.20180622</version>-->
+            <version>3.0.0.20200421</version> <!-- Test Scorecard Update -->  
         </dependency>
 		<dependency>
 		    <groupId>mdht.openhealthtools.mdht.cda</groupId>
@@ -65,7 +66,8 @@
         <dependency>
             <groupId>mdht.eclipse.mdht</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>${mdht.plugins.version}</version>            
+            <!--<version>${mdht.plugins.version}</version>-->
+            <version>3.0.0.202004210000</version> <!-- Test Scorecard Update -->
         </dependency>
 		<dependency>
             <groupId>mdht.eclipse.mdht</groupId>
