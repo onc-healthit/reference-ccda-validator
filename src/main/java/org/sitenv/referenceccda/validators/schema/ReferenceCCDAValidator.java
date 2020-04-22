@@ -62,10 +62,12 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	private static Logger logger = Logger.getLogger(ReferenceCCDAValidator.class);
 	
 	private static final String IG_ISSUE_ID = "a.consol", MU_ISSUE_ID = "a.mu2con", DS4P_ISSUE_ID = "ds4p";
+	private static final boolean CAPTURE_VALIDATION_STATISTICS = true;
 	private boolean isValidationObjectiveMu2Type = false;
 	private boolean isValidationObjectiveDS4PType = false;	
 	private String ccdaDocumentType = CCDATypes.UNKNOWN_DOC_TYPE;
 	private CCDAVersion ccdaVersion = CCDAVersion.NOT_CCDA;
+	private long totalConformanceErrorChecks = -1L;
 	
 	public boolean isValidationObjectiveMu2Type() { 
 		return isValidationObjectiveMu2Type; 
@@ -82,6 +84,10 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	public CCDAVersion getCcdaVersion() {
 		return ccdaVersion;
 	}
+	
+	public long getTotalConformanceErrorChecks() {
+		return totalConformanceErrorChecks;
+	}
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
 			String ccdaFile) throws SAXException, Exception {
@@ -91,7 +97,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
 			String ccdaFile, SeverityLevel severityLevel) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
-		ValidationResult result = new ValidationResult();
+		ValidationResult result = new ValidationResult(CAPTURE_VALIDATION_STATISTICS);
 		InputStream in = null, in2 = null;
 		trackXPathsInXML(xpathIndexer, ccdaFile);
 		try {
@@ -124,7 +130,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 				}
 			}
 		}
-	}
+	}	
 
 	private void validateDocumentByTypeUsingMDHTApi(InputStream in, InputStream in2, String validationObjective,
 			ValidationResult result) throws Exception {
@@ -196,7 +202,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 					+ ValidationObjectives.getObjectives() + " " + CCDATypes.getTypes());
 		}
 		ccdaDocumentType = determineCcdaDocumentType(clinicalDocument);
-		ccdaVersion = determineCcdaDocumentVersion(clinicalDocument);
+		ccdaVersion = determineCcdaDocumentVersion(clinicalDocument);		
 		logger.info("ccdaVersion identified as: " + ccdaVersion.getVersion());
 	}
 	 
@@ -231,7 +237,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 		}
 		logger.info("returning version by determineCcdaDocumentVersion method end");
 		return version;
-	}
+	}	
 	
 	private String determineCcdaDocumentType(ClinicalDocument clinicalDocument) {
 		UsrhSubType usrhSubType = null;
@@ -330,6 +336,8 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 
 	private ArrayList<RefCCDAValidationResult> processValidationResults(final XPathIndexer xpathIndexer,
 			ValidationResult result, SeverityLevel severityLevel) {
+		totalConformanceErrorChecks = result.getValidationStatistics().shallCount;
+		
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<RefCCDAValidationResult>();
 		switch (severityLevel) {
 		case ERROR:
@@ -351,7 +359,7 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 			break;
 		}
 		return results;
-	}
+	}	
 	
 	private void addValidationResults(ArrayList<RefCCDAValidationResult> results, ValidationResultType currentValidationResultType,
 			List<Diagnostic> diagnosticsOfCurrentSeverity, final XPathIndexer xpathIndexer) {

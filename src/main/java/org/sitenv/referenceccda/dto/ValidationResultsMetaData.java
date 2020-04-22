@@ -22,6 +22,7 @@ public class ValidationResultsMetaData {
 	private int vocabularyValidationConfigurationsCount;
 	private int vocabularyValidationConfigurationsErrorCount;
 	private String severityLevel;
+	private long totalConformanceErrorChecks;
 
 	public ValidationResultsMetaData() {
 		for (ValidationResultType resultType : ValidationResultType.values()) {
@@ -48,12 +49,10 @@ public class ValidationResultsMetaData {
 	public String getObjectiveProvided() {
 		return objectiveProvided;
 	}
-	
 
 	public void setObjectiveProvided(String objectiveProvided) {
 		this.objectiveProvided = objectiveProvided;
 	}
-	
 
 	public boolean isServiceError() {
 		return serviceError;
@@ -125,5 +124,13 @@ public class ValidationResultsMetaData {
 	
 	public void setSeverityLevel(String severityLevel) {
 		this.severityLevel = severityLevel;
+	}
+	
+	public long getTotalConformanceErrorChecks() {
+		return totalConformanceErrorChecks;
+	}
+	
+	public void setTotalConformanceErrorChecks(long totalConformanceErrorChecks) {
+		this.totalConformanceErrorChecks = totalConformanceErrorChecks;
 	}
 }

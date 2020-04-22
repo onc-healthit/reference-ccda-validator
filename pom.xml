@@ -18,7 +18,8 @@
         <mdht.models.version>3.0.8.20180531</mdht.models.version>
         <mdht.plugins.version>3.0.0.201805310501</mdht.plugins.version>
         <consentdirective.version>1.0.0.20170920</consentdirective.version>
-        <ds4pcontent.version>3.0.0.20170920</ds4pcontent.version>
+        <!--<ds4pcontent.version>3.0.0.20170920</ds4pcontent.version>-->
+        <ds4pcontent.version>3.0.0.20200422</ds4pcontent.version> <!-- Test Scorecard Update -->
     </properties>
 
     <repositories>
