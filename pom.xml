@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.44-SNAPSHOT</version>
+    <version>1.0.44</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -18,8 +18,7 @@
         <mdht.models.version>3.0.8.20180531</mdht.models.version>
         <mdht.plugins.version>3.0.0.201805310501</mdht.plugins.version>
         <consentdirective.version>1.0.0.20170920</consentdirective.version>
-        <!--<ds4pcontent.version>3.0.0.20170920</ds4pcontent.version>-->
-        <ds4pcontent.version>3.0.0.20200422</ds4pcontent.version> <!-- Test Scorecard Update -->
+        <ds4pcontent.version>3.0.0.20200422</ds4pcontent.version> <!-- Scorecard Update -->  
     </properties>
 
     <repositories>
@@ -40,8 +39,8 @@
             <groupId>mdht.openhealthtools.mdht.cda</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <!--<version>${mdht.models.version}</version>-->
-            <!--<version>3.0.9.20180622</version>-->
-            <version>3.0.0.20200421</version> <!-- Test Scorecard Update -->  
+            <!--<version>3.0.9.20180622</version>--> <!-- Last Official Release -->
+            <version>3.0.0.20200421</version> <!-- Scorecard Update -->
         </dependency>
 		<dependency>
 		    <groupId>mdht.openhealthtools.mdht.cda</groupId>
