@@ -49,7 +49,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 	private static final boolean LOG_RESULTS_TO_CONSOLE = true;
 
-	private static final boolean SHOW_ERRORS_ONLY = false;
+	private static final boolean SHOW_ERRORS_ONLY = true;
 	private static final boolean LOG_LOG4J = true;
 	static {
 		if (LOG_LOG4J) {
@@ -386,7 +386,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()),
 				"ccdaReferenceValidatorConfigTest");
 
-		final int expectedConfigCount = 5;
+		final int expectedConfigCount = 9;
 		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsCount();
 		println("vocabularyValidationConfigurationsCount: " + configCount);
 		Assert.assertTrue("VocabularyValidationConfigurationsCount should be more than 0", configCount > 0);
@@ -412,6 +412,42 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 						+ " as per the content of " + "requiredNodeValidatorMissingElementConfig",
 				configCount == expectedConfigCount);
 	}
+	
+	@Test
+	public void globalCodeValidatorResultsVocabularyValidationConfigurationsErrorCountTest() {
+		setupInitParameters(true);
+		injectDependencies();
+
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()),
+				"ccdaReferenceValidatorConfigTest");
+
+		final int expectedConfigCount = 7;
+		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsErrorCount();
+		println("vocabularyValidationConfigurationsErrorCount: " + configCount);
+		Assert.assertTrue("VocabularyValidationConfigurationsErrorCount should be more than 0", configCount > 0);
+		Assert.assertTrue(
+				"VocabularyValidationConfigurationsErrorCount should equal to " + expectedConfigCount
+						+ " as per the content of " + "requiredNodeValidatorMissingElementConfig",
+				configCount == expectedConfigCount);
+	}	
+	
+	@Test
+	public void globalCodeValidatorResultsVocabularyValidationConfigurationsErrorCountProgrammaticTest() {
+		createGenericExpressionForProgrammaticConfigAndInjectDependencies();
+
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()));
+
+		final int expectedConfigCount = 1;
+		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsErrorCount();
+		println("vocabularyValidationConfigurationsErrorCount: " + configCount);
+		Assert.assertTrue("VocabularyValidationConfigurationsErrorCount should be more than 0", configCount > 0);
+		Assert.assertTrue(
+				"VocabularyValidationConfigurationsErrorCount should equal to " + expectedConfigCount
+						+ " as per the content of " + "requiredNodeValidatorMissingElementConfig",
+				configCount == expectedConfigCount);
+	}	
 
 	@Ignore // Does not work with maven install due to some glitch but works
 			// otherwise
@@ -435,7 +471,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	}
 
 	@Test
-	public void mDHTSeverityLevelTest() {
+	public void mdhtSeverityLevelTest() {
 		setupInitParameters(true);
 		injectDependencies();
 
@@ -586,6 +622,22 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	public void vocabAndMdhtSeverityLevelInfoMultipleValidatorsPerExpressionTest() {
 		vocabAndMdhtSeverityLevelConfigTestImpl(SeverityLevel.INFO, false, "severityLevelLimitTestConfig");
 	}
+	
+	@Test
+	public void mdhtValidationStatisticsShallChecksTest() {
+		setupInitParameters(true);
+		injectDependencies();
+
+		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
+				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()),
+				"ccdaReferenceValidatorConfigTest");
+
+		printResultsBasedOnFlags(results.getCcdaValidationResults());
+		
+		long checks = results.getResultsMetaData().getTotalConformanceErrorChecks();
+		println("IG Checks: " + checks);
+		assertTrue("There should be a positive number of IG checks but there is " + checks + " instead.", checks > 0);		
+	}	
 
 	private static List<ConfiguredExpression> getGenericConfiguredExpressionsForTesting() {
 		final String validationMessage = "Will always fail";
@@ -861,7 +913,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					severityLevel);
 		}
 		return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig);		
-	}
+	}	
 
 	private static void printResultsBasedOnFlags(List<RefCCDAValidationResult> results) {
 		if (SHOW_ERRORS_ONLY) {

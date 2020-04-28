@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.42</version>
+    <version>1.0.44</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -12,13 +12,13 @@
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <code.validator.version>1.0.22</code.validator.version>
+        <code.validator.version>1.0.23</code.validator.version>
         <content.validator.version>1.0.20</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.8.20180531</mdht.models.version>
         <mdht.plugins.version>3.0.0.201805310501</mdht.plugins.version>
         <consentdirective.version>1.0.0.20170920</consentdirective.version>
-        <ds4pcontent.version>3.0.0.20170920</ds4pcontent.version>
+        <ds4pcontent.version>3.0.0.20200422</ds4pcontent.version> <!-- Scorecard Update -->  
     </properties>
 
     <repositories>
@@ -27,10 +27,10 @@
                 <enabled>true</enabled>
             </snapshots>        
             <id>central</id>
-            <name>ONCSITE-DEV-CCDA-releases</name>
-            <url>http://ccda.dev.sitenv.org:8081/artifactory/libs-release-local</url>
+	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
+	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url>
         </repository>
-    </repositories>   
+    </repositories>    
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
@@ -39,7 +39,8 @@
             <groupId>mdht.openhealthtools.mdht.cda</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <!--<version>${mdht.models.version}</version>-->
-            <version>3.0.9.20180622</version>                   
+            <!--<version>3.0.9.20180622</version>--> <!-- Last Official Release -->
+            <version>3.0.0.20200421</version> <!-- Scorecard Update -->
         </dependency>
 		<dependency>
 		    <groupId>mdht.openhealthtools.mdht.cda</groupId>
@@ -65,7 +66,8 @@
         <dependency>
             <groupId>mdht.eclipse.mdht</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>${mdht.plugins.version}</version>            
+            <!--<version>${mdht.plugins.version}</version>-->
+            <version>3.0.0.202004210000</version> <!-- Test Scorecard Update -->
         </dependency>
 		<dependency>
             <groupId>mdht.eclipse.mdht</groupId>
@@ -229,7 +231,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.8</version>
+            <version>2.9.9.2</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

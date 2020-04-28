@@ -220,16 +220,21 @@ public class ReferenceCCDAValidationService {
 	private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults,
 			String validationObjective, SeverityLevel severityLevel) {
 		ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
+		
 		for (RefCCDAValidationResult result : validatorResults) {
 			resultsMetaData.addCount(result.getType());
 		}
 		resultsMetaData.setObjectiveProvided(validationObjective);
 		resultsMetaData.setCcdaDocumentType(referenceCCDAValidator.getCcdaDocumentType());
 		resultsMetaData.setCcdaVersion(referenceCCDAValidator.getCcdaVersion().getVersion());
+		resultsMetaData.setTotalConformanceErrorChecks(referenceCCDAValidator.getTotalConformanceErrorChecks());
 		resultsMetaData.setSeverityLevel(severityLevel.name());
 		GlobalCodeValidatorResults globalCodeValidatorResults = vocabularyCCDAValidator.getGlobalCodeValidatorResults();
 		resultsMetaData.setVocabularyValidationConfigurationsCount(
 				globalCodeValidatorResults.getVocabularyValidationConfigurationsCount());
+		resultsMetaData.setVocabularyValidationConfigurationsErrorCount(
+				globalCodeValidatorResults.getVocabularyValidationConfigurationsErrorCount());
+		
 		return resultsMetaData;
 	}
 

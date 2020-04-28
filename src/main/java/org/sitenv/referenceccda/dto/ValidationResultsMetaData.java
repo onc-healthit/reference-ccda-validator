@@ -20,7 +20,9 @@ public class ValidationResultsMetaData {
 	private final Map<String, AtomicInteger> errorCounts = new LinkedHashMap<String, AtomicInteger>();
 	private List<ResultMetaData> resultMetaData;
 	private int vocabularyValidationConfigurationsCount;
+	private int vocabularyValidationConfigurationsErrorCount;
 	private String severityLevel;
+	private long totalConformanceErrorChecks;
 
 	public ValidationResultsMetaData() {
 		for (ValidationResultType resultType : ValidationResultType.values()) {
@@ -47,12 +49,10 @@ public class ValidationResultsMetaData {
 	public String getObjectiveProvided() {
 		return objectiveProvided;
 	}
-	
 
 	public void setObjectiveProvided(String objectiveProvided) {
 		this.objectiveProvided = objectiveProvided;
 	}
-	
 
 	public boolean isServiceError() {
 		return serviceError;
@@ -110,11 +110,27 @@ public class ValidationResultsMetaData {
 		this.vocabularyValidationConfigurationsCount = vocabularyValidationConfigurationsCount;
 	}
 	
+	public int getVocabularyValidationConfigurationsErrorCount() {
+		return vocabularyValidationConfigurationsErrorCount;
+	}
+	
+	public void setVocabularyValidationConfigurationsErrorCount(int vocabularyValidationConfigurationsErrorCount) {
+		this.vocabularyValidationConfigurationsErrorCount = vocabularyValidationConfigurationsErrorCount;
+	}
+	
 	public String getSeverityLevel() {
 		return severityLevel;
 	}
 	
 	public void setSeverityLevel(String severityLevel) {
 		this.severityLevel = severityLevel;
+	}
+	
+	public long getTotalConformanceErrorChecks() {
+		return totalConformanceErrorChecks;
+	}
+	
+	public void setTotalConformanceErrorChecks(long totalConformanceErrorChecks) {
+		this.totalConformanceErrorChecks = totalConformanceErrorChecks;
 	}
 }
