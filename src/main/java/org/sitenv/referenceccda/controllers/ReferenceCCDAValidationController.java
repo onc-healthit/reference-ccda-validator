@@ -44,7 +44,6 @@ public class ReferenceCCDAValidationController {
 			@RequestParam(defaultValue = DEFAULT_SEVERITY_LEVEL, required = false) String severityLevel) {
 		
 		logger.info("severityLevel requestParam: " + severityLevel);
-		logger.info(" Cures Update" + curesUpdate);
 		
 		if ((severityLevel == null || severityLevel.equals("")) || 
 				(!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.INFO.name())  && 
@@ -55,9 +54,12 @@ public class ReferenceCCDAValidationController {
 		}
 		
 		SeverityLevel severityLevelEnum = SeverityLevel.valueOf(severityLevel.toUpperCase());
-		logger.info("Final severityLevelEnum.name() " + severityLevelEnum.name());		
-		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile, 
+		logger.info("Final severityLevelEnum.name() " + severityLevelEnum.name());	
+		
+		
+		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile, curesUpdate,
 				vocabularyConfig, severityLevelEnum);		
+		
 	}
 
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)
