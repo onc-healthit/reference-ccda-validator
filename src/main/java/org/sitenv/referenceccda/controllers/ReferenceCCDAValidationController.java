@@ -39,7 +39,7 @@ public class ReferenceCCDAValidationController {
 			@RequestParam(value = "validationObjective", required = true) String validationObjective,
 			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
 			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
-			@RequestParam(value = "curesUpdate", required = true) boolean curesUpdate,  
+			@RequestParam(value = "curesUpdate", required = false) boolean curesUpdate,  
 			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig,
 			@RequestParam(defaultValue = DEFAULT_SEVERITY_LEVEL, required = false) String severityLevel) {
 		
