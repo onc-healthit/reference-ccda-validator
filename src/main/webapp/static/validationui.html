@@ -17,6 +17,15 @@
 		<form name="validationForm"
 			ng-controller="ValidationController as vCtrl">
 			<ol>
+				<li>
+					<div class="form-group">
+						<select id="CCDAR2_validation_type" name="CCDAR2_validation_type"
+							class="form-control" tabindex="1"
+							ng-model="selectedValidationType"
+							ng-options="validationType.name for validationType in validationTypes">
+						</select>
+					</div>
+				</li>			
 				<li>Select whether your system is a Sender of C-CDA's or
 					Receiver of C-CDA's.
 					<div class="form-group">
