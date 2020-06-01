@@ -19,17 +19,17 @@ angular
 							value: true 
 						}
 					];
+					$scope.selectedValidationType = $scope.validationTypes[0]
 					$scope.severityLevels = [
 						{ name: 'INFO' },
 						{ name: 'WARNING' },
 						{ name: 'ERROR' }
-					];					
+					];
+					$scope.selectedSeverityLevel = $scope.severityLevels[0]
 					self.validationModel = {
 						selectedObjective : '',
 						selectedReferenceFileName : '',
-						file : '',
-						selectedValidationType : $scope.validationTypes[0]
-						selectedSeverityLevel : $scope.severityLevels[0]
+						file : ''
 					};
 					self.toggleMessageType = toggleMessageType;
 					self.getReferenceFiles = getReferenceFiles;
@@ -55,8 +55,8 @@ angular
 												'validationObjective' : $scope.validationModel.selectedObjective.name,
 												'referenceFileName' : $scope.validationModel.selectedReferenceFileName.name,
 												'ccdaFile' : file,
-												'curesUpdate' : $scope.validationModel.selectedValidationType.value,
-												'severityLevel' : $scope.validationModel.selectedSeverityLevel.name
+												'severityLevel' : $scope.selectedSeverityLevel.name,
+												'curesUpdate' : $scope.selectedValidationType.value												
 											}
 										}).then(
 										function(resp) {
