@@ -18,7 +18,7 @@
         <mdht.models.version>3.0.8.20180531</mdht.models.version>
         <mdht.plugins.version>3.0.0.201805310501</mdht.plugins.version>
         <consentdirective.version>1.0.0.20170920</consentdirective.version>
-        <ds4pcontent.version>3.0.0.20200422</ds4pcontent.version> <!-- Scorecard Update -->  
+        <ds4pcontent.version>3.0.0.20200605</ds4pcontent.version> <!-- HL7 Reaffirmation Update -->
     </properties>
 
     <repositories>
@@ -30,7 +30,7 @@
 	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
 	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url>
         </repository>
-    </repositories>    
+    </repositories>
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
