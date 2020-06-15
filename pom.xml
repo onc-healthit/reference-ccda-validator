@@ -15,11 +15,12 @@
         <code.validator.version>1.0.23</code.validator.version>
         <content.validator.version>1.0.21</content.validator.version>
         <!-- MDHT properties -->
-        <mdht.models.version>3.0.8.20180531</mdht.models.version>
-        <mdht.plugins.version>3.0.0.201805310501</mdht.plugins.version>
-        <consentdirective.version>1.0.0.20170920</consentdirective.version>
-        <ds4pcontent.version>3.0.0.20200422</ds4pcontent.version>
+        <mdht.models.version>0.0.1.20200615</mdht.models.version>
+        <ds4pcontent.version>0.0.1.20200615</ds4pcontent.version>
+        <mdht.plugins.version>3.0.0.202006151326</mdht.plugins.version>        
+        <!--<ds4pcontent.version>3.0.0.20200422</ds4pcontent.version>--> <!-- Scorecard Update -->
         <!--<ds4pcontent.version>3.0.0.20200605</ds4pcontent.version>--> <!-- HL7 Reaffirmation Update -->
+        <!--<ds4pcontent.version>3.0.0.20200611</ds4pcontent.version>--> <!-- HL7 Reaffirmation Update 2 -->        
     </properties>
 
     <repositories>
@@ -39,19 +40,14 @@
         <dependency>
             <groupId>mdht.openhealthtools.mdht.cda</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <!--<version>${mdht.models.version}</version>-->
+            <version>${mdht.models.version}</version>
             <!--<version>3.0.9.20180622</version>--> <!-- Last Official Release -->
-            <version>3.0.0.20200421</version> <!-- Scorecard Update -->
+            <!--<version>3.0.0.20200421</version>--> <!-- Scorecard Update -->
         </dependency>
 		<dependency>
 		    <groupId>mdht.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
 		    <version>${mdht.models.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>mdht.hl7.ds4p</groupId>
-            <artifactId>org.hl7.cbcc.privacy.consentdirective</artifactId>
-            <version>${consentdirective.version}</version>
         </dependency>
         <dependency>
             <groupId>mdht.hl7.ds4p</groupId>
@@ -67,8 +63,8 @@
         <dependency>
             <groupId>mdht.eclipse.mdht</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <!--<version>${mdht.plugins.version}</version>-->
-            <version>3.0.0.202004210000</version> <!-- Test Scorecard Update -->
+            <version>${mdht.plugins.version}</version>
+            <!--<version>3.0.0.202004210000</version>--> <!-- Test Scorecard Update -->
         </dependency>
 		<dependency>
             <groupId>mdht.eclipse.mdht</groupId>
