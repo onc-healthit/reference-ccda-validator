@@ -13,14 +13,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>1.0.23</code.validator.version>
-        <content.validator.version>1.0.21</content.validator.version>
+        <content.validator.version>1.0.22-SNAPSHOT</content.validator.version>
         <!-- MDHT properties -->
-        <mdht.models.version>0.0.1.20200615</mdht.models.version>
-        <ds4pcontent.version>0.0.1.20200615</ds4pcontent.version>
-        <mdht.plugins.version>3.0.0.202006151326</mdht.plugins.version>        
-        <!--<ds4pcontent.version>3.0.0.20200422</ds4pcontent.version>--> <!-- Scorecard Update -->
-        <!--<ds4pcontent.version>3.0.0.20200605</ds4pcontent.version>--> <!-- HL7 Reaffirmation Update -->
-        <!--<ds4pcontent.version>3.0.0.20200611</ds4pcontent.version>--> <!-- HL7 Reaffirmation Update 2 -->        
+        <mdht.models.version>3.0.0.20200617</mdht.models.version>
+        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
+        <mdht.plugins.version>3.0.0.202006170501</mdht.plugins.version>        
     </properties>
 
     <repositories>
@@ -41,8 +38,6 @@
             <groupId>mdht.openhealthtools.mdht.cda</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <version>${mdht.models.version}</version>
-            <!--<version>3.0.9.20180622</version>--> <!-- Last Official Release -->
-            <!--<version>3.0.0.20200421</version>--> <!-- Scorecard Update -->
         </dependency>
 		<dependency>
 		    <groupId>mdht.openhealthtools.mdht.cda</groupId>
@@ -64,7 +59,6 @@
             <groupId>mdht.eclipse.mdht</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
             <version>${mdht.plugins.version}</version>
-            <!--<version>3.0.0.202004210000</version>--> <!-- Test Scorecard Update -->
         </dependency>
 		<dependency>
             <groupId>mdht.eclipse.mdht</groupId>
