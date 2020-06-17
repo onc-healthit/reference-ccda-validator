@@ -1898,14 +1898,10 @@ MEDICATIONS
                            </performer>
                         </supply>
                      </entryRelationship>
-                     <precondition
-                        typeCode="PRCN">
-                        <templateId
-                           root="2.16.840.1.113883.10.20.22.4.25"/>
+                     <precondition typeCode="PRCN">
                         <criterion>
-                           <code
-                              code="ASSERTION"
-                              codeSystem="2.16.840.1.113883.5.4"/>
+                           <templateId root="2.16.840.1.113883.10.20.22.4.25"/>
+                           <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
                            <value
                               xsi:type="CE"
                               code="56018004"
@@ -2437,11 +2433,9 @@ HOSPITAL DISCHARGE MEDICATIONS
                                  </performer>
                               </supply>
                            </entryRelationship>
-                           <precondition
-                              typeCode="PRCN">
-                              <templateId
-                                 root="2.16.840.1.113883.10.20.22.4.25"/>
+                           <precondition typeCode="PRCN">
                               <criterion>
+								 <templateId root="2.16.840.1.113883.10.20.22.4.25"/>
                                  <code
                                     code="ASSERTION"
                                     codeSystem="2.16.840.1.113883.5.4"/>
