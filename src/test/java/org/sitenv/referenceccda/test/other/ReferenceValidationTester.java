@@ -129,7 +129,7 @@ public class ReferenceValidationTester extends VocabularyValidationTester {
 				objectiveSet.equals(objectiveExpected));
 	}
 	
-	private static boolean hasMDHTValidationErrors(List<RefCCDAValidationResult> results) {
+	protected static boolean hasMDHTValidationErrors(List<RefCCDAValidationResult> results) {
 		return !getMDHTErrorsFromResults(results).isEmpty();
 	}
 

@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.44</version>
+    <version>1.0.46</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -13,12 +13,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>1.0.23</code.validator.version>
-        <content.validator.version>1.0.20</content.validator.version>
+        <content.validator.version>1.0.22</content.validator.version>
         <!-- MDHT properties -->
-        <mdht.models.version>3.0.8.20180531</mdht.models.version>
-        <mdht.plugins.version>3.0.0.201805310501</mdht.plugins.version>
-        <consentdirective.version>1.0.0.20170920</consentdirective.version>
-        <ds4pcontent.version>3.0.0.20200422</ds4pcontent.version> <!-- Scorecard Update -->  
+        <mdht.models.version>3.0.0.20200617</mdht.models.version>
+        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
+        <mdht.plugins.version>3.0.0.202006170501</mdht.plugins.version>        
     </properties>
 
     <repositories>
@@ -26,11 +25,11 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>        
-            <id>central</id>
+            <id>SITE-Artifactory</id>
 	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
 	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url>
-        </repository>
-    </repositories>    
+        </repository>        
+    </repositories>
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
@@ -38,19 +37,12 @@
         <dependency>
             <groupId>mdht.openhealthtools.mdht.cda</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <!--<version>${mdht.models.version}</version>-->
-            <!--<version>3.0.9.20180622</version>--> <!-- Last Official Release -->
-            <version>3.0.0.20200421</version> <!-- Scorecard Update -->
+            <version>${mdht.models.version}</version>
         </dependency>
 		<dependency>
 		    <groupId>mdht.openhealthtools.mdht.cda</groupId>
 		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
 		    <version>${mdht.models.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>mdht.hl7.ds4p</groupId>
-            <artifactId>org.hl7.cbcc.privacy.consentdirective</artifactId>
-            <version>${consentdirective.version}</version>
         </dependency>
         <dependency>
             <groupId>mdht.hl7.ds4p</groupId>
@@ -66,8 +58,7 @@
         <dependency>
             <groupId>mdht.eclipse.mdht</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <!--<version>${mdht.plugins.version}</version>-->
-            <version>3.0.0.202004210000</version> <!-- Test Scorecard Update -->
+            <version>${mdht.plugins.version}</version>
         </dependency>
 		<dependency>
             <groupId>mdht.eclipse.mdht</groupId>

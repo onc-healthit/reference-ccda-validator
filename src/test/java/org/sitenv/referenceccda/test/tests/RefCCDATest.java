@@ -61,7 +61,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
 			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
 			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10, DS4P_WITH_NO_DS4P_DATA_AMB = 11,
-			DS4P_WITH_NO_DS4P_DATA_INP = 12, TWO_MEGS = 13;
+			DS4P_WITH_NO_DS4P_DATA_INP = 12, TWO_MEGS = 13, CCD_R21_EF = 14;
 
 	// Feel free to add docs to the end but don't alter existing data
 	// Note: The same sample is referenced twice due to a loop test
@@ -81,7 +81,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/170.315_b1_toc_amb_ccd_r21_sample1_v8.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample2_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample2_v2.xml").toURI(),
-					RefCCDATest.class.getResource("/tempResults_ValidatorBrokeETTGG.xml").toURI() };
+					RefCCDATest.class.getResource("/tempResults_ValidatorBrokeETTGG.xml").toURI(),
+					RefCCDATest.class.getResource("/C-CDA_R2-1_CCD_EF.xml").toURI() };
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
 				e.printStackTrace();
@@ -108,6 +109,15 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 		println("***************** No Exceptions were thrown during the test******************" + System.lineSeparator()
 				+ System.lineSeparator());
+	}
+	
+	@Test
+	public void basicErrorFreeRegressionTest() {
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[CCD_R21_EF]));
+		System.out.println("basicErrorFreeRegressionTest: ");
+		printResults(getMDHTErrorsFromResults(results));
+		assertFalse("The document has (an) error(s) but should not have any errors", hasMDHTValidationErrors(results));
 	}
 
 	@Test
@@ -904,12 +914,12 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		if (vocabularyConfig == null && (severityLevel == null || severityLevel == SeverityLevel.INFO)) {
 			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample);
 		} else if (vocabularyConfig != null && severityLevel != null) {
-			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig,
+			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, false, vocabularyConfig,
 					severityLevel);
 		} else if (vocabularyConfig == null && severityLevel != null) {
 			// programmatic config with severity level - only happens with
 			// testing...
-			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, null,
+			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, false, null,
 					severityLevel);
 		}
 		return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig);		

@@ -9,11 +9,22 @@ angular
 					var receiverGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/contents/Receiver SUT Test Data';
 					var validationError;
 					var self = this;
+					$scope.validationTypes = [
+						{ 
+							name: '2015 Certification',
+							value: false
+						},
+						{ 	
+							name: 'Cures Update',
+							value: true 
+						}
+					];
+					$scope.selectedValidationType = $scope.validationTypes[0]
 					$scope.severityLevels = [
 						{ name: 'INFO' },
 						{ name: 'WARNING' },
 						{ name: 'ERROR' }
-						];
+					];
 					$scope.selectedSeverityLevel = $scope.severityLevels[0]
 					self.validationModel = {
 						selectedObjective : '',
@@ -44,7 +55,8 @@ angular
 												'validationObjective' : $scope.validationModel.selectedObjective.name,
 												'referenceFileName' : $scope.validationModel.selectedReferenceFileName.name,
 												'ccdaFile' : file,
-												'severityLevel' : $scope.selectedSeverityLevel.name
+												'severityLevel' : $scope.selectedSeverityLevel.name,
+												'curesUpdate' : $scope.selectedValidationType.value												
 											}
 										}).then(
 										function(resp) {

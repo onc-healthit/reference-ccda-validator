@@ -54,29 +54,29 @@ public class ReferenceCCDAValidationService {
 
 	public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName,
 			MultipartFile ccdaFile) {
-		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile,
+		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile,false,
 				VocabularyConstants.Config.DEFAULT, SeverityLevel.INFO);
 	}
 
 	public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName,
 			MultipartFile ccdaFile, String vocabularyConfig) {
-		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig,
+		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, false, vocabularyConfig,
 				SeverityLevel.INFO);
 	}
 
 	public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName,
-			MultipartFile ccdaFile, String vocabularyConfig, SeverityLevel severityLevel) {
-		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, vocabularyConfig,
+			MultipartFile ccdaFile, boolean curesUpdate, String vocabularyConfig, SeverityLevel severityLevel) {
+		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, curesUpdate, vocabularyConfig,
 				severityLevel);
 	}
 
 	private ValidationResultsDto validateCCDAImplementation(String validationObjective, String referenceFileName,
-			MultipartFile ccdaFile, String vocabularyConfig, SeverityLevel severityLevel) {
+			MultipartFile ccdaFile, boolean curesUpdate, String vocabularyConfig, SeverityLevel severityLevel) {
 		ValidationResultsDto resultsDto = new ValidationResultsDto();
 		ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
 		List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
 		try {
-			validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, vocabularyConfig,
+			validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, curesUpdate, vocabularyConfig,
 					severityLevel);
 			resultsMetaData = buildValidationMedata(validatorResults, validationObjective, severityLevel);
 			resultsMetaData.setCcdaFileName(ccdaFile.getOriginalFilename());
@@ -110,7 +110,7 @@ public class ReferenceCCDAValidationService {
 	}
 
 	private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
-			MultipartFile ccdaFile, String vocabularyConfig, SeverityLevel severityLevel)
+			MultipartFile ccdaFile, boolean curesUpdate, String vocabularyConfig, SeverityLevel severityLevel)
 			throws SAXException, Exception {
 		List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
 		InputStream ccdaFileInputStream = null;
@@ -148,7 +148,7 @@ public class ReferenceCCDAValidationService {
 				}
 				if (objectiveAllowsContentValidation(validationObjective)) {
 					List<RefCCDAValidationResult> contentResults = doContentValidation(validationObjective,
-							referenceFileName, ccdaFileContents, severityLevel);
+							referenceFileName, ccdaFileContents, curesUpdate, severityLevel);
 					if (contentResults != null && !contentResults.isEmpty()) {
 						logger.info("Adding Content results");
 						validatorResults.addAll(contentResults);
@@ -212,9 +212,9 @@ public class ReferenceCCDAValidationService {
 	}
 
 	private List<RefCCDAValidationResult> doContentValidation(String validationObjective, String referenceFileName,
-			String ccdaFileContents, SeverityLevel severityLevel) throws SAXException {
+			String ccdaFileContents, boolean curesUpdate, SeverityLevel severityLevel) throws SAXException {
 		logger.info("Attempting Content validation...");
-		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, severityLevel);
+		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, curesUpdate, severityLevel);
 	}
 
 	private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults,
