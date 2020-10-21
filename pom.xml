@@ -15,7 +15,7 @@
         <code.validator.version>1.0.23</code.validator.version>
         <content.validator.version>1.0.22</content.validator.version>
         <!-- MDHT properties -->
-        <mdht.models.version>3.0.0.20200617</mdht.models.version>
+        <mdht.models.version>3.0.0.20201021</mdht.models.version>
         <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
         <mdht.plugins.version>3.0.0.202006170501</mdht.plugins.version>        
     </properties>
