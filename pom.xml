@@ -14,7 +14,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>1.0.25</code.validator.version>
         <content.validator.version>1.0.23</content.validator.version>
-        <content.validator.version>1.0.22</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.0.20201024</mdht.models.version>
         <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
@@ -29,7 +28,7 @@
             <id>SITE-Artifactory</id>
 	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
 	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url>
-        </repository>        
+        </repository>
     </repositories>
 
     <dependencies>
