@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>1.0.25</code.validator.version>
-        <content.validator.version>1.0.23</content.validator.version>
+        <content.validator.version>1.0.24</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.0.20201024</mdht.models.version>
         <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
