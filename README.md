@@ -8,7 +8,7 @@ If you would like to get a test virtual machine up and running quickly, check ou
     b. You are using a pre-built referenceccdaservice.war file. In other words, the .war file was not built from the project directly.
         Such a thing is possible but beyond the scope of this document.
     c. With Tomcat installed and the referenceccdaservice.war in your hands, you are ready to begin configuration and deployment.
-    d. Java 7 or 8 is installed and a JAVA_HOME is set. Note: Java 7 is recommended.
+    d. Java 7 or 8 is installed and a JAVA_HOME is set. Note: Java 7 is recommended. We do not support any Java version above JDK 8.
 
 **2. Configuration Instructions**
 *    Vocabulary Artifacts needed for vocabulary validation (please see https://github.com/onc-healthit/code-validator-api and https://github.com/onc-healthit/code-validator-api/tree/master/codevalidator-api/docs for further information)
