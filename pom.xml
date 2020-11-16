@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.47</version>
+    <version>1.0.48-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -236,12 +236,6 @@
         </dependency>     
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.0</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.0</version>
             <scope>runtime</scope>
@@ -255,7 +249,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.14</version>
+            <version>1.2.17</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
