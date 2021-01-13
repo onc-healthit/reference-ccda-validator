@@ -25,9 +25,11 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>        
-            <id>SITE-Artifactory</id>
-	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
-	        <url>http://ccda.dev.sitenv.org:8081/artifactory/libs-release-local</url> <!--34.195.107.72 -->
+            <!--<id>SITE-Artifactory</id>
+	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>-->
+	        <id>central</id>
+	        <name>ip-10-0-0-158-releases</name>	        
+	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
         </repository>
     </repositories>
 
