@@ -39,6 +39,8 @@ angular
 					$scope.radioModel = 'sender'
 					$scope.objectives = [];
 					$scope.referenceFileNames = [];
+					
+					self.toggleMessageType(); // populate from w/e our default is w/o having to click sender or receiver
 
 					function validate() {
 						if ($scope.validationModel.file) {
