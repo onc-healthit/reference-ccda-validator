@@ -7,6 +7,8 @@ angular
 				function($scope, $http, Upload, ValidatorService, blockUI) {
 					var senderGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/contents/Sender SUT Test Data';
 					var receiverGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/contents/Receiver SUT Test Data';
+					var senderCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Sender SUT Test Data';
+					var receiverCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Receiver SUT Test Data';
 					var validationError;
 					var self = this;
 					$scope.validationTypes = [
@@ -16,16 +18,16 @@ angular
 						},
 						{ 	
 							name: 'Cures Update',
-							value: true 
+							value: true
 						}
 					];
-					$scope.selectedValidationType = $scope.validationTypes[0]
+					$scope.selectedValidationType = $scope.validationTypes[1]; // default to cures update as of Jan 2021 
 					$scope.severityLevels = [
 						{ name: 'INFO' },
 						{ name: 'WARNING' },
 						{ name: 'ERROR' }
 					];
-					$scope.selectedSeverityLevel = $scope.severityLevels[0]
+					$scope.selectedSeverityLevel = $scope.severityLevels[2]; // default to errors only
 					self.validationModel = {
 						selectedObjective : '',
 						selectedReferenceFileName : '',
@@ -37,6 +39,8 @@ angular
 					$scope.radioModel = 'sender'
 					$scope.objectives = [];
 					$scope.referenceFileNames = [];
+					
+					self.toggleMessageType(); // populate from w/e our default is w/o having to click sender or receiver
 
 					function validate() {
 						if ($scope.validationModel.file) {
@@ -577,13 +581,24 @@ angular
 						}
 					});
 
+					// scenario selection
 					function toggleMessageType() {
 						$scope.objectives = [];
 						$scope.referenceFileNames = [];
-						if ($scope.radioModel == 'sender') {
-							getTestDocuments(senderGitHubUrl);
+						if ($scope.selectedValidationType.value) {
+							// cures
+							if ($scope.radioModel == 'sender') {
+								getTestDocuments(senderCuresGitHubUrl);
+							} else {
+								getTestDocuments(receiverCuresGitHubUrl);
+							}							
 						} else {
-							getTestDocuments(receiverGitHubUrl);
+							// nonCures
+							if ($scope.radioModel == 'sender') {
+								getTestDocuments(senderGitHubUrl);
+							} else {
+								getTestDocuments(receiverGitHubUrl);
+							}
 						}
 					}
 

@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.49</version>
+    <version>1.0.50-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>1.0.26</code.validator.version>
-        <content.validator.version>1.0.26</content.validator.version>
+        <content.validator.version>1.0.27</content.validator.version>
         <!-- MDHT properties -->
         <mdht.models.version>3.0.0.20201203</mdht.models.version>
         <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
@@ -25,9 +25,11 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>        
-            <id>SITE-Artifactory</id>
-	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>
-	        <url>http://ccda.dev.sitenv.org:8081/artifactory/libs-release-local</url> <!--34.195.107.72 -->
+            <!--<id>SITE-Artifactory</id>
+	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>-->
+	        <id>central</id>
+	        <name>ip-10-0-0-158-releases</name>	        
+	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
         </repository>
     </repositories>
 
