@@ -61,8 +61,9 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
 			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
 			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10, DS4P_WITH_NO_DS4P_DATA_AMB = 11,
-			DS4P_WITH_NO_DS4P_DATA_INP = 12, TWO_MEGS = 13, CCD_R21_EF = 14;
-
+			DS4P_WITH_NO_DS4P_DATA_INP = 12, TWO_MEGS = 13, CCD_R21_EF = 14,
+			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15;
+	
 	// Feel free to add docs to the end but don't alter existing data
 	// Note: The same sample is referenced twice due to a loop test
 	private static URI[] CCDA_FILES = new URI[0];
@@ -82,7 +83,9 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_amb_sample2_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/170.315_b8_ds4p_inp_sample2_v2.xml").toURI(),
 					RefCCDATest.class.getResource("/tempResults_ValidatorBrokeETTGG.xml").toURI(),
-					RefCCDATest.class.getResource("/C-CDA_R2-1_CCD_EF.xml").toURI() };
+					RefCCDATest.class.getResource("/C-CDA_R2-1_CCD_EF.xml").toURI(),
+					RefCCDATest.class.getResource("/SocialHistoryWithBirthSexObsTemplateSite3094.xml").toURI(),
+			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
 				e.printStackTrace();
@@ -647,7 +650,49 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		long checks = results.getResultsMetaData().getTotalConformanceErrorChecks();
 		println("IG Checks: " + checks);
 		assertTrue("There should be a positive number of IG checks but there is " + checks + " instead.", checks > 0);		
-	}	
+	}
+	
+	@Ignore // Test ignored until SITE-3219 is analyzed and thus what we expect will decided at that time
+	@Test
+	public void socialHistoryWithBirthSexObsNullFlavorCodeSite3219Test() {
+		// Social History has a proper Birth Sex Observation entry. <templateId root="2.16.840.1.113883.10.20.22.4.200" extension="2016-06-01"/>
+		// Notice in the below XML there is no @code. Expect error for @code 
+		// Also notice that although there is a nullFlavor, it is not an exception for the requirement of the code - 
+		// According to Brett, "You cannot use a nullFlavor for a fixed single value in C-CDA."
+		// But this is not the way MDHT works on certain things like codes and more. So, for MDHT, it is an exception.
+		// We need to detemine if we want to uproot the whole system of the past 8 years and change this behavior...
+		// If so, this test should pass, if not, this test should fail
+		// XML:
+		// <code nullFlavor="UNK" displayName="Birth Sex"/>
+		// Expect an error for not having a code/@code
+		
+		// note... changing to <code displayName="Birth Sex"/> allows the error to come through
+		// the nullFlavor is being incorrectly respected in MDHT. There is an MDHT bug. This is a separate ticket now...
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094]));
+		println("socialHistoryWithBirthSexObsTemplateSite3094Test: ");
+		printResults(getMDHTErrorsFromResults(results));
+		
+		assertTrue("The document should have errors but does not", hasMDHTValidationErrors(results));		
+
+		for (int i = 0; i < results.size(); i++) {
+			RefCCDAValidationResult curResult = results.get(i);
+			System.out.println("curResult: " + curResult.getType());
+			System.out.println("curResult: " + curResult.getDescription());
+			final String birthSexNoCodeError = " Consol Birth Sex Observation SHALL contain exactly one [1..1] code "
+					+ "(CONF:3250-18234)/@code=\"76689-9\" Sex Assigned At Birth (CodeSystem: 2.16.840.1.113883.6.1 LOINC) "
+					+ "(CONF:3250-18235, CONF:3250-21163)";
+			boolean isErrorMessageFound = false;
+			if (curResult.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR
+					&& curResult.getDescription().contains(birthSexNoCodeError)) {
+				isErrorMessageFound = true;
+				break;
+			}
+			System.out.println("isErrorMessageFound: " + isErrorMessageFound);
+			assertTrue("Expected Error: '" + birthSexNoCodeError + "' but instead did not return the error",
+					isErrorMessageFound);
+		}
+	}
 
 	private static List<ConfiguredExpression> getGenericConfiguredExpressionsForTesting() {
 		final String validationMessage = "Will always fail";
