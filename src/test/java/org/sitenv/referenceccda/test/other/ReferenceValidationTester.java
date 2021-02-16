@@ -2,6 +2,7 @@ package org.sitenv.referenceccda.test.other;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.sitenv.referenceccda.test.other.ReferenceValidationLogger.*;
+import static org.sitenv.vocabularies.test.other.ValidationLogger.println;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -168,6 +169,34 @@ public class ReferenceValidationTester extends VocabularyValidationTester {
 		return getSpecificIssuesFromResults(results, ValidationResultType.REF_CCDA_INFO,
 				ValidationResultType.REF_CCDA_WARN, ValidationResultType.REF_CCDA_ERROR);
 	}
+	
+	protected static boolean isIssueInResults(List<RefCCDAValidationResult> results, ValidationResultType typeExpected,
+			String messageExpected) {
+		boolean isErrorMessageFound = false;
+		for (int i = 0; i < results.size(); i++) {
+			RefCCDAValidationResult curResult = results.get(i);
+//			println("curResult type: " + curResult.getType());
+//			println("curResult description: " + curResult.getDescription());
+			if (curResult.getType() == typeExpected && curResult.getDescription().contains(messageExpected)) {
+				isErrorMessageFound = true;
+				break;
+			}
+//			println("isErrorMessageFound: " + isErrorMessageFound);
+		}
+		return isErrorMessageFound;
+	}
+	
+	protected static void failIfIssueIsInResults(List<RefCCDAValidationResult> results, ValidationResultType typeExpected,
+			String messageExpected) {
+		assertFalse("Did NOT expect to find Issue: '" + messageExpected + "' but instead DID return the issue",
+				isIssueInResults(results, typeExpected, messageExpected));
+	}
+	
+	protected static void passIfIssueIsInResults(List<RefCCDAValidationResult> results, ValidationResultType typeExpected,
+			String messageExpected) {
+		assertTrue("Expected Issue: '" + messageExpected + "' but instead did NOT return the issue",
+				isIssueInResults(results, typeExpected, messageExpected));
+	}	
 	
 	protected static int countSpecifcResults(List<RefCCDAValidationResult> results, ValidationResultType type) {
 		int issueTypeCount = 0;

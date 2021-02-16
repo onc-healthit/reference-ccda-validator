@@ -62,7 +62,10 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			BLANK_EMPTY_DOCUMENT_INDEX = 5, HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR = 6, DS4P_FROM_MDHT = 7,
 			DS4P_AMB_1 = 8, DS4P_INP_1 = 9, CCD_R21 = 10, DS4P_WITH_NO_DS4P_DATA_AMB = 11,
 			DS4P_WITH_NO_DS4P_DATA_INP = 12, TWO_MEGS = 13, CCD_R21_EF = 14,
-			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15;
+			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
+			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
+			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17;
+	
 	
 	// Feel free to add docs to the end but don't alter existing data
 	// Note: The same sample is referenced twice due to a loop test
@@ -85,6 +88,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/tempResults_ValidatorBrokeETTGG.xml").toURI(),
 					RefCCDATest.class.getResource("/C-CDA_R2-1_CCD_EF.xml").toURI(),
 					RefCCDATest.class.getResource("/SocialHistoryWithBirthSexObsTemplateSite3094.xml").toURI(),
+					RefCCDATest.class.getResource("/subProceduresWithDeviceIdentifierObservationSite3218.xml").toURI(),
+					RefCCDATest.class.getResource("/subProceduresWithDeviceIdentifierObservationBadValueRootSite3218.xml").toURI(),					
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -650,7 +655,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		long checks = results.getResultsMetaData().getTotalConformanceErrorChecks();
 		println("IG Checks: " + checks);
 		assertTrue("There should be a positive number of IG checks but there is " + checks + " instead.", checks > 0);		
-	}
+	}	
 	
 	@Ignore // Test ignored until SITE-3219 is analyzed and thus what we expect will decided at that time
 	@Test
@@ -675,23 +680,54 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		
 		assertTrue("The document should have errors but does not", hasMDHTValidationErrors(results));		
 
-		for (int i = 0; i < results.size(); i++) {
-			RefCCDAValidationResult curResult = results.get(i);
-			System.out.println("curResult: " + curResult.getType());
-			System.out.println("curResult: " + curResult.getDescription());
-			final String birthSexNoCodeError = " Consol Birth Sex Observation SHALL contain exactly one [1..1] code "
-					+ "(CONF:3250-18234)/@code=\"76689-9\" Sex Assigned At Birth (CodeSystem: 2.16.840.1.113883.6.1 LOINC) "
-					+ "(CONF:3250-18235, CONF:3250-21163)";
-			boolean isErrorMessageFound = false;
-			if (curResult.getType() == ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR
-					&& curResult.getDescription().contains(birthSexNoCodeError)) {
-				isErrorMessageFound = true;
-				break;
-			}
-			System.out.println("isErrorMessageFound: " + isErrorMessageFound);
-			assertTrue("Expected Error: '" + birthSexNoCodeError + "' but instead did not return the error",
-					isErrorMessageFound);
-		}
+		final String birthSexNoCodeError = " Consol Birth Sex Observation SHALL contain exactly one [1..1] code "
+				+ "(CONF:3250-18234)/@code=\"76689-9\" Sex Assigned At Birth (CodeSystem: 2.16.840.1.113883.6.1 LOINC) "
+				+ "(CONF:3250-18235, CONF:3250-21163)";		
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, birthSexNoCodeError);				
+	}
+	
+	@Test
+	public void deviceIdentifierObservationInProceduresInvariantErrorSite3218_ExpectPassTest() {
+		println("deviceIdentifierObservationInProceduresInvariantErrorSite3218_ExpectPassTest: ");
+//        <observation classCode = "OBS" moodCode = "EVN">
+//            <templateId root = "2.16.840.1.113883.10.20.22.4.304" extension = "2019-06-21"/>
+//            ...
+//            <value
+//                xsi:type = "II"
+//                root = "2.16.840.1.113883.6.18"
+//                extension = "00848486001048"
+//                assigningAuthorityName = "ICCBBA"
+//                displayable = "true"/>
+//        </observation>
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218]));
+		results = getMDHTErrorsFromResults(results);
+		printResults(results);
+		
+		String udiValueRootError = 
+				"The 'DeviceIdentifierObservationDeviceIdentifierObservationIIUDIissuingagency' invariant is violated on";
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, udiValueRootError);		
+	}
+	
+	@Test
+	public void deviceIdentifierObservationInProceduresInvariantErrorSite3218_ExpectFailTest() {
+		println("deviceIdentifierObservationInProceduresInvariantErrorSite3218_ExpectFailTest: ");
+//        ...
+//        <value
+//        	xsi:type = "II"
+//        	root = "BAD_ROOT"
+//        	extension = "00848486001048"
+//        	assigningAuthorityName = "ICCBBA"
+//        	displayable = "true"/>
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218]));
+		
+		results = getMDHTErrorsFromResults(results);
+		printResults(results);
+		
+		String udiValueRootError = 
+				"The 'DeviceIdentifierObservationDeviceIdentifierObservationIIUDIissuingagency' invariant is violated on";
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, udiValueRootError);		
 	}
 
 	private static List<ConfiguredExpression> getGenericConfiguredExpressionsForTesting() {
