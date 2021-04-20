@@ -24,11 +24,9 @@
         <repository>
             <snapshots>
                 <enabled>true</enabled>
-            </snapshots>        
-            <!--<id>SITE-Artifactory</id>
-	        <name>nrc-dev-oncsite-ccda.nrc.local-releases</name>-->
+            </snapshots>
 	        <id>central</id>
-	        <name>ip-10-0-0-158-releases</name>	        
+	        <name>ONCSITE-DEV-CCDA-releases</name>	        
 	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
         </repository>
     </repositories>
