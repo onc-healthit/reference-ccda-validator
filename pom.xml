@@ -25,7 +25,7 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-	        <id>central</id>
+	        <id>mdht</id>
 	        <name>ONCSITE-DEV-CCDA-releases</name>	        
 	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
         </repository>
@@ -232,7 +232,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
+            <version>3.12.0</version>
         </dependency>     
         <dependency>
             <groupId>org.slf4j</groupId>
