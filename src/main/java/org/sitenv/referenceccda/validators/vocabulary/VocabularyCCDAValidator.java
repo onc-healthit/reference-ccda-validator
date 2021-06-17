@@ -26,13 +26,13 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
     @Value("${referenceccda.configFile}")
     private String vocabularyXpathExpressionConfiguration;
     private VocabularyValidationService vocabularyValidationService;
-    private GlobalCodeValidatorResults globalCodeValidatorResults;
+    private ThreadLocal<GlobalCodeValidatorResults> globalCodeValidatorResults;
     private static Logger logger = Logger.getLogger(VocabularyCCDAValidator.class);
 
     @Autowired
     public VocabularyCCDAValidator(VocabularyValidationService vocabularyValidationService) {
         this.vocabularyValidationService = vocabularyValidationService;
-        globalCodeValidatorResults = new GlobalCodeValidatorResults();
+        globalCodeValidatorResults = new ThreadLocal<>();
     }
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
@@ -74,7 +74,7 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
 		logger.info("16: severityLevel (Enum) in doValidation for vocab calling doValidation before run validate" + severityLevel.name());
 		List<VocabularyValidationResult> validationResults = vocabularyValidationService
 				.validate(IOUtils.toInputStream(ccdaFile, "UTF-8"), vocabularyConfig, severityLevel);
-		globalCodeValidatorResults = vocabularyValidationService.getGlobalCodeValidatorResults();
+		globalCodeValidatorResults.set(vocabularyValidationService.getGlobalCodeValidatorResults());
         ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
         for (VocabularyValidationResult result : validationResults) {
             results.add(createValidationResult(result, xpathIndexer));
@@ -83,7 +83,7 @@ public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAVa
     }
 	
 	public GlobalCodeValidatorResults getGlobalCodeValidatorResults() {
-		return globalCodeValidatorResults;
+		return globalCodeValidatorResults.get();
 	}
 
     private RefCCDAValidationResult createValidationResult(VocabularyValidationResult result, XPathIndexer xpathIndexer) {
