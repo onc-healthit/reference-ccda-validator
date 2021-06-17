@@ -18,10 +18,13 @@ import org.sitenv.vocabularies.validation.dto.VocabularyValidationResult;
 import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
 @Component
+@Scope(value = "prototype",proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
     @Value("${referenceccda.configFile}")
     private String vocabularyXpathExpressionConfiguration;
