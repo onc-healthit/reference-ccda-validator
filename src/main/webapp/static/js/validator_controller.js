@@ -291,20 +291,35 @@ angular
 																+ '"></a>');
 											}
 
+											let getXPathResult = () => {
+												if (result.xPath) {
+													return '<font style="font-weight:bold">'
+													+ result.xPath
+													+ '</font><br/>';					
+												}
+												return '';
+											};
+											
+											let getLineNumberResult = () => {
+												if (result.documentLineNumber && result.documentLineNumber !== '0') {
+													return '<u>Line Number:</u> <b>'
+													+ result.documentLineNumber
+													+ '</b>'
+												}
+												return '';
+											};
+											
 											var errorDescription = [
 													'<p><font style="font-weight:bold; color: '
 															+ resultColor
 															+ '">'
 															+ result.type
 															+ '</font>',
-													' - ' + result.description
+													  ' - ' + result.description
 															+ '<br/>',
-													'<font style="font-weight:bold">'
-															+ result.xPath
-															+ '</font><br/>',
-													'<u>Line Number:</u> <b>'
-															+ result.documentLineNumber
-															+ '</b>', '</p>' ];
+															getXPathResult(),
+															getLineNumberResult(),
+															'</p>' ];
 											resultList = resultList
 													.concat(errorDescription);
 											if (result.expectedValueSet != null) {
