@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
-import org.hl7.security.ds4p.contentprofile.operations.RefrainPolicySecurityObservationOperations;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -65,7 +64,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			DS4P_WITH_NO_DS4P_DATA_INP = 12, TWO_MEGS = 13, CCD_R21_EF = 14,
 			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
-			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17, DS4P_REFRAIN_OBSERVATION=18;
+			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
+			DS4P_REFRAIN_OBSERVATION = 18;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -92,8 +92,6 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/subProceduresWithDeviceIdentifierObservationSite3218.xml").toURI(),
 					RefCCDATest.class.getResource("/subProceduresWithDeviceIdentifierObservationBadValueRootSite3218.xml").toURI(),
 					RefCCDATest.class.getResource("/DS4PRefrainTest.xml").toURI()
-					
-					
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -734,56 +732,36 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, udiValueRootError);		
 	}
 	
-	
 	/*
 	 * Refrain terminology update 
-	 */
-	
-	
+	 */		
 	@Test
-	public void ds4pRefrainTerminologyUpdate() {
+	public void ds4pRefrainTerminologyUpdate_ExpectPassTest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[DS4P_REFRAIN_OBSERVATION]), CCDATypes.NON_SPECIFIC_DS4P);
 		
- 	List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(
-				runIgOrMu2OrDS4PAndNotSchemaTests(DS4P_REFRAIN_OBSERVATION, CCDATypes.NON_SPECIFIC_DS4P, true));
-		
-		boolean passed = true;
-		for (RefCCDAValidationResult mdhtError  :mdhtErrors ) {
-			if (mdhtError.getDescription().contains("CONF:9135")) {
-				passed=false;
-				break;
-			}
-			
-		}
-		
-		 
-		assertTrue("The DS4P file did not pass ds4pRefrainTerminologyUpdate test", passed);
+		results = getMDHTErrorsFromResults(results);
+		printResultsBasedOnFlags(results);
+
+		final String ds4PRefrainError = "CONF:9135";
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, ds4PRefrainError);
 	}
 	
 	/*
 	 * Advanced Directive choice test
-	 */
-	
+	 */	
 	@Test
-	public void advanceDirectivesChoiceTest() {
-		List<RefCCDAValidationResult> mdhtErrors = getMDHTErrorsFromResults(
-				runIgOrMu2OrDS4PAndNotSchemaTests(DS4P_REFRAIN_OBSERVATION, CCDATypes.NON_SPECIFIC_DS4P, true));
+	public void advanceDirectivesChoice_ExpectFailTest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[DS4P_REFRAIN_OBSERVATION]), CCDATypes.NON_SPECIFIC_DS4P);
 		
-		boolean passed = false;
-		for (RefCCDAValidationResult mdhtError  :mdhtErrors ) {
-			if (mdhtError.getDescription().contains("1198-32881")) {
-				passed=true;
-				break;
-			}
-			
-		}
-		
-		 
-		assertTrue("The DS4P file did not pass ds4pRefrainTerminologyUpdate test", passed);
-		}
-	
-	
-	
+		results = getMDHTErrorsFromResults(results);
+		printResultsBasedOnFlags(results);
 
+		final String ds4PRefrainError = "CONF:1198-32881";
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, ds4PRefrainError);						
+	}
+	
 	private static List<ConfiguredExpression> getGenericConfiguredExpressionsForTesting() {
 		final String validationMessage = "Will always fail";
 		final String configuredXpathExpression = "//v3:informant/v3:relatedEntity/v3:relatedPerson/v3:name";
