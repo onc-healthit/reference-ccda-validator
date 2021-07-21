@@ -1,0 +1,280 @@
+<!-- -->
+<!-- CCDA Header Transition of Care -->
+<!-- -->
+<!-- <?xml-stylesheet type='text/xsl' href='http://www.powersoftmd.com/CCDAXSL/PowerSoftMDCED.xsl'?> -->
+<?xml-stylesheet type='text/xsl' href='http://www.powersoftmd.com/CCDAXSL/GenericCDA.xsl'?>
+<ClinicalDocument xmlns="urn:hl7-org:v3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sdtc="urn:hl7-org:sdtc" xmlns:cda="urn:hl7-org:v3"
+	xmlns:voc="urn:hl7-org:v3/voc">
+	<templateId extension="IMPL_CDAR2_LEVEL1"
+		root="2.16.840.1.113883.10" />
+	<templateId root="2.16.840.1.113883.10.20.22.1.1"
+		extension="2015-08-01" />
+	<templateId root="2.16.840.1.113883.10.20.22.1.1" />
+	<templateId root="2.16.840.1.113883.10.20.22.1.2"
+		extension="2015-08-01" />
+	<templateId root="2.16.840.1.113883.10.20.22.1.2" />
+	<templateId root="2.16.840.1.113883.10.20.22.1.15"
+		extension="2015-08-01" />
+	<templateId root="2.16.840.1.113883.10.20.22.1.15" />
+	<component>
+		<structuredBody>
+			<templateId extension="IMPL_CDAR2_LEVEL1"
+				root="2.16.840.1.113883.10" />
+			<!-- ******************************************************** -->
+			<!-- Privacy and Security Markings Section -->
+			<!-- ******************************************************** -->
+			<component>
+				<!-- Privacy and Security Markings Section -->
+				<section>
+					<!-- Privacy Markings section template -->
+					<templateId root="2.16.840.1.113883.3.3251.1.5"
+						assigningAuthorityName="HL7 Security" />
+					<code code="57017-6" codeSystem="2.16.840.1.113883.6.1"
+						codeSystemName="LOINC" displayName="Privacy policy Organization" />
+					<title>Security and Privacy Prohibitions</title>
+					<text>
+						Section Author: Dr. Davis Albert, Neighborhood Physicians Practice
+						<br />
+						PROHIBITION ON REDISCLOSURE OF CONFIDENTIAL INFORMATION:
+						<br />
+						This notice accompanies a disclosure of information concerning a
+						client in alcohol/drug treatment, made
+						to you with the consent of such client. This information has been
+						disclosed to you from records protected
+						by federal confidentiality rules (42 C.F.R. Part 2). The federal
+						rules prohibit you from making any
+						further disclosure of this information unless further disclosure is
+						expressly permitted by the written
+						consent of the person to whom it pertains or as otherwise permitted by 42
+						C.F.R. Part 2. A general
+						authorization for the release of medical or other information is NOT sufficient
+						for this purpose. The
+						federal rules restrict any use of the information to criminally
+						investigate or prosecute any alcohol or
+						drug abuse patient.
+					</text>
+					<confidentialityCode code="R"
+						codeSystem="2.16.840.1.113883.5.25"
+						codeSystemName="HL7 Confidentiality" />
+					<author>
+						<!-- Mandatory Document Author for DS4P -->
+						<templateId root="2.16.840.1.113883.3.3251.1.2"
+							assigningAuthorityName="HL7 Security" />
+						<time value="20150622" />
+						<assignedAuthor>
+							<!-- Mandatory Document Provenance - assigned author for DS4P -->
+							<templateId root="2.16.840.1.113883.3.3251.1.3"
+								assigningAuthorityName="HL7 Security" />
+							<!-- auhorId -->
+							<id extension="111111" root="2.16.840.1.113883.4.6" />
+							<code code="200000000X" codeSystem="2.16.840.1.113883.6.101"
+								displayName="Allopathic &amp; Osteopathic Physicians" />
+							<addr>
+								<streetAddressLine>2472 Rocky place</streetAddressLine>
+								<city>Beaverton</city>
+								<state>OR</state>
+								<postalCode>97006</postalCode>
+								<country>US</country>
+							</addr>
+							<telecom use="WP" value="tel:+1(555)-555-1002" />
+							<assignedPerson>
+								<!-- AuthorProviderName -->
+								<name>
+									<prefix>Dr.</prefix>
+									<family>Albert</family>
+									<given>Davis</given>
+								</name>
+							</assignedPerson>
+							<!-- added representedOrganization for CCD requirements when we do 
+								NOT have an assignedPerson -db -->
+							<!-- Consol Continuity of Care Document (CCD) (V3) SHALL contain at 
+								least one [1..*] author, where its type is Author (CONF:1198-9442) each SHALL 
+								contain exactly one [1..1] assignedAuthor, where (CONF:1198-9443) assignedAuthor 
+								SHALL contain exactly one [1..1] assignedPerson and/or exactly one [1..1] 
+								representedOrganization (CONF:1198-8456) -->
+							<representedOrganization>
+								<id root="2.16.840.1.113883.19.5" />
+								<name>Neighborhood Physicians Practice</name>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<entry typeCode="COMP">
+						<!-- Privacy Marking Entry to indicate the precise/computable security 
+							obligations and refrains -->
+						<templateId root="2.16.840.1.113883.3.3251.1.9"
+							assigningAuthorityName="HL7 Security" />
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<!-- Privacy Annotations are organized using template "2.16.840.1.113883.3.3251.1.4" -->
+							<templateId root="2.16.840.1.113883.3.3251.1.4"
+								assigningAuthorityName="HL7 Security" />
+							<statusCode code="active" />
+
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Security Observation -->
+									<templateId root="2.16.840.1.113883.3.445.21"
+										assigningAuthorityName="HL7 CBCC" />
+									<!-- Refrain Policy Code template -->
+									<templateId root="2.16.840.1.113883.3.445.23"
+										assigningAuthorityName="HL7 CBCC" />
+									<code code="SECCONOBS"
+										codeSystem="2.16.840.1.113883.1.11.20457"
+										displayName="Security Classification"
+										codeSystemName="HL7 SecurityObservationTypeCodeSystem" />
+									<!-- Value set constraint "2.16.840.1.113883.1.11.20446" -->
+									<!-- old invalid value -dbDS4P -->
+									<!-- <value xsi:type="CE" code="NORDSLCD" codeSystem="2.16.840.1.113883.5.1063" 
+										codeSystemName="SecurityObservationValueCodeSystem" displayName="Prohibition 
+										on redisclosure without patient consent directive"> <originalText>Prohibition 
+										on redisclosure without patient consent directive</originalText> </value> -->
+									<!-- new correct value -db -->
+									<value xsi:type="CE" code="NOAUTH"
+										codeSystem="2.16.840.1.113883.5.1063"
+										codeSystemName="SecurityObservationValue"
+										displayName="Prohibition on redisclosure without patient consent directive">
+										<originalText>Prohibition on redisclosure without patient
+											consent directive</originalText>
+									</value>
+								</observation>
+							</component>
+
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Security Observation -->
+									<templateId root="2.16.840.1.113883.3.445.21"
+										assigningAuthorityName="HL7 CBCC" />
+									<!-- Refrain Policy Code template -->
+									<templateId root="2.16.840.1.113883.3.445.23"
+										assigningAuthorityName="HL7 CBCC" />
+									<code code="SECCONOBS"
+										codeSystem="2.16.840.1.113883.1.11.20457"
+										displayName="Security Classification"
+										codeSystemName="HL7 SecurityObservationTypeCodeSystem" />
+									<!-- Value set constraint "2.16.840.1.113883.1.11.20446" -->
+									<!-- old invalid value -dbDS4P -->
+									<!-- <value xsi:type="CE" code="NORDSLCD" codeSystem="2.16.840.1.113883.5.1063" 
+										codeSystemName="SecurityObservationValueCodeSystem" displayName="Prohibition 
+										on redisclosure without patient consent directive"> <originalText>Prohibition 
+										on redisclosure without patient consent directive</originalText> </value> -->
+									<!-- new correct value -db -->
+									<value xsi:type="CE" code="NOAUTH"
+										codeSystem="2.16.840.1.113883.5.1063"
+										codeSystemName="SecurityObservationValue"
+										displayName="Prohibition on redisclosure without patient consent directive">
+										<originalText>Prohibition on redisclosure without patient
+											consent directive</originalText>
+									</value>
+								</observation>
+							</component>
+
+
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Security Observation -->
+									<templateId root="2.16.840.1.113883.3.445.21"
+										assigningAuthorityName="HL7 CBCC" />
+									<!-- Refrain Policy Code template -->
+									<templateId root="2.16.840.1.113883.3.445.23"
+										assigningAuthorityName="HL7 CBCC" />
+									<code code="SECCONOBS"
+										codeSystem="2.16.840.1.113883.1.11.20457"
+										displayName="Security Classification"
+										codeSystemName="HL7 SecurityObservationTypeCodeSystem" />
+									<!-- Value set constraint "2.16.840.1.113883.1.11.20446" -->
+									<!-- old invalid value -dbDS4P -->
+									<!-- <value xsi:type="CE" code="NORDSLCD" codeSystem="2.16.840.1.113883.5.1063" 
+										codeSystemName="SecurityObservationValueCodeSystem" displayName="Prohibition 
+										on redisclosure without patient consent directive"> <originalText>Prohibition 
+										on redisclosure without patient consent directive</originalText> </value> -->
+									<!-- new correct value -db -->
+									<value xsi:type="CE" code="NOINTEGRATE"
+										codeSystem="2.16.840.1.113883.5.1063"
+										codeSystemName="SecurityObservationValue"
+										displayName="Prohibition on redisclosure without patient consent directive">
+										<originalText>Prohibition on redisclosure without patient
+											consent directive</originalText>
+									</value>
+								</observation>
+							</component>
+
+
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<!-- Security Observation -->
+									<templateId root="2.16.840.1.113883.3.445.21"
+										assigningAuthorityName="HL7 CBCC" />
+									<!-- Refrain Policy Code template -->
+									<templateId root="2.16.840.1.113883.3.445.23"
+										assigningAuthorityName="HL7 CBCC" />
+									<code code="SECCONOBS"
+										codeSystem="2.16.840.1.113883.1.11.20457"
+										displayName="Security Classification"
+										codeSystemName="HL7 SecurityObservationTypeCodeSystem" />
+									<!-- Value set constraint "2.16.840.1.113883.1.11.20446" -->
+									<!-- old invalid value -dbDS4P -->
+									<!-- <value xsi:type="CE" code="NORDSLCD" codeSystem="2.16.840.1.113883.5.1063" 
+										codeSystemName="SecurityObservationValueCodeSystem" displayName="Prohibition 
+										on redisclosure without patient consent directive"> <originalText>Prohibition 
+										on redisclosure without patient consent directive</originalText> </value> -->
+									<!-- new correct value -db -->
+									<value xsi:type="CE" code="NOCOLLECT"
+										codeSystem="2.16.840.1.113883.5.1063"
+										codeSystemName="SecurityObservationValue"
+										displayName="Prohibition on redisclosure without patient consent directive">
+										<originalText>Prohibition on redisclosure without patient
+											consent directive</originalText>
+									</value>
+								</observation>
+							</component>
+
+						</organizer>
+					</entry>
+				</section>
+			</component>
+
+
+
+
+
+
+
+			<component>
+				<section xmlns="urn:hl7-org:v3">
+					<templateId root="2.16.840.1.113883.10.20.22.2.21.1"
+						extension="2015-08-01" />
+					<templateId root="2.16.840.1.113883.10.20.22.2.21" />
+					<templateId root="2.16.840.1.113883.10.20.22.2.21"
+						extension="2015-08-01" />
+					<code code="42348-3" codeSystem="2.16.840.1.113883.6.1"
+						codeSystemName="LOINC" displayName="Advance Directives" />
+					<entry>
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.48"
+								extension="2015-08-01" />
+							<templateId root="2.16.840.1.113883.10.20.22.4.48" />
+							<code codeSystem="2.16.840.1.113883.6.96"
+								codeSystemName="SNOMEDCT" />
+							<statusCode code="completed" />
+						</observation>
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.108"
+								extension="2015-08-01" />
+							<code code="45473-6" codeSystem="2.16.840.1.113883.6.1"
+								codeSystemName="LOINC"
+								displayName="Advance directive - living will" />
+							<statusCode code="completed" />
+						</organizer>
+					</entry>
+				</section>
+			</component>
+
+
+
+
+
+
+		</structuredBody>
+	</component>
+</ClinicalDocument>
