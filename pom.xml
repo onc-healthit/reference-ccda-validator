@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.57</version>
+    <version>1.0.58</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -15,9 +15,9 @@
         <code.validator.version>latestVersion</code.validator.version>
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT properties -->
-        <mdht.models.version>3.0.0.20210210</mdht.models.version>
+        <mdht.models.version>3.0.0.20210720</mdht.models.version>
         <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
-        <mdht.plugins.version>3.0.0.202102100600 </mdht.plugins.version>     
+        <mdht.plugins.version>3.0.0.202107200500</mdht.plugins.version>     
     </properties>
 
     <repositories>
@@ -222,7 +222,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.9.2</version>
+            <version>2.9.10.7</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -255,7 +255,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>            
+            <version>4.13.1</version>            
             <scope>test</scope>          
         </dependency>
     </dependencies>
