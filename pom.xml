@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.58</version>
+    <version>1.0.59-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -265,7 +265,7 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-framework-bom</artifactId>
-                <version>4.2.4.RELEASE</version>
+                <version>4.3.30.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
