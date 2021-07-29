@@ -19,10 +19,8 @@ import org.sitenv.vocabularies.validation.services.VocabularyValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.RequestScope;
 import org.xml.sax.SAXException;
 
-@RequestScope
 @Component
 public class VocabularyCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
     @Value("${referenceccda.configFile}")
