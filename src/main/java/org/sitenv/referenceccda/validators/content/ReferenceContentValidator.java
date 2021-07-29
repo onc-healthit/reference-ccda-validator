@@ -12,14 +12,12 @@ import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.RequestScope;
 import org.xml.sax.SAXException;
 
 
 /**
  * Created by Brian on 8/15/2016.
  */
-@RequestScope
 @Component
 public class ReferenceContentValidator extends BaseCCDAValidator implements CCDAValidator {
     private ContentValidatorService contentValidatorService;
