@@ -1,0 +1,1674 @@
+<ClinicalDocument xmlns="urn:hl7-org:v3">
+  <realmCode code="US" />
+  <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3" />
+  <templateId root="1.2.840.114350.1.72.1.51693" />
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+  <templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01" />
+  <templateId root="2.16.840.1.113883.10.20.22.1.2" />
+  <templateId root="2.16.840.1.113883.10.20.22.1.2" extension="2015-08-01" />
+  <id assigningAuthorityName="EPC" extension="0bb4a6bc-f496-11eb-affe-460231621f93" root="1.2.840.114350.1.13.861.1.7.1.1" />
+  <code code="34133-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Summarization of Episode Note" />
+  <title>Summary of Care</title>
+  <effectiveTime value="20210803150444-0500" />
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" displayName="Normal" />
+  <languageCode code="en-US" />
+  <recordTarget>
+    <patientRole>
+      <id extension="AD18567342" root="1.2.840.114350.1.13.861.1.7.3.688884.100" />
+      <id assigningAuthorityName="Social Security Administration" extension="686700041" root="2.16.840.1.113883.4.1" />
+      <id assigningAuthorityName="EPI" extension="111230" root="1.2.840.114350.1.1" />
+      <addr nullFlavor="UNK" />
+      <telecom nullFlavor="UNK" />
+      <patient>
+        <name use="L">
+          <given>Labs</given>
+          <family>Mjs</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGenderCode" displayName="Female" />
+        <birthTime value="19691231" />
+        <sdtc:deceasedInd value="false" xmlns:sdtc="urn:hl7-org:sdtc" />
+        <maritalStatusCode nullFlavor="UNK" />
+        <raceCode nullFlavor="UNK" />
+        <ethnicGroupCode nullFlavor="UNK" />
+        <languageCommunication>
+          <languageCode nullFlavor="UNK" />
+        </languageCommunication>
+      </patient>
+      <providerOrganization>
+        <id extension="2171717178" root="2.16.840.1.113883.4.6" />
+        <name>WI HARBOR BLUFF HOSPITALS</name>
+        <telecom nullFlavor="NI" />
+        <addr use="WP">
+          <streetAddressLine>1301 TOKAY BLVD</streetAddressLine>
+          <streetAddressLine>SUITE 17</streetAddressLine>
+          <county>DANE</county>
+          <city>MADISON</city>
+          <state>WI</state>
+          <postalCode>53719</postalCode>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <time value="20210803150444-0500" />
+    <assignedAuthor>
+      <id extension="9.8" root="1.2.840.114350.1.1" />
+      <addr nullFlavor="NA" />
+      <telecom nullFlavor="NA" />
+      <assignedAuthoringDevice>
+        <manufacturerModelName>Epic - Version 9.8</manufacturerModelName>
+        <softwareName>Epic - Version 9.8</softwareName>
+      </assignedAuthoringDevice>
+      <representedOrganization>
+        <id extension="2171717178" root="2.16.840.1.113883.4.6" />
+        <name>WI HARBOR BLUFF HOSPITALS</name>
+        <telecom nullFlavor="NI" />
+        <addr use="WP">
+          <streetAddressLine>1301 TOKAY BLVD</streetAddressLine>
+          <streetAddressLine>SUITE 17</streetAddressLine>
+          <county>DANE</county>
+          <city>MADISON</city>
+          <state>WI</state>
+          <postalCode>53719</postalCode>
+        </addr>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="2171717178" root="2.16.840.1.113883.4.6" />
+        <name>WI HARBOR BLUFF HOSPITALS</name>
+        <telecom nullFlavor="NI" />
+        <addr use="WP">
+          <streetAddressLine>1301 TOKAY BLVD</streetAddressLine>
+          <streetAddressLine>SUITE 17</streetAddressLine>
+          <county>DANE</county>
+          <city>MADISON</city>
+          <state>WI</state>
+          <postalCode>53719</postalCode>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <legalAuthenticator>
+    <time value="20210803150444-0500" />
+    <signatureCode code="S" />
+    <assignedEntity>
+      <id extension="14669" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+      <code nullFlavor="UNK" />
+      <addr nullFlavor="UNK" />
+      <telecom use="WP" value="tel:+1-608-777-4373" />
+      <assignedPerson>
+        <name use="L">
+          <given>Steven</given>
+          <family>Fredrickson</family>
+          <suffix qualifier="AC"> MD</suffix>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </legalAuthenticator>
+  <documentationOf typeCode="DOC">
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="20210803" />
+        <high value="20210803" />
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <functionCode code="PCP" codeSystem="2.16.840.1.113883.5.88" codeSystemName="ParticipationFunction" displayName="Primary Care Provider">
+          <originalText>Primary Care Provider</originalText>
+        </functionCode>
+        <time>
+          <low nullFlavor="NI" />
+          <high nullFlavor="PINF" />
+        </time>
+        <assignedEntity nullFlavor="NI">
+          <id nullFlavor="UNK" />
+          <addr nullFlavor="UNK" />
+          <telecom nullFlavor="NA" />
+          <assignedPerson nullFlavor="NA">
+            <name nullFlavor="UNK" />
+          </assignedPerson>
+          <representedOrganization classCode="ORG">
+            <telecom nullFlavor="UNK" />
+            <addr nullFlavor="UNK" />
+          </representedOrganization>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+  <componentOf>
+    <encompassingEncounter>
+      <id extension="10001614493" root="1.2.840.114350.1.13.861.1.7.3.698084.8" />
+      <code code="AMB" codeSystem="2.16.840.1.113883.5.4" displayName="Ambulatory">
+        <originalText>Office Visit</originalText>
+        <translation code="4" codeSystem="1.2.840.114350.1.72.1.30.1" />
+      </code>
+      <effectiveTime value="20210803" />
+      <responsibleParty>
+        <assignedEntity>
+          <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+          <addr use="WP">
+            <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+            <city nullFlavor="UNK" />
+            <state nullFlavor="UNK" />
+            <postalCode nullFlavor="UNK" />
+          </addr>
+          <telecom nullFlavor="NA" />
+          <assignedPerson>
+            <name>
+              <given>Beckyyy</given>
+              <family>Graveen</family>
+            </name>
+          </assignedPerson>
+          <representedOrganization>
+            <name>WI HARBOR BLUFF HOSPITALS</name>
+          </representedOrganization>
+        </assignedEntity>
+      </responsibleParty>
+      <encounterParticipant typeCode="ATND">
+        <time value="20210803" />
+        <assignedEntity>
+          <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+          <code nullFlavor="OTH">
+            <originalText>Family Practice</originalText>
+            <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+          </code>
+          <addr use="WP">
+            <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+            <city nullFlavor="UNK" />
+            <state nullFlavor="UNK" />
+            <postalCode nullFlavor="UNK" />
+          </addr>
+          <telecom nullFlavor="UNK" />
+          <assignedPerson>
+            <name use="L">
+              <given>Beckyyy</given>
+              <family>Graveen</family>
+              <suffix qualifier="AC"> MD</suffix>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </encounterParticipant>
+      <location>
+        <healthCareFacility>
+          <id extension="1185" root="1.2.840.114350.1.13.861.1.7.2.686980" />
+          <code nullFlavor="UNK">
+            <originalText>Family Practice</originalText>
+            <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4150" codeSystemName="Epic.DepartmentSpecialty" displayName="Family Medicine" />
+          </code>
+          <location>
+            <name>WI Harbor Bluff North Family Practice</name>
+            <addr nullFlavor="UNK" />
+          </location>
+          <serviceProviderOrganization>
+            <id extension="20" root="1.2.840.114350.1.13.861.1.7.2.696570" />
+            <name>WI HARBOR BLUFF NORTH</name>
+            <addr nullFlavor="UNK" />
+            <asOrganizationPartOf>
+              <wholeOrganization>
+                <name>WI HARBOR BLUFF HOSPITALS</name>
+                <addr nullFlavor="NA" />
+              </wholeOrganization>
+            </asOrganizationPartOf>
+          </serviceProviderOrganization>
+        </healthCareFacility>
+      </location>
+    </encompassingEncounter>
+  </componentOf>
+  <component>
+    <structuredBody>
+      <component>
+        <section>
+          <code code="X-DOCCMT" codeSystem="1.2.840.114350.1.72.2" displayName="Document Comments" />
+          <title>Source Comments</title>
+          <text>Hello please see this very nice document.<footnote>Current Development Environment (CDE)</footnote></text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1" />
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1" extension="2014-06-09" />
+          <code code="42349-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="REASON FOR REFERRAL" />
+          <title>Reason for Referral</title>
+          <text>
+            <list>
+              <item>
+                <caption>Consultation - New Request</caption>
+                <table>
+                  <colgroup>
+                    <col span="4" width="25%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Specialty</th>
+                      <th>Diagnoses / Procedures</th>
+                      <th>Referred By Contact</th>
+                      <th>Referred To Contact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Lab</td>
+                      <td>
+                        <paragraph styleCode="xcellHeader">Procedures</paragraph>
+                        <paragraph>PROTHROMBIN</paragraph>
+                      </td>
+                      <td>
+                        <paragraph>Graveen, Beckyyy, MD</paragraph>
+                        <paragraph>IC S1 Cypher North Metro</paragraph>
+                      </td>
+                      <td>
+                        <paragraph />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col width="13%" />
+                    <col width="12%" />
+                    <col width="25%" />
+                    <col width="13%" />
+                    <col width="12%" />
+                    <col width="13%" />
+                    <col width="12%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Referral ID</th>
+                      <th>Status</th>
+                      <th>Reason</th>
+                      <th>Start Date</th>
+                      <th>Expiration Date</th>
+                      <th>Visits Requested</th>
+                      <th>Visits Authorized</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1000281854</td>
+                      <td styleCode="xflagData">New Request</td>
+                      <td>
+                        <paragraph>Service Not Available at Clinic</paragraph>
+                      </td>
+                      <td>8/3/2021</td>
+                      <td />
+                      <td>4</td>
+                      <td>4</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br />
+                <paragraph styleCode="xLabel">Electronically signed by Beckyyy Graveen MD at 08/03/2021  2:21 PM CDT</paragraph>
+              </item>
+              <item>
+                <caption>Consultation - New Request</caption>
+                <table>
+                  <colgroup>
+                    <col span="4" width="25%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Specialty</th>
+                      <th>Diagnoses / Procedures</th>
+                      <th>Referred By Contact</th>
+                      <th>Referred To Contact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Lab</td>
+                      <td>
+                        <paragraph styleCode="xcellHeader">Procedures</paragraph>
+                        <paragraph>ANTINUCLEAR ANTIBODIES TITER</paragraph>
+                      </td>
+                      <td>
+                        <paragraph>Graveen, Beckyyy, MD</paragraph>
+                        <paragraph>IC S1 Cypher North Metro</paragraph>
+                      </td>
+                      <td>
+                        <paragraph />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col width="13%" />
+                    <col width="12%" />
+                    <col width="25%" />
+                    <col width="13%" />
+                    <col width="12%" />
+                    <col width="13%" />
+                    <col width="12%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Referral ID</th>
+                      <th>Status</th>
+                      <th>Reason</th>
+                      <th>Start Date</th>
+                      <th>Expiration Date</th>
+                      <th>Visits Requested</th>
+                      <th>Visits Authorized</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1000281853</td>
+                      <td styleCode="xflagData">New Request</td>
+                      <td>
+                        <paragraph>Service Not Available at Clinic</paragraph>
+                      </td>
+                      <td>8/3/2021</td>
+                      <td />
+                      <td>4</td>
+                      <td>4</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br />
+                <paragraph styleCode="xLabel">Electronically signed by Beckyyy Graveen MD at 08/03/2021  2:21 PM CDT</paragraph>
+              </item>
+            </list>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.22" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.22" extension="2015-08-01" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.22.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.22.1" extension="2015-08-01" />
+          <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Hospitalizations+Outpatient visits Narrative" />
+          <title>Encounter Details</title>
+          <text>
+            <table>
+              <colgroup>
+                <col width="10%" />
+                <col width="15%" />
+                <col span="3" width="25%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>Department</th>
+                  <th>Care Team</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="encounter4" styleCode="xRowNormal">
+                  <td>08/03/2021</td>
+                  <td ID="encounter4type">Office Visit</td>
+                  <td>
+                    <paragraph>WI Harbor Bluff North Family Practice</paragraph>
+                  </td>
+                  <td>
+                    <paragraph styleCode="Bold">Graveen, Beckyyy, MD</paragraph>
+                    <paragraph>IC S1 Cypher North Metro</paragraph>
+                  </td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <encounter classCode="ENC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.49" extension="2015-08-01" />
+              <id assigningAuthorityName="EPIC" extension="10001614493" root="1.2.840.114350.1.13.861.1.7.3.698084.8" />
+              <code code="AMB" codeSystem="2.16.840.1.113883.5.4">
+                <originalText>
+                  <reference value="#encounter4type" />
+                </originalText>
+                <translation code="101" codeSystem="1.2.840.114350.1.13.861.1.7.4.698084.30" codeSystemName="Epic.EncounterType" />
+                <translation code="101" codeSystem="1.2.840.114350.1.72.1.30" />
+                <translation code="4" codeSystem="1.2.840.114350.1.72.1.30.1" />
+              </code>
+              <text>
+                <reference value="#encounter4" />
+              </text>
+              <statusCode code="normal" />
+              <effectiveTime value="20210803" />
+              <performer typeCode="PRF">
+                <time>
+                  <low nullFlavor="UNK" />
+                  <high nullFlavor="UNK" />
+                </time>
+                <assignedEntity classCode="ASSIGNED">
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <code nullFlavor="OTH">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+                  </code>
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <assignedPerson>
+                    <name>
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC">MD</suffix>
+                    </name>
+                  </assignedPerson>
+                  <representedOrganization classCode="ORG">
+                    <name>Current Development Environment (CDE)</name>
+                    <addr use="WP">
+                      <streetAddressLine>600 East Bannimer Ave</streetAddressLine>
+                      <county>LOS ANGELE</county>
+                      <city>ENCINO</city>
+                      <state>CA</state>
+                      <postalCode>53703</postalCode>
+                      <country>USA</country>
+                    </addr>
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.32" />
+                  <id extension="1185" root="1.2.840.114350.1.13.861.1.7.2.686980" />
+                  <code nullFlavor="UNK">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4150" codeSystemName="Epic.DepartmentSpecialty" displayName="Family Medicine" />
+                  </code>
+                  <addr nullFlavor="UNK" />
+                  <playingEntity classCode="PLC">
+                    <name>WI Harbor Bluff North Family Practice</name>
+                    <desc>Family Practice</desc>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+            </encounter>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.6" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.6" extension="2015-08-01" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.6.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01" />
+          <id root="0BD5BAC8-F496-11EB-AFFE-460231621F93" />
+          <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies and adverse reactions Document" />
+          <title>Allergies</title>
+          <text>
+            <content ID="nof6">Not on File</content>
+            <footnote ID="subTitle5" styleCode="xSectionSubTitle">documented as of this encounter (statuses as of 08/03/2021)</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.1" extension="2014-06-09" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.1.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.1.1" extension="2014-06-09" />
+          <id root="0BDF5196-F496-11EB-AFFE-460231621F93" />
+          <code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Medication use Narrative" />
+          <title>Medications</title>
+          <text>
+            <content styleCode="xAlert">Please verify all current medications with the patient. </content>
+            <br />
+            <br />
+            <content ID="nof8">Not on file</content>
+            <footnote ID="subTitle7" styleCode="xSectionSubTitle">documented as of this encounter (statuses as of 08/03/2021)</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.5" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.5" extension="2015-08-01" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1" extension="2015-08-01" />
+          <id root="0BE26BBA-F496-11EB-AFFE-460231621F93" />
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem list - Reported" />
+          <title>Active Problems</title>
+          <text>
+            <paragraph ID="nof10">Not on file</paragraph>
+            <footnote ID="subTitle9" styleCode="xSectionSubTitle">documented as of this encounter (statuses as of 08/03/2021)</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.2" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.2" extension="2015-08-01" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.2.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.2.1" extension="2015-08-01" />
+          <id root="0BE54B64-F496-11EB-AFFE-460231621F93" />
+          <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Immunization Narrative" />
+          <title>Immunizations</title>
+          <text>
+            <content ID="nof13">Not on file</content>
+            <footnote ID="subTitle12" styleCode="xSectionSubTitle">documented as of this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.17" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.17" extension="2015-08-01" />
+          <code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Social history Narrative" />
+          <title>Social History</title>
+          <text>
+            <table ID="sochist16">
+              <caption>Smoking Status as of 02/22/2021</caption>
+              <colgroup>
+                <col span="2" width="25%" />
+                <col width="13%" />
+                <col width="12%" />
+                <col width="25%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Tobacco Use</th>
+                  <th>Types</th>
+                  <th>Packs/Day</th>
+                  <th>Years Used</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Never Assessed</td>
+                  <td />
+                  <td ID="sochist16packsperday" />
+                  <td />
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+            <table ID="sochist17">
+              <caption>Smoking Status as of 02/17/2021</caption>
+              <colgroup>
+                <col span="2" width="25%" />
+                <col width="13%" />
+                <col width="12%" />
+                <col width="25%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Tobacco Use</th>
+                  <th>Types</th>
+                  <th>Packs/Day</th>
+                  <th>Years Used</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Never Assessed</td>
+                  <td />
+                  <td ID="sochist17packsperday" />
+                  <td />
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+            <table>
+              <colgroup>
+                <col width="25%" />
+                <col width="75%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Sex Assigned at Birth</th>
+                  <th>Date Recorded</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="BirthSex18">
+                  <td ID="BirthSex18Value">Not on file</td>
+                  <td />
+                </tr>
+              </tbody>
+            </table>
+            <footnote ID="subTitle15" styleCode="xSectionSubTitle">documented as of this encounter</footnote>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.78" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.78" extension="2014-06-09" />
+              <id extension="Z13641^^72166-2" root="1.2.840.114350.1.13.861.1.7.1.1040.1" />
+              <code code="72166-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Tobacco smoking status NHIS" />
+              <text>
+                <reference value="#sochist16" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime nullFlavor="UNK" />
+              <value code="266927001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Tobacco smoking consumption unknown" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.200" extension="2016-06-01" />
+              <id extension="Z13641" root="1.2.840.114350.1.13.861.1.7.1.1040.20" />
+              <code code="76689-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Sex Assigned At Birth" />
+              <text>
+                <reference value="#BirthSex18" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime value="19691231" />
+              <value codeSystem="2.16.840.1.113883.5.1" xsi:type="CD" nullFlavor="UNK" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <originalText>
+                  <reference value="#BirthSex18Value" />
+                </originalText>
+              </value>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.4" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.4" extension="2015-08-01" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.4.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.4.1" extension="2015-08-01" />
+          <code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital signs" />
+          <title>Last Filed Vital Signs</title>
+          <text>
+            <content ID="nof20">Not on file</content>
+            <footnote ID="subTitle19" styleCode="xSectionSubTitle">documented in this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.14" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.14" extension="2014-06-09" />
+          <code code="47420-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Functional Status" />
+          <title>Functional Status</title>
+          <text>
+            <content ID="nof23">Not on file</content>
+            <footnote ID="subTitle22" styleCode="xSectionSubTitle">documented as of this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.45" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.45" extension="2014-06-09" />
+          <id root="0C1703AC-F496-11EB-AFFE-460231621F93" />
+          <code code="69730-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Instructions" />
+          <title>Patient Instructions</title>
+          <text>
+            <content ID="Instructions26">Not on file</content>
+            <footnote ID="subTitle25" styleCode="xSectionSubTitle">documented in this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.10" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.10" extension="2014-06-09" />
+          <code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Plan of care note" />
+          <title>Plan of Treatment</title>
+          <text>
+            <paragraph>Not on file</paragraph>
+            <footnote ID="subTitle35" styleCode="xSectionSubTitle">documented as of this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.60" />
+          <code code="61146-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Goals" />
+          <title>Goals</title>
+          <text>
+            <content ID="nof38">Not on file</content>
+            <footnote ID="subTitle37" styleCode="xSectionSubTitle">documented as of this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.23" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.23" extension="2014-06-09" />
+          <code code="46264-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of medical device use" />
+          <title>Medical Devices</title>
+          <text>
+            <content ID="nof40">Not on file</content>
+            <footnote ID="subTitle39" styleCode="xSectionSubTitle">documented as of this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.7" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.7" extension="2014-06-09" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.7.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.7.1" extension="2014-06-09" />
+          <id root="0C397EA0-F496-11EB-AFFE-460231621F93" />
+          <code code="47519-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Procedures Document" />
+          <title>Procedures</title>
+          <text>
+            <table>
+              <colgroup>
+                <col width="25%" />
+                <col width="10%" />
+                <col width="15%" />
+                <col span="2" width="25%" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Procedure Name</th>
+                  <th>Priority</th>
+                  <th>Date/Time</th>
+                  <th>Associated Diagnosis</th>
+                  <th>Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ID="procedure44" styleCode="xRowNormal">
+                  <td>
+                    <content ID="procedure44name">QA CBC WITH DIFF PANEL</content>
+                  </td>
+                  <td>Routine</td>
+                  <td>08/03/2021  2:24 PM CDT</td>
+                  <td />
+                  <td>
+                    <paragraph styleCode="Bold">Results for this procedure are in the <content styleCode="xLink2-Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816">results section</content>.</paragraph>
+                  </td>
+                </tr>
+                <tr ID="procedure42" styleCode="xRowAlt">
+                  <td>
+                    <content ID="procedure42name">ANTINUCLEAR ANTIBODIES TITER</content>
+                  </td>
+                  <td>Routine</td>
+                  <td>08/03/2021  2:23 PM CDT</td>
+                  <td />
+                  <td>
+                    <paragraph styleCode="Bold">Results for this procedure are in the <content styleCode="xLink2-Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817">results section</content>.</paragraph>
+                  </td>
+                </tr>
+                <tr ID="procedure43" styleCode="xRowNormal">
+                  <td>
+                    <content ID="procedure43name">PROTHROMBIN</content>
+                  </td>
+                  <td>Routine</td>
+                  <td>08/03/2021  2:22 PM CDT</td>
+                  <td />
+                  <td>
+                    <paragraph styleCode="Bold">Results for this procedure are in the <content styleCode="xLink2-Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819">results section</content>.</paragraph>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <footnote ID="subTitle41" styleCode="xSectionSubTitle">documented in this encounter</footnote>
+          </text>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09" />
+              <id extension="1012356817^" root="1.2.840.114350.1.13.861.1.7.1.1988.1" />
+              <code code="86039" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4">
+                <originalText>ANTINUCLEAR ANTIBODIES TITER<reference value="#procedure42name" /></originalText>
+              </code>
+              <text>
+                <reference value="#procedure42" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime value="20210803192300+0000" />
+              <performer typeCode="PRF">
+                <assignedEntity classCode="ASSIGNED">
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <code nullFlavor="OTH">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+                  </code>
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <assignedPerson>
+                    <name>
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC">MD</suffix>
+                    </name>
+                  </assignedPerson>
+                  <representedOrganization classCode="ORG">
+                    <name nullFlavor="UNK" />
+                    <telecom nullFlavor="UNK" />
+                    <addr nullFlavor="UNK" />
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <templateId root="2.16.840.1.113883.10.20.22.5.6" extension="2019-10-01" />
+                <time value="20210803142115-0500" />
+                <assignedAuthor>
+                  <id extension="535732960" root="1.2.840.114350.1.13.861.1.7.1.1133" />
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <id root="2.16.840.1.113883.4.6" nullFlavor="UNK" />
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <assignedPerson>
+                    <name use="L">
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC"> MD</suffix>
+                    </name>
+                  </assignedPerson>
+                  <representedOrganization>
+                    <id extension="2171717178" root="2.16.840.1.113883.4.6" />
+                    <id root="2.16.840.1.113883.4.2" nullFlavor="UNK" />
+                    <name>WI HARBOR BLUFF HOSPITALS</name>
+                    <addr use="WP">
+                      <streetAddressLine>1301 TOKAY BLVD</streetAddressLine>
+                      <streetAddressLine>SUITE 17</streetAddressLine>
+                      <county>DANE</county>
+                      <city>MADISON</city>
+                      <state>WI</state>
+                      <postalCode>53719</postalCode>
+                    </addr>
+                  </representedOrganization>
+                </assignedAuthor>
+              </author>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09" />
+              <id extension="1012356819^" root="1.2.840.114350.1.13.861.1.7.1.1988.1" />
+              <code code="85610" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4">
+                <originalText>PROTHROMBIN<reference value="#procedure43name" /></originalText>
+              </code>
+              <text>
+                <reference value="#procedure43" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime value="20210803192200+0000" />
+              <performer typeCode="PRF">
+                <assignedEntity classCode="ASSIGNED">
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <code nullFlavor="OTH">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+                  </code>
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <assignedPerson>
+                    <name>
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC">MD</suffix>
+                    </name>
+                  </assignedPerson>
+                  <representedOrganization classCode="ORG">
+                    <name nullFlavor="UNK" />
+                    <telecom nullFlavor="UNK" />
+                    <addr nullFlavor="UNK" />
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <templateId root="2.16.840.1.113883.10.20.22.5.6" extension="2019-10-01" />
+                <time value="20210803142115-0500" />
+                <assignedAuthor>
+                  <id extension="535732960" root="1.2.840.114350.1.13.861.1.7.1.1133" />
+                </assignedAuthor>
+              </author>
+            </procedure>
+          </entry>
+          <entry>
+            <procedure classCode="PROC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.14" extension="2014-06-09" />
+              <id extension="1012356816^" root="1.2.840.114350.1.13.861.1.7.1.1988.1" />
+              <code code="517216" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4">
+                <originalText>QA CBC WITH DIFF PANEL<reference value="#procedure44name" /></originalText>
+              </code>
+              <text>
+                <reference value="#procedure44" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime value="20210803192400+0000" />
+              <performer typeCode="PRF">
+                <assignedEntity classCode="ASSIGNED">
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <code nullFlavor="OTH">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+                  </code>
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <assignedPerson>
+                    <name>
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC">MD</suffix>
+                    </name>
+                  </assignedPerson>
+                  <representedOrganization classCode="ORG">
+                    <name nullFlavor="UNK" />
+                    <telecom nullFlavor="UNK" />
+                    <addr nullFlavor="UNK" />
+                  </representedOrganization>
+                </assignedEntity>
+              </performer>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <templateId root="2.16.840.1.113883.10.20.22.5.6" extension="2019-10-01" />
+                <time value="20210803142115-0500" />
+                <assignedAuthor>
+                  <id extension="535732960" root="1.2.840.114350.1.13.861.1.7.1.1133" />
+                </assignedAuthor>
+              </author>
+            </procedure>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.3" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.3" extension="2015-08-01" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.3.1" extension="2015-08-01" />
+          <id root="0C4C0FD4-F496-11EB-AFFE-460231621F93" />
+          <code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Relevant diagnostic tests/laboratory data Narrative" />
+          <title>Results</title>
+          <text>
+            <list styleCode="xTOC">
+              <item ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816">
+                <caption ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816.Procedure">QA CBC WITH DIFF PANEL (08/03/2021  2:24 PM CDT)</caption>
+                <table>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="12%" />
+                    <col width="8%" />
+                    <col width="20%" />
+                    <col span="2" width="10%" />
+                    <col width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Component</th>
+                      <th>Value</th>
+                      <th>Ref Range</th>
+                      <th>Test Method</th>
+                      <th>Analysis Time</th>
+                      <th>Performed At</th>
+                      <th>Pathologist Signature</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816.Comp1" styleCode="xRowNormal">
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816.Comp1Name">PHX GLOMERULI COUNT</td>
+                      <td>8,142-8,588</td>
+                      <td>7,000 - 9,000</td>
+                      <td />
+                      <td />
+                      <td />
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816.Comp1Signature" />
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col span="5" width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Specimen (Source)</th>
+                      <th>Anatomical Location / Laterality</th>
+                      <th>Collection Method / Volume</th>
+                      <th>Collection Time</th>
+                      <th>Received Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr styleCode="xRowNormal">
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816.Specimen">Blood - EDTA (Artery)</td>
+                      <td />
+                      <td />
+                      <td>08/03/2021  2:24 PM CDT</td>
+                      <td />
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="80%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Authorizing Provider</th>
+                      <th>Result Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Beckyyy Graveen MD</td>
+                      <td>LABORATORY</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </item>
+              <item ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817">
+                <caption ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817.Procedure">ANTINUCLEAR ANTIBODIES TITER (08/03/2021  2:23 PM CDT)</caption>
+                <table>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="12%" />
+                    <col width="8%" />
+                    <col width="20%" />
+                    <col span="2" width="10%" />
+                    <col width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Component</th>
+                      <th>Value</th>
+                      <th>Ref Range</th>
+                      <th>Test Method</th>
+                      <th>Analysis Time</th>
+                      <th>Performed At</th>
+                      <th>Pathologist Signature</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817.Comp1" styleCode="xRowNormal">
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817.Comp1Name">PHX ANTI-A TITER</td>
+                      <td>1:60</td>
+                      <td>1:40 - 1:160</td>
+                      <td />
+                      <td />
+                      <td />
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817.Comp1Signature" />
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col span="5" width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Specimen (Source)</th>
+                      <th>Anatomical Location / Laterality</th>
+                      <th>Collection Method / Volume</th>
+                      <th>Collection Time</th>
+                      <th>Received Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr styleCode="xRowNormal">
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817.Specimen" />
+                      <td />
+                      <td />
+                      <td>08/03/2021  2:23 PM CDT</td>
+                      <td />
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="80%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Authorizing Provider</th>
+                      <th>Result Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Beckyyy Graveen MD</td>
+                      <td>LABORATORY</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </item>
+              <item ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819">
+                <caption ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819.Procedure">PROTHROMBIN (08/03/2021  2:22 PM CDT)</caption>
+                <table>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="12%" />
+                    <col width="8%" />
+                    <col width="20%" />
+                    <col span="2" width="10%" />
+                    <col width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Component</th>
+                      <th>Value</th>
+                      <th>Ref Range</th>
+                      <th>Test Method</th>
+                      <th>Analysis Time</th>
+                      <th>Performed At</th>
+                      <th>Pathologist Signature</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819.Comp1" styleCode="xRowNormal">
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819.Comp1Name">INR</td>
+                      <td>1.0</td>
+                      <td>0.9 - 1.2</td>
+                      <td />
+                      <td />
+                      <td />
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819.Comp1Signature" />
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col span="5" width="20%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Specimen (Source)</th>
+                      <th>Anatomical Location / Laterality</th>
+                      <th>Collection Method / Volume</th>
+                      <th>Collection Time</th>
+                      <th>Received Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr styleCode="xRowNormal">
+                      <td ID="Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819.Specimen" />
+                      <td />
+                      <td />
+                      <td>08/03/2021  2:22 PM CDT</td>
+                      <td />
+                    </tr>
+                  </tbody>
+                </table>
+                <table>
+                  <colgroup>
+                    <col width="20%" />
+                    <col width="80%" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>Authorizing Provider</th>
+                      <th>Result Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Beckyyy Graveen MD</td>
+                      <td>LABORATORY</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </item>
+            </list>
+            <footnote ID="subTitle45" styleCode="xSectionSubTitle">documented in this encounter</footnote>
+          </text>
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01" />
+              <id extension="1012356819" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+              <code code="85610" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4">
+                <originalText>PROTHROMBIN</originalText>
+              </code>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20210803192200+0000" />
+                <high value="20210803192200+0000" />
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <templateId root="2.16.840.1.113883.10.20.22.5.6" extension="2019-10-01" />
+                <time value="20210803142255-0500" />
+                <assignedAuthor>
+                  <id extension="371897458" root="1.2.840.114350.1.13.861.1.7.1.1133" />
+                  <id extension="23855000" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <id root="2.16.840.1.113883.4.6" nullFlavor="UNK" />
+                  <addr use="WP">
+                    <streetAddressLine>1979 Milky Way</streetAddressLine>
+                    <streetAddressLine>Barn-3126 (Local)</streetAddressLine>
+                    <county>DANE</county>
+                    <city>Verona</city>
+                    <state>WI</state>
+                    <postalCode>53593</postalCode>
+                    <country>USA</country>
+                  </addr>
+                  <telecom use="WP" value="tel:+1-608-777-4189" />
+                  <assignedPerson>
+                    <name use="L">
+                      <given>Jodi</given>
+                      <family>Visiter</family>
+                      <suffix qualifier="AC"> MD</suffix>
+                    </name>
+                  </assignedPerson>
+                  <representedOrganization>
+                    <id extension="2171717178" root="2.16.840.1.113883.4.6" />
+                    <id root="2.16.840.1.113883.4.2" nullFlavor="UNK" />
+                    <name>WI HARBOR BLUFF HOSPITALS</name>
+                    <addr use="WP">
+                      <streetAddressLine>1301 TOKAY BLVD</streetAddressLine>
+                      <streetAddressLine>SUITE 17</streetAddressLine>
+                      <county>DANE</county>
+                      <city>MADISON</city>
+                      <state>WI</state>
+                      <postalCode>53719</postalCode>
+                    </addr>
+                  </representedOrganization>
+                </assignedAuthor>
+              </author>
+              <informant>
+                <assignedEntity>
+                  <id extension="urn:epic:cec.cde" root="1.2.840.114350.1.13.861.1.7.3.688879.110" />
+                  <representedOrganization>
+                    <name>Current Development Environment (CDE)</name>
+                  </representedOrganization>
+                </assignedEntity>
+              </informant>
+              <participant typeCode="RESP">
+                <participantRole classCode="PROV">
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <code nullFlavor="UNK">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+                  </code>
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <playingEntity classCode="PSN">
+                    <name use="L">
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC"> MD</suffix>
+                    </name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <component>
+                <procedure classCode="PROC" moodCode="EVN">
+                  <code code="17636008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Specimen collection (procedure)" />
+                  <effectiveTime value="20210803192200+0000" />
+                  <targetSiteCode nullFlavor="UNK" />
+                  <participant typeCode="PRD">
+                    <templateId root="1.2.840.114350.1.72.3.12" />
+                    <participantRole classCode="SPEC">
+                      <id extension="1012356819" root="1.2.840.114350.1.13.861.1.7.7.798268.300" />
+                      <playingEntity>
+                        <code nullFlavor="UNK" />
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </procedure>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id extension="1012356819.1" root="1.2.840.114350.1.13.861.1.7.6.798268.2000" />
+                  <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" nullFlavor="UNK">
+                    <originalText>INR<reference value="#Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819.Comp1Name" /></originalText>
+                    <translation code="51277" codeSystem="1.2.840.114350.1.13.861.1.7.2.768282" codeSystemName="Epic.LRR.ID" displayName="INR" />
+                  </code>
+                  <text>
+                    <reference value="#Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356819.Comp1" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192200+0000" />
+                  <value xsi:type="REAL" value="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                  <referenceRange>
+                    <observationRange>
+                      <text>0.9 - 1.2</text>
+                      <!-- IVL_REAL not recognized! -->
+                      <value xsi:type="IVL_REAL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <low value="0.9" />
+                        <high value="1.2" />
+                      </value>
+                      <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" />
+                    </observationRange>
+                  </referenceRange>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="1.2.840.114350.1.72.3.4" />
+                  <id extension="1012356819" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+                  <code nullFlavor="UNK" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192200+0000" />
+                  <value code="16" codeSystem="1.2.840.114350.1.72.1.5007" codeSystemName="Epic.Result.Type" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id extension="1012356819" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+                  <code nullFlavor="UNK" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192200+0000" />
+                  <value xsi:type="ST" nullFlavor="NA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01" />
+              <id extension="1012356817" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+              <code code="86039" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4">
+                <originalText>ANTINUCLEAR ANTIBODIES TITER</originalText>
+              </code>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20210803192300+0000" />
+                <high value="20210803192300+0000" />
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <templateId root="2.16.840.1.113883.10.20.22.5.6" extension="2019-10-01" />
+                <time value="20210803142401-0500" />
+                <assignedAuthor>
+                  <id extension="371897458" root="1.2.840.114350.1.13.861.1.7.1.1133" />
+                </assignedAuthor>
+              </author>
+              <informant>
+                <assignedEntity>
+                  <id extension="urn:epic:cec.cde" root="1.2.840.114350.1.13.861.1.7.3.688879.110" />
+                  <representedOrganization>
+                    <name>Current Development Environment (CDE)</name>
+                  </representedOrganization>
+                </assignedEntity>
+              </informant>
+              <participant typeCode="RESP">
+                <participantRole classCode="PROV">
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <code nullFlavor="UNK">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+                  </code>
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <playingEntity classCode="PSN">
+                    <name use="L">
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC"> MD</suffix>
+                    </name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <component>
+                <procedure classCode="PROC" moodCode="EVN">
+                  <code code="17636008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Specimen collection (procedure)" />
+                  <effectiveTime value="20210803192300+0000" />
+                  <targetSiteCode nullFlavor="UNK" />
+                  <participant typeCode="PRD">
+                    <templateId root="1.2.840.114350.1.72.3.12" />
+                    <participantRole classCode="SPEC">
+                      <id extension="1012356817" root="1.2.840.114350.1.13.861.1.7.7.798268.300" />
+                      <playingEntity>
+                        <code nullFlavor="UNK" />
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </procedure>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id extension="1012356817.1" root="1.2.840.114350.1.13.861.1.7.6.798268.2000" />
+                  <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" nullFlavor="UNK">
+                    <originalText>PHX ANTI-A TITER<reference value="#Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817.Comp1Name" /></originalText>
+                    <translation code="710002" codeSystem="1.2.840.114350.1.13.861.1.7.2.768282" codeSystemName="Epic.LRR.ID" displayName="PHX ANTI-A TITER" />
+                  </code>
+                  <text>
+                    <reference value="#Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356817.Comp1" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192300+0000" />
+                  <value xsi:type="RTO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <numerator xsi:type="REAL" value="1" />
+                    <denominator xsi:type="REAL" value="60" />
+                  </value>
+                  <referenceRange>
+                    <observationRange>
+                      <text>1:40 - 1:160</text>
+                      <value xsi:type="RTO" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <numerator xsi:type="REAL" value="1" />
+                        <!-- IVL_REAL not recognized! -->
+                        <denominator xsi:type="IVL_REAL">
+                          <low value="40" />
+                          <high value="160" />
+                        </denominator>
+                      </value>
+                      <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" />
+                    </observationRange>
+                  </referenceRange>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="1.2.840.114350.1.72.3.4" />
+                  <id extension="1012356817" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+                  <code nullFlavor="UNK" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192300+0000" />
+                  <value code="16" codeSystem="1.2.840.114350.1.72.1.5007" codeSystemName="Epic.Result.Type" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id extension="1012356817" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+                  <code nullFlavor="UNK" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192300+0000" />
+                  <value xsi:type="ST" nullFlavor="NA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+          <entry typeCode="DRIV">
+            <organizer classCode="BATTERY" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+              <templateId root="2.16.840.1.113883.10.20.22.4.1" extension="2015-08-01" />
+              <id extension="1012356816" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+              <code code="517216" codeSystem="2.16.840.1.113883.6.12" codeSystemName="CPT-4">
+                <originalText>QA CBC WITH DIFF PANEL</originalText>
+              </code>
+              <statusCode code="completed" />
+              <effectiveTime>
+                <low value="20210803192400+0000" />
+                <high value="20210803192400+0000" />
+              </effectiveTime>
+              <author>
+                <templateId root="2.16.840.1.113883.10.20.22.4.119" />
+                <templateId root="2.16.840.1.113883.10.20.22.5.6" extension="2019-10-01" />
+                <time value="20210803143106-0500" />
+                <assignedAuthor>
+                  <id extension="371897458" root="1.2.840.114350.1.13.861.1.7.1.1133" />
+                </assignedAuthor>
+              </author>
+              <informant>
+                <assignedEntity>
+                  <id extension="urn:epic:cec.cde" root="1.2.840.114350.1.13.861.1.7.3.688879.110" />
+                  <representedOrganization>
+                    <name>Current Development Environment (CDE)</name>
+                  </representedOrganization>
+                </assignedEntity>
+              </informant>
+              <participant typeCode="RESP">
+                <participantRole classCode="PROV">
+                  <id extension="5114" root="1.2.840.114350.1.13.861.1.7.2.836982" />
+                  <code nullFlavor="UNK">
+                    <originalText>Family Practice</originalText>
+                    <translation code="19" codeSystem="1.2.840.114350.1.72.1.7.7.10.688867.4160" codeSystemName="Epic.DXC.StandardProviderSpecialtyType" displayName="Family Medicine" />
+                  </code>
+                  <addr use="WP">
+                    <streetAddressLine>IC S1 Cypher North Metro</streetAddressLine>
+                    <city nullFlavor="UNK" />
+                    <state nullFlavor="UNK" />
+                    <postalCode nullFlavor="UNK" />
+                  </addr>
+                  <telecom nullFlavor="UNK" />
+                  <playingEntity classCode="PSN">
+                    <name use="L">
+                      <given>Beckyyy</given>
+                      <family>Graveen</family>
+                      <suffix qualifier="AC"> MD</suffix>
+                    </name>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <component>
+                <procedure classCode="PROC" moodCode="EVN">
+                  <code code="17636008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Specimen collection (procedure)" />
+                  <effectiveTime value="20210803192400+0000" />
+                  <targetSiteCode code="73" codeSystem="1.2.840.114350.1.13.861.1.7.4.798268.325" codeSystemName="Epic.Specimen">
+                    <originalText>Artery</originalText>
+                  </targetSiteCode>
+                  <participant typeCode="PRD">
+                    <templateId root="1.2.840.114350.1.72.3.12" />
+                    <participantRole classCode="SPEC">
+                      <id extension="1012356816" root="1.2.840.114350.1.13.861.1.7.7.798268.300" />
+                      <playingEntity>
+                        <code code="445295009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                          <originalText>Blood - EDTA</originalText>
+                          <translation code="73" codeSystem="1.2.840.114350.1.13.861.1.7.4.798268.300" codeSystemName="Epic.Specimen" displayName="Blood - EDTA" />
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                </procedure>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id extension="1012356816.1" root="1.2.840.114350.1.13.861.1.7.6.798268.2000" />
+                  <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" nullFlavor="UNK">
+                    <originalText>PHX GLOMERULI COUNT<reference value="#Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816.Comp1Name" /></originalText>
+                    <translation code="710083" codeSystem="1.2.840.114350.1.13.861.1.7.2.768282" codeSystemName="Epic.LRR.ID" displayName="PHX GLOMERULI COUNT" />
+                  </code>
+                  <text>
+                    <reference value="#Result.1.2.840.114350.1.13.861.1.7.2.798268.1012356816.Comp1" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192800+0000" />
+                  <!-- IVL_REAL not recognized! -->
+                  <value xsi:type="IVL_REAL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <low value="8142" />
+                    <high value="8588" />
+                  </value>
+                  <referenceRange>
+                    <observationRange>
+                      <text>7,000 - 9,000</text>
+                      <!-- IVL_REAL not recognized! -->
+                      <value xsi:type="IVL_REAL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <low value="7000" />
+                        <high value="9000" />
+                      </value>
+                      <interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" />
+                    </observationRange>
+                  </referenceRange>
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="1.2.840.114350.1.72.3.4" />
+                  <id extension="1012356816" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+                  <code nullFlavor="UNK" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192800+0000" />
+                  <value code="16" codeSystem="1.2.840.114350.1.72.1.5007" codeSystemName="Epic.Result.Type" xsi:type="CD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                </observation>
+              </component>
+              <component>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                  <templateId root="2.16.840.1.113883.10.20.22.4.2" extension="2015-08-01" />
+                  <id extension="1012356816" root="1.2.840.114350.1.13.861.1.7.2.798268" />
+                  <code nullFlavor="UNK" />
+                  <statusCode code="completed" />
+                  <effectiveTime value="20210803192800+0000" />
+                  <value xsi:type="ST" nullFlavor="NA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+                </observation>
+              </component>
+            </organizer>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.38" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.38" extension="2014-06-09" />
+          <id root="0C5D3E4E-F496-11EB-AFFE-460231621F93" />
+          <code code="29549-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="MEDICATIONS ADMINISTERED" />
+          <title>Administered Medications</title>
+          <text>
+            <content ID="nof48">Not on file</content>
+            <footnote ID="subTitle47" styleCode="xSectionSubTitle">documented in this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section nullFlavor="NI">
+          <templateId root="2.16.840.1.113883.10.20.22.2.58" />
+          <templateId root="2.16.840.1.113883.10.20.22.2.58" extension="2015-08-01" />
+          <code code="75310-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Health concerns Document" />
+          <title>Additional Health Concerns</title>
+          <text>
+            <content ID="nof50">Not on file</content>
+            <footnote ID="subTitle49" styleCode="xSectionSubTitle">documented as of this encounter</footnote>
+          </text>
+        </section>
+      </component>
+      <component>
+        <section>
+          <code code="X-DOCCMTADDL" codeSystem="1.2.840.114350.1.72.2" displayName="Additional Document Comments" />
+          <title>Additional Source Comments</title>
+          <text>R&gt; Addtional source comments yes please &lt;BR&gt;<br />Lines lines line<br /><br /><br />&lt;b<br />r&gt;yesy yes<footnote>Current Development Environment (CDE)</footnote></text>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>
