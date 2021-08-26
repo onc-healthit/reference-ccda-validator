@@ -65,7 +65,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
-			DS4P_REFRAIN_OBSERVATION = 18;
+			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -91,7 +91,10 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/SocialHistoryWithBirthSexObsTemplateSite3094.xml").toURI(),
 					RefCCDATest.class.getResource("/subProceduresWithDeviceIdentifierObservationSite3218.xml").toURI(),
 					RefCCDATest.class.getResource("/subProceduresWithDeviceIdentifierObservationBadValueRootSite3218.xml").toURI(),
-					RefCCDATest.class.getResource("/DS4PRefrainTest.xml").toURI()
+					RefCCDATest.class.getResource("/DS4PRefrainTest.xml").toURI(),
+					RefCCDATest.class.getResource("/ivl_real_example.xml").toURI(),
+					RefCCDATest.class.getResource("/ivl_real_example2.xml").toURI()
+
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -745,6 +748,24 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 		final String ds4PRefrainError = "CONF:9135";
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, ds4PRefrainError);
+	}
+	
+	
+	@Test
+	public void ivlrealUpdateTest() {	
+		List<RefCCDAValidationResult> results =  getMDHTErrorsFromResults(validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[IVL_REAL_EXAMPLE]), CCDATypes.CCDAR21_OR_CCDAR11));
+		printResultsBasedOnFlags(results);	 
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-7143");
+	}
+
+	
+	@Test
+	public void ivlrealUpdate2Test() {
+		List<RefCCDAValidationResult> results =  getMDHTErrorsFromResults(validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[IVL_REAL_EXAMPLE2]), CCDATypes.CCDAR21_OR_CCDAR11));	 
+		printResultsBasedOnFlags(results);
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-7143");
 	}
 	
 	/*
