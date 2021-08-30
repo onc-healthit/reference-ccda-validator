@@ -55,8 +55,10 @@ import org.sitenv.referenceccda.validators.enums.ValidationResultType;
 import org.sitenv.vocabularies.constants.VocabularyConstants;
 import org.sitenv.vocabularies.constants.VocabularyConstants.SeverityLevel;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 import org.xml.sax.SAXException;
 
+@RequestScope
 @Component
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
 	private static Logger logger = Logger.getLogger(ReferenceCCDAValidator.class);
