@@ -65,7 +65,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
-			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20;
+			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -93,7 +93,9 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/subProceduresWithDeviceIdentifierObservationBadValueRootSite3218.xml").toURI(),
 					RefCCDATest.class.getResource("/DS4PRefrainTest.xml").toURI(),
 					RefCCDATest.class.getResource("/ivl_real_example.xml").toURI(),
-					RefCCDATest.class.getResource("/ivl_real_example2.xml").toURI()
+					RefCCDATest.class.getResource("/ivl_real_example2.xml").toURI(),
+					RefCCDATest.class.getResource("/ReferralNote.xml").toURI(),
+					RefCCDATest.class.getResource("/ReferralNote2.xml").toURI()
 
 			};
 		} catch (URISyntaxException e) {
@@ -782,6 +784,28 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		final String ds4PRefrainError = "CONF:1198-32881";
 		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, ds4PRefrainError);						
 	}
+	
+	@Test
+	public void referralnoteindparticipantname_ExpectFailTest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[REFERRAL_NOTE]), CCDATypes.NON_SPECIFIC_CCDAR2);
+		
+		results = getMDHTErrorsFromResults(results);
+		printResultsBasedOnFlags(results);
+
+		final String ds4PRefrainError = "CONF:1198-31645";
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, ds4PRefrainError);						
+	}
+	
+	@Test
+	public void referralnoteindparticipantname_ExpectPassTest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[REFERRAL_NOTE2]), CCDATypes.NON_SPECIFIC_CCDAR2);		
+		results = getMDHTErrorsFromResults(results);
+		printResultsBasedOnFlags(results);
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-31645");
+	}
+	
 	
 	private static List<ConfiguredExpression> getGenericConfiguredExpressionsForTesting() {
 		final String validationMessage = "Will always fail";
