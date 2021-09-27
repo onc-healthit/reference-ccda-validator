@@ -49,12 +49,18 @@ NOTES:
 * For the valueset_repository, assuming the path above of /path/to/validator_configuration/vocabulary/valueset_repository/VSAC/, please ensure that the valueset repository spreadsheet files are in the aformentioned subfolder labeled VSAC. However, please do **NOT** include this VSAC folder in the referenceccdaservice.xml config file. So in this example, the actual path on the user computer or server would be /path/to/validator_configuration/vocabulary/valueset_repository/VSAC/ where as the path saved in the referenceccdaservice.xml config file referenceccdaservice.xml would be /path/to/validator_configuration/vocabulary/valueset_repository/
 * Most of the code systems and valuesets are externally published and this project does **NOT** come packaged with any of these externally published files. However, valuesets which were not externally published by VSAC were hand created by SITE and are available for download here: https://github.com/onc-healthit/code-validator-api/tree/master/codevalidator-api/docs/ValueSetsHandCreatedbySITE
 
-code system - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)
-
-value set - selects a set of codes from those defined by one or more code systems
-
-To learn more about valuesets and code systems, go to:
-[VSAC Support](https://www.nlm.nih.gov/vsac/support/authorguidelines/code-systems.html)
+- Code System - defines a set of codes with meanings (also known as enumeration, terminology, classification, and/or ontology)  
+[CDT](https://www.ada.org/en/publications/cdt)  
+[CPT](https://www.ama-assn.org/amaone/cpt-current-procedural-terminology)  
+[HCPCS](https://www.cms.gov/medicare/coding/medhcpcsgeninfo)  
+[ICD9CM_SG](https://www.cdc.gov/nchs/icd/icd9cm.htm)  
+[ICD10CM](https://www.cdc.gov/nchs/icd/icd10cm.htm)  
+[ICD10PCS](https://www.cms.gov/Medicare/Coding/ICD10/index.html)  
+[LOINC](http://loinc.org/)  
+[RXNORM](https://www.nlm.nih.gov/research/umls/rxnorm/)  
+[SNOMED-CT](https://www.nlm.nih.gov/research/umls/Snomed/snomed_main.html)  
+- Value Set - selects a set of codes from those defined by one or more code systems [VSAC ](https://vsac.nlm.nih.gov/)  
+To learn more about value sets and code systems, go to: [VSAC Support](https://www.nlm.nih.gov/vsac/support/authorguidelines/code-systems.html)
 
 The referenceccdaservice.war
 
