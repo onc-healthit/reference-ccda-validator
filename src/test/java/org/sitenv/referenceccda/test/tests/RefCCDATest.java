@@ -12,7 +12,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.BasicConfigurator;
 import org.junit.Assert;
@@ -859,7 +861,10 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	private void vocabAndMdhtSeverityLevelConfigTestImpl(SeverityLevel severityLevel, boolean isProgrammatic,
 			String vocabularyConfig) {
 		if (isProgrammatic) {
-			addConfiguredExpressionsToVocabularyValidationConfigurations(getGenericConfiguredExpressionsForTesting());
+			Map<VocabularyConstants.SeverityLevel, List<ConfiguredExpression>> configuredExpressions = 
+					new HashMap<SeverityLevel, List<ConfiguredExpression>>();
+			configuredExpressions.put(severityLevel, getGenericConfiguredExpressionsForTesting());
+			addConfiguredExpressionsToVocabularyValidationConfigurations(configuredExpressions);
 		} else {
 			setupInitParameters(true);
 		}
