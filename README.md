@@ -59,7 +59,7 @@ NOTES:
 [LOINC](http://loinc.org/)  
 [RXNORM](https://www.nlm.nih.gov/research/umls/rxnorm/)  
 [SNOMED-CT](https://www.nlm.nih.gov/research/umls/Snomed/snomed_main.html)  
-- Value Set - selects a set of codes from those defined by one or more code systems [VSAC ](https://vsac.nlm.nih.gov/)
+- Value Set - selects a set of codes from those defined by one or more code systems [VSAC ](https://vsac.nlm.nih.gov/)  
 To learn more about value sets and code systems, go to: [VSAC Support](https://www.nlm.nih.gov/vsac/support/authorguidelines/code-systems.html)
 
 The referenceccdaservice.war
