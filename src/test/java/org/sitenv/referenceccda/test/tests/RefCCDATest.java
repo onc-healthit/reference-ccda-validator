@@ -428,7 +428,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		createGenericExpressionForProgrammaticConfigAndInjectDependencies();
 
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
-				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()));
+				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()), SeverityLevel.ERROR);
 
 		final int expectedConfigCount = 1;
 		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsCount();
@@ -464,7 +464,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		createGenericExpressionForProgrammaticConfigAndInjectDependencies();
 
 		ValidationResultsDto results = runReferenceCCDAValidationServiceAndReturnResults(CCDATypes.NON_SPECIFIC_CCDAR2,
-				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()));
+				CCD_R21, new VocabularyCCDAValidator(getVocabularyValidationService()), SeverityLevel.ERROR);
 
 		final int expectedConfigCount = 1;
 		final int configCount = results.getResultsMetaData().getVocabularyValidationConfigurationsErrorCount();
@@ -629,7 +629,9 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	// TODO: This test
 	// vocabAndMdhtSeverityLevelWarningMultipleValidatorsPerExpressionTest and
 	// test vocabAndMdhtSeverityLevelInfoMultipleValidatorsPerExpressionTest
-	// should be expanded to check for the exact expected count.
+	// DO currently PASS but
+	// should be expanded to check for the exact expected count 
+	// (warning and info, respectively).
 	// There is a bug that has existed for a long time, prior to the
 	// severityLevel update where CCDA_VOCAB_CONFORMANCE_WARN and
 	// CCDA_VOCAB_CONFORMANCE_INFO are truncated to one validator per
@@ -649,6 +651,21 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	public void vocabAndMdhtSeverityLevelInfoMultipleValidatorsPerExpressionTest() {
 		vocabAndMdhtSeverityLevelConfigTestImpl(SeverityLevel.INFO, false, "severityLevelLimitTestConfig");
 	}
+	
+	@Test
+	public void vocabAndMdhtSeverityLevelErrorSingleValidatorsPerExpressionTest() {
+		vocabAndMdhtSeverityLevelConfigTestImpl(SeverityLevel.ERROR, false, "severityLevelLimitSingleValidatorTestConfig");
+	}
+
+	@Test
+	public void vocabAndMdhtSeverityLevelWarningSingleValidatorsPerExpressionTest() {
+		vocabAndMdhtSeverityLevelConfigTestImpl(SeverityLevel.WARNING, false, "severityLevelLimitSingleValidatorTestConfig");
+	}
+
+	@Test
+	public void vocabAndMdhtSeverityLevelInfoSingleValidatorsPerExpressionTest() {
+		vocabAndMdhtSeverityLevelConfigTestImpl(SeverityLevel.INFO, false, "severityLevelLimitSingleValidatorTestConfig");
+	}	
 	
 	@Test
 	public void mdhtValidationStatisticsShallChecksTest() {
@@ -1027,6 +1044,13 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			final int XML_FILE_INDEX, VocabularyCCDAValidator vocabularyCCDAValidator) {
 		return runReferenceCCDAValidationServiceAndReturnResults(validationObjective, XML_FILE_INDEX,
 				vocabularyCCDAValidator, new ReferenceContentValidator(new ContentValidatorService()));
+	}
+	
+	private static ValidationResultsDto runReferenceCCDAValidationServiceAndReturnResults(String validationObjective,
+			final int XML_FILE_INDEX, VocabularyCCDAValidator vocabularyCCDAValidator, SeverityLevel severityLevel) {
+		return runReferenceCCDAValidationServiceAndReturnResults(validationObjective, XML_FILE_INDEX,
+				vocabularyCCDAValidator, new ReferenceContentValidator(new ContentValidatorService()), null,
+				severityLevel);
 	}
 
 	private static ValidationResultsDto runReferenceCCDAValidationServiceAndReturnResults(String validationObjective,
