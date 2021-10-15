@@ -1,6 +1,8 @@
 package org.sitenv.referenceccda.test.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.sitenv.referenceccda.test.other.ReferenceValidationLogger.printResults;
 import static org.sitenv.vocabularies.test.other.ValidationLogger.println;
@@ -14,13 +16,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.BasicConfigurator;
+import org.eclipse.mdht.uml.cda.ClinicalDocument;
+import org.eclipse.mdht.uml.cda.Patient;
+import org.eclipse.mdht.uml.cda.Person;
+import org.eclipse.mdht.uml.cda.Subject;
+import org.eclipse.mdht.uml.cda.SubjectPerson;
+import org.eclipse.mdht.uml.cda.util.CDAUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.sitenv.contentvalidator.service.ContentValidatorService;
-import org.sitenv.referenceccda.controllers.ReferenceCCDAValidationController;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.test.other.ReferenceValidationLogger;
@@ -65,7 +73,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
-			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22;
+			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22,SDTCTEST=23;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -95,7 +103,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/ivl_real_example.xml").toURI(),
 					RefCCDATest.class.getResource("/ivl_real_example2.xml").toURI(),
 					RefCCDATest.class.getResource("/ReferralNote.xml").toURI(),
-					RefCCDATest.class.getResource("/ReferralNote2.xml").toURI()
+					RefCCDATest.class.getResource("/ReferralNote2.xml").toURI(),
+					RefCCDATest.class.getResource("/SDTCExtensionsTest.xml").toURI()
 
 			};
 		} catch (URISyntaxException e) {
@@ -804,6 +813,52 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		results = getMDHTErrorsFromResults(results);
 		printResultsBasedOnFlags(results);
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-31645");
+	}
+	
+	
+	/**
+	 * parseSDTCExtensionsTest test for the ability to parse extensions
+	 * Do not see much need to have negative tests 
+	 * 
+	 * @throws IOException
+	 * @throws Exception
+	 */
+	@Test
+	public void parseSDTCExtensionsTest() throws IOException, Exception {
+		ClinicalDocument sdtcTestDocument = CDAUtil.load(IOUtils.toInputStream(convertCCDAFileToString(CCDA_FILES[SDTCTEST]), "UTF-8"));		
+		assertNotNull("sdtcTestDocument.getSDTCStatusCode",sdtcTestDocument.getSDTCStatusCode());	
+		assertEquals("sdtcTestDocument.getSDTCStatusCode","ClinicalDocumentStatusCode",sdtcTestDocument.getSDTCStatusCode().getCode());
+		Patient patient = sdtcTestDocument.getRecordTargets().get(0).getPatientRole().getPatient();
+		assertFalse("patient.getSDTCEthnicGroupCodes",patient.getSDTCEthnicGroupCodes().isEmpty());
+		assertEquals("patient.getSDTCEthnicGroupCodes","PatientEthnicGroupCode",patient.getSDTCEthnicGroupCodes().get(0).getCode());
+		assertFalse("patient.getSDTCRaceCodes",patient.getSDTCRaceCodes().isEmpty());
+		assertEquals("patient.getSDTCRaceCodes","PateintRaceCode",patient.getSDTCRaceCodes().get(0).getCode());
+		assertFalse( "patient.getSDTCDeceasedInd" ,  patient.getSDTCDeceasedInd().getValue() );
+		assertNotNull("patient.getSDTCDeceasedTime",patient.getSDTCDeceasedTime());		
+		assertEquals("patient.getSDTCDeceasedTime","1900",patient.getSDTCDeceasedTime().getValue());
+		assertNotNull("patient.getSDTCDesc",patient.getSDTCDesc());
+		assertEquals("patient.getSDTCDesc","PatientDescription",patient.getSDTCDesc().getText());
+		assertTrue("patient.getSDTCMultipleBirthInd",patient.getSDTCMultipleBirthInd().getValue());
+		assertNotNull("patient.getSDTCMultipleBirthOrderNumber",patient.getSDTCMultipleBirthOrderNumber());
+		assertEquals("patient.getSDTCMultipleBirthOrderNumber","3",patient.getSDTCMultipleBirthOrderNumber().getValue().toString());
+		Person person = sdtcTestDocument.getAuthors().get(0).getAssignedAuthor().getAssignedPerson();
+		assertNotNull("person.getSDTCAsPatientRelationship",person.getSDTCAsPatientRelationship());
+		assertEquals("person.getSDTCAsPatientRelationship","AsPatientRelationship",person.getSDTCAsPatientRelationship().getText());
+		assertNotNull("person.getSDTCDesc",person.getSDTCDesc());
+		assertEquals("person.getSDTCDesc","PersonDescription",person.getSDTCDesc().getText());	
+		SubjectPerson subjectPerson = sdtcTestDocument.getSections().get(0).getSubject().getRelatedSubject().getSubject();
+		assertFalse("subjectPerson.getSDTCEthnicGroupCodes",subjectPerson.getSDTCEthnicGroupCodes().isEmpty());
+		assertEquals("subjectPerson.getSDTCEthnicGroupCodes","SubjectEthnicGroupCode",subjectPerson.getSDTCEthnicGroupCodes().get(0).getCode());
+		assertFalse("subjectPerson.getSDTCRaceCodes",subjectPerson.getSDTCRaceCodes().isEmpty());
+		assertEquals("subjectPerson.getSDTCRaceCodes","SubjectRaceCode",subjectPerson.getSDTCRaceCodes().get(0).getCode());
+		assertTrue( "subjectPerson.getSDTCDeceasedInd" ,  subjectPerson.getSDTCDeceasedInd().getValue() );
+		assertNotNull("subjectPerson.getSDTCDeceasedTime",subjectPerson.getSDTCDeceasedTime());		
+		assertEquals("subjectPerson.getSDTCDeceasedTime","1900",subjectPerson.getSDTCDeceasedTime().getValue());
+		assertNotNull("subjectPerson.getSDTCDesc",subjectPerson.getSDTCDesc());
+		assertEquals("subjectPerson.getSDTCDesc","SubjectDescription",subjectPerson.getSDTCDesc().getText());
+		assertTrue("subjectPerson.getSDTCMultipleBirthInd",subjectPerson.getSDTCMultipleBirthInd().getValue());
+		assertNotNull("subjectPerson.getSDTCMultipleBirthOrderNumber",subjectPerson.getSDTCMultipleBirthOrderNumber());
+		assertEquals("subjectPerson.getSDTCMultipleBirthOrderNumber","3",subjectPerson.getSDTCMultipleBirthOrderNumber().getValue().toString());
 	}
 	
 	

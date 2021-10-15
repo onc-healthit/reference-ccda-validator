@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../../org.eclipse.mdht.uml.cda/samples/C32_CDA.xsd">
+   <sdtc:statusCode code="ClinicalDocumentStatusCode" />
+   <recordTarget>
+      <patientRole>
+         <patient>
+            <sdtc:desc>PatientDescription</sdtc:desc>
+            <sdtc:deceasedInd value="false" />
+            <sdtc:deceasedTime value="1900" />
+            <sdtc:multipleBirthInd value="true" />
+            <sdtc:multipleBirthOrderNumber value="3" />
+            <sdtc:raceCode code="PateintRaceCode" codeSystem="PateintRaceCodeSystem" displayName="PateintRaceCodeSystemDisplay" />
+            <sdtc:ethnicGroupCode code="PatientEthnicGroupCode" codeSystem="PatientEthnicGroupCode" displayName="PatientEthnicGroupCodeDisplay" />
+         </patient>
+      </patientRole>
+   </recordTarget>
+   <author>
+      <assignedAuthor>
+         <assignedPerson>
+           <sdtc:desc>PersonDescription</sdtc:desc>
+            <sdtc:asPatientRelationship>AsPatientRelationship</sdtc:asPatientRelationship>
+            <sdtc:birthTime value="1900" />
+         </assignedPerson>
+      </assignedAuthor>
+   </author>
+   <component>
+      <structuredBody>
+         <component>
+            <section>
+               <subject>
+                  <relatedSubject>
+                     <sdtc:id />
+                     <subject>
+                        <sdtc:id />
+                        <sdtc:desc>SubjectDescription</sdtc:desc>
+                        <sdtc:deceasedInd value="true" />
+                        <sdtc:deceasedTime value="1900" />
+                        <sdtc:multipleBirthInd  value="true" />
+                        <sdtc:multipleBirthOrderNumber value="3" />
+                        <sdtc:raceCode code="SubjectRaceCode" codeSystem="SubjectRaceCodeSystem" displayName="SubjectRaceCodeSystemDisplay" />
+                        <sdtc:ethnicGroupCode code="SubjectEthnicGroupCode" codeSystem="SubjectEthnicGroupCode" displayName="SubjectEthnicGroupCodeDisplay" />
+                     </subject>
+                  </relatedSubject>
+               </subject>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</ClinicalDocument>
