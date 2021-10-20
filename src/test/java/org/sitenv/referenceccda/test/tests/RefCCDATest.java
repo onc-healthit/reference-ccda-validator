@@ -57,7 +57,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 	private static final boolean LOG_RESULTS_TO_CONSOLE = true;
 
-	private static final boolean SHOW_ERRORS_ONLY = true;
+	private static boolean SHOW_ERRORS_ONLY = true;
 	private static final boolean LOG_LOG4J = true;
 	static {
 		if (LOG_LOG4J) {
@@ -73,7 +73,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
-			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22,SDTCTEST=23;
+			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22,SDTCTEST=23,CONSOLNOTEACTIVITY=24;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -104,7 +104,9 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/ivl_real_example2.xml").toURI(),
 					RefCCDATest.class.getResource("/ReferralNote.xml").toURI(),
 					RefCCDATest.class.getResource("/ReferralNote2.xml").toURI(),
-					RefCCDATest.class.getResource("/SDTCExtensionsTest.xml").toURI()
+					RefCCDATest.class.getResource("/SDTCExtensionsTest.xml").toURI(),
+					RefCCDATest.class.getResource("/ConsolNoteActivity.xml").toURI()
+					
 
 			};
 		} catch (URISyntaxException e) {
@@ -815,6 +817,17 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-31645");
 	}
 	
+	/*
+	 * SITE-3348 ETT GG, Errata CDA-2008, MDHT: "A plethora of b.1 issues that we think are invalid"
+	 */
+	@Test
+	public void noteActivity_expectfailtest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[CONSOLNOTEACTIVITY]), CCDATypes.NON_SPECIFIC_CCDAR2);		
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, "3250-16940, 3250-1694");						
+	}
+	
+	 
 	
 	/**
 	 * parseSDTCExtensionsTest test for the ability to parse extensions
