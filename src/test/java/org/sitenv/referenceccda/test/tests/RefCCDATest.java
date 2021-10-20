@@ -824,7 +824,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	public void noteActivity_expectfailtest() {
 		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
 				convertCCDAFileToString(CCDA_FILES[CONSOLNOTEACTIVITY]), CCDATypes.NON_SPECIFIC_CCDAR2);		
-		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, "3250-16940, 3250-1694");						
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, "3250-16940, 3250-16941");						
 	}
 	
 	 
