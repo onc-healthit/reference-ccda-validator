@@ -417,12 +417,11 @@
                     </text>
                     <entry>
                         <act classCode="ACT" moodCode="EVN">
-							<!-- Note Activity -->
+			    <!-- Note Activity -->
                             <templateId root="2.16.840.1.113883.10.20.22.4.202"
                                 extension="2016-11-01"/>
                             <code code="34109-9" displayName="Note"
                                 codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC">
-								<!-- relevant identifying code 28570-0 in error -->
                                 <translation code="28570-0" displayName="Procedure note"
                                     codeSystem="2.16.840.1.113883.6.2" codeSystemName="LOINC"/>
                             </code>
@@ -432,19 +431,8 @@
                             <statusCode code="completed"/>
                             <effectiveTime value="20210125"/>
                             <author>
-								<!-- Author Participation (original) = 4.119 -->
                                 <templateId root="2.16.840.1.113883.10.20.22.4.119"/>
-								<!-- -dbTest here is the locaiton of the time which errors for provenance
-but it is actually the original Author Participation (see II, 4.119, NOT 5.6  -->
-								<!-- user states:
-The submitted Provenance (Time: Value) 20210125145611 at Note Activity Author Entry for Notes Section corresponding 
-to the code 28570-0 is invalid. Please ensure the time and time-zone starts with a 4 or 6-digit time, 
-followed by a '+' or a '-', and finally, a 4-digit time-zone. The invalid time and time-zone portion of the value is 145611. 
-
-In this example validator is assuming that provenance time stamp is 20210125145611 which is not correct.   
-Instead, correct provenance timestamp is  202101251456-0500 since it is under the author node decorated by template ID 
-<templateId root="2.16.840.1.113883.10.20.22.5.6"  extension="2019-10-01"/>	-->			
-                                <time value="20210125145611"/> <!-- this time shows up in 'provenance' error -->
+                                <time value="20210125145611"/>
                                 <assignedAuthor>
                                     <id root="1.174"
                                         extension="0ede25f4-b431-44b0-8709-7212bcc995f3"/>
@@ -478,10 +466,9 @@ Instead, correct provenance timestamp is  202101251456-0500 since it is under th
                                 </assignedAuthor>
                             </author>
                             <author>
-								<!-- Provenance Provenance - Author Participation = 5.6 -->
+			        <!-- Provenance - Author Participation = 5.6 -->
                                 <templateId root="2.16.840.1.113883.10.20.22.5.6"
                                     extension="2019-10-01"/>
-								<!-- this time does not show up in error (nor should it (is assumption true?) -->
                                 <time value="202101251456-0500"/>
                                 <assignedAuthor>
                                     <id nullFlavor="UNK"/>
