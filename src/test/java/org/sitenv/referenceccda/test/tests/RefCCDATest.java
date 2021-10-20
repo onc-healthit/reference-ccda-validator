@@ -57,7 +57,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 	private static final boolean LOG_RESULTS_TO_CONSOLE = true;
 
-	private static boolean SHOW_ERRORS_ONLY = true;
+	private static final boolean SHOW_ERRORS_ONLY = true;
 	private static final boolean LOG_LOG4J = true;
 	static {
 		if (LOG_LOG4J) {
