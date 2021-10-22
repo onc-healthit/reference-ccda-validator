@@ -73,7 +73,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
-			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22,SDTCTEST=23,CONSOLNOTEACTIVITY=24;
+			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22,SDTCTEST=23,CONSOLNOTEACTIVITY=24,MEDICATION_SECTION_CODE_INVALID=25;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -105,7 +105,10 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/ReferralNote.xml").toURI(),
 					RefCCDATest.class.getResource("/ReferralNote2.xml").toURI(),
 					RefCCDATest.class.getResource("/SDTCExtensionsTest.xml").toURI(),
-					RefCCDATest.class.getResource("/ConsolNoteActivity.xml").toURI()
+					RefCCDATest.class.getResource("/ConsolNoteActivity.xml").toURI(),
+					RefCCDATest.class.getResource("/MedicationSectionCodeInvalid.xml").toURI()
+					
+					
 					
 
 			};
@@ -827,6 +830,24 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, "3250-16940, 3250-16941");						
 	}
 	
+	/*
+	 * SITE-3346 Validators triggers false error for MedicationSectionCode
+	 */
+	@Test
+	public void test_MedicationSectionCodeInvalid() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[MEDICATION_SECTION_CODE_INVALID]), CCDATypes.NON_SPECIFIC_CCDAR2);
+		results = getMDHTErrorsFromResults(results);
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "15387");		
+		// check that it is returned only once
+		int codeSectionCounter=0;
+		for (RefCCDAValidationResult result : results) {
+ 			if (result.getDescription() !=null && result.getDescription().contains("15387")) {
+				codeSectionCounter++;
+			}			
+		}		
+		assertTrue(codeSectionCounter==1);
+	}
 	 
 	
 	/**
