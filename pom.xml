@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.60</version>
+    <version>1.0.61</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -15,9 +15,9 @@
         <code.validator.version>latestVersion</code.validator.version>
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT properties -->
-        <mdht.models.version>3.0.0.20210924</mdht.models.version>
-        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
-        <mdht.plugins.version>3.0.0.202109230500</mdht.plugins.version>     
+     	<mdht.models.version>3.0.0.20211021</mdht.models.version>
+		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
+		<mdht.plugins.version>3.0.0.202110121523</mdht.plugins.version>
     </properties>
 
     <repositories>

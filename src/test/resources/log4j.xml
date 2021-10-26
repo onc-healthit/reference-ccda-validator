@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+ 
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+ 
+    <appender name="FILE" class="org.apache.log4j.rolling.RollingFileAppender">
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="target/referenceccdaservice.%d{yyyy-MM-dd}.log" />
+        </rollingPolicy>
+ 
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}:%L] %m%n" />
+        </layout>
+    </appender>
+
+    <logger name="org.springframework.orm.jpa">
+        <level value="info" />
+    </logger>
+
+    <logger name="org.springframework.transaction">
+        <level value="info" />
+    </logger>
+
+    <logger name="org.hsqldb">
+        <level value="info" />
+    </logger>
+ 
+    <root>
+        <priority value="INFO" />
+        <appender-ref ref="FILE" />
+    </root>
+</log4j:configuration>
