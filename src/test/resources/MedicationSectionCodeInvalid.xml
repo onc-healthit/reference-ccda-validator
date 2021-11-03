@@ -1,9 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="CDA.xsl"?>
-<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="urn:hl7-org:v3 C:\XML\CDA_SDTC_Schema\infrastructure\cda\CDA_SDTC.xsd"
- xmlns="urn:hl7-org:v3"
- xmlns:cda="urn:hl7-org:v3">
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xsi:schemaLocation="urn:hl7-org:v3 infrastructure/cda/CDA_SDTC.xsd">
    <component>
       <structuredBody>
          <component>
@@ -18,9 +15,6 @@
                   displayName="HISTORY OF MEDICATION USE"/>
             </section>
          </component>  
-         
-         
-  
       </structuredBody>
    </component>
 </ClinicalDocument>
