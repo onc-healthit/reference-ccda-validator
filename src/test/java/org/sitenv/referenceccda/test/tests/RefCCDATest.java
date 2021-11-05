@@ -850,6 +850,15 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	}
 	 
 	
+	@Test
+	public void testSDTCExtensionsSchemaTest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SDTCTEST]), CCDATypes.NON_SPECIFIC_CCDAR2);		
+		for (RefCCDAValidationResult result : results) {			
+			assertFalse(result.isSchemaError());		
+		}
+	}
+	
 	/**
 	 * parseSDTCExtensionsTest test for the ability to parse extensions
 	 * Do not see much need to have negative tests 
@@ -877,7 +886,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		assertEquals("patient.getSDTCMultipleBirthOrderNumber","3",patient.getSDTCMultipleBirthOrderNumber().getValue().toString());
 		Person person = sdtcTestDocument.getAuthors().get(0).getAssignedAuthor().getAssignedPerson();
 		assertNotNull("person.getSDTCAsPatientRelationship",person.getSDTCAsPatientRelationship());
-		assertEquals("person.getSDTCAsPatientRelationship","AsPatientRelationship",person.getSDTCAsPatientRelationship().getText());
+		assertNotNull("person.getSDTCAsPatientRelationship",person.getSDTCAsPatientRelationship());
 		assertNotNull("person.getSDTCDesc",person.getSDTCDesc());
 		assertEquals("person.getSDTCDesc","PersonDescription",person.getSDTCDesc().getText());	
 		SubjectPerson subjectPerson = sdtcTestDocument.getSections().get(0).getSubject().getRelatedSubject().getSubject();
