@@ -15,9 +15,9 @@
         <code.validator.version>latestVersion</code.validator.version>
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT properties -->
-     	<mdht.models.version>3.0.0.20211021</mdht.models.version>
+     	<mdht.models.version>3.0.0.20212117</mdht.models.version>
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
-		<mdht.plugins.version>3.0.0.202110121523</mdht.plugins.version>
+		<mdht.plugins.version>3.0.0.202112170600</mdht.plugins.version>
     </properties>
 
     <repositories>

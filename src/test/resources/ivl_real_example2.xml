@@ -679,6 +679,41 @@
             <content ID="nof20">Not on file</content>
             <footnote ID="subTitle19" styleCode="xSectionSubTitle">documented in this encounter</footnote>
           </text>
+          
+          
+          
+          
+           
+					<entry typeCode="DRIV">
+						<organizer classCode="CLUSTER" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.26"/>
+							 
+							<component>
+							<observation> 
+								<templateId root="2.16.840.1.113883.10.20.22.4.27"/>
+									<!-- Vital Sign Observation template -->
+									<id root="c6f88321-67ad-11db-bd13-0800200c9a66" extension="2001"/>
+									<code code="8302-2" codeSystem="2.16.840.1.113883.6.1"
+										codeSystemName="LOINC" displayName="Height"/>
+									<text>
+										<reference value="#vit1"/>
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20081101"/>
+									<value xsi:type="ST" value="NOT A PQ"   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+									<interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83"/>
+								</observation>
+								</component>
+								</organizer>
+								</entry>
+								
+          
+          
+          
+          
+          
+          
+                
         </section>
       </component>
       <component>

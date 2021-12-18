@@ -13,4 +13,11 @@
       </associatedPerson>
     </associatedEntity>
   </participant>
+   <participant typeCode="IND">
+    <associatedEntity>
+      <associatedPerson>
+        <name><family>familyname</family><given>given</given></name>
+      </associatedPerson>
+    </associatedEntity>
+  </participant>   
 </ClinicalDocument>
