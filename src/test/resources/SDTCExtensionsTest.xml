@@ -66,6 +66,15 @@
       <structuredBody>
          <component>
             <section>
+            
+            
+            
+           
+    <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
+    <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
+    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
+    <code code="9999999" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+    
                <subject>
                   <relatedSubject>
                      <sdtc:id extension="99999999" root="2.16.840.1.113883.4.6" />
@@ -81,6 +90,19 @@
                      </subject>
                   </relatedSubject>
                </subject>
+               
+               <entry typeCode="DRIV">
+               <observation classCode="OBS" moodCode="EVN">
+               <code></code>
+               <participant typeCode="CSM">
+	<participantRole classCode="MANU">
+		<playingEntity classCode="MMAT">
+			<sdtc:birthTime value="1900" />
+		</playingEntity>
+	</participantRole>
+			</participant>		
+               </observation>
+               </entry>
             </section>
          </component>
       </structuredBody>

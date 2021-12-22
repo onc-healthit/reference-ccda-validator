@@ -21,6 +21,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.eclipse.mdht.uml.cda.ClinicalDocument;
 import org.eclipse.mdht.uml.cda.Patient;
 import org.eclipse.mdht.uml.cda.Person;
+import org.eclipse.mdht.uml.cda.PlayingEntity;
 import org.eclipse.mdht.uml.cda.Subject;
 import org.eclipse.mdht.uml.cda.SubjectPerson;
 import org.eclipse.mdht.uml.cda.util.CDAUtil;
@@ -73,7 +74,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_SOCIAL_HISTORY_WITH_BIRTH_SEX_OBS_TEMPLATE_SITE_3094 = 15, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_SITE_3218 = 16, 
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
-			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22,SDTCTEST=23,CONSOLNOTEACTIVITY=24,MEDICATION_SECTION_CODE_INVALID=25;
+			DS4P_REFRAIN_OBSERVATION = 18,IVL_REAL_EXAMPLE=19,IVL_REAL_EXAMPLE2=20,REFERRAL_NOTE=21,REFERRAL_NOTE2=22,SDTCTEST=23,CONSOLNOTEACTIVITY=24,MEDICATION_SECTION_CODE_INVALID=25,MARITALSTATUS=26,MARITALSTATUS2=27;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -106,7 +107,9 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/ReferralNote2.xml").toURI(),
 					RefCCDATest.class.getResource("/SDTCExtensionsTest.xml").toURI(),
 					RefCCDATest.class.getResource("/ConsolNoteActivity.xml").toURI(),
-					RefCCDATest.class.getResource("/MedicationSectionCodeInvalid.xml").toURI()
+					RefCCDATest.class.getResource("/MedicationSectionCodeInvalid.xml").toURI(),
+					RefCCDATest.class.getResource("/maritalstatus.xml").toURI(),
+					RefCCDATest.class.getResource("/maritalstatus2.xml").toURI()
 					
 					
 					
@@ -784,6 +787,16 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-7143");
 	}
 	
+	@Test
+	public void vitalSignObservationPQTest() {
+		List<RefCCDAValidationResult> results =  getMDHTErrorsFromResults(validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[IVL_REAL_EXAMPLE2]), CCDATypes.CCDAR21_OR_CCDAR11));	 
+		printResultsBasedOnFlags(results);
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:7305");
+	}
+	
+	
+	
 	/*
 	 * Advanced Directive choice test
 	 */	
@@ -820,6 +833,40 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-31645");
 	}
 	
+	@Test
+	public void maritalStatus_ExpectPassTest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[MARITALSTATUS]), CCDATypes.NON_SPECIFIC_CCDAR2);		
+		results = getMDHTErrorsFromResults(results);
+		printResultsBasedOnFlags(results);
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-5303");
+	}
+	
+	@Test
+	public void maritalStatus_ExpectFailTest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[MARITALSTATUS2]), CCDATypes.NON_SPECIFIC_CCDAR2);		
+		results = getMDHTErrorsFromResults(results);
+		printResultsBasedOnFlags(results);
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-5303");
+	}
+	
+ 
+	@Test
+	public void allergySection_codetest() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SDTCTEST]), CCDATypes.NON_SPECIFIC_CCDAR2);		
+		results = getMDHTErrorsFromResults(results);
+		printResultsBasedOnFlags(results);		
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-15350, CONF:1198-32140");
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF: 15350");
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF: 15346");
+	}
+	
+	
+	
+	 
+	
 	/*
 	 * SITE-3348 ETT GG, Errata CDA-2008, MDHT: "A plethora of b.1 issues that we think are invalid"
 	 */
@@ -853,10 +900,16 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	@Test
 	public void testSDTCExtensionsSchemaTest() {
 		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
-				convertCCDAFileToString(CCDA_FILES[SDTCTEST]), CCDATypes.NON_SPECIFIC_CCDAR2);		
-		for (RefCCDAValidationResult result : results) {			
-			assertFalse(result.isSchemaError());		
+				convertCCDAFileToString(CCDA_FILES[SDTCTEST]), CCDATypes.NON_SPECIFIC_CCDAR2);
+		boolean hasSchemaErrors =false;
+		for (RefCCDAValidationResult result : results) {
+			if (result.isSchemaError()) {
+				System.err.println(result.getDescription());
+				hasSchemaErrors =true;
+			}
+				
 		}
+		assertFalse(hasSchemaErrors);	
 	}
 	
 	/**
@@ -902,6 +955,11 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		assertTrue("subjectPerson.getSDTCMultipleBirthInd",subjectPerson.getSDTCMultipleBirthInd().getValue());
 		assertNotNull("subjectPerson.getSDTCMultipleBirthOrderNumber",subjectPerson.getSDTCMultipleBirthOrderNumber());
 		assertEquals("subjectPerson.getSDTCMultipleBirthOrderNumber","3",subjectPerson.getSDTCMultipleBirthOrderNumber().getValue().toString());
+		assertNotNull("subjectPerson.getSDTCMultipleBirthOrderNumber",subjectPerson.getSDTCMultipleBirthOrderNumber());
+		
+		assertNotNull("PlayingEntity.getSDTCBirthTime",sdtcTestDocument.getSections().get(0).getEntries().get(0).getObservation().getParticipants().get(0).getParticipantRole().getPlayingEntity().getSDTCBirthTime());
+
+		
 	}
 	
 	
