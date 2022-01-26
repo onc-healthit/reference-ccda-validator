@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:cda="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 ../../org.eclipse.mdht.uml.cda/samples/C32_CDA.xsd">
-	<realmCode code="US"/>
+
+   <!-- 
+      2012-07-06 Added extensions approved by SDWG prior to 2012-07-06: 
+                    RelatedSubject/sdtc:id,
+                    SubjectPerson/sdtc:id,
+                    Patient/sdtc:deceasedInd,
+                    SubjectPerson/sdtc:deceasedInd,
+                    Patient/sdtc:deceasedTime, 
+                    SubjectPerson/sdtc:deceasedTime,
+                    Encounter/sdtc:dischargeDispositionCode,
+                    Patient/sdtc:raceCode,
+                    SubjectPerson/sdtc:raceCode,
+                    PlayingEntity/sdtc:birthTime
+   
+    
+      2014-07-14 Added extensions approved by SDWG on xxxx date:
+                    Authenticator/sdtc:signatureText,
+                    LegalAuthenticator/sdtc:signatureText
+   
+    
+      2015-04-01 Added extensions approved by SDWG on 2014-11-xx:
+                    Patient/sdtc:multipleBirthInd,
+                    SubjectPerson/sdtc:multipleBirthInd,
+                    Patient/sdtc:multipleBirthOrderNumber,
+                    SubjectPerson/sdtc:multipleBirthOrderNumber
+                 Added extensions approved by SDWG on 2014-12-18:
+                    Patient/sdtc:ethnicGroupCode,
+                    SubjectPerson/sdtc:ethnicGroupCode         
+   
+    
+      2015-04-01 Added extension approved by SDWG on 2014-01-xx:
+                    ClinicalDocument/sdtc:statusCode
+   
+    
+      2015-04-01 Added extension approved by SDWG on 2015-03-05:
+                    Patient/sdtc:desc
+                    SubjectPerson/sdtc:desc
+                    Person/sdtc:desc
+   
+    
+      2015-04-01 Added extension approved by SDWG on 2015-03-05:
+                    AssignedEntity/sdtc:patient
+   
+    
+      2015-04-01 Added extension approved by SDWG on 2015-03-19:
+                    Observation/sdtc:inFulfillmentOf1
+                    SubstanceAdministration/sdtc:inFulfillmentOf1
+                    Supply/sdtc:inFulfillmentOf1
+                    Procedure/sdtc:inFulfillmentOf1
+                    Encounter/sdtc:inFulfillmentOf1
+                    Act/sdtc:inFulfillmentOf1
+   
+    
+      2015-04-01 Added extension approved by SDWG on 2015-03-05:
+                 Person/sdtc:asPatientRelationship
+   
+    
+      2015-06-01 Added extension approved by SDWG on 2014-11-06
+                 EncompassingEncounter/sdtc:admissionReferralSourceCode ***
+   
+    
+          2016-05-12 Added extension approved by SDWG on 2016-01-28
+                     Component4/priorityNumber ****
+     
+    
+        2017-10-10  Added extension approved by SDWG on 2017-05-17
+                      Participant2/functionCode ***
+                      Performer2/functionCode **
+     
+
+    
+        2018-07-09  ************ TO BE IMPLEMENTED 2/22 SWM
+          Added extension approved by SDWG on 2018-06-28
+          ObservationRange/sdtc:precondition1 TO BE IMPLEMENTED 2/22
+     
+
+    
+        2019-04-14  Added extension approved by SDWG in 2018-11
+        Organizer/sdtc:text
+     
+
+    
+        2019-08-06 ************ TO BE IMPLEMENTED 2/22 SWM
+            Extensions created for Form Definition Document IG include: 
+            precondition 2
+     
+    
+      2020-10-12 ************ TO BE IMPLEMENTED 2/22 SWM
+      Added alternateIdentification extension approved by SDWG on 2020-09
+      Fix missing sdtc: prefix on functionCode approved by SDWG on 2020-10 
+   
+ -->
+
+ 	<realmCode code="US"/>
 	<!-- CONF 5361 -->
 	<typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
 	<templateId root="2.16.840.1.113883.10.20.22.1.1"/>
@@ -62,19 +155,20 @@
 			</representedCustodianOrganization>
 		</assignedCustodian>
 	</custodian>
+	<componentOf>
+		<encompassingEncounter>
+			<effectiveTime></effectiveTime>
+			<sdtc:admissionReferralSourceCode />
+		</encompassingEncounter>
+	</componentOf>
    <component>
       <structuredBody>
          <component>
             <section>
-            
-            
-            
-           
-    <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
-    <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
-    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
-    <code code="9999999" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-    
+			    <!-- *** Allergies and Intolerances Section (entries required) (V3) *** -->
+			    <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
+			    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" extension="2015-08-01"/>
+			    <code code="9999999" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>   
                <subject>
                   <relatedSubject>
                      <sdtc:id extension="99999999" root="2.16.840.1.113883.4.6" />
@@ -90,19 +184,53 @@
                      </subject>
                   </relatedSubject>
                </subject>
-               
-               <entry typeCode="DRIV">
-               <observation classCode="OBS" moodCode="EVN">
-               <code></code>
-               <participant typeCode="CSM">
-	<participantRole classCode="MANU">
-		<playingEntity classCode="MMAT">
-			<sdtc:birthTime value="1900" />
-		</playingEntity>
-	</participantRole>
-			</participant>		
-               </observation>
-               </entry>
+				<entry typeCode="DRIV">
+					<observation classCode="OBS" moodCode="EVN">
+						<code></code>
+						<participant typeCode="CSM">
+						    <sdtc:functionCode/>
+							<participantRole classCode="MANU">
+								<playingEntity classCode="MMAT">
+									<sdtc:birthTime value="1900" />
+								</playingEntity>
+							</participantRole>
+						</participant>
+						<sdtc:inFulfillmentOf1 typeCode="FLFS">  
+							<sdtc:actReference classCode="ACT" moodCode="EVN">
+								<sdtc:id extension="99999999" root="2.16.840.1.113883.4.6" />							 
+							</sdtc:actReference>
+						</sdtc:inFulfillmentOf1>
+					</observation>
+				</entry>
+				<entry>
+					<organizer nullFlavor="ASKU" classCode="BATTERY" moodCode="APT">		 
+						<sdtc:text />
+						<statusCode />						
+						<performer nullFlavor="ASKU" typeCode="PRF">  
+    						<sdtc:functionCode/>
+							<assignedEntity>
+								<id extension="99999999" root="2.16.840.1.113883.4.6" />
+								<sdtc:patient>
+									<sdtc:id extension="99999999" root="2.16.840.1.113883.4.6" />
+								</sdtc:patient>
+							</assignedEntity>
+  						</performer>
+						<component>
+							<sdtc:priorityNumber value="1" />
+							<observation classCode="OBS" moodCode="EVN">
+								<code></code>
+								<participant typeCode="CSM">
+									<sdtc:functionCode />
+									<participantRole classCode="MANU">
+										<playingEntity classCode="MMAT">
+											<sdtc:birthTime value="1900" />
+										</playingEntity>
+									</participantRole>
+								</participant>
+							</observation>
+						</component>  
+					</organizer>
+				</entry>
             </section>
          </component>
       </structuredBody>
