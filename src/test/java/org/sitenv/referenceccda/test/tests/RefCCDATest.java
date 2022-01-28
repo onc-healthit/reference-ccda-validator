@@ -74,7 +74,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
 			DS4P_REFRAIN_OBSERVATION = 18, IVL_REAL_EXAMPLE = 19, IVL_REAL_EXAMPLE2 = 20, REFERRAL_NOTE = 21,
 			REFERRAL_NOTE2 = 22, SDTCTEST = 23, CONSOLNOTEACTIVITY = 24, MEDICATION_SECTION_CODE_INVALID = 25,
-			MARITALSTATUS = 26, MARITALSTATUS2 = 27,LOTORBATCH=28;
+			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -962,7 +962,6 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		assertNotNull("Organizer.getSTDCText",sdtcTestDocument.getSections().get(0).getEntries().get(1).getOrganizer().getSTDCText());
 		assertNotNull("Organizer.getPerformers.getSDTCFunctionCode",sdtcTestDocument.getSections().get(0).getEntries().get(1).getOrganizer().getPerformers().get(0).getSDTCFunctionCode());
 		assertNotNull("Organizer.component.getPriorityNumber",sdtcTestDocument.getSections().get(0).getEntries().get(1).getOrganizer().getComponents().get(0).getPriorityNumber());
-
 	}
 	
 	

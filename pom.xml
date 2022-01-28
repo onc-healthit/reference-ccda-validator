@@ -14,22 +14,23 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>latestVersion</code.validator.version>
         <content.validator.version>latestVersion</content.validator.version>
-          <!-- MDHT SITE properties -->
+        <!-- MDHT SITE properties -->
         <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
         <mdht.models.version>3.0.0.20220126</mdht.models.version>
-        <ds4pcontent.group>mdht.hl7.ds4p</ds4pcontent.group>
+        <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
-		<mdht.plugins.group>mdht.eclipse.mdht</mdht.plugins.group>
+		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
 		<mdht.plugins.version>3.0.0.202201250600</mdht.plugins.version>
- 
- 		<!-- MDHT SNAPSHOT properties  uncomment for local test-->
-<!--    <mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
+
+ 		<!-- MDHT SNAPSHOT properties: Uncomment for local test -->
+ 		<!--
+		<mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
 		<mdht.models.version>3.0.0-SNAPSHOT</mdht.models.version>		
-		<ds4pcontent.group>org.hl7.security.ds4p</ds4pcontent.group>
+		<ds4pcontent.groupId>org.hl7.security.ds4p</ds4pcontent.groupId>
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
-		<mdht.plugins.group>org.eclipse.mdht</mdht.plugins.group>
-		<mdht.plugins.version>3.0.0-SNAPSHOT</mdht.plugins.version> -->
-		
+		<mdht.plugins.groupId>org.eclipse.mdht</mdht.plugins.groupId>
+		<mdht.plugins.version>3.0.0-SNAPSHOT</mdht.plugins.version>
+		-->
     </properties>
 
     <repositories>
@@ -57,28 +58,28 @@
 		    <version>${mdht.models.version}</version>
         </dependency>
         <dependency>
-            <groupId>${ds4pcontent.group}</groupId>
+            <groupId>${ds4pcontent.groupId}</groupId>
             <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
             <version>${ds4pcontent.version}</version>
         </dependency> 
 		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
 		<dependency>
-            <groupId>${mdht.plugins.group}</groupId>
+            <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>
         <dependency>
-            <groupId>${mdht.plugins.group}</groupId>
+            <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
             <version>${mdht.plugins.version}</version>
         </dependency>
 		<dependency>
-            <groupId>${mdht.plugins.group}</groupId>
+            <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>
 		<dependency>
-            <groupId>${mdht.plugins.group}</groupId>
+            <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>
