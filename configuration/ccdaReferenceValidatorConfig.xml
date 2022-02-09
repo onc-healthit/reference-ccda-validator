@@ -1392,22 +1392,28 @@
 	</expression>
 
 	<!--9. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1198-9058).-->
+	<!--Path specific to anything that is NOT Encounter  -->
+	<!--Note: When we implement USCDI v2, we will have to also accept ICD10CM like we do in the second configuration, see https://www.healthit.gov/isa/uscdi-data-class/problems#uscdi-v2
+	The simplest way to implement the above note, at that time, may be to just delete this configuration and delete the 'and not((ancestor::v3:encounter)' from the path that way in all cases, encounter or otherwise, we allow Problems or ICD10CM
+	We will have to make sure the xPath makes sense in that scenario, though.
+	Or, if we want to leave 2 rules, we can leave as is, and just add ICD10CM to the 1st config, which is simpler, but may be kind of overkill/an unnecessary artifact of the past-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and not((ancestor::v3:encounter) or (ancestor::v3:act)) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation -->
+				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation https://www.healthit.gov/isa/uscdi-data-class/problems#uscdi-v1-->
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
 	</expression>
-
+	
 	<!--9. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1198-9058).-->
+	<!-- Path specific to Encounter -->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and (ancestor::v3:encounter or ancestor::v3:act) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation -->
+				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation-->
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
