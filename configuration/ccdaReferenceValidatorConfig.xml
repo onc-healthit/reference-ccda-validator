@@ -287,7 +287,7 @@
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
-	</expression>  
+	</expression>
 	<!-- HEADER END -->
 
 	<!-- CARE PLAN START -->
@@ -301,7 +301,7 @@
 			<allowedValuesetOids>2.16.840.1.114222.4.11.1066</allowedValuesetOids>
 		</validator>
 	</expression>
-  
+
     <!--iii. This associatedEntity SHOULD contain zero or one [0..1] code (CONF:1198-31685). -->
     <!--1. The code, if present, SHALL contain exactly one [1..1] @code (ValueSet: Personal And Legal Relationship Role Type urn:oid:2.16.840.1.113883.11.20.12.1) (CONF:1198-32367). -->
     <expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant/v3:associatedEntity/v3:code[not(@nullFlavor)]">
@@ -312,10 +312,10 @@
             </validationResultSeverityLevels>
             <allowedValuesetOids>2.16.840.1.113883.11.20.12.1</allowedValuesetOids>
         </validator>
-    </expression>    
+    </expression>
     <expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.15' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:participant/v3:associatedEntity/v3:code[not(@nullFlavor)]">
         <validator>
-            <name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>     
+            <name>NodeCodeSystemMatchesConfiguredCodeSystemValidator</name>
             <nodeType>codeSystem</nodeType>
             <allowedValuesetOids>2.16.840.1.113883.5.111</allowedValuesetOids>
         </validator>
@@ -705,14 +705,14 @@
 	<!-- COGNITIVE STATUS PROBLEM OBSERVATION (DEPRICATED) CONSTRAINTS OVERVIEW END -->
 
 	<!-- DRUG MONITORING ACT CONSTRAINTS OVERVIEW START -->
-	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32358).-->
+	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.15933 DYNAMIC (CONF:1098-32358).-->
 	<expression xpathExpression="//v3:act/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.123']/ancestor::v3:act[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.1.11.159331</allowedValuesetOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.15933</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- DRUG MONITORING ACT CONSTRAINTS OVERVIEW END -->
@@ -840,14 +840,14 @@
 	<!-- HEALTH STATUS OBSERVATION END -->
 
 	<!-- IMMUNIZATION ACTIVITY (V3) CONSTRAINTS OVERVIEW START -->
-	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1198-32359).-->
+	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.15933 DYNAMIC (CONF:1198-32359).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.1.11.159331</allowedValuesetOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.15933</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -862,7 +862,7 @@
 		</validator>
 	</expression>
 
-    <!--NEW for 2018 errata: Consol Immunization Activity2 MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1198-8839, DSTU:1276) 
+    <!--NEW for 2018 errata: Consol Immunization Activity2 MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1198-8839, DSTU:1276)
 	Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1198-32960, DSTU:1276) -->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
@@ -972,14 +972,14 @@
 	<!-- INSTRUCTION END -->
 
 	<!-- MEDICATION ACTIVITY START -->
-	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32360).-->
+	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.15933 DYNAMIC (CONF:1098-32360).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.1.11.159331</allowedValuesetOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.15933</allowedValuesetOids>
 		</validator>
 	</expression>
 
@@ -994,7 +994,7 @@
 		</validator>
 	</expression>
 
-    <!--NEW for 2018 errata: Consol Medication Activity2 SHOULD contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-7514, DSTU:1276) 
+    <!--NEW for 2018 errata: Consol Medication Activity2 SHOULD contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-7514, DSTU:1276)
     Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32950, DSTU:1276) -->
     <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
       <validator>
@@ -1004,7 +1004,7 @@
         </validationResultSeverityLevels>
         <allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
       </validator>
-    </expression>  
+    </expression>
 
 	<!--11. MAY contain zero or one [0..1] approachSiteCode, where the code SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1098-7515).-->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:approachSiteCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
@@ -1065,27 +1065,27 @@
 	<!-- MEDICATION INDICATION END -->
 
 	<!-- MEDICATION SUPPLY ORDER (V2) CONSTRAINTS OVERVIEW START -->
-	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32362).-->
+	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.15933 DYNAMIC (CONF:1098-32362).-->
 	<expression xpathExpression="//v3:supply/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.17' and @extension='2014-06-09']/ancestor::v3:supply[1]/v3:statusCode[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.1.11.159331</allowedValuesetOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.15933</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- MEDICATION SUPPLY ORDER (V2) CONSTRAINTS OVERVIEW END -->
 
 	<!-- NON-MEDICINAL SUPPLY ACTIVITY (V2) START -->
-	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.159331 DYNAMIC (CONF:1098-32363).-->
+	<!--a. This statusCode SHALL contain exactly one [1..1] @code, which SHALL be selected from ValueSet ActStatus urn:oid:2.16.840.1.113883.1.11.15933 DYNAMIC (CONF:1098-32363).-->
 	<expression xpathExpression="//v3:supply/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.50' and @extension='2014-06-09']/ancestor::v3:supply[1]/v3:statusCode[@code and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetNodeWithOnlyCodeValidator</name>
 			<validationResultSeverityLevels>
 				<codeSeverityLevel>SHALL</codeSeverityLevel>
 			</validationResultSeverityLevels>
-			<allowedValuesetOids>2.16.840.1.113883.1.11.159331</allowedValuesetOids>
+			<allowedValuesetOids>2.16.840.1.113883.1.11.15933</allowedValuesetOids>
 		</validator>
 	</expression>
 	<!-- NON-MEDICINAL SUPPLY ACTIVITY (V2) END -->
@@ -1190,7 +1190,7 @@
 		</validator>
 	</expression>
 
-    <!--NEW for 2018 errata: Consol Planned Immunization Activity MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32127, DSTU:1276) 
+    <!--NEW for 2018 errata: Consol Planned Immunization Activity MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32127, DSTU:1276)
     Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32951, DSTU:1276) -->
     <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
       <validator>
@@ -1237,7 +1237,7 @@
 		</validator>
 	</expression>
 
-    <!--NEW for 2018 errata: Consol Planned Medication Activity2 MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32067, DSTU:1276) 
+    <!--NEW for 2018 errata: Consol Planned Medication Activity2 MAY contain zero or one [0..1] routeCode, which SHALL be selected from ValueSet Medication Route FDA Value Set 2.16.840.1.113883.3.88.12.3221.8.7 DYNAMIC (CONF:1098-32067, DSTU:1276)
     Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32952, DSTU:1276) -->
     <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
       <validator>
@@ -1392,22 +1392,29 @@
 	</expression>
 
 	<!--9. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1198-9058).-->
+	<!--Path specific to anything that is NOT Encounter  -->
+	<!--Note: When we implement USCDI v2, we will have to also accept ICD10CM like we do in the second configuration, see https://www.healthit.gov/isa/uscdi-data-class/problems#uscdi-v2
+	The simplest way to implement the above note, at that time, may be to just delete this configuration and delete the 'and not((ancestor::v3:encounter)' from the path that way in all cases, encounter or otherwise, we allow Problems or ICD10CM
+	We will have to make sure the xPath makes sense in that scenario, though.
+	Or, if we want to leave 2 rules, we can leave as is, and just add ICD10CM to the 1st config, which is simpler, but may be kind of overkill/an unnecessary artifact of the past
+	See SITE-3375 for more information-->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and not((ancestor::v3:encounter) or (ancestor::v3:act)) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation -->
+				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation https://www.healthit.gov/isa/uscdi-data-class/problems#uscdi-v1-->
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
 	</expression>
 
 	<!--9. SHALL contain exactly one [1..1] value with @xsi:type="CD", where the code SHOULD be selected from ValueSet Problem urn:oid:2.16.840.1.113883.3.88.12.3221.7.4 DYNAMIC (CONF:1198-9058).-->
+	<!-- Path specific to Encounter -->
 	<expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.4' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[not(@nullFlavor) and (ancestor::v3:encounter or ancestor::v3:act) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation -->
+				<codeSeverityLevel>SHALL</codeSeverityLevel><!--overriding IG with regulation-->
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.3221.7.4</allowedValuesetOids>
 		</validator>
@@ -1625,7 +1632,7 @@
             </validationResultSeverityLevels>
             <allowedValuesetOids>2.16.840.1.113883.1.11.12839</allowedValuesetOids>
         </validator>
-    </expression>  
+    </expression>
     <expression xpathExpression="//v3:observation/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.2' and @extension='2015-08-01']/ancestor::v3:observation[1]/v3:value[@xsi:type='PQ' and not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
 			<name>RequiredNodeValidator</name>
@@ -1690,8 +1697,8 @@
 		</validator>
 	</expression>
 	<!-- SENSORY STATUS CONSTRAINTS OVERVIEW END -->
-  
-    <!-- SERVICE DELIVERY LOCATION START -->  
+
+    <!-- SERVICE DELIVERY LOCATION START -->
     <!--3. SHALL contain exactly one [1..1] code, which SHALL be selected from ValueSet HealthcareServiceLocation urn:oid:2.16.840.1.113883.1.11.20275 STATIC (CONF:81-16850).-->
     <expression xpathExpression="//v3:participantRole/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.32']/ancestor::v3:participantRole[1]/v3:code[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
         <validator>
@@ -1868,10 +1875,10 @@
 
     <!-- US REALM ADDRESS (AD.US.FIELDED) STATE ELEMENT START -->
     <!-- GLOBAL DATATYPE RULE applied to all related section occurrences:
-         3. SHOULD contain zero or one [0..1] state (ValueSet: StateValueSet urn:oid:2.16.840.1.113883.3.88.12.80.1 DYNAMIC) (CONF:81-7293).      
-         Exception: If country is something other than US, the state MAY be present but MAY be bound to different vocabularies (CONF:81-10024). -->    
+         3. SHOULD contain zero or one [0..1] state (ValueSet: StateValueSet urn:oid:2.16.840.1.113883.3.88.12.80.1 DYNAMIC) (CONF:81-7293).
+         Exception: If country is something other than US, the state MAY be present but MAY be bound to different vocabularies (CONF:81-10024). -->
     <!-- POLICY ACTIVITY START -->
-    <!-- PAYER: This assignedEntity MAY contain zero or one [0..1] US Realm Address (AD.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1198-8910). -->    
+    <!-- PAYER: This assignedEntity MAY contain zero or one [0..1] US Realm Address (AD.US.FIELDED) (identifier: urn:oid:2.16.840.1.113883.10.20.22.5.2) (CONF:1198-8910). -->
     <expression xpathExpression="//v3:section[not(@nullFlavor) and v3:templateId[@root='2.16.840.1.113883.10.20.22.2.18' and @extension='2015-08-01']]//v3:act[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.60' and @extension='2015-08-01']]//v3:act[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.61' and @extension='2015-08-01']]//v3:performer[v3:templateId[@root='2.16.840.1.113883.10.20.22.4.87']]/v3:assignedEntity/v3:addr[v3:country='US']/v3:state">
       <validator>
         <name>TextNodeValidator</name>
@@ -1891,7 +1898,7 @@
         <allowedValuesetOids>2.16.840.1.113883.3.88.12.80.1</allowedValuesetOids>
       </validator>
     </expression>
-    <!-- POLICY ACTIVITY END -->    
+    <!-- POLICY ACTIVITY END -->
     <!-- US REALM ADDRESS (AD.US.FIELDED) STATE ELEMENT END -->
 
 	<!-- US REALM ADDRESS (AD.US.FIELDED) START -->
