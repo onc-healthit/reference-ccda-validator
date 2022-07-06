@@ -1,6 +1,7 @@
 package org.sitenv.referenceccda.controllers;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.services.VocabularyService;
@@ -32,7 +33,7 @@ public class ReferenceCCDAValidationController {
 
 	private static final String GITHUB_URL = "https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/git/trees/master?recursive=1";
 	private static final String DEFAULT_SEVERITY_LEVEL = "INFO";
-	private static Logger logger = Logger.getLogger(ReferenceCCDAValidationController.class);
+	private static Logger logger = LoggerFactory.getLogger(ReferenceCCDAValidationController.class);
 	
 	@RequestMapping(value = "/", headers = "content-type=multipart/*", method = RequestMethod.POST)
 	public ValidationResultsDto doValidation(
