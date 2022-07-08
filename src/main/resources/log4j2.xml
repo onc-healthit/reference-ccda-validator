@@ -1,0 +1,34 @@
+<Configuration status="info">
+	<Appenders>
+		<RollingFile name="fileLogger"
+			fileName="/opt/tomcat/logs/referenceccdaservice.log"
+			filePattern="/opt/tomcat/logs/referenceccdaservice.%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+				</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="100MB" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+	
+    <Logger name="org.springframework.orm.jpa">
+        <level value="info" />
+    </Logger>
+
+    <Logger name="org.springframework.transaction">
+        <level value="info" />
+    </Logger>
+
+    <Logger name="org.hsqldb">
+        <level value="info" />
+    </Logger>
+    	
+		<Root level="info">
+			<appender-ref ref="fileLogger" />
+		</Root>
+	</Loggers>
+</Configuration>

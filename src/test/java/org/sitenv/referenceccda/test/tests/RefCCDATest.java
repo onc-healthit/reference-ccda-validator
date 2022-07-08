@@ -17,7 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.BasicConfigurator;
+import org.apache.logging.log4j.core.config.Configuration;
+import org.apache.logging.log4j.core.config.DefaultConfiguration;
 import org.eclipse.mdht.uml.cda.ClinicalDocument;
 import org.eclipse.mdht.uml.cda.Patient;
 import org.eclipse.mdht.uml.cda.Person;
@@ -60,7 +61,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	private static final boolean LOG_LOG4J = true;
 	static {
 		if (LOG_LOG4J) {
-			BasicConfigurator.configure();
+			Configuration config = new DefaultConfiguration();
 		}
 	}
 
