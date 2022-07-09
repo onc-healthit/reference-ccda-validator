@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+    <property name="HOME_LOG" value="target/referenceccdaservice"/>
+
+<timestamp key="timestamp" datePattern="yyy-MM-dd"/>
+
+    <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${HOME_LOG}.${timestamp}.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${HOME_LOG}.-%d{yyyy-MM-dd}%i.log</fileNamePattern>
+            <!-- each archived file, size max 100MB -->
+            <maxFileSize>100MB</maxFileSize>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- https://logback.qos.ch/manual/appenders.html#AsyncAppender -->
+    <!-- AsyncAppender will drop events of level TRACE, DEBUG and INFO if its queue is 80% full -->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="FILE-ROLLING" />
+        <!-- defaulr 256 -->
+        <queueSize>512</queueSize>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="FILE-ROLLING"/>
+    </root>
+
+</configuration>

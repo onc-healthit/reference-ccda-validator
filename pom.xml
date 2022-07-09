@@ -21,6 +21,7 @@
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
 		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
 		<mdht.plugins.version>3.0.0.202201250600</mdht.plugins.version>
+		<logback.version>1.2.3</logback.version>
 
  		<!-- MDHT SNAPSHOT properties: Uncomment for local test -->
  		<!--
@@ -248,27 +249,12 @@
             <version>3.12.0</version>
         </dependency>
 
+        <!-- pull in logback-core and slf4j-api -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
-		<dependency>
-		    <groupId>org.slf4j</groupId>
-		    <artifactId>slf4j-simple</artifactId>
-		    <version>1.7.36</version>
-		</dependency>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-api</artifactId>
-				<version>2.17.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.logging.log4j</groupId>
-				<artifactId>log4j-core</artifactId>
-				<version>2.17.2</version>
-			</dependency>
-
 
         <dependency>
             <groupId>junit</groupId>
