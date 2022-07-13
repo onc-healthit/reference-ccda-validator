@@ -21,7 +21,7 @@
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
 		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
 		<mdht.plugins.version>3.0.0.202201250600</mdht.plugins.version>
-		<logback.version>1.2.3</logback.version>
+		<logback.version>1.2.11</logback.version>
 
  		<!-- MDHT SNAPSHOT properties: Uncomment for local test -->
  		<!--
