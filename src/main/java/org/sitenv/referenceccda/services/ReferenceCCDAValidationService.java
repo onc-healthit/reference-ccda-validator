@@ -8,7 +8,8 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.BOMInputStream;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.dto.ValidationResultsMetaData;
 import org.sitenv.referenceccda.validators.RefCCDAValidationResult;
@@ -27,7 +28,7 @@ import org.xml.sax.SAXException;
 
 @Service
 public class ReferenceCCDAValidationService {
-	private static Logger logger = Logger.getLogger(ReferenceCCDAValidationService.class);
+	private static Logger logger = LoggerFactory.getLogger(ReferenceCCDAValidationService.class);
 
 	private ReferenceCCDAValidator referenceCCDAValidator;
 	private VocabularyCCDAValidator vocabularyCCDAValidator;

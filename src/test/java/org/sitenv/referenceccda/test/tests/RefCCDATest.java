@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.BasicConfigurator;
 import org.eclipse.mdht.uml.cda.ClinicalDocument;
 import org.eclipse.mdht.uml.cda.Patient;
 import org.eclipse.mdht.uml.cda.Person;
@@ -57,12 +56,6 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	private static final boolean LOG_RESULTS_TO_CONSOLE = true;
 
 	private static final boolean SHOW_ERRORS_ONLY = true;
-	private static final boolean LOG_LOG4J = true;
-	static {
-		if (LOG_LOG4J) {
-			BasicConfigurator.configure();
-		}
-	}
 
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
