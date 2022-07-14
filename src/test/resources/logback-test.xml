@@ -3,7 +3,7 @@
 
     <property name="HOME_LOG" value="target/referenceccdaservice"/>
 
-<timestamp key="timestamp" datePattern="yyy-MM-dd"/>
+<timestamp key="timestamp" datePattern="yyyy-MM-dd"/>
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HOME_LOG}.${timestamp}.log</file>
