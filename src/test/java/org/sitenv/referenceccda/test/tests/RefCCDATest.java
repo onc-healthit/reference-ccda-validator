@@ -74,7 +74,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
 			DS4P_REFRAIN_OBSERVATION = 18, IVL_REAL_EXAMPLE = 19, IVL_REAL_EXAMPLE2 = 20, REFERRAL_NOTE = 21,
 			REFERRAL_NOTE2 = 22, SDTCTEST = 23, CONSOLNOTEACTIVITY = 24, MEDICATION_SECTION_CODE_INVALID = 25,
-			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28;
+			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28,APPENDIXAANDB = 29;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -110,7 +110,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/MedicationSectionCodeInvalid.xml").toURI(),
 					RefCCDATest.class.getResource("/maritalstatus.xml").toURI(), 
 					RefCCDATest.class.getResource("/maritalstatus2.xml").toURI(),
-					RefCCDATest.class.getResource("/lotorbatch.xml").toURI()
+					RefCCDATest.class.getResource("/lotorbatch.xml").toURI(),
+					RefCCDATest.class.getResource("/AppendixAandB.xml").toURI()
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -896,7 +897,38 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4437-3458");		
 	}
 	 
+	@Test
+	public void test_AppendAandBValid() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[APPENDIXAANDB]), CCDATypes.NON_SPECIFIC_CCDAR2);
 
+		printResultsBasedOnFlags(results);
+		
+		
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-38", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-41", 1 );
+//
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-42", 1 );
+//
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-39", 2 );
+//
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-50", 1 );
+//
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-51", 1 );
+//
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32983", 1 );
+//
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32977", 1 );
+//		
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32981", 1 );
+//		
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-11", 1 );
+//		
+		
+		
+		
+		
+ 	}
  
 	
 	@Test
