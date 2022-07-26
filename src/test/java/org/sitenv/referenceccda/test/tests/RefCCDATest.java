@@ -67,7 +67,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
 			DS4P_REFRAIN_OBSERVATION = 18, IVL_REAL_EXAMPLE = 19, IVL_REAL_EXAMPLE2 = 20, REFERRAL_NOTE = 21,
 			REFERRAL_NOTE2 = 22, SDTCTEST = 23, CONSOLNOTEACTIVITY = 24, MEDICATION_SECTION_CODE_INVALID = 25,
-			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28;
+			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28, APPENDIXAANDB = 29;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -103,7 +103,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/MedicationSectionCodeInvalid.xml").toURI(),
 					RefCCDATest.class.getResource("/maritalstatus.xml").toURI(), 
 					RefCCDATest.class.getResource("/maritalstatus2.xml").toURI(),
-					RefCCDATest.class.getResource("/lotorbatch.xml").toURI()
+					RefCCDATest.class.getResource("/lotorbatch.xml").toURI(),
+					RefCCDATest.class.getResource("/AppendixAandB.xml").toURI()
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -882,15 +883,67 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 	
 	@Test
-	public void test_LotorBatchValid() {
+	public void test_LotOrBatchValid() {
 		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
 				convertCCDAFileToString(CCDA_FILES[LOTORBATCH]), CCDATypes.NON_SPECIFIC_CCDAR2);
 		results = getMDHTErrorsFromResults(results);		
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4437-3458");		
 	}
 	 
-
- 
+	@Test
+	public void test_AppendAandBValid() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[APPENDIXAANDB]), CCDATypes.NON_SPECIFIC_CCDAR2);
+		printResultsBasedOnFlags(results);
+		
+		// As it stands, this test doesn't test anything (all tests commented out, and many or all fail) so is not useful for regression yet.
+		// TODO: Sean, please update to include a passing test with at least one expected pass and one expected failure. Thanks!
+		
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-38", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-41", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-42", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-39", 2 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-50", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-51", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32983", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32977", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32981", 1 );
+//		failIfIssueIfCountResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-11", 1 );
+		
+		// Results of concern:
+		// TODO: Sean, please analyze, is this what we expect?
+		/*
+		Quantity: 2
+		Reason: Should we have schema issues in a test doc?
+		cvc-complex-type.2.4.b: The content of element 'observation' is not complete. One of '{"urn:hl7-org:v3":templateId, "urn:hl7-org:v3":id, "urn:hl7-org:v3":code}' is expected.
+		
+		Quantity: 2
+		Reason: Should we have schema issues in a test doc?
+		cvc-complex-type.2.4.a: Invalid content was found starting with element '{"urn:hl7-org:v3":entry}'. One of '{"urn:hl7-org:v3":realmCode, "urn:hl7-org:v3":typeId, "urn:hl7-org:v3":templateId, "urn:hl7-org:v3":act, "urn:hl7-org:v3":encounter, "urn:hl7-org:v3":observation, "urn:hl7-org:v3":observationMedia, "urn:hl7-org:v3":organizer, "urn:hl7-org:v3":procedure, "urn:hl7-org:v3":regionOfInterest, "urn:hl7-org:v3":substanceAdministration, "urn:hl7-org:v3":supply}' is expected.
+		
+		Quantity: 1
+		Reason: Should EMF or datatype issues in a test doc?
+		The required feature 'code' of 'org.openhealthtools.mdht.uml.cda.consol.impl.AssessmentScaleSupportingObservationImpl@4d20616a{http:///resource0.xml#//@clinicalDocument/@component/@structuredBody/@component.0/@section/@entry.0/@observation/@entryRelationship.0/@observation}' must be set
+		
+		Quantity: 1
+		Reason: Should EMF or datatype issues in a test doc?
+		The 'validateClinicalStatement' invariant is violated on 'org.eclipse.mdht.uml.cda.impl.EntryImpl@716185fe{http:///resource0.xml#//@clinicalDocument/@component/@structuredBody/@component.0/@section/@entry.3}'
+		
+		Quantity: 1
+		Reason: Does not specify a template name
+		SHALL contain exactly one [1..1] templateId ( CONF:8550 ) such that it SHALL contain exactly one [1..1] @root="2.16.840.1.113883.10.20.22.4.38"
+		
+		
+		Quantity: 1
+		Reason: Does not specify a template name
+		SHALL contain exactly one [1..1] templateId ( CONF:8550 ) such that it SHALL contain exactly one [1..1] @root="2.16.840.1.113883.10.20.22.4.38"
+		
+		
+		Quantity: 1
+		Reason: Should EMF or datatype issues in a test doc?
+		The 'validateClinicalStatement' invariant is violated on 'org.eclipse.mdht.uml.cda.impl.EntryImpl@39666e42{http:///resource0.xml#//@clinicalDocument/@component/@structuredBody/@component.1/@section/@entry.0}'
+		*/
+ 	}
 	
 	@Test
 	public void testSDTCExtensionsSchemaTest() {
@@ -956,7 +1009,6 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		assertNotNull("Organizer.getPerformers.getSDTCFunctionCode",sdtcTestDocument.getSections().get(0).getEntries().get(1).getOrganizer().getPerformers().get(0).getSDTCFunctionCode());
 		assertNotNull("Organizer.component.getPriorityNumber",sdtcTestDocument.getSections().get(0).getEntries().get(1).getOrganizer().getComponents().get(0).getPriorityNumber());
 	}
-	
 	
 	private static List<ConfiguredExpression> getGenericConfiguredExpressionsForTesting() {
 		final String validationMessage = "Will always fail";

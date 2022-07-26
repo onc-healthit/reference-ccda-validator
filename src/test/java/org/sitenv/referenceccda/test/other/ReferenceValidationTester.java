@@ -186,6 +186,18 @@ public class ReferenceValidationTester extends VocabularyValidationTester {
 		return isErrorMessageFound;
 	}
 	
+	protected static int countIssuesInResults(List<RefCCDAValidationResult> results, ValidationResultType typeExpected,
+			String messageExpected) {
+		int isErrorMessageFound = 0;;
+		for (int i = 0; i < results.size(); i++) {
+			RefCCDAValidationResult curResult = results.get(i);
+			if (curResult.getType() == typeExpected && curResult.getDescription().contains(messageExpected)) {
+				isErrorMessageFound++;
+			}
+		}
+		return isErrorMessageFound;
+	}
+	
 	protected static void failIfIssueIsInResults(List<RefCCDAValidationResult> results, ValidationResultType typeExpected,
 			String messageExpected) {
 		assertFalse("Did NOT expect to find Issue: '" + messageExpected + "' but instead DID return the issue",
@@ -197,6 +209,26 @@ public class ReferenceValidationTester extends VocabularyValidationTester {
 		assertTrue("Expected Issue: '" + messageExpected + "' but instead did NOT return the issue",
 				isIssueInResults(results, typeExpected, messageExpected));
 	}	
+	private static void printResultsBasedOnFlags(List<RefCCDAValidationResult> results) {
+		 
+			ReferenceValidationLogger.printResults(getMDHTErrorsFromResults(results));
+		 
+	}
+	
+	protected static void failIfIssueIfCountResults(List<RefCCDAValidationResult> results, ValidationResultType typeExpected,
+			String messageExpected,int target) {
+		
+		int count = countIssuesInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, messageExpected);
+		if (count != target) {
+			printResultsBasedOnFlags(results);		
+		}
+		assertTrue("Rule "+ messageExpected+ " was not equal to expected "+target+ " found "+ count,
+				 count == target );
+
+//		assertFalse("Found Issue: '" + messageExpected + "' but instead DID return the issue",
+//				isIssueInResults(results, typeExpected, messageExpected));
+	}
+
 	
 	protected static int countSpecifcResults(List<RefCCDAValidationResult> results, ValidationResultType type) {
 		int issueTypeCount = 0;

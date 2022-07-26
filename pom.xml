@@ -16,13 +16,12 @@
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT SITE properties -->
         <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
-        <mdht.models.version>3.0.0.20220126</mdht.models.version>
+        <mdht.models.version>3.0.0.20220715</mdht.models.version>
         <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
 		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
-		<mdht.plugins.version>3.0.0.202201250600</mdht.plugins.version>
+		<mdht.plugins.version>3.0.0.202207150500</mdht.plugins.version>
 		<logback.version>1.2.11</logback.version>
-
  		<!-- MDHT SNAPSHOT properties: Uncomment for local test -->
  		<!--
 		<mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>

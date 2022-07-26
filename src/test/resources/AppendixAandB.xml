@@ -1,0 +1,698 @@
+<?xml version="1.0"?><?xml-stylesheet type='text/xsl' href='http://www.nextgenshare.com/public/CDA_NGMU2.xsl'?>
+<ClinicalDocument xmlns:voc="urn:hl7-org:v3/voc"
+	xmlns:sdtc="urn:hl7-org:sdtc" xmlns="urn:hl7-org:v3"
+	xmlns:mif="urn:hl7-org:v3/mif"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+	
+		<id extension="ds4p_4" root="2.16.840.1.113883.19.5.99999.1"/>
+	<code code="34133-9" displayName="Summarization of Episode Note" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+	<!-- Title of this document -->
+	<title>170.315_b1_toc_inp_ccd_r21_sample1 test data</title>
+	<effectiveTime value="20150622"/>
+
+	<confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N" displayName="Normal" codeSystemName="Confidentiality"/>
+	
+	<recordTarget>
+		<patientRole>
+			<id extension="117273338" root="2.16.840.1.113883.4.1"/>
+			<!-- Example Social Security Number using the actual SSN OID. -->
+			<addr use="HP">
+				<!-- HP is "primary home" from codeSystem 2.16.840.1.113883.5.1119 -->
+				<streetAddressLine>1006 Amber Dr</streetAddressLine>
+				<city>Beaverton</city>
+				<state>OR</state>
+				<postalCode>97266</postalCode>
+				<country>US</country>
+				<!-- US is "United States" from ISO 3166-1 Country Codes: 1.0.3166.1 -->
+			</addr>
+			<telecom value="tel:+1(555)-223-1234" use="MC"/>
+			<telecom value="tel:+1(555)-224-1544" use="HP"/>
+			<!-- HP is "primary home" from HL7 AddressUse 2.16.840.1.113883.5.1119 -->
+			<patient>
+				<name use="L">
+					<given>Lindsey</given>
+					<given>Turner</given>
+					<family>Pitt</family>
+				</name>
+				<name use="L">
+					<given qualifier="BR">Lin</given>
+					<given>Turner</given>
+					<family>Pitt</family>
+				</name>
+				<administrativeGenderCode code="F" displayName="Female" codeSystem="2.16.840.1.113883.5.1" codeSystemName="AdministrativeGender"/>
+				<!-- Date of birth need only be precise to the day -->
+				<birthTime value="19700601"/>
+				<maritalStatusCode code="M" displayName="Married" codeSystem="2.16.840.1.113883.5.2" codeSystemName="MaritalStatusCode"/>
+				<religiousAffiliationCode code="1013" displayName="Christian (non-Catholic, non-specific)" codeSystem="2.16.840.1.113883.5.1076" codeSystemName="HL7 Religious Affiliation"/>
+				<!-- CDC Race and Ethnicity code set contains the five minimum race and ethnicity 
+					categories defined by OMB Standards -->
+				<raceCode code="2106-3" displayName="White" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<!-- The raceCode extension is only used if raceCode is valued -->
+				<sdtc:raceCode code="2108-9" displayName="White European" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<ethnicGroupCode code="2186-5" displayName="Not Hispanic or Latino" codeSystem="2.16.840.1.113883.6.238" codeSystemName="Race &amp; Ethnicity - CDC"/>
+				<languageCommunication>
+					<languageCode code="en-US"/>
+					<modeCode code="ESP" displayName="Expressed spoken"
+						codeSystem="2.16.840.1.113883.5.60" codeSystemName="LanguageAbilityMode"/>
+					<preferenceInd value="true"/>
+				</languageCommunication>
+			</patient>
+			<providerOrganization>
+				<id extension="99999999" root="2.16.840.1.113883.4.6"/>
+				<name>Community Health and Hospitals</name>
+				<telecom use="WP" value="tel:+1(555)-555-5000"/>
+				<addr>
+					<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+					<city>Beaverton</city>
+					<state>OR</state>
+					<postalCode>97266</postalCode>
+					<country>US</country>
+				</addr>
+			</providerOrganization>
+		</patientRole>
+	</recordTarget>
+	
+	<author>
+	 
+		<templateId root="2.16.840.1.113883.10.20.22.5.6"
+			extension="2019-10-01" />
+		<time value="201308011235-0800" />
+		<assignedAuthor>
+		 
+			<id root="2.16.840.1.113883.4.6" extension="1234567" />
+			<assignedPerson>
+				<name>
+					<given>Nurse</given>
+					<family>Nightingale</family>
+					<suffix>RN</suffix>
+				</name>
+			</assignedPerson>
+			<representedOrganization>
+				 
+				<id root="2.16.840.1.113883.5.1008" nullFlavor="UNK" />
+			 
+				<id root="2.16.840.1.113883.4.6" extension="1104145838" />
+				<name>Good Health Hospital</name>
+				<telecom value="tel:+1(555)867-5309" />
+			</representedOrganization>
+		</assignedAuthor>
+	</author>
+
+	 	<!-- The dataEnterer transferred the content created by the author into the document -->
+	<dataEnterer>
+		<assignedEntity>
+			<id root="2.16.840.1.113883.4.6" extension="999999943252"/>
+			<addr>
+				<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+				<city>Beaverton</city>
+				<state>OR</state>
+				<postalCode>97266</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)-555-1002"/>
+			<assignedPerson>
+				<name>
+					<given>Mary</given>
+					<family>McDonald</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</dataEnterer>
+	<!-- The informant represents any sources of information for document content -->
+	<informant>
+		<assignedEntity>
+			<id extension="KP00017" root="2.16.840.1.113883.19.5"/>
+			<addr>
+				<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+				<city>Beaverton</city>
+				<state>OR</state>
+				<postalCode>97266</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)-555-1002"/>
+			<assignedPerson>
+				<name>
+					<given>Henry</given>
+					<family>Seven</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</informant>
+	<informant>
+		<relatedEntity classCode="PRS">
+			<!-- classCode PRS represents a person with personal relationship with the patient. -->
+			<code code="SPS" displayName="SPOUSE" codeSystem="2.16.840.1.113883.1.11.19563"
+				codeSystemName="Personal Relationship Role Type Value Set"/>
+			<relatedPerson>
+				<name>
+					<given>Franklin</given>
+					<family>Pitt</family>
+				</name>
+			</relatedPerson>
+		</relatedEntity>
+	</informant>
+	<!-- The custodian represents the organization charged with maintaining the original source document -->
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<id extension="99998899" root="2.16.840.1.113883.4.6"/>
+				<name>Community Health and Hospitals</name>
+				<telecom value="tel:+1(555)-555-1002" use="WP"/>
+				<addr use="WP">
+					<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+					<city>Beaverton</city>
+					<state>OR</state>
+					<postalCode>97266</postalCode>
+					<country>US</country>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>
+	<!-- The informationRecipient represents the intended recipient of the document -->
+	<informationRecipient>
+		<intendedRecipient>
+			<informationRecipient>
+				<name>
+					<prefix>Dr</prefix>
+					<given>Henry</given>
+					<family>Seven</family>
+				</name>
+			</informationRecipient>
+			<receivedOrganization>
+				<name>Community Health and Hospitals</name>
+			</receivedOrganization>
+		</intendedRecipient>
+	</informationRecipient>
+	<!-- The legalAuthenticator represents the individual who is responsible for the document -->
+	<legalAuthenticator>
+		<time value="20150622"/>
+		<signatureCode code="S"/>
+		<assignedEntity>
+			<id extension="999998899" root="2.16.840.1.113883.4.6"/>
+			<addr>
+				<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+				<city>Beaverton</city>
+				<state>OR</state>
+				<postalCode>97266</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)-555-1002"/>
+			<assignedPerson>
+				<name>
+					<prefix>Dr</prefix>
+					<given>Henry</given>
+					<family>Seven</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</legalAuthenticator>
+	<!-- The authenticator represents the individual attesting to the accuracy of information in the document-->
+	<authenticator>
+		<time value="20150622"/>
+		<signatureCode code="S"/>
+		<assignedEntity>
+			<id extension="999998899" root="2.16.840.1.113883.4.6"/>
+			<addr>
+				<streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+				<city>Beaverton</city>
+				<state>OR</state>
+				<postalCode>97266</postalCode>
+				<country>US</country>
+			</addr>
+			<telecom use="WP" value="tel:+1(555)-555-1002"/>
+			<assignedPerson>
+				<name>
+					<prefix>Dr</prefix>
+					<given>Henry</given>
+					<family>Seven</family>
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</authenticator>
+	 
+	 
+	<participant typeCode="DEV">
+		<templateId root="2.16.840.1.113883.10.20.22.5.7"
+			extension="2020-05-19" />
+		<functionCode code="assembler"
+			codeSystem="2.16.840.1.113883.4.642.4.1131"
+			codeSystemName="ProvenanceParticipantType" />
+		<time value="20191206011130-0400" />
+		<associatedEntity classCode="OWN">
+			<scopingOrganization>			 
+				<id root="2.16.840.1.113883.19.5" extension="4" />
+				<name use="L">Good Health HIE</name>
+				<telecom value="tel:+1(202)776-7700" use="WP" />
+				<addr use="WP">
+					<streetAddressLine partType="SAL">555 Badger Way
+					</streetAddressLine>
+					<city partType="CTY">Amherst</city>
+					<state partType="STA">WI</state>
+					<postalCode partType="ZIP">01002</postalCode>
+					<country partType="CNT">US</country>
+				</addr>
+			</scopingOrganization>
+		</associatedEntity>
+	</participant>
+
+
+	<component>
+		<structuredBody>
+			
+			<!-- ***************** ALLERGIES *************** -->
+			<!-- edited as per test doc - all data relevant -db -->
+			<component>
+		<section>
+
+			<entry>
+
+				<observation classCode="OBS" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.10.20.22.4.69"
+						extension="2022-06-01" />
+					<id root="c6b5a04b-2bf4-49d1-8336-636a3813df0b" />
+					<code code="54614-3"
+						displayName="Brief Interview for Mental Status"
+						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+					<derivationExpr>Text description of the calculation
+					</derivationExpr>
+					<statusCode code="completed" />
+					<effectiveTime value="20120214" />
+
+					<value xsi:type="INT" value="7" />
+					<entryRelationship typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.86" />
+
+						</observation>
+					</entryRelationship>
+				</observation>
+
+			</entry>
+
+			<entry>
+
+				<observation classCode="OBS" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.10.20.22.4.69"
+						extension="2022-06-01" />
+					<id root="c6b5a04b-2bf4-49d1-8336-636a3813df0b" />
+					<code code="54614-3"
+						displayName="Brief Interview for Mental Status"
+						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+					<derivationExpr>Text description of the calculation
+					</derivationExpr>
+					<statusCode code="completed" />
+					<effectiveTime value="20120214" />
+					<!-- Summed score of the component values -->
+					<value xsi:type="INT" value="7" />
+					<entryRelationship typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.10.20.22.4.86" />
+						</observation>
+
+					</entryRelationship>
+				</observation>
+			</entry>
+
+			<entry>
+				<observation classCode="OBS" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.10.20.22.4.86"
+						extension="2022-06-01" />
+					<id root="f4dce790-8328-11db-9fe1-0800200c9a44" />
+					<code code="60715-0"
+						displayName="Defensive Reaction - Head and Neck Response"
+						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+					<statusCode code="completed" />
+					<value xsi:type="INT" value="3" />
+				</observation>
+
+			</entry>
+
+			<entry>
+				<entry>
+					<observation classCode="OBS" moodCode="GOL">
+						<templateId root="2.16.840.1.113883.10.20.22.4.121" />
+						<templateId root="2.16.840.1.113883.10.20.22.4.121"
+							extension="2022-06-01" />
+						<id extension="3241"
+							root="1.2.840.114350.1.13.6289.1.7.2.737179" />
+						<code code="8689-2" displayName="History of Social function"
+							codeSystem="2.16.840.1.113883.5.61">
+							<originalText>
+								codeSystemName="LOINC">
+								<reference value="#goal1" />
+							</originalText>
+						</code>
+						<statusCode code="active" />
+						<effectiveTime>
+							<!-- The effectiveTime/low indicates the desired "Achieve by" date -->
+							<low value="20220814" />
+							<high nullFlavor="NI" />
+						</effectiveTime>
+						<value xsi:type="CD" code="1078229009"
+							displayName="Food security (finding)"
+							codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+
+
+
+					</observation>
+				</entry>
+
+			</entry>
+
+			<entry>
+				<observation classCode="OBS" moodCode="EVN">
+					<!-- Gender Identity Observation -->
+					<templateId root="2.16.840.1.113883.10.20.34.3.45"
+						extension="2019-04-01" />
+					<templateId root="2.16.840.1.113883.10.20.34.3.45"
+						extension="2022-06-01" />
+					<id root="5501b49a-32ea-4c78-9c31-3dbe782871b7" />
+					<code code="76691-5" displayName="Gender identity"
+						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+					<statusCode code="completed" />
+					<effectiveTime>
+						<low value="20180703" />
+					</effectiveTime>
+					<value xsi:type="CD" code="446141000124107"
+						displayName="Identifies as female gender (finding)"
+						codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+				</observation>
+
+			</entry>
+
+
+			<entry>
+				<procedure classCode="PROC" moodCode="RQO">
+					<templateId root="2.16.840.1.113883.10.20.22.4.41" />
+					<templateId root="2.16.840.1.113883.10.20.22.4.41"
+						extension="2014-06-09" />
+					<templateId root="2.16.840.1.113883.10.20.22.4.41"
+						extension="2022-06-01" />
+					<id extension="2448483"
+						root="1.2.840.114350.1.13.5552.1.7.2.798268" />
+					<code code="464171000124102"
+						codeSystem="2.16.840.1.113883.6.96"
+						displayName="Referral to Senior Farmers' Market Nutrition Program (procedure)"
+						codeSystemName="SNOMED-CT">
+						<originalText>
+							<reference value="#Procedure1name" />
+						</originalText>
+					</code>
+					<text>
+						<reference value="#Procedure1" />
+					</text>
+					<statusCode code="completed" />
+					<effectiveTime value="20160413" />
+				</procedure>
+			</entry>
+
+			<entry>
+
+				<observation classCode="OBS" moodCode="EVN">
+					<!-- ** Problem Observation ** -->
+					<templateId root="2.16.840.1.113883.10.20.22.4.4" />
+					<templateId root="2.16.840.1.113883.10.20.22.4.4"
+						extension="2015-08-01" />
+					<templateId root="2.16.840.1.113883.10.20.22.4.4"
+						extension="2022-06-01" />
+					<id root="ab1791b0-5c71-11db-b0de-0800200c9a66" />
+					<code code="64572001" displayName="Condition"
+						codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+						<translation code="75323-6"
+							codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+							displayName="Condition" />
+					</code>
+					<!-- The statusCode reflects the status of the observation itself -->
+					<statusCode code="completed" />
+					<effectiveTime>
+						<!-- The low value reflects the date of onset -->
+						<!-- Based on patient symptoms, presumed onset is July 3, 2013 -->
+						<low value="20130703" />
+						<!-- The high value reflects when the problem was known to be resolved --> <!-- Based on signs and symptoms, appears to be resolved on Aug 14, 2013 -->
+						<high value="20080814" />
+					</effectiveTime>
+					<value xsi:type="CD" code="233604007"
+						codeSystem="2.16.840.1.113883.6.96" displayName="Pneumonia" />
+					<author typeCode="AUT">
+						<templateId root="2.16.840.1.113883.10.20.22.4.119" />
+						<time value="200808141030-0800" />
+						<assignedAuthor>
+							<id extension="555555555" root="2.16.840.1.113883.4.6" />
+							<code code="207QA0505X" displayName="Adult Medicine"
+								codeSystem="2.16.840.1.113883.6.101"
+								codeSystemName="Healthcare Provider Taxonomy (HIPAA)" />
+						</assignedAuthor>
+					</author>
+				</observation>
+
+			</entry>
+
+			<entry>
+				<observation classCode="OBS" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.10.20.22.4.501"
+						extension="2022-06-01" />
+					<id root="7919e027-592e-4f22-9344-12460ec8c368" />
+					<code code="76690-7" displayName="Sexual Orientation"
+						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+					<statusCode code="completed" />
+					<effectiveTime>
+						<low value="201211" />
+					</effectiveTime>
+					<value xsi:type="CD" code="20430005"
+						displayName="Heterosexual state"
+						codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+				</observation>
+
+			</entry>
+
+
+			<entry>
+				<observation classCode="OBS" moodCode="EVN">
+					<!-- Gender Identity Observation -->
+					<templateId root="2.16.840.1.113883.10.20.34.3.45"
+						extension="2019-04-01" />
+					<templateId root="2.16.840.1.113883.10.20.34.3.45"
+						extension="2022-06-01" />
+					<id root="5501b49a-32ea-4c78-9c31-3dbe782871b7" />
+					<code code="76691-5" displayName="Gender identity"
+						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+					<statusCode code="completed" />
+					<effectiveTime>
+						<low value="20180703" />
+					</effectiveTime>
+					<value xsi:type="CD" code="446141000124107"
+						displayName="Identifies as female gender (finding)"
+						codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+				</observation>
+
+			</entry>
+
+			<!-- Care Team Member Schedule Observation (contained in Care Team Member 
+				Act) -->
+			<entry>
+				<observation classCode="OBS" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.10.20.22.4.500.3"
+						extension="2016-06-01" />
+					<templateId root="2.16.840.1.113883.10.20.22.4.500.3"
+						extension="2022-06-01" />
+					<code code="57203-2"
+						displayName="Episode Timing [CMS Assessment]"
+						codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+					<text>
+						<reference value="#CareTeam_CT" />
+					</text>
+					<statusCode code="completed" />
+					<value xsi:type="IVL_TS">
+						<low value="20210401" />
+						<high value="20210412" />
+					</value>
+				</observation>
+			</entry>
+		</section>
+	</component>
+
+	<component>
+		<section>
+			<templateId root="2.16.840.1.113883.10.20.22.2.500"
+				extension="2019-07-01" />
+			<templateId root="2.16.840.1.113883.10.20.22.2.500"
+				extension="2022-06-01" />
+			<code code="85847-2" codeSystem="2.16.840.1.113883.6.1" />
+			<title>Patient Care Teams</title>
+			<text>
+				<list>
+					<item>
+						<content ID="CareTeamName1">Inpatient Diabetes Care Team</content>
+						(
+						<content>Active</content>
+						) (10/08/2018 - )
+						<table>
+							<thead>
+								<tr>
+									<th>Member</th>
+									<th>Role on Team</th>
+									<th>Status</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Dr. Henry Seven </td>
+									<td ID="CT1_M01">PCP</td>
+									<td>(Active)</td>
+									<td>10/18/2019</td>
+								</tr>
+							</tbody>
+						</table>
+					</item>
+				</list>
+			</text>
+			<entry>
+				<!--Care Team Organizer -->
+				<entry>
+					<organizer classCode="CLUSTER" moodCode="EVN">
+						<templateId root="2.16.840.1.113883.10.20.22.4.500"
+							extension="2019-07-01" />
+						<templateId root="2.16.840.1.113883.10.20.22.4.500"
+							extension="2022-06-01" />
+						<!--NEW Care Team Organizer Entry Template ID and extension -->
+						<id root="1.1.1.1.1.1" />
+						<code code="86744-0" codeSystem="2.16.840.1.113883.6.1"
+							codeSystemName="LOINC" displayName="Care Team">
+							<originalText>
+								<reference value="#CareTeamName1" />
+							</originalText>
+						</code>
+						<!--Care Team Status - https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.1.11.15933/expansion -->
+						<statusCode code="active" />
+						<effectiveTime>
+							<low value="201810081426-0500" />
+						</effectiveTime>
+						<!-- This participant is the Care Team Lead (1..1) -->
+						<!-- Care Team Lead is one of the contained care team members in the 
+							list of care team members -->
+						<participant typeCode="PPRF">
+							<participantRole>
+								<!--<This id matches at least one of the member's id in the Care 
+									Team Member act template -->
+								<id root="1.5.5.5.5.5.5" />
+							</participantRole>
+						</participant>
+						<!-- #1 Care Team Member Act - This component is a care team member 
+							who is a provider -->
+						<component>
+							<act classCode="PCPR" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.10.20.22.4.500.1"
+									extension="2019-07-01" />
+								<templateId root="2.16.840.1.113883.10.20.22.4.500.1"
+									extension="2022-06-01" />
+								<id root="1.5.5.5.5.5.5" />
+								<code code="85847-2" codeSystem="2.16.840.1.113883.6.1"
+									codeSystemName="LOINC" displayName="Care Team Information" />
+								<!--Care Team Member Status - https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.1.11.15933/expansion -->
+								<statusCode code="active" />
+								<effectiveTime xsi:type="IVL_TS">
+									<low value="201810081426-0500" />
+								</effectiveTime>
+								<!--Attributes about the provider member - name -->
+								<performer typeCode="PRF">
+									<functionCode xmlns="urn:hl7-org:sdtc" code="PCP"
+										displayName="primary care physician"
+										codeSystem="2.16.840.1.113883.5.88"
+										codeSystemName="ParticipationFunction">
+										 
+									 
+										<originalText xmlns="urn:hl7-org:v3">
+											<reference value="#CT1_M01" />
+										</originalText>
+									</functionCode>
+									<!-- A care team member role -->
+									<assignedEntity>
+										<id root="B00B14E8-CDE4-48EA-8A09-01BC4945122A"
+											extension="1" />
+										<id root="1.5.5.5.5.5.5" />
+										<assignedPerson>
+											<name>
+												<given>John</given>
+												<given>D</given>
+												<family>Smith</family>
+												,
+												<suffix>MD</suffix>
+											</name>
+										</assignedPerson>
+									</assignedEntity>
+								</performer>
+							</act>
+						</component>
+
+
+
+						<component>
+							<act classCode="PCPR" moodCode="EVN">
+								01"/> 01"/>
+								<templateId root="2.16.840.1.113883.10.20.22.4.500.1"
+									extension="2019-07" />
+								<templateId root="2.16.840.1.113883.10.20.22.4.500.1"
+									extension="2022-06-01" />
+								<id root="1.5.5.5.5.5.5" />
+								<code code="85847-2" codeSystem="2.16.840.1.113883.6.1"
+									codeSystemName="LOINC" displayName="Care Team Information" />
+								<!--Care Team Member Status - https://vsac.nlm.nih.gov/valueset/2.16.840.1.113883.1.11.15933/expansion -->
+								physician"
+								<statusCode code="active" />
+								<effectiveTime xsi:type="IVL_TS">
+									<low value="201810081426-0500" />
+								</effectiveTime>
+								<performer typeCode="PRF">
+									<functionCode xmlns="urn:hl7-org:sdtc" code="PCP"
+										displayName="primary care" codeSystem="2.16.840.1.113883.5.88"
+										codeSystemName="ParticipationFunction">
+										<originalText xmlns="urn:hl7-org:v3">
+											<reference value="#CT1_M01"></reference>
+										</originalText>
+									</functionCode>
+									<assignedEntity>
+										<id root="B00B14E8-CDE4-48EA-8A09-01BC4945122A"
+											extension="1" />
+										<id root="1.5.5.5.5.5.5" />
+										<assignedPerson>
+											<name>
+												<given>John</given>
+												<given>D</given>
+												<family>Smith</family>
+												<suffix>MD</suffix>
+											</name>
+										</assignedPerson>
+									</assignedEntity>
+								</performer>
+
+								<entryRelationship typeCode="COMP">
+									<act classCode="ACT" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.10.20.22.4.502"
+											extension="2022-06-01" />
+										<code code="77975-1" codeSystem="2.16.840.1.113883.6.1"
+											codeSystemName="LOINC"
+											displayName="Earliest date of diagnosis" />
+										<text>
+											<reference value="#ProblemObs_1_PS1" />
+										</text>
+										<statusCode code="completed" />
+										<!-- SHALL to the year (MAY be more specific) -->
+										<effectiveTime value="200802" />
+									</act>
+								</entryRelationship>
+							</act>
+						</component>
+					</organizer>
+				</entry>
+			</entry>
+		</section>
+
+	</component>
+	
+	</structuredBody>
+	</component>
+
+
+</ClinicalDocument>
