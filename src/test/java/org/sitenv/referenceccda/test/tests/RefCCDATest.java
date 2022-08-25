@@ -505,12 +505,11 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	
 	@Test
 	public void checkPregnancyCodes() {
-		
 		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
 				convertCCDAFileToString(CCDA_FILES[TWO_MEGS]));
 		results = getMDHTErrorsFromResults(results);
-		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "2.16.840.1.113762.1.4.1099.2");	
-		
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR,
+				"2.16.840.1.113762.1.4.1099.2");
 	}
 
 	@Test
