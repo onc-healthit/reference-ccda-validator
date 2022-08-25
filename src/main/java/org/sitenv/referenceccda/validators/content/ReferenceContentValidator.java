@@ -32,24 +32,24 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
 	@Override
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
 			String ccdaFile) throws SAXException {
-		return validateFile(validationObjective, referenceFileName, ccdaFile, false, SeverityLevel.INFO);
+		return validateFile(validationObjective, referenceFileName, ccdaFile, false, false, SeverityLevel.INFO);
 	}
     
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
-			String ccdaFile, boolean curesUpdate, SeverityLevel severityLevel) throws SAXException {
+			String ccdaFile, boolean curesUpdate, boolean svap2022, SeverityLevel severityLevel) throws SAXException {
 		ArrayList<RefCCDAValidationResult> results = null;
 		if (ccdaFile != null) {
-			results = doValidation(validationObjective, referenceFileName, ccdaFile, curesUpdate, severityLevel);
+			results = doValidation(validationObjective, referenceFileName, ccdaFile, curesUpdate, svap2022, severityLevel);
 		}
 		return results;
 	}
 
 	private ArrayList<RefCCDAValidationResult> doValidation(String validationObjective, String referenceFileName,
-			String ccdaFile, boolean curesUpdate, SeverityLevel severityLevel) throws SAXException {
+			String ccdaFile, boolean curesUpdate, boolean svap2022, SeverityLevel severityLevel) throws SAXException {
 		org.sitenv.contentvalidator.dto.enums.SeverityLevel userSeverityLevelForContentValidation = 
 				org.sitenv.contentvalidator.dto.enums.SeverityLevel.valueOf(severityLevel.name()); 
 		List<ContentValidationResult> validationResults = contentValidatorService.validate(validationObjective,
-				referenceFileName, ccdaFile, curesUpdate, userSeverityLevelForContentValidation);
+				referenceFileName, ccdaFile, curesUpdate, svap2022, userSeverityLevelForContentValidation);
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
 		for (ContentValidationResult result : validationResults) {
 			results.add(createValidationResult(result));

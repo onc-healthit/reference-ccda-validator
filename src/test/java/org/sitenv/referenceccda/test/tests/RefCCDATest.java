@@ -1275,12 +1275,12 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		if (vocabularyConfig == null && (severityLevel == null || severityLevel == SeverityLevel.INFO)) {
 			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample);
 		} else if (vocabularyConfig != null && severityLevel != null) {
-			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, false, vocabularyConfig,
-					severityLevel);
+			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, false, false,
+					vocabularyConfig, severityLevel);
 		} else if (vocabularyConfig == null && severityLevel != null) {
 			// programmatic config with severity level - only happens with
 			// testing...
-			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, false, null,
+			return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, false, false, null,
 					severityLevel);
 		}
 		return referenceCcdaValidationService.validateCCDA(validationObjective, "", mockSample, vocabularyConfig);		
