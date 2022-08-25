@@ -11371,6 +11371,71 @@ absorbed in varying amounts by different body tissues.</paragraph>
               </entryRelationship>
             </observation>
           </entry>
+          
+          <entry>
+            <observation classCode="OBS" moodCode="EVN" negationInd="true" nullFlavor="UNK">
+              <templateId root="2.16.840.1.113883.10.20.15.3.8" />
+              <id root="1.4124.1" />
+              <id root="1.3.6.1.4.1.22812.53.9999907.521.4.12.3" extension="250002" />
+              <id root="30303532-3230-0000-0000-000000000000" />
+              <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+              <text>
+                <reference value="#_385f265d-9a24-4f8e-9a45-d8551d207ec3" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20150905104821-0400" />
+                <high value="20151005104821-0400" />
+              </effectiveTime>
+              <value xsi:type="CD" code="60001007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                <originalText>
+                  <reference value="#_c1acac84-9bca-4343-a739-afabb671b085" />
+                </originalText>
+              </value>
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.64" />
+                  <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" />
+                  <text>
+                    <reference value="#_e775ab03-40e3-4a0f-8e17-17d3b945c161" />
+                  </text>
+                </act>
+              </entryRelationship>
+            </observation>
+          </entry>
+          
+          <entry>
+            <observation classCode="OBS" moodCode="EVN" negationInd="true" nullFlavor="UNK">
+              <templateId root="2.16.840.1.113883.10.20.15.3.8" />
+              <id root="1.4124.1" />
+              <id root="1.3.6.1.4.1.22812.53.9999907.521.4.12.3" extension="250002" />
+              <id root="30303532-3230-0000-0000-000000000000" />
+              <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+              <text>
+                <reference value="#_385f265d-9a24-4f8e-9a45-d8551d207ec3" />
+              </text>
+              <statusCode code="completed" />
+              <effectiveTime xsi:type="IVL_TS">
+                <low value="20150905104821-0400" />
+                <high value="20151005104821-0400" />
+              </effectiveTime>
+              <value xsi:type="CD" code="102874004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                <originalText>
+                  <reference value="#_c1acac84-9bca-4343-a739-afabb671b085" />
+                </originalText>
+              </value>
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.64" />
+                  <code code="48767-8" codeSystem="2.16.840.1.113883.6.1" />
+                  <text>
+                    <reference value="#_e775ab03-40e3-4a0f-8e17-17d3b945c161" />
+                  </text>
+                </act>
+              </entryRelationship>
+            </observation>
+          </entry>
+    
           <entry>
             <observation classCode="OBS" moodCode="EVN" negationInd="true">
               <templateId root="2.16.840.1.113883.10.20.15.3.8" />
