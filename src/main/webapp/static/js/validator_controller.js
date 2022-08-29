@@ -9,8 +9,8 @@ angular
 					var receiverGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/contents/Receiver SUT Test Data';
 					var senderCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Sender SUT Test Data';
 					var receiverCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Receiver SUT Test Data';
-					var senderSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/SVAP 2022 Sender SUT Test Data';
-					var receiverSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/SVAP 2022 Update Receiver SUT Test Data';
+					var senderSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/Cures Update Svap Uscdiv2 Sender SUT Test Data';
+					var receiverSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/Cures Update Svap Uscdiv2 Receiver SUT Test Data';
 					var validationError;
 					var self = this;
 					$scope.validationTypes = [
