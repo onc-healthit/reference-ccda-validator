@@ -645,9 +645,9 @@ angular
 						} else if ($scope.selectedValidationType.svap2022) {
 							// svap 2022 (uscdi v2)
 							if ($scope.radioModel == 'sender') {
-								getTestDocuments(senderCuresGitHubUrl); // TODO: update to svap URL
+								getTestDocuments(senderSvap2022GitHubUrl);
 							} else {
-								getTestDocuments(receiverCuresGitHubUrl); // TODO: update to svap URL
+								getTestDocuments(receiverSvap2022GitHubUrl);
 							}							
 						} else {
 							// nonCures
