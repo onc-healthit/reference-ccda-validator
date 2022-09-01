@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+<property name="REF_LOG" value="target/referenceccdaservice"/>
+<property name="CONTENT_LOG" value="target/contentvalidator"/>
+<property name="CODE_LOG" value="target/codevalidator"/>
+
+<timestamp key="timestamp" datePattern="yyyy-MM-dd"/>
+
+    <appender name="ref-logging" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${REF_LOG}.${timestamp}.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${REF_LOG}.-%d{yyyy-MM-dd}%i.log</fileNamePattern>
+            <!-- each archived file, size max 100MB -->
+            <maxFileSize>100MB</maxFileSize>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="content-logging" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${CONTENT_LOG}.${timestamp}.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${CONTENT_LOG}.-%d{yyyy-MM-dd}%i.log</fileNamePattern>
+            <!-- each archived file, size max 100MB -->
+            <maxFileSize>100MB</maxFileSize>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+     <appender name="code-logging" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${CODE_LOG}.${timestamp}.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${CODE_LOG}.-%d{yyyy-MM-dd}%i.log</fileNamePattern>
+            <!-- each archived file, size max 100MB -->
+            <maxFileSize>100MB</maxFileSize>
+
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+       
+    <!-- https://logback.qos.ch/manual/appenders.html#AsyncAppender -->
+    <!-- AsyncAppender will drop events of level TRACE, DEBUG and INFO if its queue is 80% full -->
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ref-logging" />
+        <!-- defaulr 256 -->
+        <queueSize>512</queueSize>
+    </appender>
+
+    <logger name="org.sitenv.vocabularies">
+        <appender-ref ref="code-logging" />
+    </logger>
+
+     <logger name="org.sitenv.contentvalidator">
+        <appender-ref ref="content-logging" />
+    </logger>
+    
+       <logger name="org.sitenv.referenceccda">
+        <appender-ref ref="ref-logging" />
+    </logger>
+        
+    <root level="info">
+        <appender-ref ref="ref-logging"/>
+    </root>
+
+</configuration>

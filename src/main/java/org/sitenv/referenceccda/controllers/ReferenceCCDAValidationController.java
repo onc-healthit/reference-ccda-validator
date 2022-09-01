@@ -1,6 +1,7 @@
 package org.sitenv.referenceccda.controllers;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
 import org.sitenv.referenceccda.services.VocabularyService;
@@ -32,70 +33,74 @@ public class ReferenceCCDAValidationController {
 
 	private static final String GITHUB_URL = "https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/git/trees/master?recursive=1";
 	private static final String DEFAULT_SEVERITY_LEVEL = "INFO";
-	private static Logger logger = Logger.getLogger(ReferenceCCDAValidationController.class);
-	
+	private static Logger logger = LoggerFactory.getLogger(ReferenceCCDAValidationController.class);
+
 	@RequestMapping(value = "/", headers = "content-type=multipart/*", method = RequestMethod.POST)
 	public ValidationResultsDto doValidation(
 			@RequestParam(value = "validationObjective", required = true) String validationObjective,
 			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
 			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
-			@RequestParam(value = "curesUpdate", required = false) boolean curesUpdate,  
+			@RequestParam(value = "curesUpdate", required = false) boolean curesUpdate,
+			@RequestParam(value = "svap2022", required = false) boolean svap2022,
 			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig,
 			@RequestParam(defaultValue = DEFAULT_SEVERITY_LEVEL, required = false) String severityLevel) {
-		
+
 		logger.info("severityLevel requestParam: " + severityLevel);
-		
-		if ((severityLevel == null || severityLevel.equals("")) || 
-				(!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.INFO.name())  && 
-						!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.WARNING.name()) && 
-								!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.ERROR.name())) ) {
+
+		if ((severityLevel == null || severityLevel.equals(""))
+				|| (!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.INFO.name())
+						&& !severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.WARNING.name())
+						&& !severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.ERROR.name()))) {
 			severityLevel = DEFAULT_SEVERITY_LEVEL;
 			logger.info("severityLevel was set/overwritten to default: " + severityLevel);
 		}
-		
+
 		SeverityLevel severityLevelEnum = SeverityLevel.valueOf(severityLevel.toUpperCase());
-		logger.info("Final severityLevelEnum.name() " + severityLevelEnum.name());	
-		
-		
-		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile, curesUpdate,
-				vocabularyConfig, severityLevelEnum);		
-		
+		logger.info("Final severityLevelEnum.name() " + severityLevelEnum.name());
+
+		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile,
+				curesUpdate, svap2022, vocabularyConfig, severityLevelEnum);
 	}
 
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)
-	public List<VsacValueSet> getValuesetsByOids(@RequestParam(value = "oids", required = true) String[] valuesetOids){
+	public List<VsacValueSet> getValuesetsByOids(@RequestParam(value = "oids", required = true) String[] valuesetOids) {
 		return vocabularyService.getValuesetsByOids(Arrays.asList(valuesetOids));
 	}
 
 	@RequestMapping(value = "/getbycodeincodesystem", method = RequestMethod.GET)
-	public List<Code> getByCodeInCodeSystems(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "codeSystems", required = true) String[] codeSystems){
+	public List<Code> getByCodeInCodeSystems(@RequestParam(value = "code", required = true) String code,
+			@RequestParam(value = "codeSystems", required = true) String[] codeSystems) {
 		return vocabularyService.getByCodeInCodesystems(code, Arrays.asList(codeSystems));
 	}
 
 	@RequestMapping(value = "/getbycodeinvaluesetoid", method = RequestMethod.GET)
-	public List<VsacValueSet> getByCodeInValuesetOid(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "oids", required = true) String[] valuesetOids){
+	public List<VsacValueSet> getByCodeInValuesetOid(@RequestParam(value = "code", required = true) String code,
+			@RequestParam(value = "oids", required = true) String[] valuesetOids) {
 		return vocabularyService.getByCodeInValuesetOids(code, Arrays.asList(valuesetOids));
 	}
 
 	@RequestMapping(value = "/iscodeandisplaynameincodesystem", method = RequestMethod.GET)
-	public boolean isCodeAndDisplayNameFoundInCodeSystems(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "displayName", required = true)String displayName, @RequestParam(value = "codeSystems", required = true) String[] codeSystems){
+	public boolean isCodeAndDisplayNameFoundInCodeSystems(@RequestParam(value = "code", required = true) String code,
+			@RequestParam(value = "displayName", required = true) String displayName,
+			@RequestParam(value = "codeSystems", required = true) String[] codeSystems) {
 		return vocabularyService.isCodeAndDisplayNameFoundInCodeSystems(code, displayName, Arrays.asList(codeSystems));
 	}
 
 	@RequestMapping(value = "/iscodeincodesystem", method = RequestMethod.GET)
-	public boolean isCodeFoundInCodeSystems(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "codeSystems", required = true) String[] codeSystems){
+	public boolean isCodeFoundInCodeSystems(@RequestParam(value = "code", required = true) String code,
+			@RequestParam(value = "codeSystems", required = true) String[] codeSystems) {
 		return vocabularyService.isCodeFoundInCodesystems(code, Arrays.asList(codeSystems));
 	}
 
 	@RequestMapping(value = "/iscodeinvalueset", method = RequestMethod.GET)
-	public boolean isCodeFoundInValuesetOids(@RequestParam(value = "code", required = true)String code, @RequestParam(value = "valuesetOids", required = true) String[] valuesetOids){
+	public boolean isCodeFoundInValuesetOids(@RequestParam(value = "code", required = true) String code,
+			@RequestParam(value = "valuesetOids", required = true) String[] valuesetOids) {
 		return vocabularyService.isCodeFoundInValuesetOids(code, Arrays.asList(valuesetOids));
 	}
 
 	@Cacheable("messagetypeValidationObjectivesAndReferenceFilesMap")
 	@RequestMapping(value = "/senderreceivervalidationobjectivesandreferencefiles", method = RequestMethod.GET)
-	public Map<String, Map<String, List<String>>> getMapOfSenderAndRecieverValidationObjectivesWithReferenceFiles(){
+	public Map<String, Map<String, List<String>>> getMapOfSenderAndRecieverValidationObjectivesWithReferenceFiles() {
 		return vocabularyService.getMapOfSenderAndRecieverValidationObjectivesWithReferenceFiles();
 	}
-
 }

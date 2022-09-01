@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.65</version>
+    <version>1.0.66</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -16,12 +16,12 @@
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT SITE properties -->
         <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
-        <mdht.models.version>3.0.0.20220126</mdht.models.version>
+        <mdht.models.version>3.0.0.20220825</mdht.models.version>
         <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
 		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
-		<mdht.plugins.version>3.0.0.202201250600</mdht.plugins.version>
-
+		<mdht.plugins.version>3.0.0.202208250500</mdht.plugins.version>
+		<logback.version>1.2.11</logback.version>
  		<!-- MDHT SNAPSHOT properties: Uncomment for local test -->
  		<!--
 		<mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
@@ -246,25 +246,15 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
-        </dependency>     
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.0</version>
-            <scope>runtime</scope>
         </dependency>
+
+        <!-- pull in logback-core and slf4j-api -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.0</version>
-            <scope>runtime</scope>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <scope>runtime</scope>
-        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

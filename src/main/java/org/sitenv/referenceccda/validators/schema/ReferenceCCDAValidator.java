@@ -9,7 +9,8 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -61,7 +62,7 @@ import org.xml.sax.SAXException;
 @RequestScope
 @Component
 public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAValidator {
-	private static Logger logger = Logger.getLogger(ReferenceCCDAValidator.class);
+	private static Logger logger = LoggerFactory.getLogger(ReferenceCCDAValidator.class);
 	
 	private static final String IG_ISSUE_ID = "a.consol", MU_ISSUE_ID = "a.mu2con", DS4P_ISSUE_ID = "ds4p";
 	private static final boolean CAPTURE_VALIDATION_STATISTICS = true;
