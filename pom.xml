@@ -16,7 +16,7 @@
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT SITE properties -->
         <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
-        <mdht.models.version>3.0.0.20220825</mdht.models.version>
+        <mdht.models.version>3.0.0.20220923</mdht.models.version>
         <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
 		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
 		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
@@ -84,7 +84,7 @@
 		    <version>${mdht.plugins.version}</version>
 		</dependency>
 		<dependency>
-            <groupId>mdht.eclipse.mdht</groupId>
+            <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
 		    <version>${mdht.plugins.version}</version>
 		</dependency>	
