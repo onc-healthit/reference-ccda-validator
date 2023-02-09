@@ -4,7 +4,7 @@ If you would like to get a test virtual machine up and running quickly, check ou
 
 **1. Assumptions**
 
-    a. Tomcat 8.5.x (8.5.81 recommended) or above has been installed and NOT running. (need new link)
+    a. Tomcat 8.5.x (8.5.81 recommended) or above has been installed and NOT running. ((https://tomcat.apache.org/download-80.cgi#8.5.85))
     b. You are using a pre-built referenceccdaservice.war file. In other words, the .war file was not built from the project directly.
         Such a thing is possible but beyond the scope of this document.
     c. With Tomcat installed and the referenceccdaservice.war in your hands, you are ready to begin configuration and deployment.
