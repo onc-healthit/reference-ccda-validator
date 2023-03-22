@@ -303,7 +303,6 @@
                 <version>9.2.2.v20140723</version>
                 <configuration>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
-                    <jvmArgs>-Xmx2024m -Xms2024m -XX:PermSize=256m -XX:MaxPermSize=512m</jvmArgs>
                     <webApp>
                         <contextPath>/referenceccdaservice</contextPath>
                     </webApp>
