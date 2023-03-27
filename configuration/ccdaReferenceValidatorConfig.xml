@@ -141,7 +141,7 @@
 	</expression>
 
 	<!--2. This addr MAY contain zero or one [0..1] postalCode, which SHALL be selected from ValueSet PostalCode urn:oid:2.16.840.1.113883.3.88.12.80.2 DYNAMIC (CONF:1198-5403).-->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:postalCode">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:postalCode[not(@nullFlavor)]">
 		<validator>
 			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
@@ -152,7 +152,7 @@
 	</expression>
 
 	<!--3. If country is US, this addr SHALL contain exactly one [1..1] state, which SHALL be selected from ValueSet StateValueSet 2.16.840.1.113883.3.88.12.80.1 DYNAMIC (CONF:1198-5402).-->
-	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:state">
+	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:birthplace/v3:place/v3:addr/v3:state[not(@nullFlavor)]">
 		<validator>
 			<name>TextNodeValidator</name>
 			<validationResultSeverityLevels>
@@ -161,7 +161,6 @@
 			<allowedValuesetOids>2.16.840.1.113883.3.88.12.80.1</allowedValuesetOids>
 		</validator>
 	</expression>
-
 	<!--a. The languageCommunication, if present, SHALL contain exactly one [1..1] languageCode, which SHALL be selected from ValueSet Language urn:oid:2.16.840.1.113883.1.11.11526 DYNAMIC (CONF:1198-5407).-->
 	<expression xpathExpression="/v3:ClinicalDocument/v3:templateId[@root='2.16.840.1.113883.10.20.22.1.1' and @extension='2015-08-01']/ancestor::v3:ClinicalDocument[1]/v3:recordTarget/v3:patientRole/v3:patient/v3:languageCommunication/v3:languageCode[not(@nullFlavor)]">
 		<validator>
