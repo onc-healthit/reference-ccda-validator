@@ -173,6 +173,7 @@ public class ReferenceCCDAValidationService {
 			throw new RuntimeException("Error getting CCDA contents from provided file", e);
 		} finally {
 			closeFileInputStream(ccdaFileInputStream);
+			ccdaFile = null;
 		}
 		return validatorResults;
 	}
