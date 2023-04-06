@@ -4,11 +4,11 @@ If you would like to get a test virtual machine up and running quickly, check ou
 
 **1. Assumptions**
 
-    a. Tomcat 7 (7.0.53 recommended) or above has been installed and NOT running. https://tomcat.apache.org/download-70.cgi
+    a. Tomcat 8.5.x (8.5.81 recommended) or above has been installed and NOT running. ((https://tomcat.apache.org/download-80.cgi#8.5.85))
     b. You are using a pre-built referenceccdaservice.war file. In other words, the .war file was not built from the project directly.
         Such a thing is possible but beyond the scope of this document.
     c. With Tomcat installed and the referenceccdaservice.war in your hands, you are ready to begin configuration and deployment.
-    d. Java 7 or 8 is installed and a JAVA_HOME is set. Note: Java 7 is recommended. We do not support any Java version above JDK 8.
+    d. Java 8 is installed and a JAVA_HOME is set. We do not support any Java version above JDK 8.
 
 **2. Configuration Instructions**
 *    Vocabulary Artifacts needed for vocabulary validation (please see https://github.com/onc-healthit/code-validator-api and https://github.com/onc-healthit/code-validator-api/tree/master/codevalidator-api/docs for further information)
@@ -104,12 +104,14 @@ Server Configuration
 **4. Troubleshooting (please feel free to submit PRs with updates from your own issues/solutions)**
 
 * The best way to resolve an issue is to refer to the log at tomcat/logs/referenceccdaservice.<TODAY'S DATE>.log. The errors in that log along with the various documentation for this project and its dependencies should help point to a resolution. If there is still confusion, ahead are some examples and their solutions:
-    * The log states, "LOADING SCENARIO FILES AT /opt/apache-tomcat-7.0.53/mdht/Environment/VocabularyConfiguration/scenarios/" instead of the directory you have specified in your ccdaReferenceValidatorConfig.xml which exists on your computer or server
+    * The log states, "LOADING SCENARIO FILES AT /opt/apache-tomcat-8.5.85/mdht/Environment/VocabularyConfiguration/scenarios/" instead of the directory you have specified in your ccdaReferenceValidatorConfig.xml which exists on your computer or server
         * The ccdaReferenceValidatorConfig.xml configuration file is designed to override default settings with your local settings/directory setup. What this message means (if the path doesn't match you local file structure) is that the application has not found your ccdaReferenceValidatorConfig.xml file. Please ensure that you have taken the latest version from here https://github.com/onc-healthit/reference-ccda-validator/tree/master/configuration and have placed it in a path similar to tomcat/conf/Catalina/localhost
     * The log states, "nested exception is java.lang.OutOfMemoryError: GC overhead limit exceeded"
-        * It is recommended that your computer has at least 4GBs of RAM as the software loads all of the vocabulary into RAM. It uses an "in-memory database" on boot so it's very RAM intensive. However, just because you have the RAM doesn't mean Java is handling it appropriately. If you have enough RAM free and there is still an issue, please ensure you are using Java 7 (as opposed to Java 8 or higher) and create a file named setenv.sh (.bat for windows) file in your tomcat/bin directory. Please include the following data within that file:
+        * It is recommended that your computer has at least 4GBs of RAM as the software loads all of the vocabulary into RAM. It uses an "in-memory database" on boot so it's very RAM intensive. However, just because you have the RAM doesn't mean Java is handling it appropriately. If you have enough RAM free and there is still an issue, please ensure you are using Java 8 and create a file named setenv.sh (.bat for windows) file in your tomcat/bin directory. Please include the following data within that file:
             * ``` 
                   #!/bin/bash
-                  JAVA_HOME=/usr/lib/jvm/java-7-oracle
+                  JAVA_HOME=/usr/lib/jvm/java-8-oracle
                   JAVA_OPTS="$JAVA_OPTS -Xmx5120m -XX:MaxPermSize=1024m"
               ```
+    * The log states, "Could not resolve dependencies for project ..."
+        * Likely caused by an inproper configuration installation of Java. Make sure the JAVA_HOME and JRE_HOME environment variables are set properly and you are using a version of Java 8. Also check the build path in your IDE. At the time of this documentation, the version of Java used is 1.8.0_361.
