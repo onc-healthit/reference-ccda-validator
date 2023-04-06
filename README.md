@@ -114,4 +114,4 @@ Server Configuration
                   JAVA_OPTS="$JAVA_OPTS -Xmx5120m -XX:MaxPermSize=1024m"
               ```
     * The log states, "Could not resolve dependencies for project ..."
-        * Likely caused by an inproper configuration installation of Java. Make sure the JAVA_HOME and JRE_HOME environment variables are set properly and you are using a version of Java 8. Also check the build path in your IDE. At the time of this documentation, the versin of Java used is 1.8.0_361.
+        * Likely caused by an inproper configuration installation of Java. Make sure the JAVA_HOME and JRE_HOME environment variables are set properly and you are using a version of Java 8. Also check the build path in your IDE. At the time of this documentation, the version of Java used is 1.8.0_361.
