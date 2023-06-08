@@ -3,4 +3,11 @@
 	<Parameter name="vocabulary.localValueSetRepositoryDir" value="${vocabulary.localValueSetRepositoryDir}" override="true"/>
 	<Parameter name="referenceccda.configFile" value="${referenceccda.configFile}" override="true"/>
 	<Parameter name="content.scenariosDir" value="${content.scenariosDir}" override="true"/>
+
+	<Parameter name="keycloak.enabled" value="${keycloak.enabled}" override="true"/>
+	<Parameter name="keycloak.auth.server" value="${keycloak.auth.server}" override="true"/>
+	<Parameter name="keycloak.realm" value="${keycloak.realm}" override="true"/>
+	<Parameter name="keycloak.client.id" value="${keycloak.client.id}" override="true"/>
+	<Parameter name="keycloak.client.secret" value="${keycloak.client.secret}" override="true"/>
+
 </Context>
