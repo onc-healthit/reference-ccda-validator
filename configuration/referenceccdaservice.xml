@@ -11,9 +11,17 @@ Save a backup of this completed configuration file
 
 <Context reloadable="true">
     <Parameter name="vocabulary.localCodeRepositoryDir" value="path/to/your/code_repository" override="true"/>
-	<Parameter name="vocabulary.localValueSetRepositoryDir" value="path/to/your/valueset_repository" override="true"/>
-	<Parameter name="referenceccda.configFile" value="path/to/your/configs_folder/ccdaReferenceValidatorConfig.xml" override="true"/>
+    <Parameter name="vocabulary.localValueSetRepositoryDir" value="path/to/your/valueset_repository" override="true"/>
+    <Parameter name="referenceccda.configFile" value="path/to/your/configs_folder/ccdaReferenceValidatorConfig.xml" override="true"/>
     <Parameter name="referenceccda.isDynamicVocab" value="false" override="true"/>
     <Parameter name="referenceccda.configFolder" value="path/to/your/configs_folder" override="true"/>
-	<Parameter name="content.scenariosDir" value="path/to/your/scenarios_directory" override="true"/>
+    <Parameter name="content.scenariosDir" value="path/to/your/scenarios_directory" override="true"/>
+
+    <Parameter name="keycloak.enabled" value="false" override="true"/>
+    <Parameter name="keycloak.auth.server" value="<<KeyCloak auth URL>>" override="true"/>
+    <Parameter name="keycloak.realm" value="<<KeyCloak Realm>>" override="true"/>
+    <Parameter name="keycloak.client.id" value="<<KeyCloak client id for introspect>>" override="true"/>
+    <Parameter name="keycloak.client.secret" value="<<KeyCloak client secret for introspect>>" override="true"/>
+	
+	
 </Context>
