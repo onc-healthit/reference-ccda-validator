@@ -55,7 +55,7 @@ public class TokenFilter implements Filter {
         String referrer = request.getHeader("Referer");
         String path = request.getRequestURL().toString();
 
-        if (path.contains("/static/") || referrer.contains("/referenceccdaservice/static/validationui.html")) {
+        if (path.contains("/static/") || (referrer != null && referrer.contains("/referenceccdaservice/static/validationui.html"))) {
             chain.doFilter(request, response);
             LOGGER.info("Exit - doFilter Method in TokenFilter -- CCDA UI  endpoint");
         }else if ("true".equals(authEnabled)) {
