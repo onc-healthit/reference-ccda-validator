@@ -55,15 +55,13 @@ public class TokenFilter implements Filter {
         String referrer = request.getHeader("Referer");
         String path = request.getRequestURL().toString();
 
-        if (path.contains("/static/") || (referrer != null && referrer.contains("/referenceccdaservice/static/validationui.html"))) {
+        if (path.contains("/static/") || path.contains("/ui") || (referrer != null && referrer.contains("/referenceccdaservice/static/validationui.html") )) {
             chain.doFilter(request, response);
             LOGGER.info("Exit - doFilter Method in TokenFilter -- CCDA UI  endpoint");
         }else if ("true".equals(authEnabled)) {
             KeycloakTokenValidationClient keyCloakTokenValidationClient = new KeycloakTokenValidationClient();
             boolean responseStatus = keyCloakTokenValidationClient.validateToken(request, authUrl, realm, clientId, clientSecret);
-
             LOGGER.info("RESPONSE STATUS :: " + responseStatus);
-
             if (responseStatus) {
                 chain.doFilter(request, response);
                 LOGGER.info("Exit - doFilter Method in TokenFilter ");
