@@ -865,12 +865,12 @@
 	Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1198-32960, DSTU:1276) -->
 	<expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.52' and @extension='2015-08-01']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
 		<validator>
-			<name>CodeSystemCodeValidator</name>
-			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel>
-			</validationResultSeverityLevels>
-			<allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
-		</validator>
+	        <name>ValueSetCodeValidator</name>
+	        <validationResultSeverityLevels>
+	          <codeSeverityLevel>SHALL</codeSeverityLevel>
+	        </validationResultSeverityLevels>
+	        <allowedValuesetOids>2.16.840.1.113762.1.4.1099.12</allowedValuesetOids>
+      </validator>
 	</expression>
 
 	<!--11. MAY contain zero or one [0..1] approachSiteCode, where the code SHALL be selected from ValueSet Body Site urn:oid:2.16.840.1.113883.3.88.12.3221.8.9 DYNAMIC (CONF:1198-8840).-->
@@ -997,11 +997,11 @@
     Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32950, DSTU:1276) -->
     <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.16' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
       <validator>
-        <name>CodeSystemCodeValidator</name>
+        <name>ValueSetCodeValidator</name>
         <validationResultSeverityLevels>
           <codeSeverityLevel>SHALL</codeSeverityLevel>
         </validationResultSeverityLevels>
-        <allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+        <allowedValuesetOids>2.16.840.1.113762.1.4.1099.12</allowedValuesetOids>
       </validator>
     </expression>
 
@@ -1193,11 +1193,11 @@
     Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32951, DSTU:1276) -->
     <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.120']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
       <validator>
-        <name>CodeSystemCodeValidator</name>
+        <name>ValueSetCodeValidator</name>
         <validationResultSeverityLevels>
           <codeSeverityLevel>SHALL</codeSeverityLevel>
         </validationResultSeverityLevels>
-        <allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+        <allowedValuesetOids>2.16.840.1.113762.1.4.1099.12</allowedValuesetOids>
       </validator>
     </expression>
 
@@ -1240,11 +1240,11 @@
     Consol CE SHOULD contain zero or more [0..*] translation, which SHALL be selected from ValueSet Medication Route 2.16.840.1.113762.1.4.1099.12 DYNAMIC (CONF:1098-32952, DSTU:1276) -->
     <expression xpathExpression="//v3:substanceAdministration/v3:templateId[@root='2.16.840.1.113883.10.20.22.4.42' and @extension='2014-06-09']/ancestor::v3:substanceAdministration[1]/v3:routeCode/v3:translation[not(@nullFlavor) and ancestor::v3:section[not(@nullFlavor)]]">
       <validator>
-        <name>CodeSystemCodeValidator</name>
+        <name>ValueSetCodeValidator</name>
         <validationResultSeverityLevels>
           <codeSeverityLevel>SHALL</codeSeverityLevel>
         </validationResultSeverityLevels>
-        <allowedCodesystemNames>SNOMED-CT</allowedCodesystemNames>
+        <allowedValuesetOids>2.16.840.1.113762.1.4.1099.12</allowedValuesetOids>
       </validator>
     </expression>
 
