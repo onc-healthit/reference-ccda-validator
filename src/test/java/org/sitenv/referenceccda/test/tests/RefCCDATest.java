@@ -10,6 +10,7 @@ import static org.sitenv.vocabularies.test.other.ValidationLogger.println;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -18,14 +19,17 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.eclipse.mdht.uml.cda.ClinicalDocument;
+import org.eclipse.mdht.uml.cda.Observation;
 import org.eclipse.mdht.uml.cda.Patient;
 import org.eclipse.mdht.uml.cda.Person;
+import org.eclipse.mdht.uml.cda.Section;
 import org.eclipse.mdht.uml.cda.SubjectPerson;
 import org.eclipse.mdht.uml.cda.util.CDAUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openhealthtools.mdht.uml.cda.consol.ConsolPackage;
 import org.sitenv.contentvalidator.service.ContentValidatorService;
 import org.sitenv.referenceccda.dto.ValidationResultsDto;
 import org.sitenv.referenceccda.services.ReferenceCCDAValidationService;
@@ -172,6 +176,30 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 	@Test
 	public void doesNotHaveSchemaErrorTest() {
+		
+	
+		 
+		ConsolPackage.eINSTANCE.getSectionTimeRangeObservation();
+		 
+		try {
+			ClinicalDocument cd = CDAUtil.load(  IOUtils.toInputStream( convertCCDAFileToString(CCDA_FILES[LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX]), "UTF-8"));
+			
+			for (Section s : cd.getAllSections()) {
+				System.err.println(s.getTitle().getText());
+				
+				for (Observation o :   s.getObservations()) {
+					System.err.println(o.eClass().getName()  );
+					
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
 				convertCCDAFileToString(CCDA_FILES[LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX]));
 		println("global result");
@@ -1303,6 +1331,38 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		} else {
 			ReferenceValidationLogger.printResults(results);
 		}
+	}
+	
+	
+	@Test
+	public void testSectionTimeRangeObservationIssueSITE_3672() {
+	 
+		// https://oncprojectracking.healthit.gov/support/browse/SITE-3672
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX]));
+		println("global result");
+		assertFalse("The document does not have schema error yet the flag is set to true",
+				mdhtResultsHaveSchemaError(results));
+		println("and for sanity, check the single results as well");
+ 
+		printResults(getMDHTErrorsFromResults(results));
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "Consol Section Time Range Observation");
+ 
+	}
+	
+	
+	@Test
+	public void testInformantRelatedEntityIssueSITE_3762() {
+		// https://oncprojectracking.healthit.gov/support/browse/SITE-3762
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX]));
+		println("global result");
+		assertFalse("The document does not have schema error yet the flag is set to true",
+				mdhtResultsHaveSchemaError(results));
+		println("and for sanity, check the single results as well");
+ 
+		printResults(getMDHTErrorsFromResults(results));
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "[0..0] addr");
 	}
 
 }
