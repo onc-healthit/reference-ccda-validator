@@ -1305,4 +1305,36 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		}
 	}
 
+	@Test
+	public void testSectionTimeRangeObservationIssueSITE_3672() {
+	 
+		// https://oncprojectracking.healthit.gov/support/browse/SITE-3672
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX]));
+		println("global result");
+		assertFalse("The document does not have schema error yet the flag is set to true",
+				mdhtResultsHaveSchemaError(results));
+		println("and for sanity, check the single results as well");
+ 
+		printResults(getMDHTErrorsFromResults(results));
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "Consol Section Time Range Observation");
+ 
+	}
+	
+	
+	@Test
+	public void testInformantRelatedEntityIssueSITE_3762() {
+		// https://oncprojectracking.healthit.gov/support/browse/SITE-3762
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX]));
+		println("global result");
+		assertFalse("The document does not have schema error yet the flag is set to true",
+				mdhtResultsHaveSchemaError(results));
+		println("and for sanity, check the single results as well");
+ 
+		printResults(getMDHTErrorsFromResults(results));
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "[0..0] addr");
+	}
+
+
 }
