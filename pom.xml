@@ -3,7 +3,7 @@
 
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
-    <version>1.0.69</version>
+    <version>1.0.70-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
 
@@ -15,22 +15,22 @@
         <code.validator.version>latestVersion</code.validator.version>
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT SITE properties -->
-       <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
+        <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
         <mdht.models.version>3.0.0.20230823</mdht.models.version>
         <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
-		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
-		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
-		<mdht.plugins.version>3.0.0.202209230500</mdht.plugins.version>
-		<logback.version>1.2.11</logback.version> 
- 		<!-- MDHT SNAPSHOT properties: Uncomment for local test -->
- 		 
-	<!-- 	<mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
-		<mdht.models.version>3.0.0-SNAPSHOT</mdht.models.version>		
-		<ds4pcontent.groupId>org.hl7.security.ds4p</ds4pcontent.groupId>
-		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
-		<mdht.plugins.groupId>org.eclipse.mdht</mdht.plugins.groupId>
-		<mdht.plugins.version>3.0.0-SNAPSHOT</mdht.plugins.version> -->
-	 
+        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>       
+        <mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
+        <mdht.plugins.version>3.0.0.202209230500</mdht.plugins.version>
+        <logback.version>1.2.11</logback.version>
+        <!-- MDHT SNAPSHOT properties: Uncomment for local test -->
+        <!--
+        <mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
+        <mdht.models.version>3.0.0-SNAPSHOT</mdht.models.version>       
+        <ds4pcontent.groupId>org.hl7.security.ds4p</ds4pcontent.groupId>
+        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>       
+        <mdht.plugins.groupId>org.eclipse.mdht</mdht.plugins.groupId>
+        <mdht.plugins.version>3.0.0-SNAPSHOT</mdht.plugins.version>
+        -->
     </properties>
 
     <repositories>
@@ -38,57 +38,57 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-	        <id>mdht</id>
-	        <name>ONCSITE-DEV-CCDA-releases</name>	        
-	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
+            <id>mdht</id>
+            <name>ONCSITE-DEV-CCDA-releases</name>          
+            <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
         </repository>
     </repositories>
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
-		<!-- 1st party MDHT - MODELS from https://github.com/mdht/mdht-models -->
+        <!-- 1st party MDHT - MODELS from https://github.com/mdht/mdht-models -->
         <dependency>
             <groupId>${mdht.models.groupid}</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <version>${mdht.models.version}</version>
         </dependency>
-		<dependency>
-		    <groupId>${mdht.models.groupid}</groupId>
-		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
-		    <version>${mdht.models.version}</version>
+        <dependency>
+            <groupId>${mdht.models.groupid}</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
+            <version>${mdht.models.version}</version>
         </dependency>
         <dependency>
             <groupId>${ds4pcontent.groupId}</groupId>
             <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
             <version>${ds4pcontent.version}</version>
         </dependency> 
-		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
-		<dependency>
+        <!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>
+            <version>${mdht.plugins.version}</version>
+        </dependency>
         <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
             <version>${mdht.plugins.version}</version>
         </dependency>
-		<dependency>
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>
-		<dependency>
+            <version>${mdht.plugins.version}</version>
+        </dependency>
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>
-		<dependency>
+            <version>${mdht.plugins.version}</version>
+        </dependency>
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>	
-		<!-- 3rd party MDHT -->
+            <version>${mdht.plugins.version}</version>
+        </dependency>   
+        <!-- 3rd party MDHT -->
         <dependency>
             <groupId>mdht-dependency</groupId>
             <artifactId>lpg.runtime.java</artifactId>
@@ -261,6 +261,21 @@
             <version>4.13.1</version>            
             <scope>test</scope>          
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
+
     </dependencies>
     
     <dependencyManagement>
