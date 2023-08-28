@@ -30,7 +30,10 @@
 	<templateId root="2.16.840.1.113883.10.20.22.1.1"/>
 	<!-- *** Note:  The next templateId, code and title will differ depending on what type of document is being sent. *** -->
 	<!-- conforms to the document specific requirements  -->
-	<templateId root="2.16.840.1.113883.10.20.22.1.2"/>
+	<templateId root="2.16.840.1.113883.10.20.22.1.2" extension="2015-08-01" />
+	
+	<templateId root="2.16.840.1.113883.10.20.22.1.1" extension="2015-08-01" />
+	
 	<!-- CONF 5363 -->
 	<id extension="Test CCDA" root="1.1.1.1.1.1.1.1.1"/>
 	<!-- CONF 5253 "CCD document" -->
@@ -183,6 +186,29 @@
 			</assignedPerson>
 		</assignedEntity>
 	</dataEnterer>
+	
+	<informant>
+    <relatedEntity classCode="PRS">
+      <code code="SPS" displayName="SPOUSE" codeSystem="2.16.840.1.113883.1.11.19563" codeSystemName="Personal Relationship Role Type Value Set" />
+	  <addr use="HP">
+        <streetAddressLine>2472, Rocky place</streetAddressLine>
+        <city>Beaverton</city>
+        <state>OR</state>
+        <postalCode>97006</postalCode>
+        <country>US</country>
+	  </addr>
+	  <telecom value="555-555-1002" use="HP"  />
+      <relatedPerson>
+        <name>
+          <prefix>Mr</prefix>
+          <given>Matthew</given>
+          <family>Newman </family>
+        </name>
+      </relatedPerson>
+    </relatedEntity>
+  </informant>
+  
+  
 	<informant>
 		<assignedEntity>
 			<id extension="KP00017" root="2.16.840.1.113883.19.5"/>
@@ -485,6 +511,22 @@ Allergies, Adverse Reactions, Alerts
 							</tbody>
 						</table>
 					</text>
+					<entry>
+						<!-- Section Time Range Observation -->
+					 <observation classCode="OBS" moodCode="EVN">
+                        <!-- Section Time Range Observation -->
+                        <templateId root="2.16.840.1.113883.10.20.22.4.201" extension="2016-06-01"/>
+                      
+                        <code  code="82607-3" displayName="Clinical data [Date and Time Range]" codeSystem="2.16.840.1.113883.6.1"
+                                codeSystemName="LOINC"></code>
+                        <text><reference value="#Proc_STR"></reference></text>
+                        <statusCode code="completed"/>
+                        <value xsi:type="IVL_TS">
+                            <low value="20120211"/>
+                            <high value="20190211"/>
+                        </value> 
+                    </observation>
+					</entry>				
 					<entry typeCode="DRIV">
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.10.20.22.4.30"/>
