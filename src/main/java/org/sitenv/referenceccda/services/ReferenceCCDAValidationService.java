@@ -55,30 +55,36 @@ public class ReferenceCCDAValidationService {
 
 	public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName,
 			MultipartFile ccdaFile) {
-		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, false, false,
+		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, 
+				false, false, false,
 				VocabularyConstants.Config.DEFAULT, SeverityLevel.INFO);
 	}
 
 	public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName,
 			MultipartFile ccdaFile, String vocabularyConfig) {
-		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, false, false, vocabularyConfig,
-				SeverityLevel.INFO);
+		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, 
+				false, false, false, 
+				vocabularyConfig, SeverityLevel.INFO);
 	}
 
 	public ValidationResultsDto validateCCDA(String validationObjective, String referenceFileName,
-			MultipartFile ccdaFile, boolean curesUpdate, boolean svap2022, String vocabularyConfig, SeverityLevel severityLevel) {
-		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, curesUpdate, svap2022, vocabularyConfig,
-				severityLevel);
+			MultipartFile ccdaFile, boolean curesUpdate, boolean svap2022, boolean svap2023, 
+			String vocabularyConfig, SeverityLevel severityLevel) {
+		return validateCCDAImplementation(validationObjective, referenceFileName, ccdaFile, 
+				curesUpdate, svap2022, svap2023,
+				vocabularyConfig, severityLevel);
 	}
 
 	private ValidationResultsDto validateCCDAImplementation(String validationObjective, String referenceFileName,
-			MultipartFile ccdaFile, boolean curesUpdate, boolean svap2022, String vocabularyConfig, SeverityLevel severityLevel) {
+			MultipartFile ccdaFile, boolean curesUpdate, boolean svap2022, boolean svap2023, 
+			String vocabularyConfig, SeverityLevel severityLevel) {
 		ValidationResultsDto resultsDto = new ValidationResultsDto();
 		ValidationResultsMetaData resultsMetaData = new ValidationResultsMetaData();
 		List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
 		try {
-			validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, curesUpdate, svap2022, vocabularyConfig,
-					severityLevel);
+			validatorResults = runValidators(validationObjective, referenceFileName, ccdaFile, 
+					curesUpdate, svap2022, svap2023, 
+					vocabularyConfig, severityLevel);
 			resultsMetaData = buildValidationMedata(validatorResults, validationObjective, severityLevel);
 			resultsMetaData.setCcdaFileName(ccdaFile.getOriginalFilename());
 			resultsMetaData.setCcdaFileContents(new String(ccdaFile.getBytes()));
@@ -111,7 +117,8 @@ public class ReferenceCCDAValidationService {
 	}
 
 	private List<RefCCDAValidationResult> runValidators(String validationObjective, String referenceFileName,
-			MultipartFile ccdaFile, boolean curesUpdate, boolean svap2022, String vocabularyConfig, SeverityLevel severityLevel)
+			MultipartFile ccdaFile, boolean curesUpdate, boolean svap2022, boolean svap2023, 
+			String vocabularyConfig, SeverityLevel severityLevel)
 			throws SAXException, Exception {
 		List<RefCCDAValidationResult> validatorResults = new ArrayList<>();
 		InputStream ccdaFileInputStream = null;
@@ -149,7 +156,7 @@ public class ReferenceCCDAValidationService {
 				}
 				if (objectiveAllowsContentValidation(validationObjective)) {
 					List<RefCCDAValidationResult> contentResults = doContentValidation(validationObjective,
-							referenceFileName, ccdaFileContents, curesUpdate, svap2022, severityLevel);
+							referenceFileName, ccdaFileContents, curesUpdate, svap2022, svap2023, severityLevel);
 					if (contentResults != null && !contentResults.isEmpty()) {
 						logger.info("Adding Content results");
 						validatorResults.addAll(contentResults);
@@ -214,10 +221,12 @@ public class ReferenceCCDAValidationService {
 	}
 
 	private List<RefCCDAValidationResult> doContentValidation(String validationObjective, String referenceFileName,
-			String ccdaFileContents, boolean curesUpdate, boolean svap2022, SeverityLevel severityLevel)
+			String ccdaFileContents, boolean curesUpdate, boolean svap2022, boolean svap2023, SeverityLevel severityLevel)
 			throws SAXException {
 		logger.info("Attempting Content validation...");
-		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, curesUpdate, svap2022, severityLevel);
+		return goldMatchingValidator.validateFile(validationObjective, referenceFileName, ccdaFileContents, 
+				curesUpdate, svap2022, svap2023,
+				severityLevel);
 	}
 
 	private ValidationResultsMetaData buildValidationMedata(List<RefCCDAValidationResult> validatorResults,
