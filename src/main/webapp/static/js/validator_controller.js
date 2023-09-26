@@ -10,36 +10,48 @@ angular
 					var senderCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Sender SUT Test Data';
 					var receiverCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Receiver SUT Test Data';
 					var senderSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/Cures Update Svap Uscdiv2 Sender SUT Test Data';
-					var receiverSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/Cures Update Svap Uscdiv2 Receiver SUT Test Data';
+					var receiverSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/Cures Update Svap Uscdiv2 Receiver SUT Test Data';					
+					var senderSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v3-testdata/contents/Cures Update Svap Uscdiv3 Sender SUT Test Data';
+					var receiverSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v3-testdata/contents/Cures Update Svap Uscdiv3 Receiver SUT Test Data';			
 					var validationError;
 					var self = this;
+					
 					$scope.validationTypes = [
 						{ 
 							name: '2015 Certification',
-//							value: 'edition2015' 
 							curesUpdate: false,
-							svap2022: false							
+							svap2022: false,
+							svap2023: false
 						},
 						{ 	
 							name: 'Cures Update',
-//							value: 'curesUpdate'
 							curesUpdate: true,
-							svap2022: false
+							svap2022: false,
+							svap2023: false
 						},
 						{ 	
 							name: 'SVAP 2022',
-//							value: 'svap2022'
 							curesUpdate: false,
-							svap2022: true
-						}						
+							svap2022: true,
+							svap2023: false
+						},
+						{ 	
+							name: 'SVAP 2023',
+							curesUpdate: false,
+							svap2022: false,
+							svap2023: true
+						},					
 					];
-					$scope.selectedValidationType = $scope.validationTypes[1]; // default to cures update as of Jan 2021 
+					
+					$scope.selectedValidationType = $scope.validationTypes[1]; // default to cures update as of Jan 2021
+					
 					$scope.severityLevels = [
 						{ name: 'INFO' },
 						{ name: 'WARNING' },
 						{ name: 'ERROR' }
 					];
 					$scope.selectedSeverityLevel = $scope.severityLevels[2]; // default to errors only
+					
 					self.validationModel = {
 						selectedObjective : '',
 						selectedReferenceFileName : '',
@@ -60,27 +72,7 @@ angular
 							uploadFile($scope.validationModel.file);
 							blockUI.stop();
 						}
-					}
-					
-//					function calculateCertificationCriteriaVersion(fieldName) {					
-//						if ($scope.selectedValidationType.value === 'edition2015') {
-//							return false;
-//						}
-//						
-//						if (fieldName === 'curesUpdate') {
-//							if ($scope.selectedValidationType.value === 'curesUpdate') {
-//								return true;
-//							} else {
-//								return false;
-//							}
-//						} else if (fieldName === 'svap2022') {
-//							if ($scope.selectedValidationType.value === 'svap2022') {
-//								return true;
-//							} else {
-//								return false;
-//							}
-//						}					
-//					}
+					}				
 
 					function uploadFile(file) {
 						Upload
@@ -91,11 +83,10 @@ angular
 												'validationObjective' : $scope.validationModel.selectedObjective.name,
 												'referenceFileName' : $scope.validationModel.selectedReferenceFileName.name,
 												'ccdaFile' : file,
-												'severityLevel' : $scope.selectedSeverityLevel.name,
-//												'curesUpdate' : calculateCertificationCriteriaVersion('curesUpdate'),
-//												'svap2022' : calculateCertificationCriteriaVersion('svap2022'),												
+												'severityLevel' : $scope.selectedSeverityLevel.name,									
 												'curesUpdate' : $scope.selectedValidationType.curesUpdate,
-												'svap2022' : $scope.selectedValidationType.svap2022
+												'svap2022' : $scope.selectedValidationType.svap2022,
+												'svap2023' : $scope.selectedValidationType.svap2023
 											}
 										}).then(
 										function(resp) {
@@ -648,6 +639,13 @@ angular
 								getTestDocuments(senderSvap2022GitHubUrl);
 							} else {
 								getTestDocuments(receiverSvap2022GitHubUrl);
+							}		
+						} else if ($scope.selectedValidationType.svap2023) {
+							// svap 2023 (uscdi v3)
+							if ($scope.radioModel == 'sender') {
+								getTestDocuments(senderSvap2023GitHubUrl);
+							} else {
+								getTestDocuments(receiverSvap2023GitHubUrl);
 							}							
 						} else {
 							// nonCures

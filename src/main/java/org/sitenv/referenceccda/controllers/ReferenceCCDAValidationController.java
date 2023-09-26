@@ -42,6 +42,7 @@ public class ReferenceCCDAValidationController {
 			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
 			@RequestParam(value = "curesUpdate", required = false) boolean curesUpdate,
 			@RequestParam(value = "svap2022", required = false) boolean svap2022,
+			@RequestParam(value = "svap2023", required = false) boolean svap2023,
 			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig,
 			@RequestParam(defaultValue = DEFAULT_SEVERITY_LEVEL, required = false) String severityLevel) {
 
@@ -59,7 +60,7 @@ public class ReferenceCCDAValidationController {
 		logger.info("Final severityLevelEnum.name() " + severityLevelEnum.name());
 
 		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile,
-				curesUpdate, svap2022, vocabularyConfig, severityLevelEnum);
+				curesUpdate, svap2022, svap2023, vocabularyConfig, severityLevelEnum);
 	}
 
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)
