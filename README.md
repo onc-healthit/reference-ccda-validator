@@ -115,3 +115,22 @@ Server Configuration
               ```
     * The log states, "Could not resolve dependencies for project ..."
         * Likely caused by an inproper configuration installation of Java. Make sure the JAVA_HOME and JRE_HOME environment variables are set properly and you are using a version of Java 8. Also check the build path in your IDE. At the time of this documentation, the version of Java used is 1.8.0_361.
+     
+**5. Public API Usage**
+
+* We have API documentation via swagger here:
+  * https://ccda.healthit.gov/referenceccdaservice/swagger-ui.html#/reference-ccda-validation-controller
+
+* Public API:
+  * https://ccda.healthit.gov/referenceccdaservice/
+
+* form-data
+  * ccdaFile: file
+  * referenceFileName: string of filename or empty
+  * validationObjective: C-CDA_IG_Plus_Vocab
+* If you want to use the cures update, add:
+  * curesUpdate: true
+* Or if you want SVAP 2022 or SVAP 2023, add:
+  * svap2022: true
+* or
+  * svap2023: true
