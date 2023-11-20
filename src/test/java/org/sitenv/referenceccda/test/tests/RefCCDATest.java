@@ -67,7 +67,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
 			DS4P_REFRAIN_OBSERVATION = 18, IVL_REAL_EXAMPLE = 19, IVL_REAL_EXAMPLE2 = 20, REFERRAL_NOTE = 21,
 			REFERRAL_NOTE2 = 22, SDTCTEST = 23, CONSOLNOTEACTIVITY = 24, MEDICATION_SECTION_CODE_INVALID = 25,
-			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28, APPENDIXAANDB = 29;
+			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28, APPENDIXAANDB = 29,SVAPCCD2023=30,SVAPCCD20232=31;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -104,7 +104,9 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/maritalstatus.xml").toURI(), 
 					RefCCDATest.class.getResource("/maritalstatus2.xml").toURI(),
 					RefCCDATest.class.getResource("/lotorbatch.xml").toURI(),
-					RefCCDATest.class.getResource("/AppendixAandB.xml").toURI()
+					RefCCDATest.class.getResource("/AppendixAandB.xml").toURI(),
+					RefCCDATest.class.getResource("/2023SVAPCCD.xml").toURI(),
+					RefCCDATest.class.getResource("/2023SVAPCCD2.xml").toURI()
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -862,6 +864,10 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF: 15346");
 	}
 	
+
+	
+	
+	
 	/*
 	 * SITE-3348 ETT GG, Errata CDA-2008, MDHT: "A plethora of b.1 issues that we think are invalid"
 	 */
@@ -1337,6 +1343,103 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		printResults(getMDHTErrorsFromResults(results));
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "[0..0] addr");
 	}
+	
+	
+	@Test
+	public void test2023SVAPCCD() {
+		
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SVAPCCD2023]), CCDATypes.NON_SPECIFIC_CCDAR2);
+		printResults(getMDHTErrorsFromResults(results));
+		
+		//Coverage Test
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33065");
+		
+		//  Consol Disability Status Observation 
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32628");
+		
+		// Consol Medication Dispense
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32361");
+		
+		//  Consol Result Organizer
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32616");
+		
+		// Consol Result Observation 
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32612");
+		
+		// Consol Pregnancy Intention
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-2682");
+	 		
+		// Consol Basic Occupation Observation
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33007");
+		
+		// Basic Industry Observation S
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33022");
+		
+		// Gender
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33070");
+		// Sexual
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32884");
+		// Policy
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "1198-32852");
+		
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "DSTU:818" );
+		
+		
+				
+		
+		
+		
+	}
+	
+	
+	@Test
+	public void test2023SVAPCCD2() {
+		
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SVAPCCD20232]), CCDATypes.NON_SPECIFIC_CCDAR2);
+		printResults(getMDHTErrorsFromResults(results));
+		
+		//Coverage Test
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33065");
+		
+		//  Consol Disability Status Observation 
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32628");
+		
+		// Consol Medication Dispense
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32361");
+		
+		//  Consol Result Organizer
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32616");
+		
+		// Consol Result Observation 
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-32612");
+		
+		// Consol Pregnancy Intention
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-2682");
+	 		
+		// Consol Basic Occupation Observation
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33007");
+		
+		// Basic Industry Observation S
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33022");
+		
+		// Gender
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537-33070");
+		// Sexual
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32884");
+		// Policy
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "1198-32852");
+		
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "DSTU:818" );
+		
+		
+				
+		
+		
+		
+	}
+	
 
 
 }
