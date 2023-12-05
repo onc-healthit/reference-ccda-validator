@@ -53,16 +53,16 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
 		org.sitenv.contentvalidator.dto.enums.SeverityLevel userSeverityLevelForContentValidation = 
 				org.sitenv.contentvalidator.dto.enums.SeverityLevel.valueOf(severityLevel.name());
 		
-//		List<ContentValidationResult> validationResults = contentValidatorService.validate(
-//				validationObjective, referenceFileName, ccdaFile, 
-//				curesUpdate, svap2022, svap2023,
-//				userSeverityLevelForContentValidation);
+		List<ContentValidationResult> validationResults = contentValidatorService.validate(
+				validationObjective, referenceFileName, ccdaFile,
+				curesUpdate, svap2022, svap2023,
+				userSeverityLevelForContentValidation);
 		
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
-//		for (ContentValidationResult result : validationResults) {
-//			results.add(createValidationResult(result));
-//		}
-//		
+		for (ContentValidationResult result : validationResults) {
+			results.add(createValidationResult(result));
+		}
+
 		return results;
 	}
 
