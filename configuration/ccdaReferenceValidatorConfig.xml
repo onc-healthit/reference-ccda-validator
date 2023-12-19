@@ -2571,7 +2571,7 @@
 		<validator>
 			<name>ValueSetCodeValidator</name>
 			<validationResultSeverityLevels>
-				<codeSeverityLevel>SHALL</codeSeverityLevel>
+				<codeSeverityLevel>MAY</codeSeverityLevel>
 			</validationResultSeverityLevels>
 			<allowedValuesetOids>1.3.6.1.4.1.12009.10.1.3932</allowedValuesetOids>
 		</validator>
