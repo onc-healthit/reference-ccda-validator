@@ -291,6 +291,13 @@
     </dependencyManagement>
     <build>
         <finalName>referenceccdaservice</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -351,6 +358,9 @@
     <profiles>
         <profile>
             <id>local</id>
+            <properties>
+                <logging.type>DEBUG</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -376,6 +386,9 @@
         </profile>
         <profile>
             <id>test</id>
+            <properties>
+                <logging.type>DEBUG</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -404,6 +417,9 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <logging.type>INFO</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -416,6 +432,7 @@
                             <filters>
                                 <filter>src/main/profiles/prod/environment.properties</filter>
                             </filters>
+
                             <webResources>
                                 <resource>
                                     <directory>src/main/webapp</directory>
@@ -430,6 +447,9 @@
         <profile>
             <!-- This profile will build a zip file of the war and all of the necessary artifacts to deploy the validator. -->
             <id>distribution</id>
+            <properties>
+                <logging.type>INFO</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -464,13 +484,16 @@
         </profile>
         <profile>
             <!-- This profile copies the war over to a local tomcat webapps folder (specified in properties) after the build is run -->
-            <id>webapps</id>        
+            <id>webapps</id>
+            <properties>
+                <logging.type>INFO</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>properties-maven-plugin</artifactId>
-                        <version>1.0-alpha-2</version>
+                        <version>1.0.0</version>
                           <executions>
                               <execution>
                                 <phase>initialize</phase>
