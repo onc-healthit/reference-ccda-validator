@@ -118,5 +118,17 @@ Server Configuration
      
 **5. API Usage**
 
-* We have API documentation via swagger here:
-  * https://ccda.healthit.gov/referenceccdaservice/swagger-ui.html#/reference-ccda-validation-controller
+* You can find API documentation on a local installation here via swagger:
+    * https://localhost:8080/referenceccdaservice/swagger-ui.html#/reference-ccda-validation-controller
+* API:
+    * https://localhost:8080/referenceccdaservice/
+* form-data
+    * ccdaFile: file
+    * referenceFileName: string of filename or empty
+    * validationObjective: C-CDA_IG_Plus_Vocab
+* If you want to use the cures update, add:
+    * curesUpdate: true
+* Or if you want SVAP 2022 or SVAP 2023, add:
+    * svap2022: true
+    * or
+    * svap2023: true
