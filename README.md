@@ -90,8 +90,16 @@ Server Configuration
                 <Parameter name="referenceccda.isDynamicVocab" value="false" override="true"/>
                 <Parameter name="referenceccda.configFolder" value="path/to/your/configs_folder" override="true"/>
                 <Parameter name="content.scenariosDir" value="path/to/your/scenarios_directory" override="true"/>
-             </Context>
 
+                <Parameter name="keycloak.enabled" value="false" override="true"/>
+                <Parameter name="keycloak.auth.server" value="Replace with KeyCloak auth URL" override="true"/>
+                <Parameter name="keycloak.realm" value="Replace with KeyCloak Realm" override="true"/>
+                <Parameter name="keycloak.client.id" value="Replace with KeyCloak client id for introspect" override="true"/>
+                <Parameter name="keycloak.client.secret" value="Replace with KeyCloak client secret for introspect" override="true"/>
+             </Context>
+             
+    3. To disable KeyCloak set keycloak.enabled flag to false
+    
 **3. Run the application**
 
     1. Start your tomcat instance - you should see output showing the databases getting initialized and the .war file getting deployed.
