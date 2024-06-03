@@ -1445,5 +1445,18 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 	}
 	
 
+	@Test
+	public void testHealthStatusSITE4082() {
+		// https://oncprojectracking.healthit.gov/support/browse/SITE-3762
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[HAS_4_POSSIBLE_CONSOL_AND_1_POSSIBLE_MU2_ERROR]));
+		println("global result");
+		assertFalse("The document does not have schema error yet the flag is set to true",
+				mdhtResultsHaveSchemaError(results));
+		println("and for sanity, check the single results as well");
+ 
+		printResults(getMDHTErrorsFromResults(results));
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1098-9075");
+	}
 
 }

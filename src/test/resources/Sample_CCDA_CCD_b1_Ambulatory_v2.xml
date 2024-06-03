@@ -2603,7 +2603,296 @@ PROBLEM LIST
                                     unit="a"/>
                               </observation>
                            </entryRelationship>
+                           
+                           
+                           
+                           
+
+
+
+
+
                            <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="135815002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="135818000"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="161045001"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="162467007"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                           
+                           
+
+
+
+
+
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="21134002"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="271593001"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="27624003"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="419099009"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="81323004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                                                     <entryRelationship
+                              typeCode="REFR">
+                              <observation
+                                 classCode="OBS"
+                                 moodCode="EVN">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.5"/>
+                                 <!-- Health status observation template -->
+                                 <code xsi:type="CE"
+                                    code="11323-3"
+                                    codeSystem="2.16.840.1.113883.6.1"
+                                    codeSystemName="LOINC"
+                                    displayName="Health status"/>
+                                 <text><reference
+                                       value="#problems"/></text>
+                                 <statusCode
+                                    code="completed"/>
+                                 <value
+                                    xsi:type="CD"
+                                    code="765205004"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    codeSystemName="SNOMED CT"
+                                    displayName="Symptom Free"/>
+                              </observation>
+                           </entryRelationship>
+                           
+                           
+                                                     <entryRelationship
                               typeCode="REFR">
                               <observation
                                  classCode="OBS"
