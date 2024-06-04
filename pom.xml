@@ -16,21 +16,21 @@
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT SITE properties -->
        <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
-        <mdht.models.version>3.0.0.20231120</mdht.models.version>
+        <mdht.models.version>3.0.0.20240603</mdht.models.version>
         <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
-		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
-		<mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
-		<mdht.plugins.version>3.0.0.202209230500</mdht.plugins.version> 
-		<logback.version>1.2.11</logback.version>
- 		<!-- MDHT SNAPSHOT properties: Uncomment for local test -->
- 		 
-		<!--<mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
-		<mdht.models.version>3.0.0-SNAPSHOT</mdht.models.version>		
-		<ds4pcontent.groupId>org.hl7.security.ds4p</ds4pcontent.groupId>
-		<ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>		
-		<mdht.plugins.groupId>org.eclipse.mdht</mdht.plugins.groupId>
-		<mdht.plugins.version>3.0.0-SNAPSHOT</mdht.plugins.version> -->
-	 
+        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>       
+        <mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
+        <mdht.plugins.version>3.0.0.202209230500</mdht.plugins.version> 
+        <logback.version>1.2.11</logback.version>
+        <!-- MDHT SNAPSHOT properties: Uncomment for local test -->
+         
+        <!--<mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
+        <mdht.models.version>3.0.0-SNAPSHOT</mdht.models.version>       
+        <ds4pcontent.groupId>org.hl7.security.ds4p</ds4pcontent.groupId>
+        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>       
+        <mdht.plugins.groupId>org.eclipse.mdht</mdht.plugins.groupId>
+        <mdht.plugins.version>3.0.0-SNAPSHOT</mdht.plugins.version> -->
+     
     </properties>
 
     <repositories>
@@ -38,57 +38,57 @@
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-	        <id>mdht</id>
-	        <name>ONCSITE-DEV-CCDA-releases</name>	        
-	        <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
+            <id>mdht</id>
+            <name>ONCSITE-DEV-CCDA-releases</name>          
+            <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
         </repository>
     </repositories>
 
     <dependencies>
         <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
-		<!-- 1st party MDHT - MODELS from https://github.com/mdht/mdht-models -->
+        <!-- 1st party MDHT - MODELS from https://github.com/mdht/mdht-models -->
         <dependency>
             <groupId>${mdht.models.groupid}</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <version>${mdht.models.version}</version>
         </dependency>
-		<dependency>
-		    <groupId>${mdht.models.groupid}</groupId>
-		    <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
-		    <version>${mdht.models.version}</version>
+        <dependency>
+            <groupId>${mdht.models.groupid}</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
+            <version>${mdht.models.version}</version>
         </dependency>
         <dependency>
             <groupId>${ds4pcontent.groupId}</groupId>
             <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
             <version>${ds4pcontent.version}</version>
         </dependency> 
-		<!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
-		<dependency>
+        <!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>
+            <version>${mdht.plugins.version}</version>
+        </dependency>
         <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.cda</artifactId>
             <version>${mdht.plugins.version}</version>
         </dependency>
-		<dependency>
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>
-		<dependency>
+            <version>${mdht.plugins.version}</version>
+        </dependency>
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>
-		<dependency>
+            <version>${mdht.plugins.version}</version>
+        </dependency>
+        <dependency>
             <groupId>${mdht.plugins.groupId}</groupId>
             <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-		    <version>${mdht.plugins.version}</version>
-		</dependency>	
-		<!-- 3rd party MDHT -->
+            <version>${mdht.plugins.version}</version>
+        </dependency>   
+        <!-- 3rd party MDHT -->
         <dependency>
             <groupId>mdht-dependency</groupId>
             <artifactId>lpg.runtime.java</artifactId>
@@ -291,6 +291,13 @@
     </dependencyManagement>
     <build>
         <finalName>referenceccdaservice</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -351,6 +358,9 @@
     <profiles>
         <profile>
             <id>local</id>
+            <properties>
+                <logging.type>DEBUG</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -376,6 +386,9 @@
         </profile>
         <profile>
             <id>test</id>
+            <properties>
+                <logging.type>DEBUG</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -404,6 +417,9 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
+            <properties>
+                <logging.type>INFO</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -416,6 +432,7 @@
                             <filters>
                                 <filter>src/main/profiles/prod/environment.properties</filter>
                             </filters>
+
                             <webResources>
                                 <resource>
                                     <directory>src/main/webapp</directory>
@@ -430,6 +447,9 @@
         <profile>
             <!-- This profile will build a zip file of the war and all of the necessary artifacts to deploy the validator. -->
             <id>distribution</id>
+            <properties>
+                <logging.type>INFO</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -464,13 +484,16 @@
         </profile>
         <profile>
             <!-- This profile copies the war over to a local tomcat webapps folder (specified in properties) after the build is run -->
-            <id>webapps</id>        
+            <id>webapps</id>
+            <properties>
+                <logging.type>INFO</logging.type>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>properties-maven-plugin</artifactId>
-                        <version>1.0-alpha-2</version>
+                        <version>1.0.0</version>
                           <executions>
                               <execution>
                                 <phase>initialize</phase>
