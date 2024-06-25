@@ -67,7 +67,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
 			DS4P_REFRAIN_OBSERVATION = 18, IVL_REAL_EXAMPLE = 19, IVL_REAL_EXAMPLE2 = 20, REFERRAL_NOTE = 21,
 			REFERRAL_NOTE2 = 22, SDTCTEST = 23, CONSOLNOTEACTIVITY = 24, MEDICATION_SECTION_CODE_INVALID = 25,
-			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28, APPENDIXAANDB = 29,SVAPCCD2023=30,SVAPCCD20232=31;
+			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28, APPENDIXAANDB = 29,SVAPCCD2023=30,SVAPCCD20232=31,LARSON=32;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -106,7 +106,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/lotorbatch.xml").toURI(),
 					RefCCDATest.class.getResource("/AppendixAandB.xml").toURI(),
 					RefCCDATest.class.getResource("/2023SVAPCCD.xml").toURI(),
-					RefCCDATest.class.getResource("/2023SVAPCCD2.xml").toURI()
+					RefCCDATest.class.getResource("/2023SVAPCCD2.xml").toURI(),
+					RefCCDATest.class.getResource("/LarsonHealthSummaryExp225.9.24.xml").toURI()
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -1458,5 +1459,23 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		printResults(getMDHTErrorsFromResults(results));
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1098-9075");
 	}
+	
+	@Test
+	public void testHealthStatusSITE4084() {
+		// https://oncprojectracking.healthit.gov/support/browse/SITE-3762
+		ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[LARSON]));
+		println("global result");
+//		assertFalse("The document does not have schema error yet the flag is set to true",
+//				mdhtResultsHaveSchemaError(results));
+//		println("and for sanity, check the single results as well");
+ 
+		printResults(getMDHTErrorsFromResults(results));
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-16754");
+//		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, "4515-16754");
+	}
+	
+	
+	
 
 }
