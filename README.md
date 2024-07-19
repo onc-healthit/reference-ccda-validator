@@ -1,3 +1,9 @@
+**Support**
+
+GitHub Issues are not used to manage issues for this repository. Please report any issues you may have on the [ETT Google Group](https://groups.google.com/g/edge-test-tool). Our technical team will address all questions there. Thank you.
+
+**Reference C-CDA Configuration and Deployment**
+
 This document is meant to outline the steps to successfully configure and deploy the reference ccda application.
 
 If you would like to get a test virtual machine up and running quickly, check out https://github.com/mieweb/vagrant-ccda-validator for a Vagrant build or https://github.com/mieweb/docker-ccda-validator for a docker container. Note: These are 3rd-party options and are not directly supported by SITE/the ONC. They intend to pull, configure, and deploy the data from our codebase based on these instructions. Otherwise, please continue to follow the full instructions below to create a local, external, or customized instance of the validator.
