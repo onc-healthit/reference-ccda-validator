@@ -55,7 +55,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 	private static final boolean LOG_RESULTS_TO_CONSOLE = true;
 
-	private static final boolean SHOW_ERRORS_ONLY = true;
+	private static  boolean SHOW_ERRORS_ONLY = true;
 
 	private static final int HAS_SCHEMA_ERROR_INDEX = 1, LAST_SCHEMA_TEST_AND_NO_SCHEMA_ERROR_INDEX = 2,
 			INVALID_SNIPPET_ONLY_INDEX = 3, NON_CCDA_XML_HTML_FILE_WITH_XML_EXTENSION_INDEX = 4,
@@ -1475,7 +1475,20 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 //		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_WARN, "4515-16754");
 	}
 	
-	
+	@Test
+	public void site4095() {
+		List<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+				convertCCDAFileToString(CCDA_FILES[SDTCTEST]), CCDATypes.NON_SPECIFIC_CCDAR2);		
+//		results = getMDHTErrorsFromResults(results);
+//		SHOW_ERRORS_ONLY = false;
+		
+		ReferenceValidationLogger.printResults(results);
+//		printResultsBasedOnFlags(results);
+//		SHOW_ERRORS_ONLY = true;
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF:1198-15350, CONF:1198-32140");
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF: 15350");
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "CONF: 15346");
+	}	
 	
 
 }
