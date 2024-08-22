@@ -16,7 +16,7 @@
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT SITE properties -->
        <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
-        <mdht.models.version>3.0.0.20240821</mdht.models.version>
+        <mdht.models.version>3.0.0.20240822</mdht.models.version>
         <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
         <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>       
         <mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
