@@ -33,29 +33,29 @@ public class ReferenceContentValidator extends BaseCCDAValidator implements CCDA
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
 			String ccdaFile) throws SAXException {
 		return validateFile(validationObjective, referenceFileName, ccdaFile, 
-				false, false, false, 
+				false, false, false, false,
 				SeverityLevel.INFO);
 	}
     
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
-			String ccdaFile, boolean curesUpdate, boolean svap2022, boolean svap2023, SeverityLevel severityLevel) throws SAXException {
+			String ccdaFile, boolean curesUpdate, boolean svap2022, boolean svap2023, boolean uscdiv4, SeverityLevel severityLevel) throws SAXException {
 		ArrayList<RefCCDAValidationResult> results = null;
 		if (ccdaFile != null) {
 			results = doValidation(validationObjective, referenceFileName, ccdaFile, 
-					curesUpdate, svap2022, svap2023,
+					curesUpdate, svap2022, svap2023, uscdiv4,
 					severityLevel);
 		}
 		return results;
 	}
 
 	private ArrayList<RefCCDAValidationResult> doValidation(String validationObjective, String referenceFileName,
-			String ccdaFile, boolean curesUpdate, boolean svap2022, boolean svap2023, SeverityLevel severityLevel) throws SAXException {
+			String ccdaFile, boolean curesUpdate, boolean svap2022, boolean svap2023, boolean uscdiv4, SeverityLevel severityLevel) throws SAXException {
 		org.sitenv.contentvalidator.dto.enums.SeverityLevel userSeverityLevelForContentValidation = 
 				org.sitenv.contentvalidator.dto.enums.SeverityLevel.valueOf(severityLevel.name());
 		
 		List<ContentValidationResult> validationResults = contentValidatorService.validate(
 				validationObjective, referenceFileName, ccdaFile,
-				curesUpdate, svap2022, svap2023,
+				curesUpdate, svap2022, svap2023, uscdiv4,
 				userSeverityLevelForContentValidation);
 		
 		ArrayList<RefCCDAValidationResult> results = new ArrayList<>();
