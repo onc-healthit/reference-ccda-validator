@@ -64,6 +64,56 @@ public class ReferenceCCDAValidationController {
 				curesUpdate, svap2022, svap2023, uscdiv4, vocabularyConfig, severityLevelEnum);
 	}
 
+
+	@RequestMapping(value = "/", headers = "content-type=multipart/*", method = RequestMethod.POST)
+	public ValidationResultsDto doRefValidation(
+			@RequestParam(value = "validationObjective", required = true) String validationObjective,
+			@RequestParam(value = "referenceFileName", required = true) String referenceFileName,
+			@RequestParam(value = "ccdaFile", required = true) MultipartFile ccdaFile,
+			@RequestParam(value = "ccdaType", required = false) String ccdaType,
+			@RequestParam(defaultValue = VocabularyConstants.Config.DEFAULT, required = false) String vocabularyConfig,
+			@RequestParam(defaultValue = DEFAULT_SEVERITY_LEVEL, required = false) String severityLevel) {
+
+		logger.info("doRefValidation severityLevel requestParam: " + severityLevel);
+
+		if ((severityLevel == null || severityLevel.equals(""))
+				|| (!severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.INFO.name())
+						&& !severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.WARNING.name())
+						&& !severityLevel.equalsIgnoreCase(VocabularyConstants.SeverityLevel.ERROR.name()))) {
+			severityLevel = DEFAULT_SEVERITY_LEVEL;
+			logger.info("doRefValidation severityLevel was set/overwritten to default: " + severityLevel);
+		}
+
+		SeverityLevel severityLevelEnum = SeverityLevel.valueOf(severityLevel.toUpperCase());
+		logger.info("doRefValidation Final severityLevelEnum.name() " + severityLevelEnum.name());
+
+
+		boolean curesUpdate = false;
+		boolean svap2022 = false;
+		boolean svap2023 = false;
+		boolean uscdiv4 = false;
+
+		logger.info("doRefValidation ccdaType : " + ccdaType);
+		
+		if (ccdaType != null) {
+			if (ccdaType.equalsIgnoreCase("cures")){
+				curesUpdate = true;
+			}
+			if (ccdaType.equalsIgnoreCase("svap")){
+				svap2022 = true;
+			}
+			if (ccdaType.equalsIgnoreCase("uscdiv3")){
+				svap2023 = true;
+			}
+			if (ccdaType.equalsIgnoreCase("uscdiv4")){
+				uscdiv4 = true;
+			}			
+		}
+
+		return referenceCcdaValidationService.validateCCDA(validationObjective, referenceFileName, ccdaFile,
+				curesUpdate, svap2022, svap2023, uscdiv4, vocabularyConfig, severityLevelEnum);
+	}		
+
 	@RequestMapping(value = "/getvaluesetsbyoids", method = RequestMethod.GET)
 	public List<VsacValueSet> getValuesetsByOids(@RequestParam(value = "oids", required = true) String[] valuesetOids) {
 		return vocabularyService.getValuesetsByOids(Arrays.asList(valuesetOids));
