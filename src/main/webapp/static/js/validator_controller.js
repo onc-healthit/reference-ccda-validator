@@ -6,41 +6,40 @@ angular
 				'ValidationController',
 				function($scope, $http, Upload, ValidatorService, blockUI) {
 					var senderGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/contents/Sender SUT Test Data';
-					var receiverGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/contents/Receiver SUT Test Data';
-					var senderCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Sender SUT Test Data';
-					var receiverCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-data/contents/Cures Update Receiver SUT Test Data';
-					var senderSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/Cures Update Svap Uscdiv2 Sender SUT Test Data';
-					var receiverSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v2-testdata/contents/Cures Update Svap Uscdiv2 Receiver SUT Test Data';					
-					var senderSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v3-testdata/contents/Cures Update Svap Uscdiv3 Sender SUT Test Data';
-					var receiverSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-edition-cures-update-uscdi-v3-testdata/contents/Cures Update Svap Uscdiv3 Receiver SUT Test Data';			
+					var receiverGitHubUrl = 'https://api.github.com/repos/onc-healthit/2015-certification-ccda-testdata/contents/Receiver SUT Test Data';					
+					var senderCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v1-testdata/Sender SUT Test Data';
+					var receiverCuresGitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v1-testdata/Receiver SUT Test Data';
+					var senderSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v2-testdata/Sender SUT Test Data';
+					var receiverSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v2-testdata/Receiver SUT Test Data';					
+					var senderSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Sender SUT Test Data';
+					var receiverSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Receiver SUT Test Data';
+					var senderUscdiv4GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Sender SUT Test Data';
+					var receiverUscdiv4GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Receiver SUT Test Data';
+
 					var validationError;
 					var self = this;
 					
 					$scope.validationTypes = [
 						{ 
 							name: '2015 Certification',
-							curesUpdate: false,
-							svap2022: false,
-							svap2023: false
+							ccdaType: ''
 						},
 						{ 	
 							name: 'Cures Update',
-							curesUpdate: true,
-							svap2022: false,
-							svap2023: false
+							ccdaType: 'cures'
 						},
 						{ 	
 							name: 'SVAP 2022',
-							curesUpdate: false,
-							svap2022: true,
-							svap2023: false
+							ccdaType: 'svap'
 						},
 						{ 	
 							name: 'SVAP 2023',
-							curesUpdate: false,
-							svap2022: false,
-							svap2023: true
-						},					
+							ccdaType: 'uscdiv3'
+						},		
+						{ 	
+							name: 'USCDI V4',
+							ccdaType: 'uscdiv4'
+						},									
 					];
 					
 					$scope.selectedValidationType = $scope.validationTypes[1]; // default to cures update as of Jan 2021
@@ -84,9 +83,7 @@ angular
 												'referenceFileName' : $scope.validationModel.selectedReferenceFileName.name,
 												'ccdaFile' : file,
 												'severityLevel' : $scope.selectedSeverityLevel.name,									
-												'curesUpdate' : $scope.selectedValidationType.curesUpdate,
-												'svap2022' : $scope.selectedValidationType.svap2022,
-												'svap2023' : $scope.selectedValidationType.svap2023
+												'ccdaType' : $scope.selectedValidationType.ccdaType
 											}
 										}).then(
 										function(resp) {
@@ -626,27 +623,34 @@ angular
 					function toggleMessageType() {
 						$scope.objectives = [];
 						$scope.referenceFileNames = [];
-						if ($scope.selectedValidationType.curesUpdate) {
+						if ($scope.selectedValidationType.ccdaType = 'cures') {
 							// cures update
 							if ($scope.radioModel == 'sender') {
 								getTestDocuments(senderCuresGitHubUrl);
 							} else {
 								getTestDocuments(receiverCuresGitHubUrl);
 							}	
-						} else if ($scope.selectedValidationType.svap2022) {
+						} else if ($scope.selectedValidationType.ccdaType = 'svap') {
 							// svap 2022 (uscdi v2)
 							if ($scope.radioModel == 'sender') {
 								getTestDocuments(senderSvap2022GitHubUrl);
 							} else {
 								getTestDocuments(receiverSvap2022GitHubUrl);
 							}		
-						} else if ($scope.selectedValidationType.svap2023) {
+						} else if ($scope.selectedValidationType.ccdaType = 'uscdiv3') {
 							// svap 2023 (uscdi v3)
 							if ($scope.radioModel == 'sender') {
 								getTestDocuments(senderSvap2023GitHubUrl);
 							} else {
 								getTestDocuments(receiverSvap2023GitHubUrl);
-							}							
+							}	
+						} else if ($scope.selectedValidationType.ccdaType = 'uscdiv4') {
+							// uscdi v4 (uscdi v4)
+							if ($scope.radioModel == 'sender') {
+								getTestDocuments(senderUscdiv4GitHubUrl);
+							} else {
+								getTestDocuments(receiverUscdiv4GitHubUrl);
+							}														
 						} else {
 							// nonCures
 							if ($scope.radioModel == 'sender') {

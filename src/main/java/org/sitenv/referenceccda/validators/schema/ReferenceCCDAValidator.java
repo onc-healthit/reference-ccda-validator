@@ -93,12 +93,12 @@ public class ReferenceCCDAValidator extends BaseCCDAValidator implements CCDAVal
 	}
 
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
-			String ccdaFile) throws SAXException, Exception {
-		return validateFile(validationObjective, referenceFileName, ccdaFile, SeverityLevel.INFO);
+			String ccdaFile,String ccdaType) throws SAXException, Exception {
+		return validateFile(validationObjective, referenceFileName, ccdaFile,SeverityLevel.INFO,ccdaType);
 	}
 	
 	public ArrayList<RefCCDAValidationResult> validateFile(String validationObjective, String referenceFileName,
-			String ccdaFile, SeverityLevel severityLevel) throws SAXException, Exception {
+			String ccdaFile,  SeverityLevel severityLevel,String ccdaType) throws SAXException, Exception {
 		final XPathIndexer xpathIndexer = new XPathIndexer();
 		ValidationResult result = new ValidationResult(CAPTURE_VALIDATION_STATISTICS);
 		InputStream in = null, in2 = null;
