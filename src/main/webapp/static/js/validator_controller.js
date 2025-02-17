@@ -13,8 +13,8 @@ angular
 					var receiverSvap2022GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v2-testdata/Receiver SUT Test Data';					
 					var senderSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Sender SUT Test Data';
 					var receiverSvap2023GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Receiver SUT Test Data';
-					var senderUscdiv4GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Sender SUT Test Data';
-					var receiverUscdiv4GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v3-testdata/Receiver SUT Test Data';
+					var senderUscdiv4GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v4-testdata/Sender SUT Test Data';
+					var receiverUscdiv4GitHubUrl = 'https://api.github.com/repos/onc-healthit/ccda-uscdi-certification-testdata/contents/uscdi-v4-testdata/Receiver SUT Test Data';
 
 					var validationError;
 					var self = this;
