@@ -294,7 +294,7 @@ public class ReferenceValidationTester extends VocabularyValidationTester {
 		ArrayList<RefCCDAValidationResult> results = null;
 		try {
 			results = referenceCCDAValidator.validateFile(validationObjective, "Test",
-					ccdaFileAsString);
+					ccdaFileAsString,"");
 		} catch (SAXException e) {
 			if(logResults) e.printStackTrace();
 		} catch (Exception e) {

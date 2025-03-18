@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 public interface CCDAValidator {
 	ArrayList<RefCCDAValidationResult> validateFile(String validationObjective,
-			String referenceFileName, String ccdaFile) throws SAXException, Exception;
+			String referenceFileName, String ccdaFile, String ccdaType) throws SAXException, Exception;
 }

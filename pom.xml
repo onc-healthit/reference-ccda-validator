@@ -1,12 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.sitenv</groupId>
     <artifactId>referenceccdavalidator</artifactId>
     <version>1.0.71</version>
     <packaging>war</packaging>
     <name>Reference CCDA Validator</name>
-
     <properties>
         <!-- Generic properties -->
         <java.version>1.8</java.version>
@@ -15,132 +15,119 @@
         <code.validator.version>latestVersion</code.validator.version>
         <content.validator.version>latestVersion</content.validator.version>
         <!-- MDHT SITE properties -->
-       <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
+        <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
         <mdht.models.version>3.0.0.20240822</mdht.models.version>
         <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
-        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>       
+        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
         <mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
-        <mdht.plugins.version>3.0.0.202209230500</mdht.plugins.version> 
+        <mdht.plugins.version>3.0.0.202209230500</mdht.plugins.version>
         <logback.version>1.2.11</logback.version>
-        <!-- MDHT SNAPSHOT properties: Uncomment for local test -->
-         
-        <!--<mdht.models.groupid>org.openhealthtools.mdht.cda</mdht.models.groupid>
-        <mdht.models.version>3.0.0-SNAPSHOT</mdht.models.version>       
-        <ds4pcontent.groupId>org.hl7.security.ds4p</ds4pcontent.groupId>
-        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>       
-        <mdht.plugins.groupId>org.eclipse.mdht</mdht.plugins.groupId>
-        <mdht.plugins.version>3.0.0-SNAPSHOT</mdht.plugins.version> -->
-     
     </properties>
-
     <repositories>
         <repository>
+            <id>eclipse</id>
+            <url>https://repo.eclipse.org/content/groups/releases</url>
+        </repository>
+        <repository>
+            <id>mdix</id>
+            <name>a0rydvwuacqh2-artifactory-primary-0-releases</name>
+            <url>https://mdix.jfrog.io/artifactory/mdmiartifactory</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-            <id>mdht</id>
-            <name>ONCSITE-DEV-CCDA-releases</name>          
-            <url>http://34.195.107.72:8081/artifactory/libs-release-local</url> <!--34.195.107.72 ccda.dev.sitenv.org -->
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </repository>
     </repositories>
-
     <dependencies>
-        <!-- START MDHT DEPENDENCIES - from AHRQ DEV CCDA artifactory -->
-        <!-- 1st party MDHT - MODELS from https://github.com/mdht/mdht-models -->
+        <!-- START MDHT DEPENDENCIES -->
         <dependency>
-            <groupId>${mdht.models.groupid}</groupId>
-            <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
-            <version>${mdht.models.version}</version>
+            <groupId>org.eclipse.emf</groupId>
+            <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+            <version>2.5.0.v20100521-1846</version>
         </dependency>
         <dependency>
-            <groupId>${mdht.models.groupid}</groupId>
-            <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
-            <version>${mdht.models.version}</version>
+            <groupId>org.eclipse.uml2</groupId>
+            <artifactId>org.eclipse.uml2.types</artifactId>
+            <version>2.0.0.v20140910-1354</version>
         </dependency>
         <dependency>
-            <groupId>${ds4pcontent.groupId}</groupId>
-            <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
-            <version>${ds4pcontent.version}</version>
-        </dependency> 
-        <!-- 1st party MDHT - PLUGINS from http://git.eclipse.org/c/mdht/org.eclipse.mdht.git -->
-        <dependency>
-            <groupId>${mdht.plugins.groupId}</groupId>
-            <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
-            <version>${mdht.plugins.version}</version>
+            <groupId>org.eclipse.emf</groupId>
+            <artifactId>org.eclipse.emf.common</artifactId>
+            <version>2.27.0</version> <!-- Use the required version -->
         </dependency>
         <dependency>
-            <groupId>${mdht.plugins.groupId}</groupId>
-            <artifactId>org.eclipse.mdht.uml.cda</artifactId>
-            <version>${mdht.plugins.version}</version>
+            <groupId>org.eclipse.emf</groupId>
+            <artifactId>org.eclipse.emf.ecore</artifactId>
+            <version>2.27.0</version>
         </dependency>
         <dependency>
-            <groupId>${mdht.plugins.groupId}</groupId>
-            <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
-            <version>${mdht.plugins.version}</version>
+            <groupId>org.eclipse.ocl</groupId>
+            <artifactId>org.eclipse.ocl</artifactId>
+            <version>3.6.200.v20170522</version>
         </dependency>
         <dependency>
-            <groupId>${mdht.plugins.groupId}</groupId>
-            <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
-            <version>${mdht.plugins.version}</version>
+            <groupId>org.eclipse.ocl.ecore</groupId>
+            <artifactId>org.eclipse.ocl.ecore</artifactId>
+            <version>3.6.200.v20170522</version>
         </dependency>
         <dependency>
-            <groupId>${mdht.plugins.groupId}</groupId>
-            <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
-            <version>${mdht.plugins.version}</version>
-        </dependency>   
-        <!-- 3rd party MDHT -->
-        <dependency>
-            <groupId>mdht-dependency</groupId>
+            <groupId>lpg.runtime.java</groupId>
             <artifactId>lpg.runtime.java</artifactId>
             <version>2.0.17.v201004271640</version>
         </dependency>
         <dependency>
-            <groupId>mdht-dependency</groupId>
-            <artifactId>org.eclipse.emf.common</artifactId>
-            <version>2.12.0.v20160420</version>
-        </dependency>
-        <dependency>
-            <groupId>mdht-dependency</groupId>
-            <artifactId>org.eclipse.emf.ecore</artifactId>
-            <version>2.12.0.v20160420</version>
-        </dependency>
-        <dependency>
-            <groupId>mdht-dependency</groupId>
-            <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-            <version>2.12.0.v20160420</version>
-        </dependency>
-        <dependency>
-            <groupId>mdht-dependency</groupId>
-            <artifactId>org.eclipse.ocl</artifactId>
-            <version>3.6.0.v20160523</version>
-        </dependency>
-        <dependency>
-            <groupId>mdht-dependency</groupId>
+            <groupId>org.eclipse.ocl.common</groupId>
             <artifactId>org.eclipse.ocl.common</artifactId>
-            <version>1.4.0.v20160521</version>
+            <version>1.4.200.v20160613</version>
         </dependency>
         <dependency>
-            <groupId>mdht-dependency</groupId>
-            <artifactId>org.eclipse.ocl.ecore</artifactId>
-            <version>3.6.0.v20160523</version>
+            <groupId>org.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.emf.runtime</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>mdht-dependency</groupId>
-            <artifactId>org.eclipse.uml2.common</artifactId>
-            <version>2.1.0.v20170227</version>
+            <groupId>org.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.hl7.vocab</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>mdht-dependency</groupId>
-            <artifactId>org.eclipse.uml2.types</artifactId>
-            <version>2.0.0.v20170227</version>
+            <groupId>org.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.hl7.datatypes</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.hl7.rim</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.mdht</groupId>
+            <artifactId>org.eclipse.mdht.uml.cda</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openhealthtools.mdht.cda</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hl7.security.ds4p</groupId>
+            <artifactId>org.hl7.security.ds4p.contentprofile</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openhealthtools.mdht.cda</groupId>
+            <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
+            <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
-        </dependency>    
+        </dependency>
         <!-- END MDHT DEPENDENCIES -->
-
         <!-- START VOCAB DEPENDENCIES -->
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
@@ -151,12 +138,11 @@
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
             <classifier>tests</classifier>
-            <version>${code.validator.version}</version>                                   
+            <version>${code.validator.version}</version>
             <type>test-jar</type>
-            <scope>test</scope>          
-        </dependency>        
+            <scope>test</scope>
+        </dependency>
         <!-- END VOCAB DEPENDENCIES -->
-
         <!-- START CONTENT DEPENDENCIES -->
         <dependency>
             <groupId>org.sitenv</groupId>
@@ -164,9 +150,7 @@
             <version>${content.validator.version}</version>
         </dependency>
         <!-- END CONTENT DEPENDENCIES -->
-
-        <!-- Core utilities used by other modules. Define this if you use Spring
-            Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
+        <!-- Core utilities used by other modules. Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -189,9 +173,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans,
-            spring-context, spring-web) Define this if you use Spring MVC with a Servlet
-            Container such as Apache Tomcat (org.springframework.web.servlet.*) -->
+        <!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Servlet Container such as 
+            Apache Tomcat (org.springframework.web.servlet.*) -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
@@ -241,43 +224,37 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.9.8</version>
-        </dependency>      
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-
         <!-- pull in logback-core and slf4j-api -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>            
-            <scope>test</scope>          
+            <version>4.13.1</version>
+            <scope>test</scope>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>4.9.2</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20230227</version>
         </dependency>
-
     </dependencies>
-    
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -297,7 +274,6 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -318,7 +294,6 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -356,6 +331,21 @@
         </plugins>
     </build>
     <profiles>
+        <profile>
+            <id>mdmiartifactory</id>
+            <distributionManagement>
+                <repository>
+                    <id>mdix</id>
+                    <name>7ed03140605b-releases</name>
+                    <url>http://artifactory.mdixinc.net:8082/artifactory/mdmiartifactory/libs-release</url>
+                </repository>
+                <snapshotRepository>
+                    <id>mdix</id>
+                    <name>7ed03140605b-snapshots</name>
+                    <url>http://artifactory.mdixinc.net:8081/artifactory/mdmiartifactory/libs-snapshot</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
         <profile>
             <id>local</id>
             <properties>
@@ -432,7 +422,6 @@
                             <filters>
                                 <filter>src/main/profiles/prod/environment.properties</filter>
                             </filters>
-
                             <webResources>
                                 <resource>
                                     <directory>src/main/webapp</directory>
@@ -476,7 +465,7 @@
                         <configuration>
                             <failOnMissingWebXml>false</failOnMissingWebXml>
                             <warSourceDirectory>${project.build.directory}/${project.build.finalName}</warSourceDirectory>
-                           <packagingExcludes>**/context.xml</packagingExcludes>
+                            <packagingExcludes>**/context.xml</packagingExcludes>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -494,20 +483,20 @@
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>properties-maven-plugin</artifactId>
                         <version>1.0.0</version>
-                          <executions>
-                              <execution>
+                        <executions>
+                            <execution>
                                 <phase>initialize</phase>
                                 <goals>
-                                  <goal>read-project-properties</goal>
+                                    <goal>read-project-properties</goal>
                                 </goals>
                                 <configuration>
                                     <files>
-                                      <file>src/main/profiles/webapps/environment.properties</file>
+                                        <file>src/main/profiles/webapps/environment.properties</file>
                                     </files>
                                 </configuration>
-                              </execution>
+                            </execution>
                         </executions>
-                    </plugin>                    
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
@@ -528,7 +517,7 @@
                         </configuration>
                     </plugin>
                 </plugins>
-            </build>    
+            </build>
         </profile>
     </profiles>
 </project>
