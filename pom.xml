@@ -13,21 +13,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <code.validator.version>latestVersion</code.validator.version>
-        <content.validator.version>latestVersion</content.validator.version>
-        <!-- MDHT SITE properties -->
-        <mdht.models.groupid>mdht.openhealthtools.mdht.cda</mdht.models.groupid>
-        <mdht.models.version>3.0.0.20240822</mdht.models.version>
-        <ds4pcontent.groupId>mdht.hl7.ds4p</ds4pcontent.groupId>
-        <ds4pcontent.version>${mdht.models.version}</ds4pcontent.version>
-        <mdht.plugins.groupId>mdht.eclipse.mdht</mdht.plugins.groupId>
-        <mdht.plugins.version>3.0.0.202209230500</mdht.plugins.version>
+        <content.validator.version>latestVersion</content.validator.version>     
         <logback.version>1.2.11</logback.version>
     </properties>
     <repositories>
-        <repository>
-            <id>eclipse</id>
-            <url>https://repo.eclipse.org/content/groups/releases</url>
-        </repository>
+        
         <repository>
             <id>mdix</id>
             <name>a0rydvwuacqh2-artifactory-primary-0-releases</name>
@@ -39,9 +29,14 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
+        
+        <repository>
+            <id>eclipse</id>
+            <url>https://repo.eclipse.org/content/groups/releases</url>
+        </repository>
     </repositories>
     <dependencies>
-        <!-- START MDHT DEPENDENCIES -->
+		<!-- START MDHT DEPENDENCIES -->
         <dependency>
             <groupId>org.eclipse.emf</groupId>
             <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
@@ -108,7 +103,7 @@
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.openhealthtools.mdht.cda</groupId>
+            <groupId>org.eclipse.mdht</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.consol2</artifactId>
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
@@ -118,7 +113,7 @@
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.openhealthtools.mdht.cda</groupId>
+            <groupId>org.eclipse.mdht</groupId>
             <artifactId>org.openhealthtools.mdht.uml.cda.mu2consol</artifactId>
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
@@ -127,8 +122,8 @@
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
         </dependency>
-        <!-- END MDHT DEPENDENCIES -->
-        <!-- START VOCAB DEPENDENCIES -->
+		<!-- END MDHT DEPENDENCIES -->
+		<!-- START VOCAB DEPENDENCIES -->
         <dependency>
             <groupId>org.sitenv.vocabulary</groupId>
             <artifactId>codevalidator-api</artifactId>
@@ -142,15 +137,15 @@
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
-        <!-- END VOCAB DEPENDENCIES -->
-        <!-- START CONTENT DEPENDENCIES -->
+		<!-- END VOCAB DEPENDENCIES -->
+		<!-- START CONTENT DEPENDENCIES -->
         <dependency>
             <groupId>org.sitenv</groupId>
             <artifactId>contentvalidator-api</artifactId>
             <version>${content.validator.version}</version>
         </dependency>
-        <!-- END CONTENT DEPENDENCIES -->
-        <!-- Core utilities used by other modules. Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
+		<!-- END CONTENT DEPENDENCIES -->
+		<!-- Core utilities used by other modules. Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -173,7 +168,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Servlet Container such as 
+		<!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Servlet Container such as 
             Apache Tomcat (org.springframework.web.servlet.*) -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -230,7 +225,7 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-        <!-- pull in logback-core and slf4j-api -->
+		<!-- pull in logback-core and slf4j-api -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -242,13 +237,13 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>4.9.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -434,7 +429,7 @@
             </build>
         </profile>
         <profile>
-            <!-- This profile will build a zip file of the war and all of the necessary artifacts to deploy the validator. -->
+			<!-- This profile will build a zip file of the war and all of the necessary artifacts to deploy the validator. -->
             <id>distribution</id>
             <properties>
                 <logging.type>INFO</logging.type>
@@ -472,7 +467,7 @@
             </build>
         </profile>
         <profile>
-            <!-- This profile copies the war over to a local tomcat webapps folder (specified in properties) after the build is run -->
+			<!-- This profile copies the war over to a local tomcat webapps folder (specified in properties) after the build is run -->
             <id>webapps</id>
             <properties>
                 <logging.type>INFO</logging.type>
