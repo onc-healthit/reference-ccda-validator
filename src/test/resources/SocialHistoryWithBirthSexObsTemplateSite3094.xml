@@ -3603,7 +3603,21 @@ SOCIAL HISTORY
 						</table>
 					</text>
 
-
+    <entry typeCode="DRIV">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <!-- ** Gender Identity** -->
+                            <templateId root="2.16.840.1.113883.10.20.22.4.38"/>
+                            <templateId root="2.16.840.1.113883.10.20.34.3.45" extension="2023-05-01" />
+                            <id root="45efb604-7049-4a2e-ad33-d38556c7636c"/>
+                            
+                            <code code="76691-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Gender Identity"/>
+                            <statusCode code="completed"/>
+                            <effectiveTime>
+                            <low value="20180703" />
+                            </effectiveTime>
+                            <value xsi:type="CD" code="33791000087105" displayName="Identifies as nonbinary gender (finding)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                        </observation>
+                    </entry>
 
 					<entry typeCode="DRIV">
 						<observation classCode="OBS" moodCode="EVN">		
