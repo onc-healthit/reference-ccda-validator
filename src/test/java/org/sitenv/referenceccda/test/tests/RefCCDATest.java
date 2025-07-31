@@ -67,7 +67,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 			SUB_PROCEDURES_WITH_DEVICE_IDENTIFIER_OBSERVATION_BAD_VALUE_ROOT_SITE_3218 = 17,
 			DS4P_REFRAIN_OBSERVATION = 18, IVL_REAL_EXAMPLE = 19, IVL_REAL_EXAMPLE2 = 20, REFERRAL_NOTE = 21,
 			REFERRAL_NOTE2 = 22, SDTCTEST = 23, CONSOLNOTEACTIVITY = 24, MEDICATION_SECTION_CODE_INVALID = 25,
-			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28, APPENDIXAANDB = 29,SVAPCCD2023=30,SVAPCCD20232=31,LARSON=32;
+			MARITALSTATUS = 26, MARITALSTATUS2 = 27, LOTORBATCH = 28, APPENDIXAANDB = 29,SVAPCCD2023=30,SVAPCCD20232=31,LARSON=32,G9_API_ACCESS_AMB_SVAP_USCDIV3_SAMPLE1=33;
 	
 	
 	// Feel free to add docs to the end but don't alter existing data
@@ -107,7 +107,8 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 					RefCCDATest.class.getResource("/AppendixAandB.xml").toURI(),
 					RefCCDATest.class.getResource("/2023SVAPCCD.xml").toURI(),
 					RefCCDATest.class.getResource("/2023SVAPCCD2.xml").toURI(),
-					RefCCDATest.class.getResource("/LarsonHealthSummaryExp225.9.24.xml").toURI()
+					RefCCDATest.class.getResource("/LarsonHealthSummaryExp225.9.24.xml").toURI(),
+					RefCCDATest.class.getResource("/170.315_g9_api_access_amb_svap_uscdiv3_sample1.xml").toURI()
 			};
 		} catch (URISyntaxException e) {
 			if (LOG_RESULTS_TO_CONSOLE)
@@ -1515,6 +1516,51 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4537");				
 	}
+
+	
+	@Test
+	public void testPolicyActivityPass() {
+	ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+/*
+ * FHIR US Core Coverage.type has a binding to 2.16.840.1.114222.4.11.3591 as does C-CDA Policy Activity.  However, C-CDA inserts and requires a Health Insurance Type 2.16.840.1.113883.3.88.12.3221.5.2 as well.  FHIR US Core and C-CDA should be in sync.  As USCDI v3 has no clear definition but the submission only references 2.16.840.1.114222.4.11.3591, C-CDA should only require support for that and not require support for Health Insurance Type.
+Propose that C-CDA CG removes the requirement to support Health Insurance Type.
+Once disposed (and assuming above is agreed to), we propose a second decision be made to backport this for USCDI v3 to align the requirement.  That seems reasonable to be done with an errata.
+
+			Next release
+remove the binding to 2.16.840.1.113883.3.88.12.3221.5.2
+remove translation requirement.
+promote 2.16.840.1.114222.4.11.3591 to root code
+ */
+				convertCCDAFileToString(CCDA_FILES[G9_API_ACCESS_AMB_SVAP_USCDIV3_SAMPLE1]));
+		println("testPolicyActivity");
+		printResults(getMDHTErrorsFromResults(results));
+
+		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "Source of Payment Typology");				
+	}
+	
+	@Test
+	public void testPolicyActivityFail() {
+	ArrayList<RefCCDAValidationResult> results = validateDocumentAndReturnResults(
+/*
+ * FHIR US Core Coverage.type has a binding to 2.16.840.1.114222.4.11.3591 as does C-CDA Policy Activity.  However, C-CDA inserts and requires a Health Insurance Type 2.16.840.1.113883.3.88.12.3221.5.2 as well.  FHIR US Core and C-CDA should be in sync.  As USCDI v3 has no clear definition but the submission only references 2.16.840.1.114222.4.11.3591, C-CDA should only require support for that and not require support for Health Insurance Type.
+Propose that C-CDA CG removes the requirement to support Health Insurance Type.
+Once disposed (and assuming above is agreed to), we propose a second decision be made to backport this for USCDI v3 to align the requirement.  That seems reasonable to be done with an errata.
+
+			Next release
+remove the binding to 2.16.840.1.113883.3.88.12.3221.5.2
+remove translation requirement.
+promote 2.16.840.1.114222.4.11.3591 to root code
+ */
+				convertCCDAFileToString(CCDA_FILES[SVAPCCD20232]));
+		println("testPolicyActivity");
+		printResults(getMDHTErrorsFromResults(results));
+
+		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "Source of Payment Typology");				
+	}
+	
+	
+
+	
 	
 
 }
