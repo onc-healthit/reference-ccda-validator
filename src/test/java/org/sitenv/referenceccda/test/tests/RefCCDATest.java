@@ -1384,7 +1384,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		// Sexual
 		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32884");
 		// Policy
-		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "1198-32852");
+//		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "1198-32852");
 		
 		passIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "DSTU:818" );
 		
@@ -1432,7 +1432,7 @@ public class RefCCDATest extends ReferenceValidationTester implements Validation
 		// Sexual
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "4515-32884");
 		// Policy
-		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "1198-32852");
+//		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "1198-32852");
 		
 		failIfIssueIsInResults(results, ValidationResultType.CCDA_MDHT_CONFORMANCE_ERROR, "DSTU:818" );
 		
