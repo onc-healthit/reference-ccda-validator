@@ -2104,12 +2104,9 @@
 									<templateId root="2.16.840.1.113883.10.20.22.4.61"/>
 									<id root="3e676a50-7aac-11db-9fe1-0800200c9a66"/>
 									<!-- 5.	SHALL contain exactly one [1..1] code, which SHOULD be selected from ValueSet Health Insurance Type -->
-									<code>
-										<!-- a.	This code SHALL contain at least one [1..*] translation, which SHOULD be selected from ValueSet Payer urn:oid:2.16.840.1.114222.4.11.3591 (CONF:1198-32852). 
-										<translation code="81" displayName="self-pay" codeSystemName="Source of Payment Typology (PHDSC)" codeSystem="2.16.840.1.113883.3.221.5"/>
-										-->
-										<translation nullFlavor="NI"/>
-									</code>
+									       <code code="72" displayName="PPO"
+                                        codeSystem="2.16.840.1.113883.3.221.5" codeSystemName="Source of Payment Typology (PHDSC)">
+                                    </code>
 									<statusCode code="completed"/>
 									<!-- Insurance Company Information -->
 									<performer typeCode="PRF">
